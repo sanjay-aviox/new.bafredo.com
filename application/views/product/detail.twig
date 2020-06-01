@@ -1,0 +1,216 @@
+{% extends "layouts/front.twig" %}
+{% block styles %}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.css">
+	<style type="text/css">
+		.productNavFrame h3 {
+			display: block;
+		}
+        .input-group {
+            position: relative;
+            display: flex;
+            border-collapse: separate;
+            justify-content: left;
+        }
+        .plus-minus-input {
+            -webkit-align-items: center;
+            -ms-flex-align: center;
+            align-items: center;
+        }
+        .productNavFrame .quantity .qtyNum label {
+            padding-left: 10px;
+        }
+        .productNavFrame .quantity .qtyNum input {
+            padding: 0px;
+        }
+        .item-quantity-count input {
+            text-align: center;
+        }
+	</style>
+{% endblock %}
+{% block content %}
+<div class="container-fluid bodyFrame">
+  <div class="row hidden-xs pc">
+  	<div class="lineFrame">
+		<ul class="breadcrumb">
+			<li><a title="Home" href="{{ base_url('/') }}">Home</a></li>
+			<li><a title="{{ product.getName() }}" href='{{ base_url("product/detail/#{product.getSlug()}") }}'>{{ product.getName() }}</a></li>
+		</ul>
+	</div>
+	<div class="clear"></div>
+	<div class="lineFrame">
+		<div class="productNavFrame">
+	  		<h3>{{ product.getName() }}</h3><br>
+	  		<div> {{ product.getCurrency() }} <span class="price"> {{ product.getPrice() }}</span></div>
+	        <div class="quantity">
+				<div class="clear"></div>
+		        <div class="qtyNum">
+		  			<label class="control-label" for="input-quantity">Qty</label>
+					<div class="input-group plus-minus-input">
+						<div class="widgets-numberpicker">
+							<div class="widgets-numberpicker-decrement" v-on:click="decrementValue"></div>
+						</div>
+						<div class="input-group-field item-quantity-count">
+							<input type="text" class="form-control" v-model="product_quantity" v-on:keypress="onlyNumber" maxlength="9" minlength="1">
+						</div>
+						<div class="widgets-numberpicker">
+							<div class="widgets-numberpicker-increment" v-on:click="incrementValue"></div>
+						</div>
+					</div>
+		  		</div>
+	        </div>
+	  		<div class="opations"></div>
+			<button class="btn buyBtn" v-on:click="addToCart({{ product.toJson() }}, 'redirectToCheckout')">BUY IT NOW</button>
+			<button type="button" v-on:click="addToCart({{ product.toJson() }})" class="addCartBtn">ADD TO CART</button>
+	  		<div class="clear"></div>
+	  	</div>
+
+		<div class="productLineFrame">
+			<div class="thumbFrame">
+				<div class="thumbShow">
+		    		<a rel="nofollow" href="javascript:;" title="{{ product.getName() }}">
+		    			<img src='{{ asset("uploads/product/thumbnail/#{product.getImage()}") }}' title="{{ product.getName() }}" alt="{{ product.getName() }}" />
+		    		</a>
+		    	</div>
+		        <div class="thumbNav">
+		        	<span class="l"><i class="iconfont icon-leftarrow2"></i></span>
+		        	<div class="thumbList">
+		        		<ul>
+							{% for galleryObj in gallery %}
+							<li>
+								<a rel="nofollow" href="javascript:;" title="{{ product.getName() }}">
+									<img data-sourceimage='{{ asset("uploads/product/gallery/#{galleryObj.getImage()}") }}' title="{{ product.getName() }}" alt="{{ product.getName() }}"
+										 data-img='{{ asset("uploads/product/gallery/#{galleryObj.getImage()}") }}' src='{{ asset("uploads/product/gallery/#{galleryObj.getImage()}") }}'/>
+								</a>
+					        </li>
+							{% endfor %}
+					    </ul>
+		        	</div>
+		        	<span class="r"><i class="iconfont icon-rightarrow2"></i></span>
+		        </div>
+	    	</div>
+			<div class="info">
+				<h1>{{ product.getName() }}</h1>
+				<div class="class">
+					<span class="info_sku">SKU: {{ product.getSku() }}</span><br/>
+					<span>Brand: {{ product.getBrand() }}</span><br/>
+					<span class="info_reward">Reward Points: {{ product.getRewardPoints() }}</span><br/>
+				</div>
+				<br/>
+				{#<div class="tags">#}
+					{#<p>Tags: </p>#}
+					{#<p>#}
+						{#<a title="SEN0190" href="search-sen0190.html">SEN0190</a>#}
+						{#<a title="PT100" href="search-pt100.html">PT100</a>#}
+						{#<a title="thermistor" href="search-thermistor.html">thermistor</a>#}
+						{#<a title="Overlord" href="search-overlord.html">Overlord</a>#}
+						{#<a title="3D printer" href="search-3d%20printer.html">3D printer</a>#}
+					{#</p>#}
+				{#</div>#}
+				<div class="tags">
+					<p>Related Categories</p>
+					<p>
+						{% for subCategory in mainCategory.getSubCategories() %}
+							<a title="Sensors" href='{{ base_url("category/#{mainCategory.getSlug()}/#{subCategory.getSlug()}") }}'>{{ subCategory.getName() }}</a>
+						{% endfor %}
+					</p>
+				</div>
+				<div class="clear"></div>
+				<div class="addwish">
+					<button type="button" class="btn btn-default on wishlist" v-on:click="addToWishList({{ product.id }})">
+						<div class="oncon">ADD TO WISHLIST</div>
+						<div class="offcon">ON WISHLIST</div>
+					</button>
+				</div>
+			</div>
+		</div>
+		<div class="clear"></div>
+	</div>
+	<div class="lineFrame">
+		<div class="productLineFrame productCon">
+			<section class="info_INTRODUCTION">
+                <p><h4>INTRODUCTION</h4></p>
+                <p>{{ product.getIntroduction() | raw }}<br /></p>
+            </section>
+		</div>
+	</div>
+	
+	{% if review|length %}
+	<div class="lineFrame">
+		<div class="productLineFrame productCon">
+			<section class="info_INTRODUCTION">
+			     <p><h4>Submitted Reviews</h4></p>
+                {% for key, rev in review %}
+                     <p>{{ rev.comment }}</p>
+                     <p>By: {{ rev.name }}</p>
+                {% endfor %}
+            </section>
+		</div>
+	</div>
+	{% endif %}
+	
+	{% if user.name  is not null %}
+	
+    	<div class="lineFrame">
+    		<div class="productLineFrame disqusFrame">
+    			<h4>REVIEW</h4>
+    			<!--disqus begin-->
+    			<div id="disqus_thread" style="width: 100%;">
+    			    <form action="{{ base_url('add-review') }}" method="post">
+    			        <input type="hidden" name="product_id" value="{{ product.id }}">
+    			         <input type="hidden" name="product_slug" value="{{ product.getSlug() }}">
+    			        <div id="rateYo"></div>
+    			        <input type="hidden" name="rating"><br><br>
+    			        <label>Comment:</label>
+    			        <textarea rows="5" name="comment" cols="50"></textarea><br>
+    			        <input type="submit"  value="Submit" class="btn-primary">
+    			    </form>
+    			</div>
+    			<!--disqus end-->
+    		</div>
+    	</div>
+		    
+	{% else %}
+            <a href="{{ base_url('/login') }}">Submit a Review</a>
+    {% endif %}
+ 	    
+	
+	<div class="lineFrame">
+		<div class="productLineFrame">
+    		<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+		</div>
+	</div>
+  </div>
+</div>
+{% endblock %}
+{% block scripts %}
+  <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.js"></script>
+	<script type="text/javascript">
+	     $(function() {
+          // VARIABLES
+          var rateYo = $("#rateYo");
+          var rateYoField = $("input[name='rating']");
+        
+          // ON CLICK ASSIGN RATING TO HIDDEN FIELD
+          $(rateYo).rateYo({
+            onSet: function(rating, rateYoInstance) {
+              $(rateYoField).val(rating);
+            }
+          });
+        });
+        // var disqus_shortname = 'bafredo';
+        // var disqus_disable_mobile = true;
+        // var disqus_identifier = 'prod-1333';
+        // (function() {
+        //     var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        //     dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        //     (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        // })();
+         $(".wishlist").click(function(){
+            setInterval(function() {
+                  window.location.reload();
+                }, 3000); 
+        });
+        
+	</script>
+{% endblock %}

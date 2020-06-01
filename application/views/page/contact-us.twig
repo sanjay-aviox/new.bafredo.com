@@ -1,0 +1,105 @@
+{% extends "layouts/front.twig" %}
+{% block styles %}
+    <style type="text/css">
+        .mapouter{
+            position:relative;
+            text-align:right;
+        }
+        .gmap_canvas {
+            overflow:hidden;
+            background:none!important;
+        }
+        .error {
+            color:red;
+        }
+    </style>
+{% endblock %}
+{% block content %}
+    <div class="container-fluid bodyFrame">
+        <div class="row hidden-xs pc">
+            {% if data.success is not empty %}
+                <div class="alert alert-success">
+                    <strong>Success! </strong>Successfully Submitted.
+                </div>
+            {% endif %}
+            <div class="lineFrame">
+                <ul class="breadcrumb">
+                    <li><a href="{{ base_url('/') }}">Home</a></li>
+                    <li><a href="{{ base_url('page/contact-us') }}">Contact Us</a></li>
+                </ul>
+            </div>
+
+            <div class="lineFrame">
+                <div class="row">
+                    <div class="col-md-8">
+                        <h2>Get In Touch</h2>
+                        <form action="" id="contactUs" method="post">
+                            <div class="form-group">
+                                <lable for="subject">Subject</lable>
+                                <input type="text" name="subject" id="subject" placeholder="Enter subject" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <lable for="name">Name</lable>
+                                <input type="text" name="name" id="name" placeholder="Enter name" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <lable for="email">Email</lable>
+                                <input type="text" name="email" id="email" placeholder="Enter email" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <lable for="message">Message</lable>
+                                <textarea name="message" Placeholder="Message" id="messsage" class="form-control"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <input type="submit" value="Send" class="btn btn-success">
+                            </div>
+                        </form>
+                    </div>
+                    <div class="col-md-4">
+                        <h2>Map Location</h2>
+                        <div class="mapouter">
+                            <div class="gmap_canvas">
+                                <iframe width="500" height="500" id="gmap_canvas" src="https://maps.google.com/maps?q=bafredo&t=&z=17&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.js"></script>
+    <script>
+$(document).ready(function(){
+  $("#contactUs").validate({
+    // Specify validation rules
+    rules: {
+      subject: "required",
+      name: "required",
+      email: {
+        required: true,
+        email: true
+      },      
+      message: {
+        required: true,
+      },
+    },
+    messages: {
+      subject: {
+      required: "Subject is required",
+     },      
+     name: {
+      required: "Name is required",
+     },     
+     email: {
+      required: "Email is required",
+     },     
+     message: {
+        required: "Message is required",
+     },
+    },
+  
+  });
+});
+</script>
+    </script>
+{% endblock %}

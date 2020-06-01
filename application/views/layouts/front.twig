@@ -1,0 +1,438 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>BAFREDO Electronics Limited - Innovation. Creativity. Imagination.</title>
+    <script type="text/javascript">
+        var webPath     = '{{ base_url() }}';
+        var mobileJSUrl = "{{ asset('front/js/mobile.js') }}";
+        var webImgPath  = '{{ base_url() }}';
+        var serverTime  = '{{ date().timestamp }}';
+        var currentPage = '{{ get_segment(2) }}';
+    </script>
+
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!----------  Favicon Image ------------->
+    <link rel="shortcut icon" href="{{ asset('theme/images/favicon.png') }}">
+
+    <!----------  font-awesome css ------------->
+    <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <!----------  bootstrap css ------------->
+    <link rel="stylesheet" type="text/css" href="{{ asset('theme/css/bootstrap.min.css') }}">
+    
+    <!----------  owlcarousel css ------------->
+    <link rel="stylesheet" href="{{ asset('theme/css/owl.carousel.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('theme/css/owl.theme.default.min.css') }}"> 
+
+    <!---------- animate css ------------->
+    <link rel="stylesheet" href="{{ asset('theme/css/animate.css') }}">
+
+    <!----------  main css ------------->
+    <link rel="stylesheet" type="text/css" href="{{ asset('theme/css/style.css') }}">
+
+
+    <script type="text/javascript" src="{{ asset('theme/js/jquery.min.js') }}"></script>
+    <script src="{{ asset('theme/js/owl.carousel.js') }}"></script>
+    <script src="{{ asset('theme/js/wow.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('theme/js/proper.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('theme/js/bootstrap.min.js') }}"></script>
+
+
+    <script src="{{ asset('plugins/typeahead/js/jquery.xdomainrequest.min.js') }}"></script>
+    <script src="{{ asset('plugins/typeahead/js/typeahead.bundle.js') }}"></script>
+    <link href="{{ asset('plugins/typeahead/css/normalize.min.css') }}" rel="stylesheet" media="screen" />
+
+    <link href="{{ asset('plugins/typeahead/css/main.css') }}" rel="stylesheet" media="screen" />
+
+    <script src="{{ asset('front/js/hammer.min.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('front/js/iscroll.js') }}" type="text/javascript"></script>
+
+    <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Roboto+Condensed|Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
+    <link href="{{ asset('front/css/stylesheet.css') }}" rel="stylesheet">
+    <link href="{{ asset('front/css/iconfont.css') }}" rel="stylesheet">
+    <link href="{{ asset('front/image/logo/icon-100x100.png') }}" rel="icon" />
+
+</head>
+<body>
+    <div id="app">
+   
+    <!-- top-section start -->
+    <section class="top-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-6">
+                    <div class="top-left-contact-box">
+                        <i class="fa fa-phone-square phone-icon pr-2"></i>
+                        OUR PHONE NUMBER:
+                        <span>+255 (0) 746 624 875</span>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="top-right-menu-box">
+                        <ul class="navbar">
+                             {% if not authCheck("user") %}
+                            <li class="nav-item"><a href="{{ base_url('login') }}" class="nav-link">LOGIN</a></li>
+                            <li class="nav-item"><a href="{{ base_url('/registration') }}" class="nav-link">REGISTER</a></li>
+                            {% else %}
+                            <li class="nav-item"><a href="{{ base_url('user/logout') }}" class="nav-link">Logout</a></li>
+                             {% endif %}
+                        </ul>                
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- top-section end -->
+
+    <!-- header-section start -->
+    <section class="header-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-md-3 d-flex align-items-center">
+                    <div class="logo-box">
+                         <a href="{{ base_url('/') }}"><img src="{{ asset('theme/images/color-logo.png') }}"></a>
+                    </div>
+                </div>
+                <div class="col-12 col-md-4 d-flex align-items-center justify-content-start" style="position: unset;">
+                    <div class="navbar-box">
+                         <nav class="navbar navbar-expand-lg navbar-dark bg-default">
+                            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                                <span class="navbar-toggler-icon"></span>
+                            </button>
+                            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                                <ul class="navbar-nav mr-auto">
+                                    <li class="nav-item active">
+                                        <a class="nav-link" href="{{ base_url('/') }}">Home</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="{{ base_url('/blog') }}">Blog</a>                                        
+                                    </li>
+                                    <li class="nav-item mega-menu-item">
+                                        <a class="nav-link" href="#">Category</a>
+                                        <div class="mega-menu">
+                                            <div class="container">
+                                                <div class="row">
+                                                    {% for menu in menus %}
+                                                    {% if menu.getSubCategories() != null %}
+                                                    <div class="col-12 col-md-3">
+                                                        <ul class="sub-menu">
+                                                            
+                                                            <li> <a title="Arduino" class="sub-menu-heading" href='{{ base_url("category/#{menu.getSlug()}") }}'>{{ menu.getName() }}</a></li>
+                                                             {% for smenu in menu.getSubCategories() %}
+                                                            <li class="sub-menu-item"><a title="{{ smenu.getName() }}" href='{{ base_url("category/#{menu.getSlug()}/#{smenu.getSlug()}") }}' class="sub-menu-link">{{ smenu.getName() }}</a></li>
+                                                             {% endfor %}
+                                                               
+                                                             
+                                                        </ul>
+                                                    </div>
+                                                    {% endif %}
+                                                    {% endfor %}
+
+                                                    <div class="col-12 col-md-3">
+                                                        <ul class="sub-menu">
+
+                                                    {% for menu in menus %}
+                                                    {% if menu.getSubCategories() == null %}
+                                                            <li><a href="#" class="sub-menu-heading">{{ menu.getName() }}</a></li>
+                                                    {% endif %}
+                                                    {% endfor %}
+                                                        </ul>
+                                                    </div>
+                                                    <!-- div class="col-12 col-md-3">
+                                                        <ul class="sub-menu">
+                                                            <li><a href="#" class="sub-menu-heading">Components</a></li>
+                                                            <li class="sub-menu-item"><a href="#" class="sub-menu-link">Circuit Protection</a></li>
+                                                            <li class="sub-menu-item"><a href="#" class="sub-menu-link">Displays</a></li>
+                                                            <li class="sub-menu-item"><a href="#" class="sub-menu-link">Electromechanical</a></li>
+                                                            <li class="sub-menu-item"><a href="#" class="sub-menu-link">Passive Components</a></li>
+                                                            <li class="sub-menu-item"><a href="#" class="sub-menu-link">Prototyping Boards &amp; PCBs</a></li>
+                                                            <li class="sub-menu-item"><a href="#" class="sub-menu-link">Semiconductors</a></li>
+                                                            <li class="sub-menu-item"><a href="#" class="sub-menu-link">Switches &amp; Keypads</a></li>
+                                                            <li class="sub-menu-item"><a href="#" class="sub-menu-link">Wires &amp; Cables</a></li>
+                                                            <li class="sub-menu-item"><a href="#" class="sub-menu-link">Terminals, connectors, &amp; Sockets</a></li>
+                                                        </ul>
+                                                    </div>
+                                                    <div class="col-12 col-md-3">
+                                                        <ul class="sub-menu">
+                                                            <li><a href="#" class="sub-menu-heading">Components</a></li>
+                                                            <li class="sub-menu-item"><a href="#" class="sub-menu-link">Circuit Protection</a></li>
+                                                            <li class="sub-menu-item"><a href="#" class="sub-menu-link">Displays</a></li>
+                                                            <li class="sub-menu-item"><a href="#" class="sub-menu-link">Electromechanical</a></li>
+                                                            <li class="sub-menu-item"><a href="#" class="sub-menu-link">Passive Components</a></li>
+                                                            <li class="sub-menu-item"><a href="#" class="sub-menu-link">Prototyping Boards &amp; PCBs</a></li>
+                                                            <li class="sub-menu-item"><a href="#" class="sub-menu-link">Semiconductors</a></li>
+                                                            <li class="sub-menu-item"><a href="#" class="sub-menu-link">Switches &amp; Keypads</a></li>
+                                                            <li class="sub-menu-item"><a href="#" class="sub-menu-link">Wires &amp; Cables</a></li>
+                                                            <li class="sub-menu-item"><a href="#" class="sub-menu-link">Terminals, connectors, &amp; Sockets</a></li>
+                                                        </ul>
+                                                    </div>
+                                                    <div class="col-12 col-md-3">
+                                                        <ul class="sub-menu">
+                                                            <li><a href="#" class="sub-menu-heading">Components</a></li>
+                                                            <li class="sub-menu-item"><a href="#" class="sub-menu-link">Circuit Protection</a></li>
+                                                            <li class="sub-menu-item"><a href="#" class="sub-menu-link">Displays</a></li>
+                                                            <li class="sub-menu-item"><a href="#" class="sub-menu-link">Electromechanical</a></li>
+                                                            <li class="sub-menu-item"><a href="#" class="sub-menu-link">Passive Components</a></li>
+                                                            <li class="sub-menu-item"><a href="#" class="sub-menu-link">Prototyping Boards &amp; PCBs</a></li>
+                                                            <li class="sub-menu-item"><a href="#" class="sub-menu-link">Semiconductors</a></li>
+                                                            <li class="sub-menu-item"><a href="#" class="sub-menu-link">Switches &amp; Keypads</a></li>
+                                                            <li class="sub-menu-item"><a href="#" class="sub-menu-link">Wires &amp; Cables</a></li>
+                                                            <li class="sub-menu-item"><a href="#" class="sub-menu-link">Terminals, connectors, &amp; Sockets</a></li>
+                                                        </ul>
+                                                    </div> -->
+                                                </div>
+                                            </div>  
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </nav>             
+                    </div>
+                </div>
+                <div class="col-12 col-md-5 d-flex align-items-center justify-content-end">
+                    <div class="header-right-box">
+                         <div class="searchFrame">
+                            
+                            <form action="{{ base_url('home/search') }}" name="search">
+                                <div class="search">
+                                  <span>
+                                  <i class="iconfont icon-search"></i>
+                                  </span>
+                                  <span>
+                                     <!--  <input class="Typeahead-hint" type="text" tabindex="-1" readonly> -->
+                                      <input class="searchInput form-control" id="typeahead" type="text" name="q" placeholder="Search..."/>
+                                      <input type="hidden" name="slug" id="slug"/>
+                                      <img class="Typeahead-spinner" src="{{ asset('plugins/typeahead/spinner.gif') }}">
+                                  </span>
+                                  <!-- <span>
+                                  <i class="fa fa-remove"></i>
+                                  </span> -->
+                                </div>
+                            </form>
+                            {% verbatim %}
+                            <script id="header-template" type="text/x-handlebars-template">
+                                   <a href="javascript:void(0);" id="view_result">View All Records</a>
+                             </script>
+                            <script id="result-template" type="text/x-handlebars-template">
+                                
+                                <div class="ProfileCard u-cf">
+                                
+                                    <img class="ProfileCard-avatar" src="{{thumbnail}}">
+
+                                    <div class="ProfileCard-details">
+                                        <div class="ProfileCard-realName">{{name}}</div>
+                                        <div class="ProfileCard-screenName">@{{brand}}</div>
+                                        <div class="ProfileCard-description">{{description}}</div>
+                                    </div>
+
+                                    <div class="ProfileCard-stats">
+                                        <!--<div class="ProfileCard-stat"><span class="ProfileCard-stat-label">Tweets:</span> {{statuses_count}}</div>-->
+                                        <div class="ProfileCard-stat"><span class="ProfileCard-stat-label">SKU:</span> {{sku}}</div>
+                                        <div class="ProfileCard-stat"><span class="ProfileCard-stat-label">Price:</span> {{currency}} {{price}}</div>
+                                    </div>
+                                </div>
+                            </script>
+                            
+                   
+                            <script id="empty-template" type="text/x-handlebars-template">
+                                <div class="EmptyMessage">Your search turned up 0 results. This most likely means the backend is down, yikes!</div>
+                            </script>
+                            {% endverbatim %}
+                        </div>
+                        <!-- <div class="search-box">
+                            <a href="#" class="search-icon">
+                                <span class="icon"><i class="fa fa-search"></i></span>
+                                <input type="search" id="search" placeholder="Search here..." />
+                            </a>
+                        </div>
+ -->                  <!--   <div class="promotions-box">
+                            <a href="#" class="promotions-icon">
+                                <i class="fa fa-gift"></i>
+                            </a>
+                        </div> -->
+                        <div class="account-box">
+                            <a href="#" class="account-icon">
+                                <i class="fa fa-user-o"></i>
+                            </a>
+                        </div>
+                      <!--   <div class="chat-box">
+                            <a href="#" class="chat-icon">
+                                <i class="fa fa-comment-o"></i>
+                            </a>
+                        </div> -->
+                     
+
+                        <div class="wishlist-box">
+                            <a href="{{base_url('/account/wish_list')}}" class="wishlist-icon">
+                                <i class="fa fa-heart-o"></i>
+                                <span v-text="wishlist.length" class="header-count-box">0</span>
+                            </a>
+                        </div>
+                        <div class="cart-box">
+                            <a href="#" class="cart-icon">
+                                <i class="fa fa-shopping-cart"></i>
+                                <span  v-text="cart.length" class="header-count-box">0</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- header-section end -->
+
+      <div class="container-fluid bodyFrame" id="bodyupdate">
+        {% block content %} {% endblock %}
+    </div>
+    <!-- map-section end -->
+
+        <!-- footer section start -->
+    <section class="footer-section pt-5 pb-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-lg-4 col-md-6">
+                    <div class="footer-logo-box">
+                        <div class="footer-thumb">
+                           <a href="{ base_url('/') }}"><img src="{{ asset('theme/images/color-logo.png') }}"></a>
+                        </div>
+                        <div class="pb-4">
+                            <h4 class="footer-comn-inner-heading">You can reach us on</h4>
+                            <span class="footer-comn-title"><i class="fa fa-phone-square pr-2"></i>+44 (0) 20 8450 9222</span>
+                        </div>
+
+                        <div>
+                            <h4 class="footer-comn-inner-heading">Or email our team on</h4>
+                            <span class="footer-comn-title"><i class="fa fa-envelope pr-2"></i>abcd@gmail.com</span>
+                        </div>                        
+                    </div>
+                </div>
+                <div class="col-12 col-lg-3 col-md-6">
+                    <div class="footer-quick-link-box">
+                        <h3 class="footer-comn-heading">Quick link</h3>
+                        <ul class="footer-quick-link-list">
+                            <li><a href="{{ base_url('page/about-us') }}" class="footer-link">About Us</a></li>
+                            <li><a href="{{ base_url('page/contact-us') }}" class="footer-link">Contact Us</a></li>
+                           <li><a href="{{ base_url('/blog') }}" class="footer-link">Blog</a></li>
+                            <!--li><a href="" class="footer-link">Categories</a></li> -->
+                            <li><a href="{{ base_url('/page/faqs') }}" class="footer-link">Faqs</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-12 col-lg-5 col-md-6">
+                    <div class="footer-social-link-box">
+                        <h3 class="footer-comn-heading">Social media</h3>
+                        <h4 class="footer-comn-title">Subscribe to our newsletter with
+                        monthly product updates & offers</h4>
+                        <div class="subscribe-form">
+                            <form class="footer-newsletter">
+                                <input required="required" type="email" id="newsletter_email" autocomplete="off" placeholder="Enter you email address here..." class="form-control"> 
+                                <button name="subscribe" id="subscribeBtn" onclick="subscribe_email()"class="subscribe-btn">Subscribe</button>
+                            </form>
+                        </div>
+                        <h3 class="footer-comn-inner-heading">Follow us on</h3>
+                        <ul class="social-list-box">
+
+<!-- 
+                            <li><a href="https://www.facebook.com/bafredonics/" target="_blank" class="footer-social-link"><img src="{{ asset('theme/images/mailchimp.png') }}"></a></li>
+                            
+                            <li><a href="#" class="footer-social-link"><img src="{{ asset('theme/images/github.png') }}"></a></li> -->
+
+                            <li><a href="https://www.linkedin.com/company/bafredo-electronics-limited/" target="_blank" class="footer-social-link"><img src="{{ asset('theme/images/linkedin.png') }}"></a></li>
+
+                            <li><a href="https://www.facebook.com/bafredonics/" target="_blank" class="footer-social-link"><img src="{{ asset('theme/images/facebook.png') }}"></a></li>
+
+                            <li><a href="https://www.youtube.com/channel/UC601Ys2fPPwhkmyhdp9MrhQ?view_as=subscriber" target="_blank" class="footer-social-link"><img src="{{ asset('theme/images/youtube.png') }}"></a></li>
+
+                            <li><a href="https://www.instagram.com/bafredonics/" target="_blank" class="footer-social-link"><img src="{{ asset('theme/images/instagram-sketched.png') }}"></a></li>
+
+                            <li><a href="https://twitter.com/bafredonics" target="_blank" class="footer-social-link"><img src="{{ asset('theme/images/twitter.png') }}"></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>        
+    </section>
+    <!-- footer section end -->
+
+    <!-- copyright-section start -->
+    <section class="copyright-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-md-12">
+                    <div class="copyright-area">
+                        <p class="mb-0">© 2019 BAFREDO Electronics Limited. All rights reserved</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+    <script type="text/javascript">
+
+        $(document).on('click','#view_result', function(){
+        var x = $("#typeahead").val();
+          // if(x== ''){
+          //     location.reload();
+          // }
+
+            $.ajax({
+                  url: "http://localhost/new.bafredo.com/search-product",
+                  type: 'get',
+                  data: {"x" : x},
+                  dataType : "json",
+                  error: function() {
+                      alert('Something is wrong');
+                  },
+                  success: function(data) {
+                      console.log(data);
+                      $("#bodyupdate").html(data.data);
+                  }
+            });
+        });
+
+    function validateEmail($email) {
+        var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
+        return emailReg.test($email);
+    }
+
+    function subscribe_email()
+    {
+        if (validateEmail($("#newsletter_email").val() || $("#newsletter_email").val().trim() != "")) {
+            $.ajax({
+                url: '{{ base_url('home/subscribe') }}',
+                data: {
+                    email: $('#newsletter_email').val(),
+                },
+                type: 'post',
+                success: function (output) {
+                    if (output) {
+                        alert("Subscribed Successfully")
+                    } else {
+                        alert("Already Subscribed")
+                    }
+                }
+            });
+        } else {
+
+            alert("Email Incorrect")
+        }
+    }
+
+</script>
+    <!-- copyright-section end -->
+
+<script type="text/javascript" src="{{ asset('theme/js/custom.js') }}"></script>
+
+<script src="{{ asset('plugins/typeahead/js/handlebars.js') }}"></script>
+<script src="{{ asset('plugins/typeahead/js/main.js') }}"></script>
+<script src="{{ asset('js/app.js') }}"></script>
+{% block scripts %} {% endblock %}
+
+</body>
+</html>

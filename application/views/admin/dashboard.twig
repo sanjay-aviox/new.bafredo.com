@@ -1,0 +1,142 @@
+{% extends "layouts/admin.twig" %}
+{% block content %}
+<div class="row">
+    <div class="col-lg-3">
+        <div class="ibox float-e-margins">
+            <div class="ibox-title">
+                <span class="label label-success pull-right">Monthly</span>
+                <h5>Orders</h5>
+            </div>
+            <div class="ibox-content">
+                <h1 class="no-margins">{{ data.orders }}</h1>
+                <div class="stat-percent font-bold text-success">{{ data.orders }}% <i class="fa fa-bolt"></i></div>
+                <small>Total income</small>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-3">
+        <div class="ibox float-e-margins">
+            <div class="ibox-title">
+                <span class="label label-info pull-right">Annual</span>
+                <h5>Users</h5>
+            </div>
+            <div class="ibox-content">
+                <h1 class="no-margins">{{ data.numberofusers }}</h1>
+                <div class="stat-percent font-bold text-info">{{ data.numberofusers }}% <i class="fa fa-level-up"></i></div>
+                <small>New orders</small>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-3">
+        <div class="ibox float-e-margins">
+            <div class="ibox-title">
+                <span class="label label-primary pull-right">Today</span>
+                <h5>Subscriber</h5>
+            </div>
+            <div class="ibox-content">
+                <h1 class="no-margins">{{ data.numberofsubscribe }}</h1>
+                <div class="stat-percent font-bold text-navy">{{ data.numberofsubscribe }}% <i class="fa fa-level-up"></i></div>
+                <small>New visits</small>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-3">
+        <div class="ibox float-e-margins">
+            <div class="ibox-title">
+                <span class="label label-danger pull-right">Low value</span>
+                <h5>Vistors</h5>
+            </div>
+            <div class="ibox-content">
+                <h1 class="no-margins">{{ data.numberofvisitor }}</h1>
+                <div class="stat-percent font-bold text-danger">{{ data.numberofvisitor }} % <i class="fa fa-level-down"></i></div>
+                <small>In first month</small>
+            </div>
+        {#<div class="ibox-content">#}
+        {#        <h1 class="no-margins">45</h1>#}
+        {#        <div class="stat-percent font-bold text-danger">45 % <i class="fa fa-level-down"></i></div>#}
+        {#        <small>In first month</small>#}
+        {#    </div>#}
+        {#</div>#}
+    </div>
+</div>
+<div class="row">
+<div class="col-md-12">
+{% block styles %}
+    <link href="{{ asset('css/plugins/select2/select2.min.css') }}" rel="stylesheet" type="text/css" />
+    <style type="text/css">
+        .xcrud-actions .btn-group {
+            float: right !important;
+        }
+        .xcrud-view {
+            margin-top: 25px !important;
+        }
+        .form-horizontal .control-label {
+            text-align: left;
+        }
+        .col-sm-3 {
+            width: 10% !important;
+        }
+        .pagination {
+            vertical-align: top;
+            margin: 2px 0;
+        }
+    </style>
+{% endblock %}
+     {% if create is not empty %}
+        {{  xcrud.render("edit") | raw }}
+
+    {% else %}
+        {{  xcrud.render() | raw }}
+
+    {% endif  %}
+</div>
+</div>
+{% endblock %}
+{% block scripts %}
+   
+   
+
+    {{ xcrud.load_js() | raw}}
+
+    <script type="text/javascript" src="{{ asset('js/plugins/select2/select2.full.min.js') }}"></script>
+    <script type="text/javascript">
+        jQuery(document).on("xcrudbeforerequest", function(event, container) {
+            if (container) {
+                const elem = jQuery(container).find("select");
+                if (elem.length) {
+                    elem.select2("destroy");
+                }
+            } else {
+                const elem = jQuery(".xcrud").find("select");
+                if (elem.length) {
+                    elem.select2("destroy");
+                }
+            }
+        });
+        jQuery(document).on("ready xcrudafterrequest", function(event, container) {
+            if (container) {
+                const elem = jQuery(container).find("select");
+                if (elem.length) {
+                    elem.select2();
+                }
+            } else {
+                const elem = jQuery(".xcrud").find("select");
+                if (elem.length) {
+                    elem.select2();
+                }
+            }
+        });
+        jQuery(document).on("xcrudbeforedepend", function(event, container, data) {
+            const elem = jQuery(container).find('select[name="' + data.name + '"]');
+            if (elem.length) {
+                elem.select2("destroy");
+            }
+        });
+        jQuery(document).on("xcrudafterdepend", function(event, container, data) {
+            elem = jQuery(container).find('select[name="' + data.name + '"]');
+            if (elem.length) {
+                elem.select2();
+            }
+        });
+    </script>
+{% endblock %}

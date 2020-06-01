@@ -1,0 +1,134 @@
+
+<h2>Personal Information</h2>
+
+<div class="orderListFrame">
+    <form action="#" method="post" enctype="multipart/form-data" class="form-horizontal">
+        <fieldset>
+            <legend></legend>
+            <div class="form-group">
+                <label class="col-sm-2 control-label" for="name">Name</label>
+                <div class="col-sm-10">
+                    <input type="text" name="name" required value="{{ user.name }}" placeholder="Name" id="name" class="form-control">
+                </div>
+            </div>
+            {% if verfiy.code %}
+            <div class="text-center bg-danger"><span class="alert">
+                   Unverified Email</span></div>
+            {% endif %}
+            <div class="form-group">
+                <label class="col-sm-2 control-label" for="email">Email</label>
+                <div class="col-sm-8">
+                    <input type="text" name="email" required value="{{ user.email }}" placeholder="Email" id="email" class="form-control">
+                </div>
+                <div class="col-sm-2">
+                    {% if(verfiy.is_verified == '0') %}
+                         <button type="button" class="btn btn-primary verify">Verify Your Email</button>
+                    {% else %}
+                        <button type="button" class="btn btn-default disable">Verified</button>
+                    {% endif %}
+               </div>
+            </div>
+            <p id="verify_msg" style="margin-left:85px"></p>
+             
+            <div class="form-group" id="otp_section" style="display:none">
+               
+                    <label class="col-sm-2 control-label" for="telephone">OTP</label>
+                    <div class="col-sm-8">
+                        <input type="text"  placeholder="OTP" id="otp" class="form-control">
+                    </div>
+                     <div class="col-sm-2">
+                          <button type="button" class="btn btn-primary" id="confirmOtp">Submit</button>
+                   </div>
+               
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label" for="telephone">Mobile Number</label>
+                    
+
+                <div class="col-sm-10">
+                    <input type="text" name="telephone" required value="{{ user.telephone }}" placeholder="Mobile Number" id="telephone" class="form-control">
+                    <p id="errmsg"></p>
+                </div>
+            </div>
+        </fieldset>
+        <div class="buttons clearfix">
+            <div class="pull-right">
+                <input type="submit" value="Save" id="updatebutton" class="btn btn-primary">
+            </div>
+        </div>
+    </form>
+</div>
+<script>
+    $("#updatebutton").click(function(){
+            alert("hi");
+            setInterval(function() {
+                  window.location.reload();
+                }, 3000); 
+        });
+    $(document).ready(function () {
+        $("#telephone").keypress(function (e) {
+            if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57))
+            {
+                $("#errmsg").html("Please Enter Numeric values Only").show().fadeOut("slow");
+                   return false;
+            }
+       });
+    });
+
+  $(document).on('click', '.verify', function(){
+     var email =  $('#email').val();
+      
+            $.ajax({
+               url: '/verifyEmail',
+               type : "POST",
+              // dataType : "json",
+               data: {"email" : email},
+               
+               success: 
+               function(data) {
+                  // alert(data);
+                   //if(data.success)
+                  $("#verify_msg").html("verification code send on your email address please check").show().fadeOut(5000);
+                  $('#otp_section').css('display','block');
+                    // $("#msg").addClass("alert alert-success");
+                    // $("#msg").html("Record removed successfully").show().fadeOut(3000);
+                    // setTimeout(function () { location.reload(); }, 2000);
+               },
+
+            });
+      //}confirmOtp
+    });
+     $(document).on('click', '#confirmOtp', function(){
+     var otp =  $('#otp').val();
+     //alert(otp);
+      
+            $.ajax({
+              url: '/match-otp',
+              type : "POST",
+               dataType : "json",
+              data: {"otp" : otp},
+               
+              success: 
+              function(data) {
+console.log(data);
+                  if(data.stattus=='success'){
+                                   $('#otp_section').css('display','none');
+                   $("#verify_msg").html("OTP verified successfully").show().fadeOut(5000);
+                     setTimeout(function () { location.reload(); }, 2000);
+                  }else{
+                      $("#verify_msg").html("Otp mismatch").show().fadeOut(8000);
+                  }
+              },
+
+            });
+     // }
+    });
+     
+             $("#updatebutton").click(function(){
+           
+            setInterval(function() {
+                  location.reload();
+                }, 3000); 
+        });
+    
+</script>

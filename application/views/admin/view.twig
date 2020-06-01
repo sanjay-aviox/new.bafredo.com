@@ -1,0 +1,79 @@
+{% extends "layouts/admin.twig" %}
+{% block content %}
+<div class="row">
+    <div class="wrapper wrapper-content animated fadeInRight">
+        <form action="{{ base_url('admin/email/addEmail') }}" method="post">
+           <div class="row">
+               <div class="col-12 col-lg-12">
+                   <a href="{{ base_url('admin/email') }}" data-task="list" class="btn btn-warning" data-primary="1">Return</a>
+                   <div class="subscriober-section">
+                       <label>To:</label>
+                       <div class="row">
+                        {% for sub in subscribe %}
+                        <div class="alert alert-primary" style="background-color:lightblue;width:250px; float:left;margin-left:10px;">{{sub.email}}</div>
+                         
+                        {% endfor %}
+                        </div>
+                   </div>
+                   <div class="row pt-20">
+                        <div class="col-12 col-lg-4">
+                            <label>Title</label>
+                            <input type="text" name="title" value="{{ template.title }}" class="form-control">
+                        </div>
+                        <div class="col-12 col-lg-4">
+                            <label>Subject</label>
+                            <input type="text" value="{{ template.subject }}" name="subject" class="form-control">
+                        </div>
+                        <div class="col-12 col-lg-4">
+                            <label>Description</label>
+                            <input type="text" value="{{ template.description }}" name="description" class="form-control">
+                       </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 col-lg-12">
+                    <div class="card shadow">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-12 col-lg-12">
+                                     <label>Content</label>
+                                    <textarea class="form-control" name="content">{{ template.content }}</textarea>
+                                </div>
+                            </div><br><br>
+                       </div>
+                    </div>
+                </div>
+            </div>
+        </from>
+    </div>
+</div>
+<div class="row">
+<div class="col-md-12">
+{% block styles %}
+    <link href="{{ asset('css/plugins/select2/select2.min.css') }}" rel="stylesheet" type="text/css" />
+    <style type="text/css">
+        .xcrud-actions .btn-group {
+            float: right !important;
+        }
+        .xcrud-view {
+            margin-top: 25px !important;
+        }
+        .form-horizontal .control-label {
+            text-align: left;
+        }
+        .col-sm-3 {
+            width: 10% !important;
+        }
+        .pagination {
+            vertical-align: top;
+            margin: 2px 0;
+        }
+    </style>
+{% endblock %}
+</div>
+</div>
+{% endblock %}
+{% block scripts %}
+   
+{% endblock %}

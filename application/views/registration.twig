@@ -1,0 +1,121 @@
+{% extends "layouts/front.twig" %}
+{% block styles %}
+    
+{% endblock %}
+{% block content %}
+     <section class="breadcrumb-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-md-12">
+                    <div class="breadcrumb-area">
+                        <nav aria-label="breadcrumb" class="comn-breadcrumb-nav">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="{{ base_url('/') }}"><i class="fa fa-home pr-2"></i>Home</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">Register</li>
+                            </ol>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- breadcrumb section end -->
+
+    <!-- Account section start -->
+    <section class="account-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-md-6">
+                    <div class="account-form-area">
+                        <div class="account-heading"><h2><i class="fa fa-user"></i>Register</h2></div>
+                        <form>
+                            <div class="form-group">
+                                <label for="user-name">User name <span class="required">*</span></label>
+                                <input type="text" class="form-control" id="user-name" aria-describedby="emailHelp">
+                            </div>
+                            <div class="form-group">
+                                <label for="mob">Mobile Number <span class="required">*</span></label>
+                                <input type="text" class="form-control" id="mob" aria-describedby="emailHelp">
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email address <span class="required">*</span></label>
+                                <input type="email" class="form-control" id="email" aria-describedby="emailHelp">
+                            </div>
+                            <div class="form-group">
+                                <label for="pass1">Password <span class="required">*</span></label>
+                                <input type="password" class="form-control" id="pass1">
+                            </div>
+                            <div class="form-group">
+                                <label for="pass2">Confirm Password <span class="required">*</span></label>
+                                <input type="password" class="form-control" id="pass2">
+                            </div>
+                            <div class="form-group">
+                                <label for="q1">Question #1 <span class="required">*</span></label>
+                                <select class="form-control" name="question[]" id="q1">
+                                    {% for question in questions %}
+                                        <option value="{{question.id}}">{{ question.question}}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="a1">Answer <span class="required">*</span></label>
+                                <input type="text" name="answer[]" class="form-control" id="a1">
+                            </div>
+                            <div class="form-group">
+                                <label for="q2">Question #2 <span class="required">*</span></label>
+                                <select class="form-control" name="question[]" id="q2">
+                                    {% for question in questions %}
+                                        <option value="{{question.id}}">{{ question.question}}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="a2">Answer <span class="required">*</span></label>
+                                <input type="text" name="answer[]" class="form-control" id="qa">
+                            </div>
+                            <div class="form-group">
+                                <label for="cp" class="captcha-box">
+                                <div style="margin-left:50px;width:30%;float:left;" id="captchaImg">
+                                    {{ cap.image | raw }}
+                                </div>
+                                <img src="{{ asset('img/refrsh.jpeg') }}" height="50px" id="refreshCaptcha">
+                                </label>
+                                <input type="text" class="form-control" id="cp" placeholder="Enter Captcha..">
+                            </div>
+                            <div class="form-group form-check">
+                                <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                                <label class="form-check-label" for="exampleCheck1">I have seen and accepted<a href="{{ base_url('page/privacy-policy') }}">Privacy Policy</a> and  <a href="{{ base_url('page/terms-conditions') }}">Terms & Conditions</a></label>
+                            </div>
+                            <button type="submit" class="account-outline-btn">REGISTER</button>
+                        </form>
+                    </div>
+                </div>
+                <div class="col-12 col-md-6">
+                    <div class="account-info-area">
+                        <div class="account-heading text-center"><h2></i>Register</h2></div>
+                        <div class="account-info"><p>Registering for this site allows you to access your order status and history. Just fill in the fields below, and we’ll get a new account set up for you in no time. We will only ask you for information necessary to make the purchase process faster and easier.</p></div>
+                        <div class="text-center"><a href="{{ base_url('/login') }}" class="comn-btn black-btn">Login</a></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}
+{% block scripts %} 
+<script>
+$(document).on('click', '#refreshCaptcha', function(){
+alert("ji");
+    $.ajax({
+        url: 'http://localhost/new.bafredo.com/refresh-captcha',
+        type: 'get',
+        error: function() {
+            alert('Something is wrong');
+        },
+        success: function(data) {
+            console.log(data);
+            $('#captchaImg').replaceWith(data);
+        }
+    });
+});
+</script>
+{% endblock %}

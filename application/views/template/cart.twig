@@ -1,0 +1,222 @@
+{% extends "layouts/front.twig" %}
+{% block styles %}
+<style>
+.bodyFrame .pc {
+    padding: 0;
+    padding-top: 0px;
+    width: 1200px;
+    margin: 0 auto;
+    padding-top: 20px;
+}
+.bodyFrame .pc .lineFrame {
+    width: 1200px;
+    min-height: 40px;
+    position: relative;
+}
+.bodyFrame .pc .shoppingNavFrame {
+    width: 100%;
+    height: 89px;
+    position: relative;
+}
+.bodyFrame .pc .shoppingNavFrame b {
+    display: block;
+    position: absolute;
+    font-size: 30px;
+    color: #ED6A00;
+    top: 35px;
+}
+.bodyFrame .pc .shoppingNavFrame ul {
+    position: absolute;
+    top: 27px;
+    right: 0;
+}
+.bodyFrame .pc .shoppingNavFrame ul .select {
+    border-bottom: 4px solid #ED6A00;
+    color: #ED6A00;
+}
+.bodyFrame .pc .shoppingNavFrame ul .select {
+
+    color: #ED6A00;
+
+}
+.bodyFrame .pc .shoppingNavFrame ul li {
+    color: #707070;
+    font-size: 18px;
+    font-weight: bold;
+    width: 166px;
+    float: left;
+    margin-left: 20px;
+    border-bottom: 4px solid #A2A2A2;
+    line-height: 30px;
+    text-align: center;
+}
+.bodyFrame .pc .shoppingNavFrame ul li {
+    color: #707070;
+    font-size: 18px;
+    font-weight: bold;
+    line-height: 30px;
+    text-align: center;
+}
+.bodyFrame .pc .lineFrame {
+    width: 1200px;
+    min-height: 40px;
+    position: relative;
+}
+.cart-table {
+	border-bottom: 2px solid #ddd;
+}
+.cart-table th, td {
+    color: #535353;
+    font-size: 18px;
+}
+.cart-table td:last-child, 
+.cart-table th:last-child {
+	text-align: right;
+}
+.cart-footer {
+	float: right;
+}
+.cart-footer td {
+	padding-left: 100px;
+	padding-bottom: 10px;
+	color: #535353;
+    font-size: 18px;
+} 
+.cart-footer .btn-contine {
+	text-align: right;
+	margin-top: 20px;
+}
+.cart-footer .btn-contine button {
+	width: 250px;
+}
+.cart-table img {
+    width: 94px;
+    height: 63px;
+    padding: 0;
+    margin: 0;
+    border: none;
+    border-radius: 0;
+}
+.cart-table .img-thumbnail {
+    display: inline-block;
+    max-width: 100%;
+    height: auto;
+    padding: 4px;
+    line-height: 1.42857143;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    -webkit-transition: all .2s ease-in-out;
+    -o-transition: all .2s ease-in-out;
+    transition: all .2s ease-in-out;
+    float: left;
+	margin-right: 10px;
+}
+</style>
+{% endblock %}
+{% block content %}
+<div id="shoppingCartApp" class="container-fluid bodyFrame">
+    <div class="row pc checkoutApp">
+        <div class="lineFrame">
+            <div class="cartListFrame">
+            	<div class="shoppingNavFrame">
+            		<b>SHOPPING CART</b>
+            		<!--<ul>
+                        <li class="select">1. Shopping Cart</li>
+                        <li>2. Check Out</li>
+                        <li>3. Confirm the Order</li>
+                    </ul>-->
+            	</div>
+            	<table class="table cart-table">
+            		<thead>
+            			<tr>
+            				<th>Product Name</th>
+            				<th>Price</th>
+            				<th>Quantity</th>
+            				<th>Action</th>
+            				<th>Total</th>
+            			</tr>
+            		</thead>
+            		<tbody>
+            			<tr>
+            				<td>
+            					<img src="https://dfimg.dfrobot.com//data/DFR0591/DFR0591.jpg" alt="Raspberry Pi e-ink Display Module " title="Raspberry Pi e-ink Display Module " class="img-thumbnail">
+            					<p>Apple</p>
+            				</td>
+            				<td>1200</td>
+            				<td>
+            					<select>
+            						<option>1</option>
+            						<option>2</option>
+            						<option>3</option>
+            					</select>
+            				</td>
+            				<td>
+            					<button class="btn btn-danger">Remove</button>
+							</td>
+            				<td>1200</td>
+            			</tr>
+            			<tr>
+            				<td>
+            					<img src="https://dfimg.dfrobot.com//data/DFR0591/DFR0591.jpg" alt="Raspberry Pi e-ink Display Module " title="Raspberry Pi e-ink Display Module " class="img-thumbnail">
+            					<p>Apple</p>
+            				</td>
+            				<td>1200</td>
+            				<td>
+            					<select>
+            						<option>1</option>
+            						<option>2</option>
+            						<option>3</option>
+            					</select>
+            				</td>
+            				<td>
+            					<button class="btn btn-danger">Remove</button>
+							</td>
+            				<td>1200</td>
+            			</tr>
+            			<tr>
+            				<td>
+            					<img src="https://dfimg.dfrobot.com//data/DFR0591/DFR0591.jpg" alt="Raspberry Pi e-ink Display Module " title="Raspberry Pi e-ink Display Module " class="img-thumbnail">
+            					<p>Apple</p>
+            				</td>
+            				<td>1200</td>
+            				<td>
+            					<select>
+            						<option>1</option>
+            						<option>2</option>
+            						<option>3</option>
+            					</select>
+            				</td>
+            				<td>
+            					<button class="btn btn-danger">Remove</button>
+							</td>
+            				<td>1200</td>
+            			</tr>
+            		</tbody>
+            	</table>
+            	<div class="cart-footer">
+            		<table>
+            			<tbody>
+            				<tr>
+            					<td>Subtotal</td>
+            					<td>TZS 100.00</td>
+            				</tr>
+            				<tr>
+            					<td>Tax</td>
+            					<td>TZS 100.00</td>
+            				</tr>
+            				<tr>
+            					<td>Total</td>
+            					<td>TZS 100.00</td>
+            				</tr>
+            			</tbody>
+            		</table>
+            		<div class="btn-contine">
+            			<button class="btn btn-success">Continue</button>
+            		</div>
+            	</div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

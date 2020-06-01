@@ -1,0 +1,99 @@
+<div class="list">
+    <ul>
+        <li><a class="subNaveBtn" title="New Products" rel="nofollow" href="{{ base_url('product/new') }}">New Products</a></li>
+        <li><a class="subNaveBtn" title="Sales" href="{{ base_url('product/sales') }}">Sales</a></li>
+        <li><a class="subNaveBtn" title="All Products" href="{{ base_url('product/all') }}">All Products</a></li>
+        {% for menu in menus %}
+        <li>
+            <a title="Arduino" class="subNaveBtn" href='{{ base_url("category/#{menu.getSlug()}") }}'>
+                <span class="l">{{ menu.getName() }}</span>
+                <span class="r">></span>
+            </a>
+            <div class="childData">
+                <div class="sn">
+                    <ul class="">
+                        {% for smenu in menu.getSubCategories() %}
+                        <li><a title="{{ smenu.getName() }}" href='{{ base_url("category/#{menu.getSlug()}/#{smenu.getSlug()}") }}'>{{ smenu.getName() }}</a></li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                <div class="rc">
+                    <div class="title">You may also like</div>
+                    <ul>
+                        <li>
+                            <a title="Beginner Kit for Arduino (Best Starter Kit)" href="{{ base_url('detail') }}">
+                                <img src="{{ asset('front/image/category/menu/1.jpg') }}" alt="Beginner Kit for Arduino (Best Starter Kit)">
+                                <span class="name">
+                                Beginner Kit for Arduino (Best Starter Kit)	                		</span>
+                                <span class="mask"></span>
+                                <b class="price">
+                                    $52.90			                        			                    	                		</b>
+                            </a>
+                        </li>
+                        <li>
+                            <a title="DFRduino UNO R3 - Arduino Compatible" href="{{ base_url('detail') }}">
+                                <img src="{{ asset('front/image/category/menu/1.jpg') }}" alt="DFRduino UNO R3 - Arduino Compatible">
+                                <span class="name">
+                                DFRduino UNO R3 - Arduino Compatible	                		</span>
+                                <span class="mask"></span>
+                                <b class="price">
+                                    $19.90			                        			                    	                		</b>
+                            </a>
+                        </li>
+                        <li>
+                            <a title="Gravity: 1602 LCD Keypad Shield For Arduino" href="{{ base_url('detail') }}">
+                                <img src="{{ asset('front/image/category/menu/1.jpg') }}" alt="Gravity: 1602 LCD Keypad Shield For Arduino">
+                                <span class="name">
+                                Gravity: 1602 LCD Keypad Shield For Arduino	                		</span>
+                                <span class="mask"></span>
+                                <b class="price">
+                                    $9.90			                        			                    	                		</b>
+                            </a>
+                        </li>
+                        <li>
+                            <a title="RGB LED Strip Driver Shield v1.0" href="{{ base_url('detail') }}">
+                                <img src="{{ asset('front/image/category/menu/1.jpg') }}" alt="RGB LED Strip Driver Shield v1.0">
+                                <span class="name">
+                                RGB LED Strip Driver Shield v1.0	                		</span>
+                                <span class="mask"></span>
+                                <b class="price">
+                                    $12.05			                        			                    	                		</b>
+                            </a>
+                        </li>
+                        <li>
+                            <a title="FireBeetle ESP32 IOT Microcontroller (Supports Wi-Fi &amp; Bluetooth)" href="{{ base_url('detail') }}">
+                                <img src="{{ asset('front/image/category/menu/1.jpg') }}" alt="FireBeetle ESP32 IOT Microcontroller (Supports Wi-Fi &amp; Bluetooth)">
+                                <span class="name">
+                                FireBeetle ESP32 IOT Microcontroller (Supports Wi-Fi &amp; Bluetooth)	                		</span>
+                                <span class="mask"></span>
+                                <b class="price">
+                                    $19.00			                        			                    	                		</b>
+                            </a>
+                        </li>
+                        <li>
+                            <a title="W5500 Ethernet with POE IOT Board (Arduino Compatible)" href="{{ base_url('detail') }}">
+                                <img src="{{ asset('front/image/category/menu/1.jpg') }}" alt="W5500 Ethernet with POE IOT Board (Arduino Compatible)">
+                                <span class="name">
+                                W5500 Ethernet with POE IOT Board (Arduino Compatible)	                		</span>
+                                <span class="mask"></span>
+                                <b class="price">
+                                    $44.90			                        			                    	                		</b>
+                            </a>
+                        </li>
+                        <li>
+                            <a title="Gravity IO Expansion Shield for Arduino V7.1" href="{{ base_url('detail') }}">
+                                <img src="{{ asset('front/image/category/menu/1.jpg') }}" alt="Gravity IO Expansion Shield for Arduino V7.1">
+                                <span class="name">
+                                Gravity IO Expansion Shield for Arduino V7.1	                		</span>
+                                <span class="mask"></span>
+                                <b class="price">
+                                    $8.90			                        			                    	                		</b>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </li>
+        {% endfor %}
+    </ul>
+</div>

@@ -1,0 +1,23 @@
+{% extends "layouts/front.twig" %}
+{% block styles %}
+    <style type="text/css">
+        .description {
+            overflow: hidden;
+        }
+    </style>
+{% endblock %}
+{% block content %}
+    <div class="container">
+        <ul class="breadcrumb">
+            <li><a href="{{ base_url('/') }}">Home</a></li>
+            <li><a href='{{ base_url("page/#{page.getSlug()}") }}'>{{ page.getName() }}</a></li>
+        </ul>
+        <div class="row">
+            <div id="content" class="col-sm-12">
+                <h1>{{ page.getName() }}</h1>
+                <div class="description">
+                    {{ page.getDescription() | raw }}
+                </div>
+        </div>
+    </div>
+{% endblock %}

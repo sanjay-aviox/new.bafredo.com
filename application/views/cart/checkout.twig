@@ -1,0 +1,496 @@
+{% extends "layouts/front.twig" %}
+{% block styles %}
+	<style>
+		.lineFrame h2 {
+			color: #0f054a;
+			font-size: 30px;
+			font-weight: bold;
+		}
+		.bodyFrame .pc .shoppingNavFrame {
+            width: 100%;
+            height: 89px;
+            position: relative;
+        }
+        .bodyFrame .pc .shoppingNavFrame b {
+            display: block;
+            position: absolute;
+            font-size: 30px;
+            color: #0f054a;
+            top: 35px;
+        }
+        .bodyFrame .pc .shoppingNavFrame ul {
+            position: absolute;
+            top: 27px;
+            right: 0;
+        }
+        .bodyFrame .pc .shoppingNavFrame ul .select {
+            border-bottom: 4px solid #ED6A00;
+            color: #ED6A00;
+        }
+        .bodyFrame .pc .shoppingNavFrame ul .select {
+
+            color: #ED6A00;
+
+        }
+        .bodyFrame .pc .shoppingNavFrame ul li {
+            color: #707070;
+            font-size: 18px;
+            font-weight: bold;
+            width: 166px;
+            float: left;
+            margin-left: 20px;
+            border-bottom: 4px solid #A2A2A2;
+            line-height: 30px;
+            text-align: center;
+        }
+        .bodyFrame .pc .shoppingNavFrame ul li {
+            color: #707070;
+            font-size: 18px;
+            font-weight: bold;
+            line-height: 30px;
+            text-align: center;
+        }
+        .bodyFrame .pc .lineFrame {
+            width: 1200px;
+            min-height: 40px;
+            position: relative;
+        }
+        .cart-table {
+        	border-bottom: 2px solid #ddd;
+        }
+        .cart-table th, td {
+            color: #535353;
+            font-size: 18px;
+        }
+        .cart-table td:last-child,
+        .cart-table th:last-child {
+        	text-align: right;
+        }
+        .cart-footer {
+        	float: right;
+        }
+        .cart-footer td {
+        	padding-left: 100px;
+        	padding-bottom: 10px;
+        	color: #535353;
+            font-size: 18px;
+        }
+        .cart-footer .btn-contine {
+        	text-align: right;
+        	margin-top: 20px;
+        }
+        .cart-footer .btn-contine button {
+        	width: 250px;
+        }
+        .cart-table img {
+            width: 94px;
+            height: 63px;
+            padding: 0;
+            margin: 0;
+            border: none;
+            border-radius: 0;
+        }
+        .cart-table .img-thumbnail {
+            display: inline-block;
+            max-width: 100%;
+            height: auto;
+            padding: 4px;
+            line-height: 1.42857143;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            -webkit-transition: all .2s ease-in-out;
+            -o-transition: all .2s ease-in-out;
+            transition: all .2s ease-in-out;
+            float: left;
+        	margin-right: 10px;
+        }
+        .btn-confirm {
+        	display: block;
+            width: 250px;
+            height: 49px;
+            line-height: 49px;
+            background: #1d8229;
+            border: solid 1px #1d8229;
+            color: #FFFFFF;
+            float: right;
+            font-size: 20px;
+            text-align: center;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .footer-row {
+        	font-size: 20px;
+            margin: 27px 0px;
+            background: #0f054a;
+            color: #fff;
+            padding: 30px;
+            display: block;
+            text-align: center;
+        }
+		.save-address {
+			font-size: 17px;
+			margin-left: 6px;
+			font-style: italic;
+			color: #8a8a8a;
+		}
+        .red-asterisk {
+            color: red;
+        }
+        .sec-shipping-method label,
+        .sec-payment-method label,
+        .sec-agreement label {
+            font-size: 14px;
+        }
+        .info-message {
+            margin: 10px;
+            font-style: italic;
+        }
+		.bank-detail {
+			transition: opacity 0.5s;
+		}
+		.bank-detail[style*="display: none;"] {
+			opacity: 0;
+			pointer-events: none; /* disable user interaction */
+			user-select: none; /* disable user selection */
+		}
+		#errmsg,#errmsg1
+        {
+        color: red;
+        }
+        input#country {
+            background: white;
+        }
+	</style>
+{% endblock %}
+{% block content %}
+	<div class="container-fluid bodyFrame">
+        <div class="row pc checkoutApp">
+        	<div class="lineFrame">
+                <ul class="breadcrumb">
+                    <li><a href="{{ base_url('/') }}"><i class="fa fa-home"></i></a></li>
+                    <li><a href="{{ base_url('cart/checkout') }}">Checkout</a></li>
+                </ul>
+            </div>
+            <div class="clear"></div>
+            <div class="lineFrame">
+				<form action="{{ base_url('cart/confirm') }}" class="form" method="post">
+					<div class="row">
+						<div class="col-md-6">
+							<h2>Cart Checkout</h2>
+						</div>
+						<div class="col-md-6">
+							<div class="shoppingNavFrame">
+								<ul>
+									<li>1. Shopping Cart</li>
+									<li class="select">2. Check Out</li>
+									<li>3. Confirm Order</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-6">
+							<h3>Shipping Address</h3>
+							<div class="row">
+								<div class="col-md-12">
+									<div class="form-group">
+										<label for="first_name">First Name <span class="red-asterisk">*</span></label>
+										<input type="text" name="shippingAddress[first_name]" value="{{ formdata('first_name', shippingAddress.first_name) }}" required id="first_name" class="form-control" placeholder="First Name"/>
+									</div>
+								</div>
+								<div class="col-md-12">
+									<div class="form-group">
+										<label for="last_name">Last Name <span class="red-asterisk">*</span></label>
+										<input type="text" name="shippingAddress[last_name]" value="{{ formdata('last_name', shippingAddress.last_name) }}" required id="last_name" class="form-control" placeholder="Last Name"/>
+									</div>
+								</div>
+								<div class="col-md-12">
+									<div class="form-group">
+										<label for="email">Email <span class="red-asterisk">*</span></label>
+										<input type="email" name="shippingAddress[email]" value="{{ formdata('email', shippingAddress.email) }}" required id="email" class="form-control" placeholder="Email"/>
+									</div>
+								</div>
+								<div class="col-md-12">
+									<div class="form-group">
+										<label for="phone">Phone <span class="red-asterisk">*</span></label>
+										<input type="text" name="shippingAddress[phone]" value="{{ formdata('phone', shippingAddress.phone) }}" required id="phone" class="form-control" placeholder="Phone"/>
+										<p id="errmsg"></p>
+									</div>
+								</div>
+								<div class="col-md-12">
+									<div class="form-group">
+										<label for="country">Country <span class="red-asterisk">*</span></label>
+										<input type="text" name="shippingAddress[country]" readonly value="Tanzania" required id="country" class="form-control" placeholder="Country"/>
+									</div>
+								</div>
+								<div class="col-md-12">
+									<div class="form-group">
+										<label for="city">Region <span class="red-asterisk">*</span></label>
+										{#										<input type="text" name="shippingAddress[city]" value="{{ formdata('city', shippingAddress.city) }}" required id="city" class="form-control" placeholder="City"/>#}
+										<select name="shippingAddress[region]" class="form-control" id="region" onchange="myFunctiondepartment()" required>
+										      <option value="">Select Region</option>
+				{#<option value="{{ addressBook.region }}">{{ addressBook.region }}</option>#}
+											{% for distirct  in  distircts %}
+												<option value="{{ distirct.name }}">{{ distirct.name }}</option>
+											{% endfor %}
+
+										</select>
+									</div>
+								</div>
+								<div class="col-md-12">
+									<div class="form-group">
+										<label for="region">District <span class="red-asterisk">*</span></label>
+										{#										<input type="text" name="shippingAddress[region]" value="{{ formdata('region', shippingAddress.region) }}" required id="region" class="form-control" placeholder="District/Region"/>#}
+										<select name="shippingAddress[city]" class="form-control" id="city" required>
+										     <option value="">Select District</option>
+											<option  value="{{ addressBook.city}}">{{ addressBook.city }}</option>
+
+										</select>
+									</div>
+								</div>
+								<div class="col-md-12">
+									<div class="form-group">
+										<label for="address">Street Address <span class="red-asterisk">*</span></label>
+										<input type="text" name="shippingAddress[address]" value="{{ formdata('address', shippingAddress.address) }}" required id="address" class="form-control" placeholder="Address"/>
+									</div>
+								</div>
+								<div class="col-md-12">
+									<div class="form-group">
+										<label for="postal_code">Postal Code</label>
+										<input type="text" name="shippingAddress[postal_code]" value="{{ formdata('postal_code', shippingAddress.postal_code) }}" id="postal_code" class="form-control" placeholder="Postal Code"/>
+										<p id="errmsg1"></p>
+									</div>
+								</div>
+								<div class="col-md-12">
+									<div class="form-group">
+										<input class="chkBike" type="checkbox" name="save_address" value="Yes" id="save_address"/>
+										<label for="save_address" class="form-label">Save as default shipping address</label>
+									</div>
+								</div>
+							</div>
+							<h3>Shipping Method <span class="red-asterisk">*</span></h3>
+							<ul class="sec-shipping-method">
+								<li>
+									<input type="radio" name="shipping_method" checked="checked" value="Self_Collection" id="Self-Collection">
+									<label for="Self-Collection">Self-Collection (Free)</label>
+									<span class="glyphicon glyphicon-info-sign" v-on:click="first()"></span>
+									{#<div class="alert alert-info bank-detail" v-show="toggleBankDetailBox">#}
+									<div class="alert alert-info bank-detail">
+										This shipping method allows you to self-collect your goods at our physical stores located <a href="{{ base_url('page/contact-us') }}">here</a>.<br/>
+										The method is recommended for customers in Dar es Salaam.
+									</div>
+								</li>
+								<li>
+									<input type="radio" name="shipping_method" v-model="ship" value="Cash_On_Delivery" id="cod">
+									<label for="cod">Cash On Delivery (Estimated shipping fee: TZS 10,000)</label>
+									<span class="glyphicon glyphicon-info-sign" v-on:click="second()"></span>
+									<div class="alert alert-info bank-detail" v-show="toggleCODBox">
+										This shipping method allows you to pay for goods on delivery. The actual shipping fee may deviate from the estimated one (of TZS 10,000)
+										depending upon the following factors: total weight and delicacy of the purchased goods, and volume of the packaging material.<br />
+										This method is recommended for customers in Dar es Salaam.
+									</div>
+								</li>
+								<li>
+									<input type="radio" v-model="ship" name="shipping_method" value="BAFREDO_Savings" id="bafsaving">
+									<label for="bafsaving">Upcountry Delivery (Estimated shipping fee: TZS 15,000)</label>
+									<span class="glyphicon glyphicon-info-sign" v-on:click="third()"></span>
+									<div class="alert alert-info bank-detail" v-show="toggleBAFSAVINGBox">
+										This shipping method is recommended for customers in regions outside Dar es Salaam. <br />
+										The actual shipping fee may deviate from the estimated one (of TZS 15,000) depending upon the following factors: total weight and delicacy of the purchased goods, and volume of the packaging material.
+									</div>
+								</li>
+							</ul>
+
+							<h3>Payment Method <span class="red-asterisk">*</span></h3>
+							<ul class="sec-payment-method">
+								<li>
+									<input type="radio" name="payment_method" value="bank_transfer" checked id="banktransfer" v-on:click="toggleBankDetailBox">
+									<label for="banktransfer" data-toggle="tooltip" title="This payment method involves transferring money directly to our bank account.
+										   Please use your Order ID as the payment reference. Your order may not be shipped until the transfer has been confirmed.">
+										Direct Bank Transfer
+									</label>
+									<div class="alert alert-info bank-detail" v-show="bankDetailInfoBox">
+										This payment method involves transferring money directly to our bank account.
+										Please use your Order ID as the payment reference. Your order may not be shipped until the transfer has been confirmed.
+									</div>
+								</li>
+								<li>
+									<input type="radio" name="payment_method" value="tigopesa" id="tigopesa">
+									<label for="tigopesa" data-toggle="tooltip" title="You will be redirected to Tigo Pesa Secure Payment Gateway to complete your payment.">
+										Tigo Pesa - Online <img src="{{ asset('uploads/tigopesa.jpeg') }}" alt="tigopesa">
+									</label>
+								</li>
+								<li>
+									<input type="radio" name="payment_method" value="pesapal" id="pesapal">
+									<label for="pesapal" data-toggle="tooltip" title="This payment method uses Pesapal Gateway, which integrates the following options: Mobile Money Transfer (Tigo Pesa, M-Pesa, and Airtel Money) and Electronic Cards (Visa and MasterCard).">
+										PESAPAL (Tigo Pesa, M-Pesa, Visa, and MasterCard) <img src="{{ asset('uploads/pesapal.png') }}" alt="tigopesa">
+									</label>
+								</li>
+							</ul>
+
+							<h3>Order notes (optional)</h3>
+							<textarea class="form-control" name="order_notes">{{ formdata('order_notes') }}</textarea>
+
+							<div class="info-message">
+								Note: The personal data you submitted to our website may be used to process your order, improve your shopping experience, and/or achieve other user-centered goals described in our <a href="{{ base_url('page/privacy-policy') }}">privacy policy</a>.
+							</div>
+
+							<p class="sec-agreement">
+								<input class="chkBike" type="checkbox" name="agreement_flag" required value="1" id="agreement_flag">
+								<label for="agreement_flag">I have read and agreed the <a href="{{ base_url('page/privacy-policy') }}">Privacy Policy</a> and <a href="{{ base_url('page/terms-conditions') }}">Terms & Conditions</a> of the website. <span class="red-asterisk">*</span></label>
+							</p>
+						</div>
+						<div class="col-md-6">
+							<div class="cartListFrame">
+								<h3>SHOPPING CART</h3>
+								<table class="table cart-table">
+									<thead>
+										<tr>
+											<th>Product Name</th>
+											<th>Price</th>
+											<th>Quantity</th>
+											<th>Total</th>
+										</tr>
+									</thead>
+									<tbody>
+								         {% set totalPrice = 0 %}
+									     {% for cart in cart_checkout %}
+									       <tr>
+																						<td>
+												<img src="{{ base_url('//assets/uploads/product/thumbnail/') }}{{cart.image}}">
+												<p>{{cart.name}}</p>
+											    </td>
+											     <td>{{cart.currency }} {{cart.price }}</td>
+											      <td>{{cart.quantity }}</td>
+											      <td>{{ cart.currency }} {{cart.price * cart.quantity }}</td>
+										
+										 {% set totalPrice = totalPrice + (cart.quantity * cart.price) %}
+										</tr>
+									     
+									     
+									     {% endfor %}
+									    
+									    
+									    
+										{#<tr v-for="item in cart_checkout">#}
+										{#	<td>#}
+										{#		<img v-bind:src="productImage(item.image)" v-bind:alt="item.name" v-bind:title="item.name" class="img-thumbnail">#}
+										{#		<p v-text="item.name"></p>#}
+										{#	</td>#}
+										{#	<td v-text="item.currency +' '+ item.price"></td>#}
+										{#	<td v-text="item.quantity"></td>#}
+										{#	<td v-text="item.currency +' '+ (item.price * item.quantity)"></td>#}
+										{#</tr>#}
+									</tbody>
+								</table>
+								<div class="cart-footer">
+									<table>
+										<tbody>
+										<tr>
+											<td>Subtotal</td>
+											<td><span>TZS {{ totalPrice }}</span></td>
+										</tr>
+										<tr>
+											<td>Tax</td>
+											<td><span>0</span></td>
+										</tr>
+										<tr>
+											<td>Shipping</td>
+											<td><span>0</span></td>
+										</tr>
+										<tr>
+											<td>Total</td>
+											<td><span>TZS {{ totalPrice }}</span></td>
+										</tr>
+										{#<tr>#}
+										{#	<td>Subtotal</td>#}
+										{#	<td><span v-text="subtotal"></span></td>#}
+										{#</tr>#}
+										{#<tr>#}
+										{#	<td>Tax</td>#}
+										{#	<td><span v-text="tax"></span></td>#}
+										{#</tr>#}
+										{#<tr>#}
+										{#	<td>Shipping</td>#}
+										{#	<td><span v-text="shipping"></span></td>#}
+										{#</tr>#}
+										{#<tr>#}
+										{#	<td>Total</td>#}
+										{#	<td><span v-text="total"></span></td>#}
+										{#</tr>#}
+
+										</tbody>
+									</table>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="row footer-row">
+						<div class="col-md-4">
+							Subtotal: <span> TZS {{ totalPrice }}</span>
+						</div>
+						<div class="col-md-4">
+							Tax: <span>0</span>
+						</div>
+						<div class="col-md-4">
+							Total: <span>TZS {{ totalPrice }}</span>
+						</div>
+					</div>
+					{#	<div class="row footer-row">#}
+					{#	<div class="col-md-4">#}
+					{#		Subtotal: <span v-text="subtotal">{{ totalPrice }}</span>#}
+					{#	</div>#}
+					{#	<div class="col-md-4">#}
+					{#		Tax: <span v-text="tax">0</span>#}
+					{#	</div>#}
+					{#	<div class="col-md-4">#}
+					{#		Total: <span v-text="total">{{ totalPrice }}</span>#}
+					{#	</div>#}
+					{#</div>#}
+					<div class="btn-contine">
+						<button type="submit" class="btn-confirm">Confirm Order</button>
+					</div>
+				</form>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block scripts %}
+	<script>
+        $(document).ready(function () {
+            $("#phone").keypress(function (e) {
+            if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
+                   $("#errmsg").html("Please Enter Numeric values Only").show().fadeOut("slow");
+                   return false;
+               }
+           });
+            $("#postal_code").keypress(function (e) {
+            if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
+                   $("#errmsg1").html("Please Enter Numeric values Only").show().fadeOut("slow");
+                   return false;
+               }
+           });
+      });
+		function myFunctiondepartment() {
+			$('#city').empty();
+			var x = document.getElementById("region").value;
+			$.ajax({
+				url: "{{ site_url('Account/getregion')}}",
+				type: 'POST',
+				data: {'name' : x},
+				success: function(msg) {
+					var data = JSON.parse(msg);
+					$.each(data, function( index, item ) {
+						var option = document.createElement("option");
+						option.text = item.name;
+						option.value = item.name;
+						var select = document.getElementById("city");
+						select.appendChild(option);
+					});
+
+				}
+			});
+		}
+	</script>
+{% endblock %}

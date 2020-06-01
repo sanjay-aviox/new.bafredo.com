@@ -1,0 +1,201 @@
+<section class="slider-category-section pb-4">
+        <div class="container-fluid p-0">
+            <div class="row">
+                <div class="col-12 col-md-12">
+                    <div class="slider-category-box">
+                        <div class="slider-category-item">
+                            <a href="#">
+                                <div class="slider-category-thumb">
+                                    <img src="{{ asset('theme/images/4WD-Smart-Robot-Car-Chassis-Kit.png') }}">
+                                </div>
+                                <div class="slider-category-title">
+                                    <h4>Multichannel Relay Board </h4>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="slider-category-item">
+                            <a href="#">
+                                <div class="slider-category-thumb"> 
+                                    <img src="{{ asset('theme/images/SW420-Vibration-Sensor-Module.jpg') }}">
+                                </div>
+                                <div class="slider-category-title">
+                                    <h4>SW-420 Vibration Sensor Module</h4>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="slider-category-item">
+                            <a href="#">
+                                <div class="slider-category-thumb">
+                                    <img src="{{ asset('theme/images/DC-Motor-12v.jpg') }}">
+                                </div>
+                                <div class="slider-category-title">
+                                    <h4>DC Motor 12v</h4>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="slider-category-item">
+                            <a href="#">
+                                <div class="slider-category-thumb">
+                                    <img src="{{ asset('theme/images/SM900.jpg') }}">
+                                </div>
+                                <div class="slider-category-title">
+                                    <h4>GSM/GPRS SIM900 Module</h4>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="slider-category-item">
+                            <a href="#">
+                                <div class="slider-category-thumb">
+                                    <img src="{{ asset('theme/images/HX711-5KG-Digital-Load-Cell.jpg') }}">
+                                </div>
+                                <div class="slider-category-title">
+                                    <h4>HX711 5KG Digital Load Cell</h4>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- slider category section end -->
+
+    <!-- Featured Products section start -->
+    <section class="featured-products-section py-4">
+        <div class="container">
+            <div class="comn-section-heading">
+                <h2>Featured Products</h2>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                tempor incididunt ut labore et dolore magna aliqua.</p>
+            </div>
+            <div class="row">
+                {% for product in featured_products %}
+                 <div class="col-12 col-lg-3 col-md-4 col-sm-6">{{ include('partials/product.twig') }}</div>
+            {% endfor %}
+               
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Products section end -->
+
+    <!-- shop-section start -->
+    <section class="shop-section py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-md-6">
+                    <div class="shop-thumb">
+                        <img src="{{ asset('theme/images/ep1.png') }}">
+                    </div>
+                </div>
+                <div class="col-12 col-md-6">
+                    <div class="comn-inner-heading">
+                        <h2>Best Seling Product</h2>
+                        <p>These are some of our best selling products. Please check them out These are some of our best selling products. Please check them out!</p>
+                    </div>
+                    <div class="shop-detail">
+                        <div class="shop-category-box">
+                            <div class="shop-category-item">
+                                <a href="#">
+                                    <div class="shop-category-thumb">
+                                        <img src="{{ asset('theme/images/4WD-Smart-Robot-Car-Chassis-Kit.png') }}">
+                                    </div>
+                                    <div class="shop-category-title">
+                                        <h4>Multichannel Relay Board </h4>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="shop-category-item">
+                                <a href="#">
+                                    <div class="shop-category-thumb">
+                                        <img src="{{ asset('theme/images/SW420-Vibration-Sensor-Module.png') }}">
+                                    </div>
+                                    <div class="shop-category-title">
+                                        <h4>SW-420 Vibration Sensor Module</h4>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="shop-category-item">
+                                <a href="#">
+                                    <div class="shop-category-thumb">
+                                        <img src="{{ asset('theme/images/DC-Motor-12v.png') }}">
+                                    </div>
+                                    <div class="shop-category-title">
+                                        <h4>DC Motor 12v</h4>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="shop-category-item">
+                                <a href="#">
+                                    <div class="shop-category-thumb">
+                                        <img src="{{ asset('theme/images/SM900.png') }}">
+                                    </div>
+                                    <div class="shop-category-title">
+                                        <h4>GSM/GPRS SIM900 Module</h4>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                        <a href="#" class="comn-btn mr-2">Visit Our Shop</a>
+                        <a href="#" class="comn-outline-btn">Read More</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- shop-section end -->
+
+    <!-- product-category-section start -->
+    <section class="product-category-section py-5">
+        <div class="container">
+            <div class="comn-section-heading">
+                <h2>New arrivals</h2>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                tempor incididunt ut labore et dolore magna aliqua.</p>
+            </div>
+            <div class="row">
+                <div class="col-12 col-md-6">
+                    <div class="product-category-box">
+                        <div class="product-category-thumb">
+                            <img src="{{ asset("uploads/product/thumbnail/#{new_arrival_products.0.image}") }}">
+                            <div class="product-category-hover-info">
+                                <h4>{{ new_arrival_products.0.name }}</h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-6">
+                    <div class="product-category-horizontal-box">
+                        <div class="product-category-box">
+                            <div class="product-category-thumb">
+                                <img src="{{ asset("uploads/product/thumbnail/#{new_arrival_products.1.image}") }}">
+                                <div class="product-category-hover-info">
+                                    <h4>{{ new_arrival_products.1.name }}</h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="product-category-grid-box">
+                        <div class="product-category-box">
+                            <div class="product-category-thumb">
+                                <img src="{{ asset("uploads/product/thumbnail/#{new_arrival_products.2.image}") }}">
+                                <div class="product-category-hover-info">
+                                    <h4>{{ new_arrival_products.2.name }}</h4>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-category-box">
+                            <div class="product-category-thumb">
+                                <img src="{{ asset("uploads/product/thumbnail/#{new_arrival_products.3.image}") }}">
+                                <div class="product-category-hover-info">
+                                    <h4>{{ new_arrival_products.3.name }}</h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- product-category-section end -->
+

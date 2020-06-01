@@ -1,0 +1,47 @@
+{% extends "layouts/admin.twig" %}
+{% block content %}
+<div class="row">
+    <div class="wrapper wrapper-content animated fadeInRight">
+         <a href="{{ base_url('admin/email/mail') }}"  style="padding:5px;"class="btn-primary btn-lg">Send New Email</a><br><br>
+   
+        <table id="email-template" class="xcrud-list table table-striped table-hover">
+        <thead>
+           <tr class="xcrud-th">
+                <th>Title</th>
+                <th>Subject</th>
+                <th>Description</th>
+                <th>Content</th>
+                <th>Total User</th>
+                <th>Action</th>
+            </tr>        
+        </thead>
+        <tbody>
+            {% if emailrecord > 0 %}
+            {% for record in emailrecord %}
+                    
+                         
+                <tr class="xcrud-row xcrud-row-0">
+                    <td>{{ record.title }}</td>
+                    <td>{{ record.subject }}</td>
+                    <td>{{ record.description }}</td>
+                    <td>{{ record.content }}</td>
+                    <td>{{ record.subscriber}}</td>
+                    <td><a href="{{ base_url('admin/email/view/') }}{{ record.id}}" class="btn-success" >View</a></td>
+                </tr>       
+                         
+                         
+            {% endfor %}
+            {% endif %}
+        </tbody>
+        </table>
+</div>
+ </div>
+{% endblock %}
+{% block scripts %}
+<script>
+     $('#email-template').DataTable( {
+        responsive: true
+    } );
+    
+</script>   
+{% endblock %}

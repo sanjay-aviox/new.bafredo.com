@@ -1,0 +1,61 @@
+{% extends "layouts/front.twig" %}
+{% block styles %}
+	<style type="text/css">
+		.productNavFrame h3 {
+			display: block;
+		}
+        .input-group {
+            position: relative;
+            display: flex;
+            border-collapse: separate;
+            justify-content: left;
+        }
+        .plus-minus-input {
+            -webkit-align-items: center;
+            -ms-flex-align: center;
+            align-items: center;
+        }
+        .productNavFrame .quantity .qtyNum label {
+            padding-left: 10px;
+        }
+        .productNavFrame .quantity .qtyNum input {
+            padding: 0px;
+        }
+        .item-quantity-count input {
+            text-align: center;
+        }
+	</style>
+{% endblock %}
+{% block content %}
+    <div class="container-fluid bodyFrame">
+	  <div class="row hidden-xs pc">
+	        <div class="productTitle featured" style="border-bottom: 2px solid green;"data-pc="Latest">
+		       <b>FEATURED PRODUCTS</b>
+		        </div><br><br>
+		    <div class="productList">
+		        <ul class="simpleMode">
+		            {% for  in results %}
+                       <div class="item" style="float:left;margin-left:40px;" >
+                        <a title="{{ product->name }}" href="https://new.bafredo.com/product/detail/{{ product->slug }}">
+                        <div class="img">
+                            <img src="{{ product->thumbnail }}"  title="{{ product->name }}" class="filter-img" width="100%">
+                        </div>
+                        </a> 
+                        <div class="title">
+                             <a title="'.$res->name.'" href="https://new.bafredo.com/product/detail/'.$res->name.'">{{ product->name }}</a>
+                        </div> 
+                        <div class="btns">
+                             <b class="price">{{ product->currency }}&nbsp{{ product->price }}</b> 
+                             <span>
+                             <button type="button"><i class="iconfont icon-cart"></i></button>
+                             </span>
+                        </div></div> 
+					{% endfor %}
+				</ul>
+			</div>
+		 </div>
+	</div>
+{% endblock %}
+{% block scripts %}
+
+{% endblock %}

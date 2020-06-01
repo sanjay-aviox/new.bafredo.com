@@ -1,0 +1,61 @@
+{% extends "layouts/front.twig" %}
+{% block styles %}
+	<style type="text/css">
+		.productNavFrame h3 {
+			display: block;
+		}
+        .input-group {
+            position: relative;
+            display: flex;
+            border-collapse: separate;
+            justify-content: left;
+        }
+        .plus-minus-input {
+            -webkit-align-items: center;
+            -ms-flex-align: center;
+            align-items: center;
+        }
+        .productNavFrame .quantity .qtyNum label {
+            padding-left: 10px;
+        }
+        .productNavFrame .quantity .qtyNum input {
+            padding: 0px;
+        }
+        .item-quantity-count input {
+            text-align: center;
+        }
+	</style>
+{% endblock %}
+{% block content %}
+    <div class="container-fluid bodyFrame">
+	  <div class="row hidden-xs pc">
+	        <div class="productTitle featured" style="border-bottom: 2px solid green;"data-pc="Latest">
+		       <b>FEATURED PRODUCTS</b>
+		        </div><br><br>
+		    <div class="productList">
+		        <ul class="simpleMode">
+		            {% for product in featured_product %}
+		                <li> <a title="{{ product.name }}" href='{{ base_url("product/detail/#{product.slug}") }}'>
+						<div class="img">
+						        <img src='{{ asset("uploads/product/thumbnail/#{product.image}") }}' alt="{{ product.name }}" title="{{ product.name }}" class="img-responsives" height="200px"/>
+						</div>
+						</a>
+						<div class="title">
+						    <a title="{{ product.name }}" href="{{ base_url("product/detail/#{product.slug}") }}">{{ product.name }}</a>
+						</div>
+						<div class="btns">
+						    <b class="price">{{ product.currency ~' '~ product.price }}</b>
+						    <span>
+						        <button type="button" v-on:click="addToCart({{ product.toJson() }})"><i class="iconfont icon-cart"></i></button>
+						    </span>
+						</div>
+						</li>
+					{% endfor %}
+				</ul>
+			</div>
+		 </div>
+	</div>
+{% endblock %}
+{% block scripts %}
+
+{% endblock %}

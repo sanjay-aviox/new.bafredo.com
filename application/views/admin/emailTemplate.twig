@@ -1,0 +1,125 @@
+{% extends "layouts/admin.twig" %}
+{% block content %}
+<div class="row">
+    <div class="wrapper wrapper-content animated fadeInRight">
+        <form action="{{ base_url('admin/email/addEmail') }}" id="templateForm" method="post">
+           <div class="row">
+               <div class="col-12 col-lg-12">
+                    <a href="{{ base_url('admin/email') }}" data-task="list" class="btn btn-warning" data-primary="1">Return</a>
+                   <div class="subscriober-section">
+                       <label>To:</label>
+                       <input type="checkbox" id="select-all"><label>Select All</label><br>
+                        {% for sub in subscribe %}
+                         <input type="checkbox" id="{{sub.email}}" class="allcheckbox" name="email[]" value="{{sub.id}}">
+                         <label for="{{sub.email}}">{{sub.email}}</label><br>
+                        {% endfor %}
+                   </div>
+                   <div class="row pt-20">
+                        <div class="col-12 col-lg-4">
+                            <label>Title</label>
+                            <input type="text" name="title" class="form-control">{{template.name}}
+                        </div>
+                        <div class="col-12 col-lg-4">
+                            <label>Subject</label>
+                            <input type="text" name="subject" class="form-control">
+                        </div>
+                        <div class="col-12 col-lg-4">
+                            <label>Description</label>
+                            <input type="text" name="description" class="form-control">
+                       </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 col-lg-12">
+                    <div class="card shadow">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-12 col-lg-12">
+                                     <label>Content</label>
+                                    <textarea class="form-control" name="content"></textarea>
+                                </div>
+                            </div><br><br>
+                            <div class="row pt-20">
+                                <label class="d-block">&nbsp;</label>
+                                <input type="Reset" class="btn reset-button pt-5 pb-5 pr-25 pl-25 mt-10 ml-5 float-right">
+                                 <button type="submit" class="btn btn-info pt-5 pb-5 pr-25 pl-25 mt-10 float-right">Send</button>
+                            </div>
+                       </div>
+                    </div>
+                </div>
+            </div>
+        </from>
+    </div>
+</div>
+<div class="row">
+<div class="col-md-12">
+{% block styles %}
+    <link href="{{ asset('css/plugins/select2/select2.min.css') }}" rel="stylesheet" type="text/css" />
+    <style type="text/css">
+        .xcrud-actions .btn-group {
+            float: right !important;
+        }
+        .xcrud-view {
+            margin-top: 25px !important;
+        }
+        .form-horizontal .control-label {
+            text-align: left;
+        }
+        .col-sm-3 {
+            width: 10% !important;
+        }
+        .pagination {
+            vertical-align: top;
+            margin: 2px 0;
+        }
+    </style>
+{% endblock %}
+</div>
+</div>
+{% endblock %}
+{% block scripts %}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.js"></script>
+    <script>
+$(document).ready(function(){
+  $("#templateForm").validate({
+    // Specify validation rules
+    rules: {
+      'email[]': "required",
+      subject: "required",
+      title: "required",
+      description: "required",
+      content: "required",
+    },
+    messages: {
+      subject: {
+      required: "Subject is required",
+     },      
+     title: {
+      required: "Title is required",
+     },     
+     description: {
+      required: "Description is required",
+     },     
+     content: {
+        required: "Content is required",
+     },
+    },
+  
+  });
+});
+
+$("#select-all").change(function(){
+   $(".allcheckbox").prop("checked", $(this).prop("checked"))
+  })
+  $(".allcheckbox").change(function(){
+      if($(this).prop("checked") == false){
+          $("#select-all").prop("checked", false)
+      }
+      if($(".allcheckbox:checked").length == $(".allcheckbox").length){
+          $("#select-all").prop("checked", true)
+      }
+  })
+</script>
+   
+{% endblock %}

@@ -1,0 +1,106 @@
+{% extends "layouts/front.twig" %}
+{% block styles %}
+	<style>
+		.lineFrame h2 {
+			color: #0f054a;
+			font-size: 30px;
+			font-weight: bold;
+		}
+		.bodyFrame .pc .shoppingNavFrame b {
+			display: block;
+			position: absolute;
+			font-size: 30px;
+			color: #0f054a;
+			top: 35px;
+		}
+		.bodyFrame .pc .shoppingNavFrame ul {
+			position: absolute;
+			top: 27px;
+			right: 0;
+		}
+		.bodyFrame .pc .shoppingNavFrame ul li {
+			color: #707070;
+			font-size: 18px;
+			font-weight: bold;
+			width: 166px;
+			float: left;
+			margin-left: 20px;
+			border-bottom: 4px solid #A2A2A2;
+			line-height: 30px;
+			text-align: center;
+		}
+		.bodyFrame .pc .shoppingNavFrame ul li {
+			color: #707070;
+			font-size: 18px;
+			font-weight: bold;
+			line-height: 30px;
+			text-align: center;
+		}
+		.bodyFrame .pc .lineFrame {
+			width: 1200px;
+			min-height: 40px;
+			position: relative;
+		}
+		.cart-table th, td {
+			color: #535353;
+			font-size: 18px;
+		}
+		.cart-table td:last-child,
+		.cart-table th:last-child {
+			text-align: right;
+		}
+		.cart-footer td {
+			padding-left: 100px;
+			padding-bottom: 10px;
+			color: #535353;
+			font-size: 18px;
+		}
+		.cart-footer .btn-contine button {
+			width: 250px;
+		}
+		.cart-table img {
+			width: 94px;
+			height: 63px;
+			padding: 0;
+			margin: 0;
+			border: none;
+			border-radius: 0;
+		}
+		.sec-shipping-method label,
+		.sec-payment-method label,
+		.sec-agreement label {
+			font-size: 14px;
+		}
+	</style>
+{% endblock %}
+{% block content %}
+	<div class="container-fluid bodyFrame">
+		<div class="row pc checkoutApp">
+			<div class="lineFrame">
+				<ul class="breadcrumb">
+					<li><a href="{{ base_url('/') }}"><i class="fa fa-home"></i> Home</a></li>
+					<li><a href="{{ base_url('/blog') }}">Blog</a></li>
+				</ul>
+			</div>
+			<div class="clear"></div>
+			<div class="lineFrame">
+				<div class="alert alert-warning text-center">
+					<h2>Your transaction is being processed by Pesapal.</h2>
+					<p>Please verify the status later in your profile <a href="{{ base_url('account/order_history') }}">Order History</a>. Usually processing and confirmation take between 3 and 5 minutes.<br/> For any queries regarding your transaction, please <a href="{{ base_url('page/contact-us') }}">Contact Us</a>.</p>
+					<table class="table" style="width: 50%;margin: 7px auto;text-align: right;">
+						<tbody>
+							<tr>
+								<td>Reference ID:</td>
+								<td>{{ payload.transaction_ref_id }}</td>
+							</tr>
+							<tr>
+								<td>Verification Code:</td>
+								<td>{{ payload.verification_code }}</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+{% endblock %}

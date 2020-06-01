@@ -1,0 +1,361 @@
+
+.row-flex {
+    margin-right: -15px;
+    margin-left: -15px;
+    display: flex;
+}
+.in-invoice-section{
+
+	padding: 10px 0px;
+
+	font-family: 'Roboto Slab', serif;
+
+}
+
+.in-invoice-section .in-area{
+
+	border:4px solid #5786cc;
+
+	padding: 0 15px 12px;
+
+	/*width: 816px;*/
+
+}
+
+.in-main-heading{
+
+	text-align: right;
+
+	font-size: 24px;
+
+	font-weight: 800;
+
+	margin-bottom: 20px;
+
+}
+
+.in-bafredo-electronic-box{
+
+	border:4px solid #000000;
+
+	padding: 10px 5px;
+
+}
+
+.in-bafredo-logo1 img{
+
+	width: 100%;
+
+}
+
+.in-bafredo-detail{
+
+	display: flex;
+
+	justify-content: flex-start;
+
+}
+
+.in-bafredo-logo2{
+
+	margin-right: 10px;
+
+}
+
+.in-bafredo-logo2 img{
+
+	width: 100%;
+
+	padding-right: 10px;
+
+}
+
+.in-bafredo-heading{
+
+	font-size: 28px;
+
+	font-weight: 700;
+
+	margin-bottom: 10px;
+	margin-top: 2px;
+
+}
+
+.in-bafredo-info p{
+
+	font-size: 16px;
+
+	font-weight: 400;
+
+	margin-bottom: 0px;
+
+}
+
+.in-bafredo-link{
+
+	margin-top: 10px;
+
+}
+
+.in-bafredo-link a{
+
+	color: #0000ff;
+
+	text-decoration: underline;
+
+	font-weight: 700;
+
+}
+
+.in-date-box{
+
+	background: rgba(87, 134, 204, 1);
+
+	color: #000;
+
+	padding: 8px;
+	-webkit-print-color-adjust: exact;
+
+}
+
+.in-date-box p{
+
+	font-size: 16px;
+
+	font-weight: 400;
+
+	margin-bottom: 0px;
+
+}
+
+.in-grow-heading{
+
+	font-size: 30px;
+
+	font-weight: 700;
+
+	margin: 10px 0px;
+
+	padding: 10px;
+
+	border-top: 4px solid #808080;
+
+	border-bottom: 4px solid #808080;
+
+	color: #014000;
+
+	text-align: center;
+
+	font-style: italic;
+
+}
+
+.in-sign-thumb-box{
+
+	text-align: center;
+
+}
+
+.in-sign-thumb-box .in-stamp-img{
+
+	width: 95px;
+
+    transform: rotate(-90deg);
+
+    margin: auto;
+
+    display: block;
+
+    object-fit: contain;
+
+}
+
+.in-sign-thumb-box .in-signature-img{
+
+	width: 146px;
+
+    height: 50px;
+
+    margin: -18px auto 0px auto;
+
+    display: block;
+
+    object-fit: contain;
+
+}
+
+.in-dark-bg-heading{
+
+	background: rgba(87, 134, 204, 1);
+
+	color: #000;
+
+	padding: 7px 5px;
+
+	font-weight: 800;
+
+	font-size: 15px;
+
+	margin-bottom: 0px;
+
+}
+
+.in-customer-name,
+
+.in-shipping-name,
+
+.in-shipping-method-name{
+
+	color: #000;
+
+	padding: 5px;
+
+	font-size: 14px;
+
+	font-weight: 700;
+
+}
+
+.in-comman-info{
+
+	color: #000;
+
+	font-size: 16px;
+
+	font-weight: 700;
+
+	margin-top: 10px;
+
+}
+
+.in-comman-italic-info p{
+
+	font-size: 14px;
+
+	font-weight: 700;
+
+	margin-bottom: 0px;
+
+	font-style: italic;
+
+}
+
+.in-invoice-section .in-table{
+
+	margin-top: 10px;
+
+}
+
+.in-invoice-section .in-table tr{
+
+	height: 35px;
+
+}
+
+.in-term-sale-box{
+
+	border:4px solid #000000;
+
+}
+
+.in-term-sale-heading{
+
+	color: #000;
+
+	padding: 5px;
+
+	font-weight: 800;
+
+	font-size: 15px;
+
+	margin-bottom: 15px;
+
+}
+
+ul.in-term-sale-list{
+
+	padding-left: 25px;
+
+}
+
+ul.in-term-sale-list li{
+
+	list-style: decimal !important;
+
+	margin-bottom: 5px;
+
+}
+
+.in-total-box{
+
+	border:4px solid #000000;
+
+	padding: 3px 5px;
+
+}
+
+.in-total-box ul{
+
+	margin-bottom: 0px;
+
+	padding: 0px;
+
+}
+
+.in-total-box ul li{
+
+	display: flex;
+
+	justify-content: space-between;
+
+	align-items: center;
+	line-height: 1.8;
+
+}
+
+.in-total-box ul li p{
+
+	text-align: right;
+
+	margin-bottom: 5px;
+
+	width: 50%;
+
+}
+
+.in-pegination-area{
+
+	display: flex;
+
+	justify-content: space-between;
+
+	align-items: center;
+
+	padding: 30px 0px;
+
+}
+
+.in-pegination-area p{
+
+	font-size: 14px;
+
+	font-weight: 700;
+
+	margin-bottom: 0px;
+
+}
+
+.in-pegination-box{
+
+	/*width: 816px;*/
+
+}
+@media print {
+	* { -webkit-print-color-adjust: exact; }
+	html { background: none; padding: 0; }
+	body { box-shadow: none; margin: 0; }
+	span:empty { display: none; }
+	.add, .cut { display: none; }
+}
+
+@page { margin: 0; }

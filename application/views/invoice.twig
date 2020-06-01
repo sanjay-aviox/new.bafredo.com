@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Invoice</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{{ asset('invoice/style.css') }}">
+</head>
+<body>
+
+<section class="in-invoice-section a" id="ele1">
+    <div class="c-container in-area">
+        
+            <div class="">
+                <h5 class="in-main-heading">INVOICE</h5>
+            </div>
+        
+        <div class="row-flex">
+            <div class="col-sm-7 col-xs-7" style="padding-right: 0px;">
+                <div class="in-bafredo-electronic-box">
+                    <div class="in-bafredo-logo1">
+                        <img src="{{ asset('invoice/logo1.png') }}">
+                    </div>
+                    <div class="in-bafredo-detail">
+                        <div class="in-bafredo-logo2">
+                            <img src="{{ asset('invoice/logo2.png') }}">
+                        </div>
+                        <div class="in-bafredo-info">
+                            <h2 class="in-bafredo-heading">TIN:135-644-951 </h2>
+                            <p>P. O. Box 33761, Dar es Salaam, TANZANIA.</p>
+                            <p>Mobile: <span>+255(0) 746 624 875</span></p>
+                            <p>Telephone/Fax:<span>+255 22 246 0157</span></p>
+                            <p>Email: <span>info@bafredo.com</span></p>
+                            <p class="in-bafredo-link"><strong>Website:</strong> <a href="#"><em>https://www.bafredo.com</em></a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-5 col-xs-5">
+                <div class="in-date-box">
+                    <p>Date: <span>{{ order.created_at.value | date("d/m/Y") }}</span></p>
+                    <!-- <p>Expiration <span>date: 18 May 2020</span></p> -->
+                    <p>Invoice ID: <span>{{ order.invoice}}</span></p>
+                    <p>Customer ID: <span>0{{user.id}}</span></p>
+                </div>
+                <div class="in-sign-thumb-box">
+                    <h5 class="in-grow-heading">Grow with Us.</h5>
+                    <img src="{{ asset('invoice/Stamp.jpg') }}" class="in-stamp-img">
+                    <img src="{{ asset('invoice/Signature.jpeg') }}" class="in-signature-img">
+                </div>
+            </div>
+        </div>
+        <div class="row-flex">
+            <div class=" col-sm-4 col-xs-4">
+                <div class="in-customer-info-box">
+                    <h4 class="in-dark-bg-heading">CUSTOMER'S INFO</h4>
+                    <h5 class="in-customer-name" style="text-transform: capitalize;">{{ user.name }}</h5>
+                    <div class="in-comman-italic-info">
+                        <p>Address :{{useraddress.address}}, City :{{ useraddress.city}}</p>
+                        <p>Region :{{useraddress.region}}, Postal Number: {{useraddress.postal_code}}</p>
+                        <p>Country: {{useraddress.country}}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4 col-xs-4">
+                <div class="in-shipping-address-box">
+                    <h4 class="in-dark-bg-heading">SHIPPING ADDRESS</h4>
+                    <h5 class="in-customer-name" style="text-transform: capitalize;">{{ address.first_name}} {{ address.last_name}}</h5>
+                    <div class="in-comman-italic-info">
+                        <p>Address :{{address.address}}, City :{{ address.city}}</p>
+                        <p>Region :{{address.region}}, Postal Number: {{address.postal_code}}</p>
+                        <p>Country: {{address.country}}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4 col-xs-4">
+                <div class="in-shipping-method">
+                    <h4 class="in-dark-bg-heading">SHIPPING METHOD</h4>
+                    <p class="in-comman-info">{{ order.shipping_method | replace({'_': " "}) | upper }}</p>
+                    <h5 class="in-shipping-method-name"></h5>
+                    <h4 class="in-dark-bg-heading">PAYMENT METHOD</h4>
+                    <p class="in-comman-info">{{ order.payment_method | replace({'_': " "}) | upper }}</p>
+                </div>
+            </div>
+        </div>
+        <div class="">
+            <div class="col-sm-12">
+                <table class="table table-striped table-bordered in-table">
+                    <thead>
+                        <tr>
+                            <th>SKU</th>
+                            <th>Description</th>
+                            <th>QNT</th>
+                            <th>Unit Price (TZS)</th>
+                            <th>Subtotal (TZS)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                
+                        {% for product in cart %}
+                         {{ product }}
+                        <tr>
+                            <td>{{ product.sku }} </td>
+                            <td>{{ product.name }} </td>
+                            <td>{{ product.quantity }}</td>
+                            <td>{{ product.price}}</td></td>
+                            <td>{{ product.price * product.quantity }}</td>
+                        </tr>
+                        {% endfor %}
+                        
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="row-flex">
+            <div class="col-sm-7 col-xs-7">
+                <div class="in-term-sale-box">
+                    <h4 class="in-term-sale-heading">Terms of sales</h4>
+                    <ul class="in-term-sale-list">
+                        <li>Goods are shipped upon confirmation of payment</li>
+                        <li>Terms & conditions shall apply in handling, processing, and
+                        shipping of the purchased goods</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-sm-5 col-xs-5">
+                <div class="in-total-box">
+                    <ul>
+                        <li><p>Subtotal:</p> <span>TZS {{order.total + charge }}</span></li>
+                        <li><p>Sales tax (18%):</p> <span>TZS {{ 18/ 100 * order.total}} </span></li>
+                        <li><p><strong>TOTAL:</strong></p> <span><strong>TZS {{order.total + 18/ 100 * order.total }}</strong></span></li>
+                        <li><p><strong>BALANCE DUE:</strong></p> <span><strong>TZS 0.00</strong></span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="c-container in-pegination-box">
+        <div class="row-flex">
+            <div class="in-pegination-area">
+                <p>Invoice ID: 2020051100</p>
+                <p>Page 1/1</p>
+            </div>
+        </div>
+    </div>
+    <button class="print-link no-print" onclick="jQuery('#ele1').print({ globalStyles : true })">
+                Print
+                </button>
+</section>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+        <script>
+        window.jQuery || document.write('<script src="../bower_components/jquery/dist/jquery.min.js"><\/script>')
+        </script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jQuery.print/1.6.0/jQuery.print.js"></script>
+        <script type='text/javascript'>
+        jQuery(function($) { 'use strict';
+            $("#ele2").find('.print-link').on('click', function() {
+                $.print("#ele2");
+            });
+            
+        });
+        </script>
+
+<!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
+</body>
+</html>

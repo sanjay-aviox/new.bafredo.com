@@ -1,0 +1,535 @@
+{% extends "layouts/front.twig" %}
+{% block content %}
+<div class="container-fluid bodyFrame">
+  <div class="row hidden-xs pc">
+	<div class="blogTit">
+		<h1>BLOG</h1>
+	</div>
+	<div class="blogNavClass">
+		<a rel="nofollow" class="select" data-id="catTeam" href="javascript:;">CATEGORY</a><span>|</span><a rel="nofollow" data-id="tagTeam" href="javascript:;">TAGS</a>
+	</div>
+	<div class="lineFrame blogNav catTeam">
+		        <a title="All" data-cid="0" class="c0" href="category-all.html">All(1069)</a>
+                <a title="micro:bit" data-cid="30" class="c30" href="category-microbit.html">micro:bit(61)</a>
+                <a title="NEWS" data-cid="22" class="c22" href="category-news.html">NEWS(256)</a>
+                <a title="PROJECTS" data-cid="24" class="c24" href="category-projects.html">PROJECTS(351)</a>
+                <a title="REVIEWS" data-cid="25" class="c25" href="category-reviews.html">REVIEWS(67)</a>
+                <a title="TUTORIALS" data-cid="26" class="c26" href="category-tutorials.html">TUTORIALS(543)</a>
+                <a title="GRAVITY" data-cid="29" class="c29" href="category-gravity.html">GRAVITY(60)</a>
+                <div class="clear"></div>
+    </div>
+    
+    <div class="lineFrame blogNav tagTeam">
+		
+
+
+		<a title="ESP32" class="tag" href="blog-tag-esp32.html">ESP32</a>
+		
+
+
+		<a title="ESP32 TUTORIAL" class="tag" href="blog-tag-esp32%20tutorial.html">ESP32 TUTORIAL</a>
+		
+
+
+		<a title="ARDUINO" class="tag" href="blog-tag-arduino.html">ARDUINO</a>
+		
+
+
+		<a title="ROBOT" class="tag" href="blog-tag-robot.html">ROBOT</a>
+		
+
+
+		<a title="ARDUINO TUTORIAL" class="tag" href="blog-tag-arduino%20tutorial.html">ARDUINO TUTORIAL</a>
+		
+
+
+		<a title="ESP8266" class="tag" href="blog-tag-esp8266.html">ESP8266</a>
+		
+
+
+		<a title="ARDUINO PROJECTS" class="tag" href="blog-tag-arduino%20projects.html">ARDUINO PROJECTS</a>
+		
+
+
+		<a title="DFROBOT" class="tag" href="blog-tag-dfrobot.html">DFROBOT</a>
+		
+
+
+		<a title="ROBOTICS" class="tag" href="blog-tag-robotics.html">ROBOTICS</a>
+		
+
+
+		<a title="MICROBIT" class="tag" href="blog-tag-microbit.html">MICROBIT</a>
+		
+
+
+		<a title="MICROPYTHON" class="tag" href="blog-tag-micropython.html">MICROPYTHON</a>
+		
+
+
+		<a title="MICROBIT TUTORIALS" class="tag" href="blog-tag-microbit%20tutorials.html">MICROBIT TUTORIALS</a>
+		
+
+
+		<a title="MICROBIT PROJECTS" class="tag" href="blog-tag-microbit%20projects.html">MICROBIT PROJECTS</a>
+		
+
+
+		<a title="MICROPYTHON TUTORIAL" class="tag" href="blog-tag-micropython%20tutorial.html">MICROPYTHON TUTORIAL</a>
+		
+
+
+		<a title="LATTEPANDA" class="tag" href="blog-tag-lattepanda.html">LATTEPANDA</a>
+		
+
+
+		<a title="IOT" class="tag" href="blog-tag-iot.html">IOT</a>
+		
+
+
+		<a title="3D PRINTING" class="tag" href="blog-tag-3d%20printing.html">3D PRINTING</a>
+		
+
+
+		<a title="DIY" class="tag" href="blog-tag-diy.html">DIY</a>
+		
+
+
+		<a title="TECHNOLOGY" class="tag" href="blog-tag-technology.html">TECHNOLOGY</a>
+		
+
+
+		<a title="OBLOQ" class="tag" href="blog-tag-obloq.html">OBLOQ</a>
+				<div class="clear"></div>
+    </div>
+    
+    <div id="blog_lists" class="lineFrame blog_lists">
+    </div>
+    <div id="blogTemp">
+    	                <div class="post">
+                <a href="blog-1235.html"><img src="assets/image/cache/Blog/AIK13/microbit7/TIM%e6%88%aa%e5%9b%be20190327150857-260x180.png" alt="POV Display Using SPRESENSE"/></a>
+        <div class="post-title">
+            <a href="blog-1235.html">POV Display Using SPRESENSE</a>
+        </div>
+        <div class="post_category">
+                        <a class="b24" href="category-projects.html">PROJECTS</a>
+                                    <a class="tag" href="blog-tag-arduino%20tutorial.html">arduino tutorial</a>
+            	
+        </div>
+        <div class="clear"></div>
+        <div class="date-published">27.03.2019</div>
+    </div>
+        <div class="post">
+                <a href="blog-1234.html"><img src="<?php echo $app_url; ?>assets/image/cache/Blog/AIK13/microbit9/dsc_0215_3bTmjLqKCL-260x180.jpg" alt="How to Make a Makerspace NFC Part Management System"/></a>
+        <div class="post-title">
+            <a href="blog-1234.html">How to Make a Makerspace NFC Part Management System</a>
+        </div>
+        <div class="post_category">
+                        <a class="b24" href="category-projects.html">PROJECTS</a>
+                                    <a class="tag" href="blog-tag-nfc.html">NFC</a>
+            	
+        </div>
+        <div class="clear"></div>
+        <div class="date-published">27.03.2019</div>
+    </div>
+        <div class="post">
+                <a href="blog-1233.html"><img src="<?php echo $app_url; ?>assets/image/cache/Blog/AIK13/microbit9/_20190326182416-260x180.png" alt="IoT Weather Monitor ePaper Display"/></a>
+        <div class="post-title">
+            <a href="blog-1233.html">IoT Weather Monitor ePaper Display</a>
+        </div>
+        <div class="post_category">
+                        <a class="b24" href="category-projects.html">PROJECTS</a>
+                                    <a class="tag" href="blog-tag-esp32.html">esp32</a>
+            	
+        </div>
+        <div class="clear"></div>
+        <div class="date-published">26.03.2019</div>
+    </div>
+        <div class="post">
+                <a href="blog-1232.html"><img src="<?php echo $app_url; ?>assets/image/cache/Blog/AIK13/microbit9/_20190326181329-260x180.png" alt="LoRa ESP32 Radios - Easy Getting Started Tutorial"/></a>
+        <div class="post-title">
+            <a href="blog-1232.html">LoRa ESP32 Radios - Easy Getting Started Tutorial</a>
+        </div>
+        <div class="post_category">
+                        <a class="b24" href="category-projects.html">PROJECTS</a>
+                                    <a class="tag" href="blog-tag-esp32.html">esp32</a>
+            	
+        </div>
+        <div class="clear"></div>
+        <div class="date-published">26.03.2019</div>
+    </div>
+        <div class="post">
+                <a href="blog-1231.html"><img src="<?php echo $app_url; ?>assets/image/cache/Blog/AIK14/Christmas%20Light/dsc_0345_Mf3ZTbDL9U-260x180.jpg" alt="How to make a ESP32 Fall Detector"/></a>
+        <div class="post-title">
+            <a href="blog-1231.html">How to make a ESP32 Fall Detector</a>
+        </div>
+        <div class="post_category">
+                        <a class="b24" href="category-projects.html">PROJECTS</a>
+                                    <a class="tag" href="blog-tag-esp32%20projects.html">esp32 projects</a>
+            	
+        </div>
+        <div class="clear"></div>
+        <div class="date-published">26.03.2019</div>
+    </div>
+        <div class="post">
+                <a href="blog-1230.html"><img src="<?php echo $app_url; ?>assets/image/cache/Blog/AIK13/microbit9/F4K4PVTJTEN8WCU-260x180.jpg" alt="IoT Based Fingerprint Attendance System Using Evive"/></a>
+        <div class="post-title">
+            <a href="blog-1230.html">IoT Based Fingerprint Attendance System Using Evive</a>
+        </div>
+        <div class="post_category">
+                        <a class="b24" href="category-projects.html">PROJECTS</a>
+                                    <a class="tag" href="blog-tag-arduino%20tutorial.html">arduino tutorial</a>
+            	
+        </div>
+        <div class="clear"></div>
+        <div class="date-published">26.03.2019</div>
+    </div>
+        <div class="post">
+                <a href="blog-1229.html"><img src="<?php echo $app_url; ?>assets/image/cache/Blog/AIK13/microbit/p3123490_AFGo7yDJ4D-260x180.jpg" alt="DFplayer Project: How to make a Kids' Wooden Radio"/></a>
+        <div class="post-title">
+            <a href="blog-1229.html">DFplayer Project: How to make a Kids' Wooden Radio</a>
+        </div>
+        <div class="post_category">
+                        <a class="b24" href="category-projects.html">PROJECTS</a>
+                                    <a class="tag" href="blog-tag-arduino%20tutorial.html">arduino tutorial</a>
+            	
+        </div>
+        <div class="clear"></div>
+        <div class="date-published">26.03.2019</div>
+    </div>
+        <div class="post">
+                <a href="blog-1228.html"><img src="<?php echo $app_url; ?>assets/image/cache/Blog/AIK13/esp32/ESP32%20Arduino%20Tutorial%20Renaming%20a%20file%20in%20the%20SPIFFS%20file%20system-260x180.png" alt="ESP32 Arduino Tutorial: Renaming a file in the SPIFFS file system"/></a>
+        <div class="post-title">
+            <a href="blog-1228.html">ESP32 Arduino Tutorial: Renaming a file in the SPIFFS file system</a>
+        </div>
+        <div class="post_category">
+                        <a class="b24" href="category-projects.html">PROJECTS</a>
+                                    <a class="tag" href="blog-tag-esp32.html">esp32</a>
+            	
+        </div>
+        <div class="clear"></div>
+        <div class="date-published">14.03.2019</div>
+    </div>
+        <div class="post">
+                <a href="blog-1227.html"><img src="<?php echo $app_url; ?>assets/image/cache/Blog/AIK13/esp32/ESP32%20Arduino%20Tutorial%20removing%20a%20file%20from%20the%20SPIFFS%20file%20system-260x180.png" alt="ESP32 Arduino Tutorial: removing a file from the SPIFFS file system"/></a>
+        <div class="post-title">
+            <a href="blog-1227.html">ESP32 Arduino Tutorial: removing a file from the SPIFFS file system</a>
+        </div>
+        <div class="post_category">
+                        <a class="b24" href="category-projects.html">PROJECTS</a>
+                                    <a class="tag" href="blog-tag-esp32.html">esp32</a>
+            	
+        </div>
+        <div class="clear"></div>
+        <div class="date-published">14.03.2019</div>
+    </div>
+        <div class="post">
+                <a href="blog-1226.html"><img src="<?php echo $app_url; ?>assets/image/cache/Blog/AIK13/esp32/ESP32%20Arduino%20Formatting%20the%20SPIFFS%20file%20system-260x180.png" alt="ESP32 Arduino Tutorial: Formatting the SPIFFS file system"/></a>
+        <div class="post-title">
+            <a href="blog-1226.html">ESP32 Arduino Tutorial: Formatting the SPIFFS file system</a>
+        </div>
+        <div class="post_category">
+                        <a class="b24" href="category-projects.html">PROJECTS</a>
+                                    <a class="tag" href="blog-tag-esp32.html">esp32</a>
+            	
+        </div>
+        <div class="clear"></div>
+        <div class="date-published">14.03.2019</div>
+    </div>
+        <div class="post">
+                <a href="blog-1225.html"><img src="<?php echo $app_url; ?>assets/image/cache/Blog/AIK13/esp32/Figure%201%20%e2%80%93%20Content%20of%20the%20directories%20tested.-260x180.png" alt="ESP32 Arduino Tutorial: Listing files in a SPIFFS file system specific path"/></a>
+        <div class="post-title">
+            <a href="blog-1225.html">ESP32 Arduino Tutorial: Listing files in a SPIFFS file system specific path</a>
+        </div>
+        <div class="post_category">
+                        <a class="b24" href="category-projects.html">PROJECTS</a>
+                                    <a class="tag" href="blog-tag-esp32%20projects.html">esp32 projects</a>
+            	
+        </div>
+        <div class="clear"></div>
+        <div class="date-published">14.03.2019</div>
+    </div>
+        <div class="post">
+                <a href="blog-1224.html"><img src="<?php echo $app_url; ?>assets/image/cache/Blog/AIK13/esp32/ESP32%20Arduino%20Tutorial%20List%20all%20files%20in%20the%20SPIFFS%20file%20system-260x180.png" alt="ESP32 Arduino Tutorial: List all files in the SPIFFS file system"/></a>
+        <div class="post-title">
+            <a href="blog-1224.html">ESP32 Arduino Tutorial: List all files in the SPIFFS file system</a>
+        </div>
+        <div class="post_category">
+                        <a class="b24" href="category-projects.html">PROJECTS</a>
+                                    <a class="tag" href="blog-tag-esp32.html">esp32</a>
+            	
+        </div>
+        <div class="clear"></div>
+        <div class="date-published">14.03.2019</div>
+    </div>
+        <div class="post">
+                <a href="blog-1223.html"><img src="<?php echo $app_url; ?>assets/image/cache/Blog/AIK1/ESP32%20Arduino/microbit%205-260x180.png" alt="ESP32 Tutorial: HTTP/2 GET request to Node.js server"/></a>
+        <div class="post-title">
+            <a href="blog-1223.html">ESP32 Tutorial: HTTP/2 GET request to Node.js server</a>
+        </div>
+        <div class="post_category">
+                        <a class="b24" href="category-projects.html">PROJECTS</a>
+                                    <a class="tag" href="blog-tag-esp32.html">esp32</a>
+            	
+        </div>
+        <div class="clear"></div>
+        <div class="date-published">12.03.2019</div>
+    </div>
+        <div class="post">
+                <a href="blog-1222.html"><img src="<?php echo $app_url; ?>assets/image/cache/Blog/AIK1/ESP32%20Arduino/Microbit%20tutorial%203-260x180.png" alt="Micro:bit MicroPython file system: Getting a file size"/></a>
+        <div class="post-title">
+            <a href="blog-1222.html">Micro:bit MicroPython file system: Getting a file size</a>
+        </div>
+        <div class="post_category">
+                        <a class="b24" href="category-projects.html">PROJECTS</a>
+                        <a class="b30" href="category-microbit.html">micro:bit</a>
+                                    <a class="tag" href="blog-tag-microbit.html">microbit</a>
+            	
+        </div>
+        <div class="clear"></div>
+        <div class="date-published">12.03.2019</div>
+    </div>
+        <div class="post">
+                <a href="blog-1221.html"><img src="<?php echo $app_url; ?>assets/image/cache/Blog/AIK1/ESP32%20Arduino/microbit%20tutorial%202-260x180.png" alt="Micro:bit MicroPython Tutorial: Deleting a file from the file system"/></a>
+        <div class="post-title">
+            <a href="blog-1221.html">Micro:bit MicroPython Tutorial: Deleting a file from the file system</a>
+        </div>
+        <div class="post_category">
+                        <a class="b24" href="category-projects.html">PROJECTS</a>
+                        <a class="b30" href="category-microbit.html">micro:bit</a>
+                                    <a class="tag" href="blog-tag-microbit.html">microbit</a>
+            	
+        </div>
+        <div class="clear"></div>
+        <div class="date-published">12.03.2019</div>
+    </div>
+        <div class="post">
+                <a href="blog-1220.html"><img src="<?php echo $app_url; ?>assets/image/cache/Blog/AIK1/ESP32%20Arduino/Microbit%20Tutorial-260x180.png" alt="Micro:bit MicroPython Tutorial: reading a file from the file system"/></a>
+        <div class="post-title">
+            <a href="blog-1220.html">Micro:bit MicroPython Tutorial: reading a file from the file system</a>
+        </div>
+        <div class="post_category">
+                        <a class="b24" href="category-projects.html">PROJECTS</a>
+                        <a class="b30" href="category-microbit.html">micro:bit</a>
+                                    <a class="tag" href="blog-tag-microbit.html">microbit</a>
+            	
+        </div>
+        <div class="clear"></div>
+        <div class="date-published">12.03.2019</div>
+    </div>
+        <div class="post">
+                <a href="blog-1219.html"><img src="<?php echo $app_url; ?>assets/image/cache/Blog/AIK1/ESP32%20Arduino/Firebeetle%20ESP32%20Tutorial%20(11)-260x180.png" alt="Micro:bit MicroPython Tutorial: creating a file in the filesystem"/></a>
+        <div class="post-title">
+            <a href="blog-1219.html">Micro:bit MicroPython Tutorial: creating a file in the filesystem</a>
+        </div>
+        <div class="post_category">
+                        <a class="b29" href="category-gravity.html">GRAVITY</a>
+                        <a class="b30" href="category-microbit.html">micro:bit</a>
+                                    <a class="tag" href="blog-tag-microbit.html">microbit</a>
+            	
+        </div>
+        <div class="clear"></div>
+        <div class="date-published">12.03.2019</div>
+    </div>
+        <div class="post">
+                <a href="blog-1218.html"><img src="<?php echo $app_url; ?>assets/image/cache/Blog/AIK1/ESP32%20Arduino/Firebeetle%20ESP32%20Tutorial%20(10)-260x180.png" alt="Micro:bit MicroPython Tutorial: Getting temperature"/></a>
+        <div class="post-title">
+            <a href="blog-1218.html">Micro:bit MicroPython Tutorial: Getting temperature</a>
+        </div>
+        <div class="post_category">
+                        <a class="b24" href="category-projects.html">PROJECTS</a>
+                        <a class="b30" href="category-microbit.html">micro:bit</a>
+                                    <a class="tag" href="blog-tag-microbit.html">microbit</a>
+            	
+        </div>
+        <div class="clear"></div>
+        <div class="date-published">11.03.2019</div>
+    </div>
+        <div class="post">
+                <a href="blog-1215.html"><img src="<?php echo $app_url; ?>assets/image/cache/Blog/AIK1/ESP32%20Arduino/Firebeetle%20ESP32%20Tutorial%20(7)-260x180.png" alt="ESP32 Arduino Tutorial: Get WiFi soft AP interface MAC address"/></a>
+        <div class="post-title">
+            <a href="blog-1215.html">ESP32 Arduino Tutorial: Get WiFi soft AP interface MAC address</a>
+        </div>
+        <div class="post_category">
+                        <a class="b24" href="category-projects.html">PROJECTS</a>
+                        <a class="b29" href="category-gravity.html">GRAVITY</a>
+                                    <a class="tag" href="blog-tag-esp32.html">esp32</a>
+            	
+        </div>
+        <div class="clear"></div>
+        <div class="date-published">11.03.2019</div>
+    </div>
+        <div class="post">
+                <a href="blog-1214.html"><img src="<?php echo $app_url; ?>assets/image/cache/Blog/AIK1/ESP32%20Arduino/Firebeetle%20ESP32%20Tutorial%20(6)-260x180.png" alt="ESP32 Arduino Tutorial: Getting station interface hostname"/></a>
+        <div class="post-title">
+            <a href="blog-1214.html">ESP32 Arduino Tutorial: Getting station interface hostname</a>
+        </div>
+        <div class="post_category">
+                        <a class="b24" href="category-projects.html">PROJECTS</a>
+                        <a class="b29" href="category-gravity.html">GRAVITY</a>
+                                    <a class="tag" href="blog-tag-esp32.html">esp32</a>
+            	
+        </div>
+        <div class="clear"></div>
+        <div class="date-published">11.03.2019</div>
+    </div>
+        <div class="post">
+                <a href="blog-1213.html"><img src="<?php echo $app_url; ?>assets/image/cache/Blog/AIK1/ESP32%20Arduino/Firebeetle%20ESP32%20Tutorial%20(5)-260x180.png" alt="ESP32 Arduino Tutorial: Receiving a ping"/></a>
+        <div class="post-title">
+            <a href="blog-1213.html">ESP32 Arduino Tutorial: Receiving a ping</a>
+        </div>
+        <div class="post_category">
+                        <a class="b24" href="category-projects.html">PROJECTS</a>
+                        <a class="b29" href="category-gravity.html">GRAVITY</a>
+                                    <a class="tag" href="blog-tag-esp32.html">esp32</a>
+            	
+        </div>
+        <div class="clear"></div>
+        <div class="date-published">11.03.2019</div>
+    </div>
+        <div class="post">
+                <a href="blog-1212.html"><img src="<?php echo $app_url; ?>assets/image/cache/Blog/AIK1/ESP32%20Arduino/Firebeetle%20ESP32%20Tutorial%20(4)-260x180.png" alt="ESP32 Arduino Tutorial: HTTP PUT request"/></a>
+        <div class="post-title">
+            <a href="blog-1212.html">ESP32 Arduino Tutorial: HTTP PUT request</a>
+        </div>
+        <div class="post_category">
+                        <a class="b24" href="category-projects.html">PROJECTS</a>
+                        <a class="b29" href="category-gravity.html">GRAVITY</a>
+                                    <a class="tag" href="blog-tag-esp32.html">esp32</a>
+            	
+        </div>
+        <div class="clear"></div>
+        <div class="date-published">11.03.2019</div>
+    </div>
+        <div class="post">
+                <a href="blog-1211.html"><img src="<?php echo $app_url; ?>assets/image/cache/Blog/AIK1/ESP32%20Arduino/Firebeetle%20ESP32%20Tutorial%20(3)-260x180.png" alt="ESP32 Arduino Tutorial: HTTP/2 PUT request"/></a>
+        <div class="post-title">
+            <a href="blog-1211.html">ESP32 Arduino Tutorial: HTTP/2 PUT request</a>
+        </div>
+        <div class="post_category">
+                        <a class="b24" href="category-projects.html">PROJECTS</a>
+                        <a class="b29" href="category-gravity.html">GRAVITY</a>
+                                    <a class="tag" href="blog-tag-esp32.html">esp32</a>
+            	
+        </div>
+        <div class="clear"></div>
+        <div class="date-published">11.03.2019</div>
+    </div>
+        <div class="post">
+                <a href="blog-1210.html"><img src="<?php echo $app_url; ?>assets/image/cache/Blog/AIK1/ESP32%20Arduino/Firebeetle%20ESP32%20Tutorial%20(2)-260x180.png" alt="ESP32 Arduino Tutorial: Base64 encoding (using crypto/base64 lib)"/></a>
+        <div class="post-title">
+            <a href="blog-1210.html">ESP32 Arduino Tutorial: Base64 encoding (using crypto/base64 lib)</a>
+        </div>
+        <div class="post_category">
+                        <a class="b24" href="category-projects.html">PROJECTS</a>
+                        <a class="b29" href="category-gravity.html">GRAVITY</a>
+                                    <a class="tag" href="blog-tag-esp32.html">esp32</a>
+            	
+        </div>
+        <div class="clear"></div>
+        <div class="date-published">11.03.2019</div>
+    </div>
+        <div class="post">
+                <a href="blog-1209.html"><img src="<?php echo $app_url; ?>assets/image/cache/Blog/AIK1/ESP32%20Arduino/Firebeetle%20ESP32%20Tutorial%20(1)-260x180.png" alt="ESP32 Arduino Tutorial: HTTP/2 POST request with headers"/></a>
+        <div class="post-title">
+            <a href="blog-1209.html">ESP32 Arduino Tutorial: HTTP/2 POST request with headers</a>
+        </div>
+        <div class="post_category">
+                        <a class="b24" href="category-projects.html">PROJECTS</a>
+                        <a class="b29" href="category-gravity.html">GRAVITY</a>
+                                    <a class="tag" href="blog-tag-esp32.html">esp32</a>
+            	
+        </div>
+        <div class="clear"></div>
+        <div class="date-published">11.03.2019</div>
+    </div>
+        <div class="post">
+                <a href="blog-1208.html"><img src="<?php echo $app_url; ?>assets/image/cache/Blog/AIK1/ESP32%20Arduino/Firebeetle%20ESP32%20Tutorial-260x180.png" alt="ESP32 Arduino Tutorial: Shake Sensor Debounce"/></a>
+        <div class="post-title">
+            <a href="blog-1208.html">ESP32 Arduino Tutorial: Shake Sensor Debounce</a>
+        </div>
+        <div class="post_category">
+                        <a class="b24" href="category-projects.html">PROJECTS</a>
+                        <a class="b29" href="category-gravity.html">GRAVITY</a>
+                                    <a class="tag" href="blog-tag-esp32.html">esp32</a>
+            	
+        </div>
+        <div class="clear"></div>
+        <div class="date-published">11.03.2019</div>
+    </div>
+        <div class="post">
+                <a href="blog-1207.html"><img src="<?php echo $app_url; ?>assets/image/cache/Blog/FireBeetle/image2-260x180.jpg" alt="ESP32 Arduino Tutorial: Digital shake sensor"/></a>
+        <div class="post-title">
+            <a href="blog-1207.html">ESP32 Arduino Tutorial: Digital shake sensor</a>
+        </div>
+        <div class="post_category">
+                        <a class="b24" href="category-projects.html">PROJECTS</a>
+                                    <a class="tag" href="blog-tag-esp32.html">esp32</a>
+            	
+        </div>
+        <div class="clear"></div>
+        <div class="date-published">11.03.2019</div>
+    </div>
+        <div class="post">
+                <a href="blog-1192.html"><img src="<?php echo $app_url; ?>assets/image/cache/Blog/AIK13/microbit%202/hahh-260x180.png" alt="LoRa Messenger for Two Devices for Distances Up to 8km"/></a>
+        <div class="post-title">
+            <a href="blog-1192.html">LoRa Messenger for Two Devices for Distances Up to 8km</a>
+        </div>
+        <div class="post_category">
+                        <a class="b24" href="category-projects.html">PROJECTS</a>
+                        	
+        </div>
+        <div class="clear"></div>
+        <div class="date-published">06.03.2019</div>
+    </div>
+        <div class="post">
+                <a href="blog-1191.html"><img src="<?php echo $app_url; ?>assets/image/cache/Blog/AAA/Raspberry/2019%20Raspberry%20day%20-%20Blog-260x180.png" alt="DFRobot 2019 Raspberry Pi Day for a chance to win a free Raspberry Pi "/></a>
+        <div class="post-title">
+            <a href="blog-1191.html">DFRobot 2019 Raspberry Pi Day for a chance to win a free Raspberry Pi </a>
+        </div>
+        <div class="post_category">
+                        <a class="b22" href="category-news.html">NEWS</a>
+                                    <a class="tag" href="blog-tag-raspberry%20pi%20day.html">Raspberry Pi Day</a>
+            	
+        </div>
+        <div class="clear"></div>
+        <div class="date-published">05.03.2019</div>
+    </div>
+        <div class="post">
+                <a href="blog-1190.html"><img src="<?php echo $app_url; ?>assets/image/cache/Blog/AIK1/Gravity%20Survey-Blog-260x180.png" alt="2019 Gravity Sensor Survey (Lucy winners announced)"/></a>
+        <div class="post-title">
+            <a href="blog-1190.html">2019 Gravity Sensor Survey (Lucy winners announced)</a>
+        </div>
+        <div class="post_category">
+                        <a class="b22" href="category-news.html">NEWS</a>
+                        	
+        </div>
+        <div class="clear"></div>
+        <div class="date-published">22.02.2019</div>
+    </div>
+       		    </div>
+  </div>
+  
+  <div class="visible-xs mobile">
+  	<div class="lineFrame">
+  		<div class="blogTit"></div>
+  	</div>
+  	<div class="clear"></div>
+  	<div class="lineFrame">
+  		<div class="blogNavClass"></div>
+  	</div>
+  	<div class="clear"></div>
+  	<div class="lineFrame blogNav catTeam">
+  	</div>
+  	<div class="clear"></div>
+  	<div class="lineFrame blogNav tagTeam">
+  	</div>
+  	<div class="clear"></div>
+  	<div class="lineFrame">
+  		<div class="blog_lists" id="mobile_blog_lists">
+  			
+  		</div>
+  	</div>
+  </div>
+</div>
+{% endblock %}

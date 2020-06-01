@@ -1,0 +1,365 @@
+{% extends "layouts/front.twig" %}
+{% block styles %}
+	<style>
+		.bodyFrame .pc {
+			padding: 0;
+			padding-top: 0px;
+			width: 1200px;
+			margin: 0 auto;
+			padding-top: 20px;
+		}
+		.bodyFrame .pc .lineFrame {
+			width: 1200px;
+			min-height: 40px;
+			position: relative;
+		}
+		.bodyFrame .pc .shoppingNavFrame {
+			width: 100%;
+			height: 89px;
+			position: relative;
+		}
+		.bodyFrame .pc .shoppingNavFrame b {
+			display: block;
+			position: absolute;
+			font-size: 30px;
+			color: #0f054a;;
+			top: 35px;
+		}
+		.bodyFrame .pc .shoppingNavFrame ul {
+			position: absolute;
+			top: 27px;
+			right: 0;
+		}
+		.bodyFrame .pc .shoppingNavFrame ul .select {
+			border-bottom: 4px solid #ED6A00;
+			color: #ED6A00;
+		}
+		.bodyFrame .pc .shoppingNavFrame ul .select {
+			color: #ED6A00;
+		}
+		.bodyFrame .pc .shoppingNavFrame ul li {
+			color: #707070;
+			font-size: 18px;
+			font-weight: bold;
+			width: 166px;
+			float: left;
+			margin-left: 20px;
+			border-bottom: 4px solid #A2A2A2;
+			line-height: 30px;
+			text-align: center;
+		}
+		.bodyFrame .pc .shoppingNavFrame ul li {
+			color: #707070;
+			font-size: 18px;
+			font-weight: bold;
+			line-height: 30px;
+			text-align: center;
+		}
+		.bodyFrame .pc .lineFrame {
+			width: 1200px;
+			min-height: 40px;
+			position: relative;
+		}
+		.cart-table {
+			border-bottom: 2px solid #ddd;
+		}
+		.cart-table th, td {
+			color: #535353;
+			font-size: 18px;
+		}
+		.cart-table td:last-child,
+		.cart-table th:last-child {
+			text-align: right;
+		}
+		.cart-footer {
+			float: right;
+		}
+		.cart-footer td {
+			padding-left: 100px;
+			padding-bottom: 10px;
+			color: #535353;
+			font-size: 18px;
+		}
+		.cart-footer .btn-contine {
+			text-align: right;
+			margin-top: 20px;
+		}
+		.cart-footer .btn-contine button {
+			width: 250px;
+		}
+		.cart-table img {
+			width: 94px;
+			height: 63px;
+			padding: 0;
+			margin: 0;
+			border: none;
+			border-radius: 0;
+		}
+		.cart-table .img-thumbnail {
+			display: inline-block;
+			max-width: 100%;
+			height: auto;
+			padding: 4px;
+			line-height: 1.42857143;
+			background-color: #fff;
+			border: 1px solid #ddd;
+			border-radius: 4px;
+			-webkit-transition: all .2s ease-in-out;
+			-o-transition: all .2s ease-in-out;
+			transition: all .2s ease-in-out;
+			float: left;
+			margin-right: 10px;
+		}
+		.btn-confirm {
+			display: block;
+			width: 250px;
+			height: 49px;
+			line-height: 49px;
+			background: #1d8229;
+			border: solid 1px #1d8229;
+			color: #FFFFFF;
+			float: right;
+			font-size: 20px;
+			text-align: center;
+			font-weight: bold;
+			cursor: pointer;
+		}
+		.input-group {
+			position: relative;
+			display: flex;
+			border-collapse: separate;
+			justify-content: center;
+		}
+		.plus-minus-input {
+			-webkit-align-items: center;
+			-ms-flex-align: center;
+			align-items: center;
+			margin-top: -9px;
+		}
+		.plus-minus-input .input-group-field {
+			text-align: center;
+			margin-left: 0.5rem;
+			margin-right: 0.5rem;
+			padding: 1rem;
+		}
+		.plus-minus-input .input-group-field::-webkit-inner-spin-button,
+		.plus-minus-input .input-group-field ::-webkit-outer-spin-button {
+			-webkit-appearance: none;
+			appearance: none;
+		}
+		.plus-minus-input .input-group-button .circle {
+			border-radius: 50%;
+			padding: 0.25em 0.8em;
+		}
+		.item-quantity-count {
+			width: 112px;
+		}
+		.item-quantity-count input {
+			text-align: center;
+		}
+		table td.total-price {
+			width: 137px;
+		}
+
+		/* The container */
+		.container-checkbox {
+			display: block;
+			position: relative;
+			padding-left: 35px;
+			margin-bottom: 22px;
+			cursor: pointer;
+			font-size: 22px;
+			-webkit-user-select: none;
+			-moz-user-select: none;
+			-ms-user-select: none;
+			user-select: none;
+		}
+
+		/* Hide the browser's default checkbox */
+		.container-checkbox input {
+			position: absolute;
+			opacity: 0;
+			cursor: pointer;
+			height: 0;
+			width: 0;
+		}
+
+		/* Create a custom checkbox */
+		.checkmark {
+			position: absolute;
+			top: 0;
+			left: 0;
+			height: 25px;
+			width: 25px;
+			background-color: #ffffff;
+			border: solid 1px #bbb;
+		}
+
+		/* On mouse-over, add a grey background color */
+		.container-checkbox:hover input ~ .checkmark {
+			background-color: #f2f2f2;
+		}
+
+		/* When the checkbox is checked, add a blue background */
+		.container-checkbox input:checked ~ .checkmark {
+			background-color: #1d8229;
+		}
+
+		/* Create the checkmark/indicator (hidden when not checked) */
+		.checkmark:after {
+			content: "";
+			position: absolute;
+			display: none;
+		}
+
+		/* Show the checkmark when checked */
+		.container-checkbox input:checked ~ .checkmark:after {
+			display: block;
+		}
+
+		/* Style the checkmark/indicator */
+		.container-checkbox .checkmark:after {
+			left: 9px;
+			top: 5px;
+			width: 5px;
+			height: 10px;
+			border: solid white;
+			border-width: 0 3px 3px 0;
+			-webkit-transform: rotate(45deg);
+			-ms-transform: rotate(45deg);
+			transform: rotate(45deg);
+		}
+	</style>
+{% endblock %}
+{% block content %}
+	<div class="container-fluid bodyFrame">
+		<div class="row pc checkoutApp">
+			<div class="lineFrame">
+				<ul class="breadcrumb">
+					<li><a href="{{ base_url('/') }}"><i class="fa fa-home"></i></a></li>
+					<li><a href="{{ base_url('account') }}">Account</a></li>
+				</ul>
+			</div>
+			<div class="clear"></div>
+			<div class="lineFrame">
+				<div class="cartListFrame">
+					<div class="shoppingNavFrame">
+						<b>Shopping Cart</b>
+						<ul>
+							<li class="select">1. Shopping Cart</li>
+							<li>2. Check Out</li>
+							<li>3. Confirm Order</li>
+						</ul>
+					</div>
+					<table class="table cart-table">
+						<thead>
+						<tr>
+							<th class="text-left">
+								<label class="container-checkbox">
+									<input type="checkbox" v-model="allCartItemOptionSelected" v-on:click="checkAllCartItems" id="fcheck">
+									<span class="checkmark"></span>
+								</label>
+							</th>
+							<th class="text-left">Product Name</th>
+							<th class="text-center">Price</th>
+							<th class="text-center">Quantity</th>
+							<th class="text-center">Action</th>
+							<th class="text-center">Total</th>
+						</tr>
+						</thead>
+						<tbody>
+						<tr v-for="item in cart">
+							<td>
+								<label class="container-checkbox">
+									<input type="checkbox" name="cart" v-model="selectedCartItems" :value="item.id" v-on:click="pushSelectedToCheckoutCart(item, this)">
+									<span class="checkmark"></span>
+								</label>
+							</td>
+							<td>
+								<a v-bind:title="item.name" v-bind:href="productDetail(item.slug)"><img v-bind:src="productImage(item.image)" v-bind:alt="item.name" v-bind:title="item.name" class="img-thumbnail"></a>
+								<a v-bind:title="item.name" v-bind:href="productDetail(item.slug)" v-text="item.name"></a>
+							</td>
+							<td v-text="item.currency +' '+ item.price"></td>
+							<td>
+								<div class="input-group plus-minus-input">
+									<div class="widgets-numberpicker">
+										<div class="widgets-numberpicker-decrement" v-on:click="cartItemQuantityDecrement(item)"></div>
+									</div>
+									<div class="input-group-field item-quantity-count">
+										<input type="text" class="form-control" v-model="item.quantity" v-on:keypress="onlyNumber" maxlength="9">
+									</div>
+									<div class="widgets-numberpicker">
+										<div class="widgets-numberpicker-increment" v-on:click="cartItemQuantityIncrement(item)"></div>
+									</div>
+								</div>
+							</td>
+							<td>
+								<button class="btn btn-danger" onclick="return confirm('Are you sure?')" v-on:click="removeFromCart(item)">Delete</button>
+							</td>
+							<td class="total-price" v-text="item.currency +' '+  Math.round((item.price * item.quantity))"></td>
+						</tr>
+						</tbody>
+					</table>
+					<div class="row">
+    					<div style="float:left;">  
+    					      <button class="btn btn-danger" id="deletedItem">Deleted Selected</button></div>
+    					<div class="cart-footer">
+    					  
+    						<table>
+    							<tbody>
+    							<tr>
+    								<td>Subtotal</td>
+    								<td><span v-text="subtotal"></span></td>
+    							</tr>
+    							<tr>
+    								<td>Tax</td>
+    								<td><span v-text="tax"></span></td>
+    							</tr>
+    							<tr>
+    								<td>Total</td>
+    								<td><span v-text="total"></span></td>
+    							</tr>
+    							</tbody>
+    						</table>
+    						<div class="btn-contine">
+    							<button class="btn-confirm" v-on:click="cartCheckout()" v-bind:disabled="selectedCartItems.length == 0">Continue</button>
+    						</div>
+    					</div>
+    				</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+<script>
+ $(document).on('click', '#deletedItem', function(){
+     alert("Are you sure, you want to delete?");
+    var item = [];
+    $.each($("input[name='cart']:checked"), function(){
+            item.push($(this).val());
+    });
+    $.ajax({
+        url: '/cart/deletedCart',
+        type: 'get',
+        data: {'item': item},
+        dataType : "json",
+        error: function() {
+        alert('Something is wrong');
+        },
+        success: function(data) {
+        //   $("#msg").addClass("alert alert-success");
+        //   $("#msg").html("Record removed successfully").show().fadeOut(3000);
+                    
+        //             setTimeout(function () { 
+        location.reload(); 
+            
+        //}, 2000);
+        //       }
+        //     });
+    alert("My favourite sports are: " + favorite.join(", "));
+        }
+    });
+});
+</script>
+
+{% endblock %}

@@ -1,0 +1,21 @@
+{% extends "layouts/front.twig" %}
+{% block content %}
+
+    <div class="container-fluid bodyFrame">
+        <div class="row hidden-xs pc">
+            <div class="blogTit">
+                <h1>{{ blog_detail.blog_name }}</h1>
+            </div>
+
+            <div class="blogCon">
+              <img src='{{ asset("front/uploads/blog/#{blog_detail.image}") }}' style="color: inherit; font-family: inherit; width: 700px;">
+              <div>
+                  <br>
+                  <div>{{ blog_detail.description|raw }}</div>
+              </div>
+
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

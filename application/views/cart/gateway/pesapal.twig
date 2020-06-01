@@ -1,0 +1,164 @@
+{% extends "layouts/front.twig" %}
+{% block styles %}
+    <style>
+        .lineFrame h2 {
+            color: #0f054a;
+            font-size: 30px;
+            font-weight: bold;
+        }
+        .bodyFrame .pc .shoppingNavFrame {
+            width: 100%;
+            height: 89px;
+            position: relative;
+        }
+        .bodyFrame .pc .shoppingNavFrame b {
+            display: block;
+            position: absolute;
+            font-size: 30px;
+            color: #0f054a;
+            top: 35px;
+        }
+        .bodyFrame .pc .shoppingNavFrame ul {
+            position: absolute;
+            top: 27px;
+            right: 0;
+        }
+        .bodyFrame .pc .shoppingNavFrame ul .select {
+            border-bottom: 4px solid #ED6A00;
+            color: #ED6A00;
+        }
+        .bodyFrame .pc .shoppingNavFrame ul .select {
+
+            color: #ED6A00;
+
+        }
+        .bodyFrame .pc .shoppingNavFrame ul li {
+            color: #707070;
+            font-size: 18px;
+            font-weight: bold;
+            width: 166px;
+            float: left;
+            margin-left: 20px;
+            border-bottom: 4px solid #A2A2A2;
+            line-height: 30px;
+            text-align: center;
+        }
+        .bodyFrame .pc .shoppingNavFrame ul li {
+            color: #707070;
+            font-size: 18px;
+            font-weight: bold;
+            line-height: 30px;
+            text-align: center;
+        }
+        .bodyFrame .pc .lineFrame {
+            width: 1200px;
+            min-height: 40px;
+            position: relative;
+        }
+        .cart-table th, td {
+            color: #535353;
+            font-size: 18px;
+        }
+        .cart-table td:last-child,
+        .cart-table th:last-child {
+            text-align: right;
+        }
+        .cart-footer td {
+            padding-left: 100px;
+            padding-bottom: 10px;
+            color: #535353;
+            font-size: 18px;
+        }
+        .cart-footer .btn-contine button {
+            width: 250px;
+        }
+        .cart-table img {
+            width: 94px;
+            height: 63px;
+            padding: 0;
+            margin: 0;
+            border: none;
+            border-radius: 0;
+        }
+        .btn-confirm {
+            display: block;
+            width: 250px;
+            height: 49px;
+            line-height: 49px;
+            background: #1d8229;
+            border: solid 1px #1d8229;
+            color: #FFFFFF;
+            font-size: 20px;
+            text-align: center;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .red-asterisk {
+            color: red;
+        }
+        .sec-shipping-method label,
+        .sec-payment-method label,
+        .sec-agreement label {
+            font-size: 14px;
+        }
+    </style>
+{% endblock %}
+{% block content %}
+    <div class="container-fluid bodyFrame">
+        <div class="row pc checkoutApp">
+            <div class="lineFrame">
+                <ul class="breadcrumb">
+                    <li><a href="{{ base_url('/') }}"><i class="fa fa-home"></i></a></li>
+                    <li><a href="{{ base_url('cart/confirm') }}">Confirm Order</a></li>
+                </ul>
+            </div>
+            <div class="clear"></div>
+            <div class="lineFrame">
+                <form action="{{ base_url('cart/pesapal') }}" class="form" method="post">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h2>Confirm Order</h2>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="shoppingNavFrame">
+                                <ul>
+                                    <li>1. Shopping Cart</li>
+                                    <li>2. Check Out</li>
+                                    <li class="select">3. Confirm Order</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <table class="table">
+                                <tbody>
+                                    <tr>
+                                        <td class="font-weight-bold">Order Number:</td>
+                                        <td>{{ order.id }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="font-weight-bold">Date:</td>
+                                        <td>{{ order.created_at }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="font-weight-bold">Total:</td>
+                                        <td>{{ order.total + charge }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="font-weight-bold">Payment Method:</td>
+                                        <td>{{ order.payment_method | upper }}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="btn-contine">
+                        <input type="hidden" name="order_number" value="{{ order.id }}"/>
+                        <button type="submit" class="btn-confirm">Pay Now</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}

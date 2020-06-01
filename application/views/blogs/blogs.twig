@@ -1,0 +1,42 @@
+{% extends "layouts/front.twig" %}
+{% block content %}
+
+    <div class="container-fluid bodyFrame">
+        <div class="row hidden-xs pc">
+            <div class="blogTit">
+                <h1>BLOG</h1>
+            </div>
+            <div class="blogNavClass">
+                <a rel="nofollow" class="select" data-id="catTeam" href="javascript:;">CATEGORY</a><span>|</span><a rel="nofollow" data-id="tagTeam" href="javascript:;">TAGS</a>
+            </div>
+            <div class="lineFrame blogNav catTeam">
+                {% for category in categories %}
+                    <a title="{{ category.getCategoryName() }}" class="c0" href="#">{{ category.getCategoryName() }}</a>
+                {% endfor %}
+                {#<a title="NEWS" data-cid="22" class="c22" href="#">NEWS(256)</a>#}
+                {#<a title="PROJECTS" data-cid="24" class="c24" href="#">PROJECTS(351)</a>#}
+                {#<a title="REVIEWS" data-cid="25" class="c25" href="#">REVIEWS(67)</a>#}
+                {#<a title="TUTORIALS" data-cid="26" class="c26" href="#">TUTORIALS(543)</a>#}
+                <div class="clear"></div>
+            </div>
+
+            <div id="blog_lists" class="lineFrame blog_lists">
+                <div class="pbllie">
+                    {% for blog in blogs %}
+                    <div class="post">
+                        <a href='{{ base_url("blog/detail/#{blog.getSlug()}") }}'>
+                            <img src='{{ asset("front/uploads/blog/#{blog.getImage()}") }}' width="200px" height="200px" alt="{{ blog.getName() }}">
+                        </a>
+                        <div class="post-title">
+                            <a href='{{ base_url("blog/detail/#{blog.getSlug()}") }}'>{{ blog.getName() }}</a>
+                        </div>
+                        <div class="clear"></div>
+                        <div class="date-published">{{ blog.getCreatedAt() | date('d-m-Y') }}</div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
