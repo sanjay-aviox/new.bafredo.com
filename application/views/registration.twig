@@ -28,7 +28,7 @@
                 <div class="col-12 col-md-6">
                     <div class="account-form-area">
                         <div class="account-heading"><h2><i class="fa fa-user"></i>Register</h2></div>
-                        <form id="registration" >
+                        <form id="register" name="registration" action="{{ base_url('registration/process') }}" method="post">
                             <div class="form-group">
                                 <label for="user-name">User name <span class="required">*</span></label>
                                 <input type="text" name="username" class="form-control" id="user-name" aria-describedby="emailHelp">
