@@ -155,6 +155,7 @@ class Registration extends MY_Controller
                 redirect("registration");
             }
         }else{
+          //  $this->session->set_flashdata('message', "SUCCESS_MESSAGE_HERE"); 
             redirect("registration");
         }
     }

@@ -1,8 +1,10 @@
 {% extends "layouts/front.twig" %}
 {% block styles %}
-	<style type="text/css">
-		
-	</style>
+    <style type="text/css">
+        .error {
+            color:red;
+        }
+    </style>
 {% endblock %}
 {% block content %}
 	<section class="breadcrumb-section">
@@ -30,10 +32,10 @@
                 <div class="col-12 col-md-6">
                     <div class="account-form-area">
                         <div class="account-heading"><h2><i class="fa fa-sign-in"></i>Login</h2></div>
-                        <form action="{{ base_url('login/process') }}" method="post">
+                        <form action="{{ base_url('login/process') }}" id="login" method="post">
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Username or email address <span class="required">*</span></label>
-                                <input type="email" spellcheck="false" placeholder="Email or username" class="form-control" id="input-email"  name="email" aria-describedby="emailHelp">
+                                <input type="text" spellcheck="false" placeholder="Email or username" class="form-control" id="input-email"  name="email" aria-describedby="emailHelp">
                                 <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
                             </div>
                             <div class="form-group">
@@ -68,103 +70,30 @@
     </section>
 {% endblock %}
 {% block scripts %}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.js"></script>
 	<script>
-        (function(d, s, id){
-            var js, fjs = d.getElementsByTagName(s)[0];
-            if (d.getElementById(id)) {return;}
-            js = d.createElement(s); js.id = id;
-            js.src = "https://connect.facebook.net/en_US/sdk.js";
-            fjs.parentNode.insertBefore(js, fjs);
-        }(document, 'script', 'facebook-jssdk'));
-
-        window.fbAsyncInit = function() {
-            FB.init({
-                appId      : '485292091867337',
-                cookie     : true,
-                xfbml      : true,
-                version    : 'v2.12'
-            });
-
-            FB.AppEvents.logPageView();
-        };
-
-        function checkLoginState()
-        {
-            FB.getLoginStatus(function(response) {
-                if (response.status === 'connected') {
-                    // Logged into your app and Facebook.
-                    testAPI();
-                } else {
-                    // The person is not logged into your app or we are unable to tell.
-                    document.getElementById('status').innerHTML = 'Please log ' + 'into this app.';
-                    // statusChangeCallback(response);
-                }
-            });
-        }
-
-        function loginfacebook()
-        {
-            FB.login(function(response) {
-                // handle the response
-                if (response.status === 'connected') {
-                    // Logged into your app and Facebook.
-                    testAPI();
-                } else {
-                    // The person is not logged into your app or we are unable to tell.
-                    document.getElementById('status').innerHTML = 'Please log ' + 'into this app.';
-                }
-            }, {scope: 'public_profile,email'});
-        }
-
-        function testAPI()
-        {
-            console.log('Welcome!  Fetching your information.... ');
-            FB.api('/me?fields=name,email,first_name,last_name,id,gender,picture', function(response) {
-                if(response.name != null){
-                    console.log(response);
-                    // Ask user for password
-                    // $("#askPassModal").modal("show");
-                    // $("#btnModalContinue").click(function () {
-                    // var password = $("#askPassModal input[name=password]");
-                    // if (password.val() != "") {
-                    // $('#askPassModal').modal('hide');
-                    process_login(response);
-                    // } else {
-                    // password.css("border", "solid 1px red");
-                    // }
-                    // });
-                    // $(window).on('hidden.bs.modal', function() {});
-                } else {
-                    alert("It fails to login within third part.");
-                }
-            }, {scope: 'public_profile,email'});
-        }
-
-        function process_login(response)
-        {
-            if (response.email == undefined) {
-                alert("You facebook email is rquired, Kindly grant us permission.");
-                window.location.reload();
-            }
-
-            $.ajax({
-                url:"{{ base_url('login/facebook') }}",
-                data:{
-                    fb_id:response.id,
-                    userName:response.name,
-                    firstName:response.first_name,
-                    lastName:response.last_name,
-                    email:response.email,
-                    gender:response.gender,
-                    picture:response.picture
+        $(document).ready(function(){
+            $("#login").validate({
+            
+                rules: {
+                    email: {
+                        required: true,
+                        email: true
+                    },      
+                    password: {
+                        required: true,
+                    },
                 },
-                dataType:"json",
-                type:"post",
-                success:function(data){
-                    console.log(data);
-                    window.location.href = data.href;
-                }
+
+                messages: {
+                    email: {
+                        required: "Email is required",
+                    },     
+                    password: {
+                        required: "Password is required",
+                    },
+                },
             });
-        }
+        });
 	</script>
 {% endblock %}
