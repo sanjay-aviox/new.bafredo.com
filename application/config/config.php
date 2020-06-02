@@ -26,7 +26,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 // $base_url = ((isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == "on") ? "https" : "http");
 // $base_url .= "://" . $_SERVER['HTTP_HOST'];
 // $base_url .= str_replace(basename($_SERVER['SCRIPT_NAME']), "", $_SERVER['SCRIPT_NAME']);
-$config['base_url'] = 'http://localhost/new.bafredo.com/';
+$config['base_url'] = 'http://178.128.177.194/new.bafredo.com/';
 
 /*
 |--------------------------------------------------------------------------

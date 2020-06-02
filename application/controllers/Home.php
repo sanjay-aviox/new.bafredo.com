@@ -1,35 +1,42 @@
 
 <?php 
 
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
+
+
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Home extends MY_Controller
 {
     public function __construct()
     {
-
+     
         parent::__construct();
-
+        $this->load->library('doctrine');
         $this->load->model('ProductModel', 'product');
         $this->load->model('BlogModel', 'blog');
         $this->load->model('SettingModel', 'sm');
         $this->load->model('DashboardModel', 'dbm');
         $this->load->model('VisitorModel', 'VM');
-       
+
     }
 
     public function index()
 	{
-
-	   $exist_ip = $this->VM->ip_exists($_SERVER['REMOTE_ADDR']);
-	    if($exist_ip == 0){
-	    $data = array(
-                'visitor_count' => 1,
-                'ip_address' => $_SERVER['REMOTE_ADDR'],
-                'created_at' =>date("d/m/Y")
-            );
-        $this->VM->insertVisitor($data);
-	    }
+ 
+	   // $exist_ip = $this->VM->ip_exists($_SERVER['REMOTE_ADDR']);
+	   //  if($exist_ip == 0){
+	   //  $data = array(
+    //             'visitor_count' => 1,
+    //             'ip_address' => $_SERVER['REMOTE_ADDR'],
+    //             'created_at' =>date("d/m/Y")
+    //         );
+    //     $this->VM->insertVisitor($data);
+	   //  }
+       
         $new_arrival_products = $this->product->newArrival(4);
         $featured_products = $this->product->featured(4);
         $specail_products = $this->product->special(4);
