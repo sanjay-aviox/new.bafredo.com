@@ -28,26 +28,28 @@
                 <div class="col-12 col-md-6">
                     <div class="account-form-area">
                         <div class="account-heading"><h2><i class="fa fa-user"></i>Register</h2></div>
-                         <form id="register" name="registration" action="{{ base_url('registration/process') }}" method="post">
+
+                        <form id="register" name="registration" action="{{ base_url('registration/process') }}" method="post">
+
                             <div class="form-group">
                                 <label for="user-name">User name <span class="required">*</span></label>
-                                <input type="text"  class="form-control" id="user-name" aria-describedby="emailHelp">
+                                <input type="text" name="name"  class="form-control" id="user-name" aria-describedby="emailHelp">
                             </div>
                             <div class="form-group">
                                 <label for="mob">Mobile Number <span class="required">*</span></label>
-                                <input type="text" class="form-control" id="mob" aria-describedby="emailHelp">
+                                <input type="text" name="phone" class="form-control" id="mob" aria-describedby="emailHelp">
                             </div>
                             <div class="form-group">
                                 <label for="email">Email address <span class="required">*</span></label>
-                                <input type="text" class="form-control" id="email" aria-describedby="emailHelp">
+                                <input type="text" name="email" class="form-control" id="email" aria-describedby="emailHelp">
                             </div>
                             <div class="form-group">
                                 <label for="pass1">Password <span class="required">*</span></label>
-                                <input type="password" class="form-control" id="pass1">
+                                <input type="password" name="password" class="form-control" id="pass1">
                             </div>
                             <div class="form-group">
                                 <label for="pass2">Confirm Password <span class="required">*</span></label>
-                                <input type="password" class="form-control" id="pass2">
+                                <input type="password" name="confirm_password" class="form-control" id="pass2">
                             </div>
                             <div class="form-group">
                                 <label for="q1">Question #1 <span class="required">*</span></label>
@@ -83,7 +85,7 @@
                                 <input type="text" name="captcha" class="form-control" id="cp" placeholder="Enter Captcha..">
                             </div>
                             <div class="form-group form-check">
-                                <input type="checkbox" name="termCondition" class="form-check-input" id="exampleCheck1">
+                                <input type="checkbox" name="agree" class="form-check-input" id="exampleCheck1">
                                 <label class="form-check-label" for="exampleCheck1">I have seen and accepted<a href="{{ base_url('page/privacy-policy') }}">Privacy Policy</a> and  <a href="{{ base_url('page/terms-conditions') }}">Terms & Conditions</a></label>
                             </div>
                             <button type="submit" class="account-outline-btn">REGISTER</button>
