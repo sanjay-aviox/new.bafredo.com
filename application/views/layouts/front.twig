@@ -54,7 +54,7 @@
 
     <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Roboto+Condensed|Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
-    <link href="{{ asset('front/css/stylesheet.css') }}" rel="stylesheet">
+    <!-- <link href="{{ asset('front/css/stylesheet.css') }}" rel="stylesheet"> -->
     <link href="{{ asset('front/css/iconfont.css') }}" rel="stylesheet">
     <link href="{{ asset('front/image/logo/icon-100x100.png') }}" rel="icon" />
 
@@ -81,6 +81,17 @@
                             <li class="nav-item"><a href="{{ base_url('/registration') }}" class="nav-link">REGISTER</a></li>
                             {% else %}
                             <li class="nav-item"><a href="{{ base_url('user/logout') }}" class="nav-link">Logout</a></li>
+                            <div class="account-box">
+                                <a href="#" class="account-icon" type="button">
+                                    <i class="fa fa-user-o"></i>
+                                </a>
+                                <div class="account-dropdown-menu">
+                                    <a class="account-dropdown-item" href="#">Action</a>
+                                    <a class="account-dropdown-item" href="#">Action</a>
+                                    <a class="account-dropdown-item" href="#">Action</a>
+                                    <a class="account-dropdown-item" href="#">Action</a>
+                                </div>
+                            </div>
                              {% endif %}
                         </ul>                
                     </div>
@@ -123,12 +134,10 @@
                                                     <div class="col-12 col-md-3">
                                                         <ul class="sub-menu">
                                                             
-                                                            <li> <a title="Arduino" class="sub-menu-heading" href='{{ base_url("category/#{menu.getSlug()}") }}'>{{ menu.getName() }}</a></li>
+                                                            <li class="sub-menu-heading-box"> <a title="Arduino" class="sub-menu-heading" href='{{ base_url("category/#{menu.getSlug()}") }}'>{{ menu.getName() }}</a></li>
                                                              {% for smenu in menu.getSubCategories() %}
                                                             <li class="sub-menu-item"><a title="{{ smenu.getName() }}" href='{{ base_url("category/#{menu.getSlug()}/#{smenu.getSlug()}") }}' class="sub-menu-link">{{ smenu.getName() }}</a></li>
                                                              {% endfor %}
-                                                               
-                                                             
                                                         </ul>
                                                     </div>
                                                     {% endif %}
@@ -257,18 +266,12 @@
                                 <a href="#" class="promotions-icon">
                                     <i class="fa fa-gift"></i>
                                 </a>
-                            </div> -->
-                            <div class="account-box">
-                                <a href="#" class="account-icon">
-                                    <i class="fa fa-user-o"></i>
-                                </a>
-                            </div>
-                          <!--   <div class="chat-box">
+                            </div> -->                            
+                            <!--   <div class="chat-box">
                                 <a href="#" class="chat-icon">
                                     <i class="fa fa-comment-o"></i>
                                 </a>
                             </div> -->
-                         
 
                             <div class="wishlist-box">
                                 <a href="{{base_url('/account/wish_list')}}" class="wishlist-icon">
@@ -290,12 +293,12 @@
     </section>
     <!-- header-section end -->
 
-      <div class="container-fluid bodyFrame" id="bodyupdate">
+    <div class="container-fluid bodyFrame" id="bodyupdate">
         {% block content %} {% endblock %}
     </div>
     <!-- map-section end -->
 
-        <!-- footer section start -->
+    <!-- footer section start -->
     <section class="footer-section pt-5 pb-4">
         <div class="container">
             <div class="row">
@@ -303,16 +306,15 @@
                     <div class="footer-logo-box">
                         <div class="footer-thumb">
                            <a href="{ base_url('/') }}"><img src="{{ asset('theme/images/color-logo.png') }}"></a>
-                        </div>
+                        </div> 
                         <div class="pb-4">
                             <h4 class="footer-comn-inner-heading">You can reach us on</h4>
                             <span class="footer-comn-title"><i class="fa fa-phone-square pr-2"></i>+44 (0) 20 8450 9222</span>
                         </div>
-
                         <div>
                             <h4 class="footer-comn-inner-heading">Or email our team on</h4>
                             <span class="footer-comn-title"><i class="fa fa-envelope pr-2"></i>abcd@gmail.com</span>
-                        </div>                        
+                        </div>                
                     </div>
                 </div>
                 <div class="col-12 col-lg-3 col-md-6">
@@ -327,21 +329,20 @@
                         </ul>
                     </div>
                 </div>
-                <div class="col-12 col-lg-5 col-md-6">
+                <div class="col-12 col-lg-5 col-md-12">
                     <div class="footer-social-link-box">
-                        <h3 class="footer-comn-heading">Social media</h3>
+                        <h3 class="footer-comn-heading">Social links us</h3>
                         <h4 class="footer-comn-title">Subscribe to our newsletter with
-                        monthly product updates & offers</h4>
+                        monthly product updates &amp; offers</h4>
                         <div class="subscribe-form">
                             <form class="footer-newsletter">
                                 <input required="required" type="email" id="newsletter_email" autocomplete="off" placeholder="Enter you email address here..." class="form-control"> 
                                 <button name="subscribe" id="subscribeBtn" onclick="subscribe_email()"class="subscribe-btn">Subscribe</button>
                             </form>
-                        </div>
-                        <h3 class="footer-comn-inner-heading">Follow us on</h3>
+                        </div>                        
+                        <h3 class="footer-comn-inner-heading">Follow us on :</h3>
                         <ul class="social-list-box">
-
-<!-- 
+                            <!-- 
                             <li><a href="https://www.facebook.com/bafredonics/" target="_blank" class="footer-social-link"><img src="{{ asset('theme/images/mailchimp.png') }}"></a></li>
                             
                             <li><a href="#" class="footer-social-link"><img src="{{ asset('theme/images/github.png') }}"></a></li> -->
