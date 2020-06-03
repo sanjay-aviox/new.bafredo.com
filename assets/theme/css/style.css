@@ -471,6 +471,10 @@ button:visited{
 	color: #ffffff !important;
 	border-bottom:  3px solid #ffffff;
 }
+.mega-menu-item.nav-item.active .nav-link,
+.mega-menu-item .nav-link:hover{
+	border-bottom: 3px solid transparent !important;
+}
 .header-section .logo-box img{
 	width: 185px;
 }
@@ -523,6 +527,10 @@ button:visited{
     position: absolute;
     top: -2px;
     left: 19px;
+}
+.header-logo-area{
+	display: flex;
+	align-items: center;
 }
 /*search box*/
 .search{
@@ -655,7 +663,7 @@ input.searchInput:focus, input.searchInput:active{
 }
 .sub-menu-link{
     font-weight: 400;
-    padding: 8px 0;
+    padding: 14px 0px 2px 0px;
     color: #4c4c4c;
     font-size: 14px;
     letter-spacing: .3px;
@@ -663,7 +671,10 @@ input.searchInput:focus, input.searchInput:active{
 }
 .sub-menu-link:hover{
 	color: #3c2b86;
-	padding-left: 10px;
+    border-bottom: 1px solid #3c2b86;
+}
+ul.sub-menu li:first-child{
+	margin: 20px 0px 8px 0px;
 }
 /*******************************/
 /********* home page** *********/
@@ -2471,12 +2482,17 @@ p.privacy-text a{
 }
 .footer-social-link{
 	margin-right: 8px;
-    background: #f0f0f0;
+    background: #e7e3e3;
     padding: 10px;
     border-radius: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
+    transition: 0.5s ease;
+}
+.footer-social-link:hover{
+    transform: rotateY(360deg);
+    background-color: #ffffff;
 }
 .social-list-box img{
 	width: 20px;
@@ -2508,7 +2524,7 @@ p.privacy-text a{
     right: 0;
     top: 0;
     height: 100%;
-    background: #3c2b86;
+    background: #090909;
     color: #f0f0f0;
     font-weight: 500;
     padding: 0 18px;
@@ -2574,6 +2590,26 @@ p.privacy-text a{
     .empty-cart-section .comn-btn {
 	    padding: 12px 20px;
 	}
+	.header-logo-area{
+		justify-content: center;
+	}
+	.navbar-box{
+		display: none;
+	}
+	.header-right-box{
+		display: block;
+	}
+	.searchFrame{
+		padding-top: 10px;
+	}
+	.header-right-icon-area{
+		display: flex;
+		padding: 4px 0px 10px 0px;
+		justify-content: flex-end;
+	}
+	input.searchInput{
+		width: 510px;
+	}
 @media (max-width: 768px) {
    .slider-category-box{
 		grid-template-columns: auto auto auto;
@@ -2629,6 +2665,9 @@ p.privacy-text a{
 	}
 	.about-content-box{
 		margin-bottom: 30px;
+	}
+	.top-left-label{
+		display: none;
 	}
 @media (max-width: 576px) {
    .slider-category-box{

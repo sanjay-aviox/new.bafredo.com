@@ -69,7 +69,7 @@
                 <div class="col-6">
                     <div class="top-left-contact-box">
                         <i class="fa fa-phone-square phone-icon pr-2"></i>
-                        OUR PHONE NUMBER:
+                        <span class="top-left-label">OUR PHONE NUMBER:</span>
                         <span>+255 (0) 746 624 875</span>
                     </div>
                 </div>
@@ -94,12 +94,12 @@
     <section class="header-section">
         <div class="container">
             <div class="row">
-                <div class="col-12 col-md-3 d-flex align-items-center">
+                <div class="col-12 col-lg-3 header-logo-area">
                     <div class="logo-box">
                          <a href="{{ base_url('/') }}"><img src="{{ asset('theme/images/color-logo.png') }}"></a>
                     </div>
                 </div>
-                <div class="col-12 col-md-4 d-flex align-items-center justify-content-start" style="position: unset;">
+                <div class="col-12 col-lg-4 d-flex align-items-center justify-content-start" style="position: unset;">
                     <div class="navbar-box">
                          <nav class="navbar navbar-expand-lg navbar-dark bg-default">
                             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -195,7 +195,7 @@
                         </nav>             
                     </div>
                 </div>
-                <div class="col-12 col-md-5 d-flex align-items-center justify-content-end">
+                <div class="col-12 col-lg-5 d-lg-flex align-items-center justify-content-end">
                     <div class="header-right-box">
                          <div class="searchFrame">
                             
@@ -250,35 +250,38 @@
                                 <span class="icon"><i class="fa fa-search"></i></span>
                                 <input type="search" id="search" placeholder="Search here..." />
                             </a>
-                        </div>
- -->                  <!--   <div class="promotions-box">
-                            <a href="#" class="promotions-icon">
-                                <i class="fa fa-gift"></i>
-                            </a>
                         </div> -->
-                        <div class="account-box">
-                            <a href="#" class="account-icon">
-                                <i class="fa fa-user-o"></i>
-                            </a>
-                        </div>
-                      <!--   <div class="chat-box">
-                            <a href="#" class="chat-icon">
-                                <i class="fa fa-comment-o"></i>
-                            </a>
-                        </div> -->
-                     
 
-                        <div class="wishlist-box">
-                            <a href="{{base_url('/account/wish_list')}}" class="wishlist-icon">
-                                <i class="fa fa-heart-o"></i>
-                                <span v-text="wishlist.length" class="header-count-box">0</span>
-                            </a>
-                        </div>
-                        <div class="cart-box">
-                            <a href="#" class="cart-icon">
-                                <i class="fa fa-shopping-cart"></i>
-                                <span  v-text="cart.length" class="header-count-box">0</span>
-                            </a>
+                        <div class="header-right-icon-area">
+                            <!--   <div class="promotions-box">
+                                <a href="#" class="promotions-icon">
+                                    <i class="fa fa-gift"></i>
+                                </a>
+                            </div> -->
+                            <div class="account-box">
+                                <a href="#" class="account-icon">
+                                    <i class="fa fa-user-o"></i>
+                                </a>
+                            </div>
+                          <!--   <div class="chat-box">
+                                <a href="#" class="chat-icon">
+                                    <i class="fa fa-comment-o"></i>
+                                </a>
+                            </div> -->
+                         
+
+                            <div class="wishlist-box">
+                                <a href="{{base_url('/account/wish_list')}}" class="wishlist-icon">
+                                    <i class="fa fa-heart-o"></i>
+                                    <span v-text="wishlist.length" class="header-count-box">0</span>
+                                </a>
+                            </div>
+                            <div class="cart-box">
+                                <a href="#" class="cart-icon">
+                                    <i class="fa fa-shopping-cart"></i>
+                                    <span  v-text="cart.length" class="header-count-box">0</span>
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
