@@ -151,7 +151,8 @@
 
                                                     {% for menu in menus %}
                                                     {% if menu.getSubCategories() == null %}
-                                                            <li><a href='{{ base_url("category/#{menu.getSlug()}") }}' class="sub-menu-heading">{{ menu.getName() }}</a></li>
+                                                            <li>
+                                                                 <input type="hidden" value="{{ getAuthUser('user').name }}" id="userName"><a href='{{ base_url("category/#{menu.getSlug()}") }}' class="sub-menu-heading">{{ menu.getName() }}</a></li>
                                                     {% endif %}
                                                     {% endfor %}
                                                     <li><a class="sub-menu-heading" href="{{ base_url('product/new') }}">New Products</a></li>
@@ -159,48 +160,6 @@
                                                     <li><a class="sub-menu-heading" href="{{ base_url('product/all') }}">All Products</a></li>
                                                         </ul>
                                                     </div>
-                                                    <!-- div class="col-12 col-md-3">
-                                                        <ul class="sub-menu">
-                                                            <li><a href="#" class="sub-menu-heading">Components</a></li>
-                                                            <li class="sub-menu-item"><a href="#" class="sub-menu-link">Circuit Protection</a></li>
-                                                            <li class="sub-menu-item"><a href="#" class="sub-menu-link">Displays</a></li>
-                                                            <li class="sub-menu-item"><a href="#" class="sub-menu-link">Electromechanical</a></li>
-                                                            <li class="sub-menu-item"><a href="#" class="sub-menu-link">Passive Components</a></li>
-                                                            <li class="sub-menu-item"><a href="#" class="sub-menu-link">Prototyping Boards &amp; PCBs</a></li>
-                                                            <li class="sub-menu-item"><a href="#" class="sub-menu-link">Semiconductors</a></li>
-                                                            <li class="sub-menu-item"><a href="#" class="sub-menu-link">Switches &amp; Keypads</a></li>
-                                                            <li class="sub-menu-item"><a href="#" class="sub-menu-link">Wires &amp; Cables</a></li>
-                                                            <li class="sub-menu-item"><a href="#" class="sub-menu-link">Terminals, connectors, &amp; Sockets</a></li>
-                                                        </ul>
-                                                    </div>
-                                                    <div class="col-12 col-md-3">
-                                                        <ul class="sub-menu">
-                                                            <li><a href="#" class="sub-menu-heading">Components</a></li>
-                                                            <li class="sub-menu-item"><a href="#" class="sub-menu-link">Circuit Protection</a></li>
-                                                            <li class="sub-menu-item"><a href="#" class="sub-menu-link">Displays</a></li>
-                                                            <li class="sub-menu-item"><a href="#" class="sub-menu-link">Electromechanical</a></li>
-                                                            <li class="sub-menu-item"><a href="#" class="sub-menu-link">Passive Components</a></li>
-                                                            <li class="sub-menu-item"><a href="#" class="sub-menu-link">Prototyping Boards &amp; PCBs</a></li>
-                                                            <li class="sub-menu-item"><a href="#" class="sub-menu-link">Semiconductors</a></li>
-                                                            <li class="sub-menu-item"><a href="#" class="sub-menu-link">Switches &amp; Keypads</a></li>
-                                                            <li class="sub-menu-item"><a href="#" class="sub-menu-link">Wires &amp; Cables</a></li>
-                                                            <li class="sub-menu-item"><a href="#" class="sub-menu-link">Terminals, connectors, &amp; Sockets</a></li>
-                                                        </ul>
-                                                    </div>
-                                                    <div class="col-12 col-md-3">
-                                                        <ul class="sub-menu">
-                                                            <li><a href="#" class="sub-menu-heading">Components</a></li>
-                                                            <li class="sub-menu-item"><a href="#" class="sub-menu-link">Circuit Protection</a></li>
-                                                            <li class="sub-menu-item"><a href="#" class="sub-menu-link">Displays</a></li>
-                                                            <li class="sub-menu-item"><a href="#" class="sub-menu-link">Electromechanical</a></li>
-                                                            <li class="sub-menu-item"><a href="#" class="sub-menu-link">Passive Components</a></li>
-                                                            <li class="sub-menu-item"><a href="#" class="sub-menu-link">Prototyping Boards &amp; PCBs</a></li>
-                                                            <li class="sub-menu-item"><a href="#" class="sub-menu-link">Semiconductors</a></li>
-                                                            <li class="sub-menu-item"><a href="#" class="sub-menu-link">Switches &amp; Keypads</a></li>
-                                                            <li class="sub-menu-item"><a href="#" class="sub-menu-link">Wires &amp; Cables</a></li>
-                                                            <li class="sub-menu-item"><a href="#" class="sub-menu-link">Terminals, connectors, &amp; Sockets</a></li>
-                                                        </ul>
-                                                    </div> -->
                                                 </div>
                                             </div>  
                                         </div>
@@ -386,18 +345,27 @@
     </section>
 </div>
 
+<div class="modal fade" id="InactiveModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+                Are You want to Continue?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="close" id ="yess" data-dismiss="modal">Yes</button>
+                <button type="button" class="btn btn-primary" id="continueBtn">No</button>
+           </div>
+        </div>
+    </div>
+</div>
+
     <script type="text/javascript">
 
-        $(".success").click(function(){
-        toastr.success('We do have the Kapua suite available.', 'Success Alert', {timeOut: 5000})
-    });
-
         $(document).on('click','#view_result', function(){
-        var x = $("#typeahead").val();
-          // if(x== ''){
-          //     location.reload();
-          // }
-
+            var x = $("#typeahead").val();
             $.ajax({
                   url: "http://localhost/new.bafredo.com/search-product",
                   type: 'get',
@@ -440,6 +408,47 @@
             alert("Email Incorrect")
         }
     }
+    var timeout;
+    var stopss ;
+    document.onmousemove = function(){
+    clearTimeout(timeout);
+        if($('#username').val()!=''){
+            timeout = setTimeout(function(){ 
+                $('#InactiveModal').modal('show');   
+                var stopss = setTimeout(function(){
+                    $('#InactiveModal').modal('hide');
+                    $.ajax({
+                        url: 'https://new.bafredo.com/user/userlogout',
+                        type: 'get',
+                        success: function(data) {
+                            console.log("fckg");
+                            location.reload();
+                        }
+                    });
+                }, 60000);
+
+                $("#yess").click(function(){
+                    clearInterval(stopss);
+                });
+                
+                document.onmousemove = function(){
+                    clearInterval(stopss);
+                }
+            }, 600000);
+        }
+    }
+    $("#continueBtn").click(function(){
+         // alert("hi");
+        $.ajax({
+            url: 'https://new.bafredo.com/user/userlogout',
+            type: 'get',
+            success: function(data) {
+                console.log("fckg");
+                location.reload();
+            }
+        });         
+    });
+
 
 </script>
     <!-- copyright-section end -->
