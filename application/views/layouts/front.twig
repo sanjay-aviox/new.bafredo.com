@@ -83,16 +83,16 @@
                             <li class="nav-item"><a href="{{ base_url('login') }}" class="nav-link">LOGIN</a></li>
                             <li class="nav-item"><a href="{{ base_url('/registration') }}" class="nav-link">REGISTER</a></li>
                             {% else %}
-                            <li class="nav-item"><a href="{{ base_url('user/logout') }}" class="nav-link">Logout</a></li>
+                            <!-- <li class="nav-item"><a href="{{ base_url('user/logout') }}" class="nav-link">Logout</a></li> -->
                             <div class="account-box">
                                 <a href="#" class="account-icon" type="button">
-                                    <i class="fa fa-user-o"></i>
+                                    <i class="fa fa-user-o"></i>&nbsp<span class="username">{{ getAuthUser("user").name }}</span>
                                 </a>
                                 <div class="account-dropdown-menu">
-                                    <a class="account-dropdown-item" href="#">Action</a>
-                                    <a class="account-dropdown-item" href="#">Action</a>
-                                    <a class="account-dropdown-item" href="#">Action</a>
-                                    <a class="account-dropdown-item" href="#">Action</a>
+                                    <div class="headImg"><img src="{{ user.getUserImg() is empty ? base_url('assets/front/image/profile.png') : base_url('assets/front/image/users/')~user.getUserImg() }} " alit="dp">{{ getAuthUser("user").name }}</div>
+                                    <a class="account-dropdown-item" href="{{ base_url('account') }}">My Account</a>
+                                    <a class="account-dropdown-item" href="{{ base_url('account/order_history') }}">Order history</a>
+                                    <a class="account-dropdown-item" href="{{ base_url('user/logout') }}">Logout</a>
                                 </div>
                             </div>
                              {% endif %}
@@ -151,9 +151,12 @@
 
                                                     {% for menu in menus %}
                                                     {% if menu.getSubCategories() == null %}
-                                                            <li><a href="#" class="sub-menu-heading">{{ menu.getName() }}</a></li>
+                                                            <li><a href='{{ base_url("category/#{menu.getSlug()}") }}' class="sub-menu-heading">{{ menu.getName() }}</a></li>
                                                     {% endif %}
                                                     {% endfor %}
+                                                    <li><a class="sub-menu-heading" href="{{ base_url('product/new') }}">New Products</a></li>
+                                                    <li><a class="sub-menu-heading" href="{{ base_url('product/sales') }}">Sales</a></li>
+                                                    <li><a class="sub-menu-heading" href="{{ base_url('product/all') }}">All Products</a></li>
                                                         </ul>
                                                     </div>
                                                     <!-- div class="col-12 col-md-3">
