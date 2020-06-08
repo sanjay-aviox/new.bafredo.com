@@ -55,13 +55,21 @@ class Page extends MY_Controller
             $this->twig->display("page/contact-us",compact('data'));
 
         } else {
+          
             $page = $this->doctrine->em->getRepository("Entity\Page")->findOneBySlug($slug);
-            $this->twig->display("page/common", compact('page'));
+            if($slug== "about-us"){
+                $this->twig->display("page/about-us", compact('page'));
+
+            }else{
+                $this->twig->display("page/common", compact('page'));
+            }
+            
         }
     }
 
     public function template($page)
     {
+
         $this->twig->display("template/{$page}");
     }
 }

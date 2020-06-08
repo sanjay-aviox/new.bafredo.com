@@ -1,0 +1,256 @@
+{% extends "layouts/front.twig" %}
+{% block styles %}
+   
+{% endblock %}
+{% block content %}
+       <!-- banner breadcrumb section start -->  
+    <section class="banner-breadcrumb-section" style="background-image: url('{{ base_url("assets/img/about3.jpg") }}');">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-md-12">
+                    <div class="breadcrumb-area">
+                        <div class="banner-heading"><h1>{{ page.getName() }}</h1></div>
+                        <nav aria-label="breadcrumb" class="comn-breadcrumb-nav">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="{{ base_url("/") }}"><i class="fa fa-home pr-2"></i>Home</a></li>
+                                 <li class="breadcrumb-item active" aria-current="page"><a href='{{ base_url("page/#{page.getSlug()}") }}'>{{ page.getName() }}</a></li>
+                            </ol>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- banner breadcrumb section end -->
+
+    <!-- about-us section start -->
+    <section class="about-us-section py-5">
+        <div class="container pt-4">
+            <div class="row pb-5">                
+                <div class="col-md-7">                
+                    <div class="about-content-box">
+                         <div class="comn-dark-inner-heading">
+                             <h2>Our Story</h2>
+                         </div>  
+                        <div class="comn-info-box">
+                            {{ page.getDescription() | raw }}
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-5">
+                    <div class="about-image-box">
+                        <img src="{{ base_url("assets/img/about3.jpg") }}">
+                    </div>    
+                </div>
+            </div>
+            
+        </div>
+    </section>
+    <!-- about-us section end -->
+
+    <!-- about-featured-services-section start -->
+    <section class="about-featured-services-section pb-5">
+        <div class="container">
+            <div class="comn-section-heading">
+                <h2>Featured Services</h2>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                tempor incididunt ut labore et dolore magna aliqua.</p>
+            </div>
+            <div class="row py-4">
+                <div class="col-12 col-md-4">
+                    <div class="featured-services-single-box">
+                        <div class="about-services-icon-box">
+                            <i class="fa fa-eye"></i>
+                        </div>
+                        <div class="about-services-heading">
+                            <h3>Vision</h3>
+                        </div>
+                        <div class="about-services-info">
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua magna aliqua.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-4">
+                    <div class="featured-services-single-box">
+                        <div class="about-services-icon-box">
+                            <i class="fa fa-bullseye"></i>
+                        </div>
+                        <div class="about-services-heading">
+                            <h3>Mission</h3>
+                        </div>
+                        <div class="about-services-info">
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua magna aliqua.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-4">
+                    <div class="featured-services-single-box">
+                        <div class="about-services-icon-box">
+                            <i class="fa fa-line-chart"></i>
+                        </div>
+                        <div class="about-services-heading">
+                            <h3>Core values</h3>
+                        </div>
+                        <div class="about-services-info">
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua magna aliqua.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- about-featured-services-section end -->
+
+    <!-- newsletter section start -->
+    <section class="newsletter-section py-5">
+        <div class="container">
+            <div class="comn-section-heading">
+                <h2>Join the newsletter</h2>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                tempor incididunt ut labore et dolore magna aliqua sed do eiusmod
+                tempor incididunt ut labore et dolore magna aliqua.</p>
+            </div>
+            <div class="row">
+                <div class="col-12 col-md-12">
+                    <div class="newsletter-area">                        
+                        <div class="newsletter-form-box">
+                            <form class="form-inline">
+                                <div class="form-group mr-2">
+                                    <input type="email" class="form-control" placeholder="Enter your email address">
+                                    <i class="fa fa-envelope mail-icon"></i>
+                                </div>
+                                <button type="submit" class="comn-btn">Sign Up</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- newsletter section stop -->
+
+    <!-- related Products section start -->
+    <section class="related-products-section py-5">
+        <div class="container">
+            <div class="comn-section-heading pb-4">
+                <h2>Related Product</h2>
+            </div>
+            <div class="row">
+                <div class="col-12 col-md-12">
+                    <div class="relatedProductSlider owl-carousel owl-theme">
+                        <div class="item">
+                            <div class="related-products-single-box">
+                                <div class="related-products-thumb">
+                                    <img src="{{ base_url("assets/img/DC-Motor-12v.png") }}">                                    
+                                </div>
+                                <div class="related-products-info">                            
+                                    <div class="related-products-title">
+                                        <h3><a href="#">4WD-Smart-Robot-Car-Chassis-Kit</a></h3>
+                                        <span class="related-products-price">TZS&nbsp;55,000
+                                            <div class="hover-comn-link-btn-box">
+                                                <a href="javascript:void(0);" class="hover-comn-link-btn" onclick="openNav()"><i class="fa fa-shopping-cart pr-2"></i> Add to cart</a>
+                                            </div>
+                                        </span>                                        
+                                    </div>                                    
+                                </div>
+                                <div class="hover-icon-link-box">                            
+                                    <a href="#" class="hover-icon-link" data-toggle="tooltip" data-placement="left" title="Login to use whishlist"><i class="fa fa-heart-o"></i></a>
+                                    <a href="#" class="hover-icon-link" data-toggle="tooltip" data-placement="left" title="Compare"><i class="fa fa-refresh"></i></a>
+                                    <a href="#" class="hover-icon-link" data-toggle="tooltip" data-placement="left" title="Quick view"><i class="fa fa-search-plus" data-toggle="modal" data-target="#quickViewModal"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="related-products-single-box">
+                                <div class="related-products-thumb">
+                                    <img src="{{ base_url("assets/img/HX711-5KG-Digital-Load-Cell.png") }}">                                    
+                                </div>
+                                <div class="related-products-info">                            
+                                    <div class="related-products-title">
+                                        <h3><a href="#">4WD-Smart-Robot-Car-Chassis-Kit</a></h3>
+                                        <span class="related-products-price">TZS&nbsp;55,000
+                                            <div class="hover-comn-link-btn-box">
+                                                <a href="javascript:void(0);" class="hover-comn-link-btn" onclick="openNav()"><i class="fa fa-shopping-cart pr-2"></i> Add to cart</a>
+                                            </div>
+                                        </span>                                        
+                                    </div>                                    
+                                </div>
+                                <div class="hover-icon-link-box">                            
+                                    <a href="#" class="hover-icon-link" data-toggle="tooltip" data-placement="left" title="Login to use whishlist"><i class="fa fa-heart-o"></i></a>
+                                    <a href="#" class="hover-icon-link" data-toggle="tooltip" data-placement="left" title="Compare"><i class="fa fa-refresh"></i></a>
+                                    <a href="#" class="hover-icon-link" data-toggle="tooltip" data-placement="left" title="Quick view"><i class="fa fa-search-plus" data-toggle="modal" data-target="#quickViewModal"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="related-products-single-box">
+                                <div class="related-products-thumb">
+                                    <img src="{{ base_url("assets/img/IMG-20180530-WA0016.jpg") }} ">                                    
+                                </div>
+                                <div class="related-products-info">                            
+                                    <div class="related-products-title">
+                                        <h3><a href="#">4WD-Smart-Robot-Car-Chassis-Kit</a></h3>
+                                        <span class="related-products-price">TZS&nbsp;55,000
+                                            <div class="hover-comn-link-btn-box">
+                                                <a href="javascript:void(0);" class="hover-comn-link-btn" onclick="openNav()"><i class="fa fa-shopping-cart pr-2"></i> Add to cart</a>
+                                            </div>
+                                        </span>                                        
+                                    </div>                                    
+                                </div>
+                                <div class="hover-icon-link-box">                            
+                                    <a href="#" class="hover-icon-link" data-toggle="tooltip" data-placement="left" title="Login to use whishlist"><i class="fa fa-heart-o"></i></a>
+                                    <a href="#" class="hover-icon-link" data-toggle="tooltip" data-placement="left" title="Compare"><i class="fa fa-refresh"></i></a>
+                                    <a href="#" class="hover-icon-link" data-toggle="tooltip" data-placement="left" title="Quick view"><i class="fa fa-search-plus" data-toggle="modal" data-target="#quickViewModal"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="related-products-single-box">
+                                <div class="related-products-thumb">
+                                    <img src="{{ base_url("assets/img/SW420-Vibration-Sensor-Module.png") }}">                                    
+                                </div>
+                                <div class="related-products-info">                            
+                                    <div class="related-products-title">
+                                        <h3><a href="#">4WD-Smart-Robot-Car-Chassis-Kit</a></h3>
+                                        <span class="related-products-price">TZS&nbsp;55,000
+                                            <div class="hover-comn-link-btn-box">
+                                                <a href="javascript:void(0);" class="hover-comn-link-btn" onclick="openNav()"><i class="fa fa-shopping-cart pr-2"></i> Add to cart</a>
+                                            </div>
+                                        </span>                                        
+                                    </div>                                    
+                                </div>
+                                <div class="hover-icon-link-box">                            
+                                    <a href="#" class="hover-icon-link" data-toggle="tooltip" data-placement="left" title="Login to use whishlist"><i class="fa fa-heart-o"></i></a>
+                                    <a href="#" class="hover-icon-link" data-toggle="tooltip" data-placement="left" title="Compare"><i class="fa fa-refresh"></i></a>
+                                    <a href="#" class="hover-icon-link" data-toggle="tooltip" data-placement="left" title="Quick view"><i class="fa fa-search-plus" data-toggle="modal" data-target="#quickViewModal"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="related-products-single-box">
+                                <div class="related-products-thumb">
+                                    <img src="{{ base_url("assets/img/SM900.png") }}">                                    
+                                </div>
+                                <div class="related-products-info">                            
+                                    <div class="related-products-title">
+                                        <h3><a href="#">4WD-Smart-Robot-Car-Chassis-Kit</a></h3>
+                                        <span class="related-products-price">TZS&nbsp;55,000
+                                            <div class="hover-comn-link-btn-box">
+                                                <a href="javascript:void(0);" class="hover-comn-link-btn" onclick="openNav()"><i class="fa fa-shopping-cart pr-2"></i> Add to cart</a>
+                                            </div>
+                                        </span>                                        
+                                    </div>                                    
+                                </div>
+                                <div class="hover-icon-link-box">                            
+                                    <a href="#" class="hover-icon-link" data-toggle="tooltip" data-placement="left" title="Login to use whishlist"><i class="fa fa-heart-o"></i></a>
+                                    <a href="#" class="hover-icon-link" data-toggle="tooltip" data-placement="left" title="Compare"><i class="fa fa-refresh"></i></a>
+                                    <a href="#" class="hover-icon-link" data-toggle="tooltip" data-placement="left" title="Quick view"><i class="fa fa-search-plus" data-toggle="modal" data-target="#quickViewModal"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

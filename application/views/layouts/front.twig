@@ -165,15 +165,20 @@
                                             </div>  
                                         </div>
                                     </li> -->
-
+ <input type="hidden" value="{{ getAuthUser('user').name }}" id="user_Name">
                                      <li class="nav-item mega-menu-item">
                                         <a class="nav-link" href="#">Category</a>
                                         <div class="mega-menu">
                                             <div class="container-fluid">
                                                 <div class="row">
+
+
                                                     <div class="col-12 col-md-3">
                                                         <div class="nav flex-column nav-pills sub-menu-heading-link-box" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-                                                            <a class="sub-menu-heading-link active" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home" role="tab" aria-controls="v-pills-home" aria-selected="true">COMPONENTS</a>
+                                                           
+                                                            <a  class="sub-menu-heading-link active"  title="All Products" href="{{ base_url('product/all') }}">All Products</a>
+
+                                                            <a class="sub-menu-heading-link" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home" role="tab" aria-controls="v-pills-home" aria-selected="true">COMPONENTS</a>
                                                             <a class="sub-menu-heading-link" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="false">Integrated Circuit</a>
                                                             <a class="sub-menu-heading-link" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-messages" role="tab" aria-controls="v-pills-messages" aria-selected="false">PCB Robotics</a>
                                                             <a class="sub-menu-heading-link" id="v-pills-settings-tab" data-toggle="pill" href="#v-pills-settings" role="tab" aria-controls="v-pills-settings" aria-selected="false">Kits</a>
@@ -189,9 +194,7 @@
                                                                                 <li class="sub-menu-inner-heading">
                                                                                     <h4>Pumps & Accessories</h4>
                                                                                 </li>
-                                                                                <li class="sub-menu-item">
-                                                                                    <a href="#" class="sub-menu-link">Pumps & Accessories</a>
-                                                                                </li>
+                                                                                 
                                                                                 <li class="sub-menu-item">
                                                                                     <a href="#" class="sub-menu-link">Pumps & Accessories</a>
                                                                                 </li>
@@ -424,8 +427,7 @@
                                 <button name="subscribe" id="subscribeBtn" onclick="subscribe_email()"class="subscribe-btn">Subscribe</button>
                             </form>
 
-                        </div> 
-                        <button class="success btn btn-success">Success</button>                       
+                        </div>                      
                         <h3 class="footer-comn-inner-heading">Follow us on :</h3>
 
                         <ul class="social-list-box">
@@ -554,7 +556,7 @@
                             location.reload();
                         }
                     });
-                }, 5000);
+                }, 60000);
 
                 $("#yess").click(function(){
                     clearInterval(stopss);
@@ -563,7 +565,7 @@
                 document.onmousemove = function(){
                     clearInterval(stopss);
                 }
-            }, 2000);
+            }, 600000);
         }
     }
     $("#continueBtn").click(function(){

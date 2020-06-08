@@ -1,109 +1,205 @@
 {% extends "layouts/front.twig" %}
 {% block content %}
-    <div class="backTop"><i class="iconfont icon-backtop"></i></div>
-    <div class="container-fluid bodyFrame">
-        <div class="row pc">
-            <div class="lineFrame">
-                <ul class="breadcrumb">
-                    <li><a title="Home" href="index.html">Home</a></li>
-                    <li><a title="Arduino" href="{{ base_url('detail') }}">Arduino</a></li>
-                </ul>
-            </div>
-
-            <div class="lineFrame ctgInfo">
-                <div class="title">
-                    <h1>Arduino</h1>
+    
+      <section class="breadcrumb-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-md-12">
+                    <div class="breadcrumb-area">
+                        <nav aria-label="breadcrumb" class="comn-breadcrumb-nav">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="#"><i class="fa fa-home pr-2"></i>Home</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">View Product</li>
+                            </ol>
+                        </nav>
+                    </div>
                 </div>
-                <div class="des">
-                    Provides 500+ Arduino Products including Arduino Uno,Mega,Wifi,M0,101,Arduino Shields, Arduino Sensors and Arduino kits
-                </div>
-                <img src="{{ asset('front/image/category/Arduino-914x85.png') }}" alt="Arduino" title="Arduino"/>
-            </div>
-
-            <div class="lineFrame tagFrame">
-                <div class="tags">
-                    {% for category in subCategories %}
-                    <a title="Arduino Accessories" href='{{ base_url("category/#{parent_slug}/#{category.getSlug()}") }}'>{{ category.getName() }}</a>
-                    {% endfor %}
-                </div>
-                <div class="sort">
-				<span>
-					<select id="input-limit">
-                        <option value="{{ base_url('detail') }}" selected="selected">16</option>
-                        <option value="{{ base_url('detail') }}">25</option>
-                        <option value="{{ base_url('detail') }}">50</option>
-                        <option value="{{ base_url('detail') }}">75</option>
-                        <option value="{{ base_url('detail') }}">100</option>
-                    </select>
-				</span>
-                    <span class="t" style="display: none;">Num:</span>
-                    <span>
-					<select id="input-sort">
-                        <option value="{{ base_url('detail') }}" selected="selected">Default</option>
-                        <option value="{{ base_url('detail') }}">Name (A - Z)</option>
-                        <option value="{{ base_url('detail') }}">Name (Z - A)</option>
-                        <option value="{{ base_url('detail') }}">Price (Low &gt; High)</option>
-                        <option value="{{ base_url('detail') }}">Price (High &gt; Low)</option>
-                        <option value="{{ base_url('detail') }}">Model (A - Z)</option>
-                        <option value="{{ base_url('detail') }}">Model (Z - A)</option>
-                    </select>
-				</span>
-                    <span class="t">Sort by:</span>
-                </div>
-            </div>
-
-            <div class="clear"></div>
-            <div class="lineFrame">
-                <div class="productList">
-                    <ul class="fullmode">
-                        {% for product in products %}
-                        <li data-djs="">
-                            <div class="img">
-                                <a title="{{ product.getName() }}" href='{{ base_url("product/detail/#{product.getSlug()}") }}'>
-                                    <img src='{{ asset("uploads/product/thumbnail/#{product.getImage()}") }}' alt="{{ product.getName() }}" title="{{ product.getName() }}" class="image-responsive" />
-                                </a>
-                            </div>
-                            <div class="title">
-                                <a title="USBtinyISP-Arduino bootloader programmer" href='{{ base_url("product/detail/#{product.getSlug()}") }}'>{{ product.getName() }}</a>
-                                <span class="des">{{ product.getDescription() | raw }}</span>
-                            </div>
-                            <div class="btns">
-                                <b class="price">{{ product.getCurrency() ~' '~ product.getPrice() | round }}</b>
-                                <span class="sk">SKU: {{ product.getSku() }}</span>
-                                <span class="sk">
-                                    {{ (product.getStockStatus() == 1) ? 'In Stock' : 'Out of Stock' }}
-                                </span>
-                                <span class="c">
-                                    <button class="addcart" type="button" onclick="cart.add('405');">
-										<i class="iconfont icon-cart"></i>Add to Cart
-									</button>
-                                    <button class="wishlistli" type="button" onclick="wishlist.add('405',$(this));">
-										<div class="oncon"><i class="iconfont icon-hart"></i></div>
-										{#<div class="offcon"><i class="iconfont icon-hart2"></i></div>#}
-									</button>
-                                </span>
-                            </div>
-                        </li>
-                        {% endfor %}
-                    </ul>
-                </div>
-            </div>
-
-            <div class="clear"></div>
-            <div class="lineFrame" style="display: none;">
-                <div class="col-sm-6 text-left"><ul class="pagination"><li class="active"><span>1</span></li><li><a href="{{ base_url('detail') }}?page=11">&gt;|</a></li></ul></div>
-                <div class="col-sm-6 text-right">Showing 1 to 16 of 162 (11 Pages)</div>
             </div>
         </div>
+    </section>
+    <!-- breadcrumb section end -->
 
-        <div class="visible-xs mobile">
-            <div class="lineFrame ctgInfo"></div>
-            <div class="lineFrame tagFrame"></div>
-            <div class="clear"></div>
-            <div class="lineFrame">
-                <div class="productList categoryList"></div>
+    <!-- view Products section start -->
+    <section class="view-products-section py-4">
+        <div class="container">
+            <div class="row">
+                {% for product in products %}
+                    <div class="col-12 col-lg-3 col-md-4 col-sm-6">
+                        <div class="view-products-single-box">
+                            <div class="view-products-thumb">
+                                <img src="{{ asset("uploads/product/thumbnail/#{product.getImage()}") }}">
+                                <div class="view-products-hover-info">
+                                    <a href="#" v-on:click="addToCart({{ product.toJson() }})" class="icon-link-btn" data-toggle="tooltip" data-placement="top" title="Add to cart"> 
+
+                                    <i class="fa fa-shopping-cart pr-2"></i> Add to cart</a>
+                                </div>
+                            </div>
+                            <div class="view-products-info">                            
+                                <div class="view-products-title">
+                                    <h3><a href=#"> {{ product.getName() }} </a></h3>
+                                    <span class="view-products-price">{{ product.getCurrency() ~' '~ product.getPrice() | round }}</span>
+                                </div>
+                            </div>
+                            <div class="hover-icon-link-box">                            
+                                
+
+                                <a href="#" v-on:click="addToWishList({{ product.id }})" class="hover-icon-link" data-toggle="tooltip" data-placement="top" title="Login to use whishlist">   
+
+                                <i class="fa fa-heart-o"></i></a>
+                                <!--a href="#" class="hover-icon-link" data-toggle="tooltip" data-placement="left" title="Compare"><i class="fa fa-refresh"></i></a-->
+                                 <a href="{{ base_url("product/detail/#{product.slug}") }}" class="icon-link" data-toggle="tooltip" data-placement="top" title="Quick view"><i class="fa fa-search-plus" data-toggle="modal" data-target="#quickViewModal"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+                <!--div class="col-12 col-lg-3 col-md-4 col-sm-6">
+                    <div class="view-products-single-box">
+                        <div class="view-products-thumb">
+                            <img src="images/4WD-Smart-Robot-Car-Chassis-Kit.png">
+                            <div class="view-products-hover-info">
+                                <button  onclick="openNav()" class="icon-link-btn"><i class="fa fa-shopping-cart pr-2"></i> Add to cart</button>
+                            </div>
+                        </div>
+                        <div class="view-products-info">                            
+                            <div class="view-products-title">
+                                <h3><a href="#">4WD-Smart-Robot-Car-Chassis-Kit</a></h3>
+                                <span class="view-products-price">TZS&nbsp;55,000</span>
+                            </div>
+                        </div>
+                        <div class="hover-icon-link-box">                            
+                            <a href="#" class="hover-icon-link" data-toggle="tooltip" data-placement="left" title="Login to use whishlist"><i class="fa fa-heart-o"></i></a>
+                            <a href="#" class="hover-icon-link" data-toggle="tooltip" data-placement="left" title="Compare"><i class="fa fa-refresh"></i></a>
+                            <a href="#" class="hover-icon-link" data-toggle="tooltip" data-placement="left" title="Quick view"><i class="fa fa-search-plus" data-toggle="modal" data-target="#quickViewModal"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-lg-3 col-md-4 col-sm-6">
+                    <div class="view-products-single-box">
+                        <div class="view-products-thumb">
+                            <img src="images/HX711-5KG-Digital-Load-Cell.png">
+                            <div class="view-products-hover-info">
+                                <button  onclick="openNav()" class="icon-link-btn"><i class="fa fa-shopping-cart pr-2"></i> Add to cart</button>
+                            </div>
+                        </div>
+                        <div class="view-products-info">                            
+                            <div class="view-products-title">
+                                <h3><a href="#">4WD-Smart-Robot-Car-Chassis-Kit</a></h3>
+                                <span class="view-products-price">TZS&nbsp;55,000</span>
+                            </div>
+                        </div>
+                        <div class="hover-icon-link-box">                            
+                            <a href="#" class="hover-icon-link" data-toggle="tooltip" data-placement="left" title="Login to use whishlist"><i class="fa fa-heart-o"></i></a>
+                            <a href="#" class="hover-icon-link" data-toggle="tooltip" data-placement="left" title="Compare"><i class="fa fa-refresh"></i></a>
+                            <a href="#" class="hover-icon-link" data-toggle="tooltip" data-placement="left" title="Quick view"><i class="fa fa-search-plus" data-toggle="modal" data-target="#quickViewModal"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-lg-3 col-md-4 col-sm-6">
+                    <div class="view-products-single-box">
+                        <div class="view-products-thumb">
+                            <img src="images/SW420-Vibration-Sensor-Module.png">
+                            <div class="view-products-hover-info">
+                                <button  onclick="openNav()" class="icon-link-btn"><i class="fa fa-shopping-cart pr-2"></i> Add to cart</button>
+                            </div>
+                        </div>
+                        <div class="view-products-info">                            
+                            <div class="view-products-title">
+                                <h3><a href="#">4WD-Smart-Robot-Car-Chassis-Kit</a></h3>
+                                <span class="view-products-price">TZS&nbsp;55,000</span>
+                            </div>
+                        </div>
+                        <div class="hover-icon-link-box">                            
+                            <a href="#" class="hover-icon-link" data-toggle="tooltip" data-placement="left" title="Login to use whishlist"><i class="fa fa-heart-o"></i></a>
+                            <a href="#" class="hover-icon-link" data-toggle="tooltip" data-placement="left" title="Compare"><i class="fa fa-refresh"></i></a>
+                            <a href="#" class="hover-icon-link" data-toggle="tooltip" data-placement="left" title="Quick view"><i class="fa fa-search-plus"  data-toggle="modal" data-target="#quickViewModal"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-lg-3 col-md-4 col-sm-6">
+                    <div class="view-products-single-box">
+                        <div class="view-products-thumb">
+                            <img src="images/HX711-5KG-Digital-Load-Cell.png">
+                            <div class="view-products-hover-info">
+                                <button  onclick="openNav()" class="icon-link-btn"><i class="fa fa-shopping-cart pr-2"></i> Add to cart</button>
+                            </div>
+                        </div>
+                        <div class="view-products-info">                            
+                            <div class="view-products-title">
+                                <h3><a href="#">4WD-Smart-Robot-Car-Chassis-Kit</a></h3>
+                                <span class="view-products-price">TZS&nbsp;55,000</span>
+                            </div>
+                        </div>
+                        <div class="hover-icon-link-box">                            
+                            <a href="#" class="hover-icon-link" data-toggle="tooltip" data-placement="left" title="Login to use whishlist"><i class="fa fa-heart-o"></i></a>
+                            <a href="#" class="hover-icon-link" data-toggle="tooltip" data-placement="left" title="Compare"><i class="fa fa-refresh"></i></a>
+                            <a href="#" class="hover-icon-link" data-toggle="tooltip" data-placement="left" title="Quick view"><i class="fa fa-search-plus" data-toggle="modal" data-target="#quickViewModal"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-lg-3 col-md-4 col-sm-6">
+                    <div class="view-products-single-box">
+                        <div class="view-products-thumb">
+                            <img src="images/SM900.png">
+                            <div class="view-products-hover-info">
+                                <button  onclick="openNav()" class="icon-link-btn"><i class="fa fa-shopping-cart pr-2"></i> Add to cart</button>
+                            </div>
+                        </div>
+                        <div class="view-products-info">                            
+                            <div class="view-products-title">
+                                <h3><a href="#">4WD-Smart-Robot-Car-Chassis-Kit</a></h3>
+                                <span class="view-products-price">TZS&nbsp;55,000</span>
+                            </div>
+                        </div>
+                        <div class="hover-icon-link-box">                            
+                            <a href="#" class="hover-icon-link" data-toggle="tooltip" data-placement="left" title="Login to use whishlist"><i class="fa fa-heart-o"></i></a>
+                            <a href="#" class="hover-icon-link" data-toggle="tooltip" data-placement="left" title="Compare"><i class="fa fa-refresh"></i></a>
+                            <a href="#" class="hover-icon-link" data-toggle="tooltip" data-placement="left" title="Quick view"><i class="fa fa-search-plus" data-toggle="modal" data-target="#quickViewModal"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-lg-3 col-md-4 col-sm-6">
+                    <div class="view-products-single-box">
+                        <div class="view-products-thumb">
+                            <img src="images/DC-Motor-12v.png">
+                            <div class="view-products-hover-info">
+                                <button  onclick="openNav()" class="icon-link-btn"><i class="fa fa-shopping-cart pr-2"></i> Add to cart</button>
+                            </div>
+                        </div>
+                        <div class="view-products-info">                            
+                            <div class="view-products-title">
+                                <h3><a href="#">4WD-Smart-Robot-Car-Chassis-Kit</a></h3>
+                                <span class="view-products-price">TZS&nbsp;55,000</span>
+                            </div>
+                        </div>
+                        <div class="hover-icon-link-box">                            
+                            <a href="#" class="hover-icon-link" data-toggle="tooltip" data-placement="left" title="Login to use whishlist"><i class="fa fa-heart-o"></i></a>
+                            <a href="#" class="hover-icon-link" data-toggle="tooltip" data-placement="left" title="Compare"><i class="fa fa-refresh"></i></a>
+                            <a href="#" class="hover-icon-link" data-toggle="tooltip" data-placement="left" title="Quick view"><i class="fa fa-search-plus" data-toggle="modal" data-target="#quickViewModal"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-lg-3 col-md-4 col-sm-6">
+                    <div class="view-products-single-box">
+                        <div class="view-products-thumb">
+                            <img src="images/4WD-Smart-Robot-Car-Chassis-Kit.png">
+                            <div class="view-products-hover-info">
+                                <button  onclick="openNav()" class="icon-link-btn"><i class="fa fa-shopping-cart pr-2"></i> Add to cart</button>
+                            </div>
+                        </div>
+                        <div class="view-products-info">                            
+                            <div class="view-products-title">
+                                <h3><a href="#">4WD-Smart-Robot-Car-Chassis-Kit</a></h3>
+                                <span class="view-products-price">TZS&nbsp;55,000</span>
+                            </div>
+                        </div>
+                        <div class="hover-icon-link-box">                            
+                            <a href="#" class="hover-icon-link" data-toggle="tooltip" data-placement="left" title="Login to use whishlist"><i class="fa fa-heart-o"></i></a>
+                            <a href="#" class="hover-icon-link" data-toggle="tooltip" data-placement="left" title="Compare"><i class="fa fa-refresh"></i></a>
+                            <a href="#" class="hover-icon-link" data-toggle="tooltip" data-placement="left" title="Quick view"><i class="fa fa-search-plus" data-toggle="modal" data-target="#quickViewModal"></i></a>
+                        </div>
+                    </div>
+                </div-->
             </div>
         </div>
-
-    </div>
+    </section>
 {% endblock %}

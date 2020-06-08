@@ -1,105 +1,117 @@
 {% extends "layouts/front.twig" %}
 {% block styles %}
-    <style type="text/css">
-        .mapouter{
-            position:relative;
-            text-align:right;
-        }
-        .gmap_canvas {
-            overflow:hidden;
-            background:none!important;
-        }
-        .error {
-            color:red;
-        }
-    </style>
+   
 {% endblock %}
 {% block content %}
-    <div class="container-fluid bodyFrame">
-        <div class="row hidden-xs pc">
-            {% if data.success is not empty %}
-                <div class="alert alert-success">
-                    <strong>Success! </strong>Successfully Submitted.
-                </div>
-            {% endif %}
-            <div class="lineFrame">
-                <ul class="breadcrumb">
-                    <li><a href="{{ base_url('/') }}">Home</a></li>
-                    <li><a href="{{ base_url('page/contact-us') }}">Contact Us</a></li>
-                </ul>
-            </div>
-
-            <div class="lineFrame">
-                <div class="row">
-                    <div class="col-md-8">
-                        <h2>Get In Touch</h2>
-                        <form action="" id="contactUs" method="post">
-                            <div class="form-group">
-                                <lable for="subject">Subject</lable>
-                                <input type="text" name="subject" id="subject" placeholder="Enter subject" class="form-control">
-                            </div>
-                            <div class="form-group">
-                                <lable for="name">Name</lable>
-                                <input type="text" name="name" id="name" placeholder="Enter name" class="form-control">
-                            </div>
-                            <div class="form-group">
-                                <lable for="email">Email</lable>
-                                <input type="text" name="email" id="email" placeholder="Enter email" class="form-control">
-                            </div>
-                            <div class="form-group">
-                                <lable for="message">Message</lable>
-                                <textarea name="message" Placeholder="Message" id="messsage" class="form-control"></textarea>
-                            </div>
-                            <div class="form-group">
-                                <input type="submit" value="Send" class="btn btn-success">
-                            </div>
-                        </form>
-                    </div>
-                    <div class="col-md-4">
-                        <h2>Map Location</h2>
-                        <div class="mapouter">
-                            <div class="gmap_canvas">
-                                <iframe width="500" height="500" id="gmap_canvas" src="https://maps.google.com/maps?q=bafredo&t=&z=17&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
-                            </div>
+       <section class="breadcrumb-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-md-12">
+                    {% if data.success is not empty %}
+                        <div class="alert alert-success">
+                            <strong>Success! </strong>Successfully Submitted.
                         </div>
+                    {% endif %}
+                    <div class="breadcrumb-area">
+                        <nav aria-label="breadcrumb" class="comn-breadcrumb-nav">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="#"><i class="fa fa-home pr-2"></i>Home</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">Countact Us</li>
+                            </ol>
+                        </nav>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.js"></script>
-    <script>
-$(document).ready(function(){
-  $("#contactUs").validate({
-    // Specify validation rules
-    rules: {
-      subject: "required",
-      name: "required",
-      email: {
-        required: true,
-        email: true
-      },      
-      message: {
-        required: true,
-      },
-    },
-    messages: {
-      subject: {
-      required: "Subject is required",
-     },      
-     name: {
-      required: "Name is required",
-     },     
-     email: {
-      required: "Email is required",
-     },     
-     message: {
-        required: "Message is required",
-     },
-    },
-  
-  });
-});
-</script>
-    </script>
+    </section>
+    <!-- breadcrumb section end -->
+
+    <!-- contact section start -->
+    <section class="contact-section py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-md-6">
+                    <div class="contact-form-area">
+                        <div class="comn-dark-inner-heading"><h2>GET IN TOUCH WITH US</h2></div>
+                         <form action="" id="contactUs" method="post">
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label for="inputEmail4">Your Subject</label>
+                                  
+                                    <input type="text" name="subject" id="subject" placeholder="Enter subject" class="form-control">
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="inputPassword4">Your Name</label>
+                                    <input type="text" name="name" id="name" placeholder="Enter name" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="inputAddress">Your Email</label>
+                                <input type="text" name="email" id="email" placeholder="Enter email" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label for="message">Your Message</label>
+                               <textarea name="message" Placeholder="Message" id="messsage" class="form-control"></textarea>
+                            </div>
+                            <button type="submit" class="comn-btn mt-4">SEND A MESSAGE</button>
+                        </form>
+                    </div>
+                </div>
+                <div class="col-12 col-md-6">
+                    <div class="contact-detail-area">
+                        <div class="comn-dark-inner-heading"><h2>INFORMATION ABOUT US</h2></div>
+                        <div class="comn-info-box mb-4">
+                            <p>Consectetur aliquet a erat per sem nisi leo placerat dui a adipiscing a sagittis vestibulum. Sagittis posuere id nam quis vestibulum faucibus a est tristique ridiculus sed.</p>
+
+                            <p>Sagittis posuere id nam quis vestibulum vestibulum a facilisi at elit hendrerit scelerisque sodales nam dis orci non aliquet enim.</p>
+                            </p>
+                        </div>
+                        <div class="comn-dark-inner-heading"><h2>CONTACT US</h2></div>
+                        <ul class="contact-list-box">
+                            <li class="contact-list">
+                                <div class="contact-icon">
+                                    <i class="fa fa-envelope-o"></i>
+                                </div>
+                                <div class="contact-info">
+                                    <span class="contact-item">Tel: 255 (0) 746 624 875</span>
+                                    <span class="contact-item">E-Mail: abcd@gmail.com</span>
+                                </div>
+                            </li>
+                            <li class="contact-list">
+                                <div class="contact-icon">
+                                    <i class="fa fa-clock-o"></i>
+                                </div>
+                                <div class="contact-info">
+                                    <span class="contact-item">BAFREDO Electronics Dar es Salaam, Tanzania</span>
+                                </div>
+                            </li>
+                            <li class="contact-list">
+                                <div class="contact-icon">
+                                    <i class="fa fa-send-o"></i>
+                                </div>
+                                <div class="contact-info">
+                                    <span class="contact-item">Support forum</span>
+                                    <span class="contact-item">for over 24h</span>
+                                </div>
+                            </li>
+                            <li class="contact-list">
+                                <div class="contact-icon">
+                                    <i class="fa fa-rocket"></i>
+                                </div>
+                                <div class="contact-info">
+                                    <span class="contact-item">Free standard shipping on all orders.</span>
+                                </div>
+                            </li>
+                        </ul>                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- contact section end -->
+
+    <!-- map-section start -->
+    <section class="map-section">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d15847.390813209326!2d39.2093687!3d-6.7883799!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xa54079e95134dc55!2sBAFREDO+Electronics!5e0!3m2!1sen!2stz!4v1549870603123" width="100%" height="450" frameborder="0" style="border: 0px; pointer-events: none;" allowfullscreen=""></iframe>
+    </section>
 {% endblock %}

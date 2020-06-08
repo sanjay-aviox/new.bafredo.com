@@ -7,17 +7,95 @@
     </style>
 {% endblock %}
 {% block content %}
-    <div class="container">
-        <ul class="breadcrumb">
-            <li><a href="{{ base_url('/') }}">Home</a></li>
-            <li><a href='{{ base_url("page/#{page.getSlug()}") }}'>{{ page.getName() }}</a></li>
-        </ul>
-        <div class="row">
-            <div id="content" class="col-sm-12">
-                <h1>{{ page.getName() }}</h1>
-                <div class="description">
-                    {{ page.getDescription() | raw }}
+     <section class="breadcrumb-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-md-12">
+                    <div class="breadcrumb-area">
+                        <nav aria-label="breadcrumb" class="comn-breadcrumb-nav">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="{{ base_url("/") }}"><i class="fa fa-home pr-2"></i>Home</a></li>
+                                <li class="breadcrumb-item active" aria-current="page"><a href='{{ base_url("page/#{page.getSlug()}") }}'>{{ page.getName() }}</a></li>
+                                
+                            </ol>
+                        </nav>
+                    </div>
                 </div>
+            </div>
         </div>
-    </div>
+    </section>
+    <!-- breadcrumb section end -->
+
+    <!-- how to buy section start -->
+    <section class="how-to-buy-section py-5">
+        <div class="container">
+            <div class="comn-dark-inner-heading">
+                <h2>{{ page.getName() }}</h2>
+            </div>
+            <div class="row">
+                <div class="col-12 col-md-12">
+                    <div class="how-to-buy-area">
+                        <div class="comn-info-box">
+                            {{ page.getDescription() | raw }}
+                        </div>
+                        <!--div class="comn-section-heading pt-4">
+                            <h2>Procedures to purchase items</h2>
+                        </div>
+                        <div class="procedures-to-buy">
+                            <div class="buy-step-box">
+                                <div class="how-to-buy-step-title"><h3>Step 1</h3></div>
+                                <p>Type the name of your desired component, Arduino UNO R3 in this case, in the search box at the top of the page.</p>
+                                <p>Then click the search button to list the details of your selected component. Note that other related components may appear as well in the list.</p>
+                            </div>
+                            <div class="buy-step-box">
+                                <div class="how-to-buy-step-title"><h3>Step 2</h3></div>
+                                <p>You may need to further click the component and see its descriptions and additional details before making decisions regarding the purchase.</p>
+                                <p>Assuming that you are satisfied with the component, please go ahead and edit a little box, which is beside the component, with a number that represents the quantity of items you need. The increment-decrement arrows may assist you to quickly increase or decrease the number of items in the box. In this example, we have inserted 40 items, meaning that we desire to purchase 40 Arduino UNO R3.</p>
+                            </div>
+                            <div class="buy-step-box">
+                                <div class="how-to-buy-step-title"><h3>Step 3</h3></div>
+                                <p>Thereafter, proceed by clicking the “Add to cart” green button and, near the top of the component, you will see a confirmation alert that the item has been added to the cart. You can confirm this information by comparing the initial and current statuses of the cart, which is located at the far top right corner of the page. In our case, the cart was empty initially and, after this step, the cart was populated with 40 items.</p>
+                            </div>
+                            <div class="buy-step-box">
+                                <div class="how-to-buy-step-title"><h3>Step 4</h3></div>
+                                <p>You may repeat Steps 1 through 3 if you still need shopping. Otherwise, please visit the cart by clicking the cart-shaped icon at the top right corner of the page to confirm the items you added into the cart. Even at this stage, you have the opportunity to edit the items in the cart.</p>
+                            </div>
+                            <div class="buy-step-box">
+                                <div class="how-to-buy-step-title"><h3>Step 5</h3></div>
+                                <p>Select the shipping method. Currently, we offer three ways to ship packages to customers depending on their locations:</p>
+                                <ul class="shipping-method-box">
+                                    <li>
+                                        <p>Flat rate, designed for local customers outside Dar es Salaam (but residing in Tanzania mainland). This method takes 2-3 days before the package reaches the destination. Before selecting this method, please note our Terms & Conditions for keeping customers’ packages in our stores.</p>
+                                    </li>
+                                    <li>
+                                        <p>Free shipping, designed for customers who place their orders online but would like to pick their packages in our physical store. Before selecting this method, please note our Terms & Conditions for keeping customers’ packages in our stores.</p>
+                                    </li>
+                                    <li>
+                                       <p> On-site delivery, designed for customers in Dar es Salaam who desire our door-to-door service to receive their packages. With this method, the package may be delivered on the same day.</p>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="buy-step-box">
+                                <div class="how-to-buy-step-title"><h3>Step 6</h3></div>
+                                <p>You may repeat Steps 1 through 3 if you still need shopping. Otherwise, please visit the cart by clicking the cart-shaped icon at the top right corner of the page to confirm the items you added into the cart. Even at this stage, you have the opportunity to edit the items in the cart.</p>
+                            </div>
+                            <div class="buy-step-box">
+                                <div class="how-to-buy-step-title"><h3>Step 7</h3></div>
+                                <p>This is yet another important step that allows you to confirm several order details before payment. Kindly scroll down to the bottom of the page to confirm the grand total for your order; select the mode of payment; and, after you have read and accepted our Terms & Conditions, check the box against “I’ve read and accepted the Terms & Conditions”.</p>
+                            </div>
+                            <div class="buy-step-box">
+                                <div class="how-to-buy-step-title"><h3>Step 8</h3></div>
+                                <p>You are almost done. Just click the bottom right green button “Place order” and we will immediately receive your order.</p>
+                            </div>
+                            <div class="buy-step-box">
+                                <div class="how-to-buy-step-title"><h3>Step 9</h3></div>
+                                <p>If all prompts from Step 1 to 8 are correct, congratulations! You will see a confirmation notice that your order has been placed.</p>
+                            </div>
+                        </div-->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>    
+
 {% endblock %}
