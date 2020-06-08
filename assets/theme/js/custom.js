@@ -82,6 +82,28 @@ $(document).ready(function(){
 	    }
 	});
 
+	// you-may-like-Slider
+	$('.you-may-like-Slider').owlCarousel({
+	    loop:true,
+	    nav:true,
+	    navText : ["<i class='fa fa-angle-left'></i>","<i class='fa fa-angle-right'></i>"],
+	    autoplay:true,
+	    margin:20,
+	    dots:true,
+	    responsive:{
+	        0:{
+	            items:1
+	        },
+	        600:{
+	            items:1
+	        },
+	        1000:{
+	            items:1
+	        }
+	    }
+	});
+	
+
 	// tooltip
 	$(function () {
 		$('[data-toggle="tooltip"]').tooltip()
