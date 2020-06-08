@@ -234,10 +234,12 @@ button:visited{
 	display: block;
 	width: 100%;
 	height: 40px;
+	line-height: 40px;
 	transition: 0.5s ease all;
 }
 .icon-link-btn:hover{
 	background-color: #333333;
+	color: #ffffff !important;
 }
 /*hover-icon-link-box*/
 .hover-icon-link-box{
@@ -340,6 +342,9 @@ button:visited{
 }
 .banner-breadcrumb-section .breadcrumb-item a{
 	color: #a19e9e;
+}
+.banner-breadcrumb-section .breadcrumb-item.active a{
+	color: #f1eeee !important;
 }
 .banner-breadcrumb-section .breadcrumb-item+.breadcrumb-item::before {
     color: #a19e9e;
@@ -1298,7 +1303,7 @@ input.searchInput:focus, input.searchInput:active{
 }
 .view-products-thumb img{
 	height: 250px;
-	object-fit: contain;
+	object-fit: cover;
 	width: 100%;
 }
 .view-products-info{
@@ -2885,8 +2890,9 @@ p.privacy-text a{
 		grid-template-columns: auto auto;
 	}
 	.shop-category-thumb img {
-	    height: 60px;
-	    width: 60px;
+	    height: 200px;
+	    width: 100%;
+	    object-fit: fill;
 	}	
 	.video-thumb{
 		padding-top: 30px;

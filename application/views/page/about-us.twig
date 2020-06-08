@@ -4,7 +4,7 @@
 {% endblock %}
 {% block content %}
        <!-- banner breadcrumb section start -->  
-    <section class="banner-breadcrumb-section" style="background-image: url('{{ base_url("assets/img/about3.jpg") }}');">
+    <section class="banner-breadcrumb-section" style="background-image: url('{{ base_url("assets/img/about2.jpg") }}');">
         <div class="container">
             <div class="row">
                 <div class="col-12 col-md-12">
@@ -102,7 +102,7 @@
     <!-- about-featured-services-section end -->
 
     <!-- newsletter section start -->
-    <section class="newsletter-section py-5">
+    <!-- <section class="newsletter-section py-5">
         <div class="container">
             <div class="comn-section-heading">
                 <h2>Join the newsletter</h2>
@@ -126,8 +126,34 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> -->
     <!-- newsletter section stop -->
+
+    <!-- banner-section start -->   
+    <a href="{{ base_url("feature-product") }}"><section class="banner-section" style="background-image: url('{{ asset('theme/images/banner-4.jpg') }}')">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-md-6 d-flex align-items-center">
+                    <div class="banner-inner-area">
+                        <h2 class="banner-heading">Featured Products</h2>
+                        <!-- <div class="comn-info-area">
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                            quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                            consequat.</p>
+                        </div> -->
+                        <a href="{{ base_url("feature-product") }}"><button type="submit" class="comn-btn">Read more</button></a>
+                    </div>
+                </div>
+                <div class="col-12 col-md-6">
+                    <div class="banner-feture-img">
+                        <img src="{{ asset('theme/images/download.png') }}">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section></a>
+    <!-- banner-section end -->
 
     <!-- related Products section start -->
     <section class="related-products-section py-5">
