@@ -57,10 +57,9 @@
     <!-- <link href="{{ asset('front/css/stylesheet.css') }}" rel="stylesheet"> -->
     <link href="{{ asset('front/css/iconfont.css') }}" rel="stylesheet">
     <link href="{{ asset('front/image/logo/icon-100x100.png') }}" rel="icon" />
-
+     <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" rel="stylesheet">
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" rel="stylesheet">
-
+   
 </head>
 <body>
     <div id="app">
@@ -305,7 +304,8 @@
                                 <button name="subscribe" id="subscribeBtn" onclick="subscribe_email()"class="subscribe-btn">Subscribe</button>
                             </form>
 
-                        </div>                        
+                        </div> 
+                        <button class="success btn btn-success">Success</button>                       
                         <h3 class="footer-comn-inner-heading">Follow us on :</h3>
 
                         <ul class="social-list-box">
@@ -361,8 +361,13 @@
         </div>
     </div>
 </div>
-
+     
+   
     <script type="text/javascript">
+        //$(".success").click(function(){
+        $(document).on('click','.success', function(){
+           toastr.success('We do have the Kapua suite available.', 'Success Alert', {timeOut: 5000})
+        });
 
         $(document).on('click','#view_result', function(){
             var x = $("#typeahead").val();

@@ -42,6 +42,7 @@
                             <div class="form-group">
                                 <label for="email">Email address <span class="required">*</span></label>
                                 <input type="text" name="email" class="form-control" id="email" aria-describedby="emailHelp">
+                                <span class="alert">   {{ emailexit | raw }}  </span>
                             </div>
                             <div class="form-group">
                                 <label for="pass1">Password <span class="required">*</span></label>
@@ -75,7 +76,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="a2">Answer <span class="required">*</span></label>
-                                <input type="text" name="answer[]" class="form-control ques" id="qa">
+                                <input type="text" name="answer[]" class="form-control ans1" id="qa">
                             </div>
                             <div class="form-group">
                                 <label for="q1">Question #1 <span class="required">*</span></label>
@@ -138,78 +139,6 @@
 
 
     $(document).ready(function(){
-        $("#register").validate({
-            rules: {
-                name: {
-                    required: true,
-                }, 
-                phone: {
-                    required: true,
-                },
-                email: {
-                    required: true,
-                    email: true
-                },
-                password: {
-                    required: true,
-                },
-                confirm_password: {
-                     required: true,
-                },
-                'question[]':{
-                    required: true,
-                },
-              
-
-                captcha:{
-                    required: true,
-                },
-                agree:{
-                    required: true,
-                }
-
-            },
-
-            messages: {
-                name: {
-                    required: "Username is required",
-                }, 
-                phone: {
-                    required: "Phone Number is required",
-                },
-                email: {
-                    required: "Email is required",
-                },     
-                password: {
-                    required: "Password is required",
-                },
-                confirm_password: {
-                    required: "Confirm Password is required",
-                },
-                'question[]':{
-                    required: "Question is required",
-                },
-              
-                captcha:{
-                    required: "Captcha is required",
-                },
-                agree:{
-                    required: "Please accept terms & conditions.",
-                }
-
-            },
-        });
-        $('.ques').each(function() {
-        $(this).rules('add', {
-            required: true,
-            number: true,
-            messages: {
-                required:  "your custom message",
-                number:  "your custom message"
-            }
-        });
-        });
-    });
-
+ 
 </script>
 {% endblock %}
