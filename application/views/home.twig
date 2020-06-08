@@ -34,7 +34,7 @@
                 <div class="slider-heading"><h2>Lorem ipsum dolor</h2></div>
                 <div class="slider-info"><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
                 tempor incididunt ut labore et dolore magna aliqua.</p></div>
-                <div class="slider-btn-box pt-4"><a href="#" class="comn-btn">View More</a></div>
+                <div class="slider-btn-box pt-4"><a href="#" class="comn-btn">Buy now</a></div>
             </div>
         </div>
         <div class="item slider-detail" style="background-image: url(assets/theme/images/slider-3.png);">
@@ -42,7 +42,7 @@
                 <div class="slider-heading"><h2>Lorem ipsum dolor</h2></div>
                 <div class="slider-info"><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
                 tempor incididunt ut labore et dolore magna aliqua.</p></div>
-                <div class="slider-btn-box pt-4"><a href="#" class="comn-btn">View More</a></div>
+                <div class="slider-btn-box pt-4"><a href="#" class="comn-btn">Buy now</a></div>
             </div>
         </div>
     </section>
@@ -51,8 +51,6 @@
 {{ include('partials/home/product_list.twig') }}
 
    
-
-
     <!-- video-section start -->
     <section class="video-section py-5">
         <div class="container">
@@ -66,8 +64,8 @@
                         consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
                         cillum dolore eu fugiat nulla pariatur.</p>
                     </div>
-                    <a href="#" class="comn-btn mr-2">Visit Our Shop</a>
-                    <a href="#" class="comn-dark-outline-btn">Read More</a>
+                    <!-- <a href="#" class="comn-btn mr-2">Visit Our Shop</a>
+                    <a href="#" class="comn-dark-outline-btn">Read More</a> -->
                 </div>
                 <div class="col-12 col-md-6">
                     <div class="video-thumb">
@@ -81,7 +79,7 @@
     <!-- video-section end -->
 
     <!-- newsletter section start -->
-    <section class="newsletter-section py-5">
+    <!-- <section class="newsletter-section py-5">
         <div class="container">
             <div class="comn-section-heading">
                 <h2>Join the newsletter</h2>
@@ -105,8 +103,34 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> -->
     <!-- newsletter section stop -->
+
+    <!-- banner-section start -->   
+    <a href="{{ base_url("feature-product") }}"><section class="banner-section" style="background-image: url('{{ asset('theme/images/banner-4.jpg') }}')">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-md-6 d-flex align-items-center">
+                    <div class="banner-inner-area">
+                        <h2 class="banner-heading">Featured Products</h2>
+                        <!-- <div class="comn-info-area">
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                            quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                            consequat.</p>
+                        </div> -->
+                        <a href="{{ base_url("feature-product") }}"><button type="submit" class="comn-btn">Read more</button></a>
+                    </div>
+                </div>
+                <div class="col-12 col-md-6">
+                    <div class="banner-feture-img">
+                        <img src="{{ asset('theme/images/download.png') }}">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section></a>
+    <!-- banner-section end -->
 
     <!-- our Products section start -->
     <section class="our-products-section py-5">
@@ -125,14 +149,14 @@
                                 <div class="our-products-single-box">
                                     <div class="our-products-thumb">
                                         <img src="{{ asset("front/uploads/blog/#{blog.getImage()}") }}" alt="{{ blog.getBlogName() }}">
-                                        <div class="post-date">
+                                        <!--div class="post-date">
                                             <span class="post-date-day">21</span>
                                             <span class="post-date-month">May</span>
-                                        </div>
-                                        <a href="#" class="meta-post-categories">Lorem ipsum</a>
+                                        </div-->
+                                        <!--a href="#" class="meta-post-categories">Lorem ipsum</a-->
                                     </div>
                                     <div class="our-products-detail">
-                                       <h4 class="our-products-title"><a href="#">{{ blog.getBlogName() }}</a></h4>
+                                       <h4 class="our-products-title"><a href="#">{{ blog.getCreatedAt()}}{{ blog.getBlogName() }}</a></h4>
                                         <div class="our-products-info">
                                             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
                                             tempor incididunt ut labore et dolore magna aliqua.</p>

@@ -17117,8 +17117,9 @@ var app = new Vue({
         $.post(webPath + 'cart/add', {
           "cart": this.cart
         }, function (response) {
-          _this4.notificationMsg = response.message;
-          _this4.addToCartNotFlag = true;
+          toastr.success(response.message , {timeOut: 5000});
+          //_this4.notificationMsg = response.message;
+         // _this4.addToCartNotFlag = true;
           setTimeout(function () {
             _this4.addToCartNotFlag = false;
 
@@ -17128,8 +17129,10 @@ var app = new Vue({
           }, 2000);
         });
       } else {
-        this.notificationMsg = "Already added";
-        this.addToCartNotFlag = true;
+       // alert("Already added");
+         toastr.success("Already added" , {timeOut: 5000});
+      //  this.notificationMsg = "Already added";
+       // this.addToCartNotFlag = true;
         setTimeout(function () {
           _this4.addToCartNotFlag = false;
 
@@ -17194,15 +17197,20 @@ var app = new Vue({
       $.post(webPath + 'wishlist/add', {
         "product_id": product_id
       }, function (response) {
-          
-       _this6.notificationMsg = response.message;
+            
+        if(response.status == 'cancel'){
+           window.location.href = "http://178.128.177.194/new.bafredo.com/login";
+        }else{
+        toastr.success(response.message , {timeOut: 5000});
+      // _this6.notificationMsg = response.message;
         // _this6.addToWishlistNotFlag = true;
         
         // setTimeout(function () {
         //   _this6.addToWishlistNotFlag = false;
         // }, 2000);
-        console.log(response);
-         window.location.reload()
+         }
+        //console.log(response);
+         //window.location.reload()
       });
     },
     onlyNumber: function onlyNumber($event) {

@@ -12,14 +12,16 @@ class Product extends MY_Controller
 
     public function detail($slug)
 	{
+         //print_r("hh"); die;
         $product = $this->product->findBySlug($slug);
-        $review =$this->product->getReview($product->getId());
-       // print_r($review); die;
+        //print_r($product->getId());  die;
+
+        $review ='';//$this->product->getReview($product->getId());
 	    $gallery = $this->product->gallery($product->getId());
         $subCategory = $this->category->getOneById($product->getCategoryId());
         $mainCategory = $this->category->getMainCategoryById($subCategory->getCategoryId());
         $user = $this->session->userdata("user"); 
-     //   print_r($user); die;
+      
         $this->twig->display('product/detail', compact('product', 'gallery', 'mainCategory','review','user'));
 	}
 

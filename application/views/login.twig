@@ -1,9 +1,7 @@
 {% extends "layouts/front.twig" %}
 {% block styles %}
     <style type="text/css">
-        .error {
-            color:red;
-        }
+
     </style>
 {% endblock %}
 {% block content %}
@@ -44,7 +42,7 @@
                             </div>
                             <div class="row" >
                         {% if error %}
-						    <div class="alert alert-red" >{{ error }}</div>
+						    <div class="alert alert-red error" style="color:red;">{{ error }}</div>
                         {% endif %}
                         </div>
                             <!--div class="form-group d-flex justify-content-between align-items-center">

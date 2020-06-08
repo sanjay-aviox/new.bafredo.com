@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -58,8 +57,9 @@
     <link href="{{ asset('front/css/iconfont.css') }}" rel="stylesheet">
     <link href="{{ asset('front/image/logo/icon-100x100.png') }}" rel="icon" />
 
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+
     <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" rel="stylesheet">
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
 
 </head>
 <body>
@@ -76,7 +76,7 @@
                         <span>+255 (0) 746 624 875</span>
                     </div>
                 </div>
-                <div class="col-6">
+                <div class="col-6 d-flex justify-content-end align-items-center">
                     <div class="top-right-menu-box">
                         <ul class="navbar">
                              {% if not authCheck("user") %}
@@ -127,7 +127,8 @@
                                     <li class="nav-item">
                                         <a class="nav-link" href="{{ base_url('/blog') }}">Blog</a>                                        
                                     </li>
-                                    <li class="nav-item mega-menu-item">
+
+                                    <!-- <li class="nav-item mega-menu-item">
                                         <a class="nav-link" href="#">Category</a>
                                         <div class="mega-menu">
                                             <div class="container">
@@ -152,13 +153,131 @@
                                                     {% for menu in menus %}
                                                     {% if menu.getSubCategories() == null %}
                                                             <li>
-                                                                 <input type="hidden" value="{{ getAuthUser('user').name }}" id="userName"><a href='{{ base_url("category/#{menu.getSlug()}") }}' class="sub-menu-heading">{{ menu.getName() }}</a></li>
+                                                                 <input type="hidden" value="{{ getAuthUser('user').name }}" id="user_Name"><a href='{{ base_url("category/#{menu.getSlug()}") }}' class="sub-menu-heading">{{ menu.getName() }}</a></li>
                                                     {% endif %}
                                                     {% endfor %}
                                                     <li><a class="sub-menu-heading" href="{{ base_url('product/new') }}">New Products</a></li>
                                                     <li><a class="sub-menu-heading" href="{{ base_url('product/sales') }}">Sales</a></li>
                                                     <li><a class="sub-menu-heading" href="{{ base_url('product/all') }}">All Products</a></li>
                                                         </ul>
+                                                    </div>
+                                                </div>
+                                            </div>  
+                                        </div>
+                                    </li> -->
+
+                                     <li class="nav-item mega-menu-item">
+                                        <a class="nav-link" href="#">Category</a>
+                                        <div class="mega-menu">
+                                            <div class="container-fluid">
+                                                <div class="row">
+                                                    <div class="col-12 col-md-3">
+                                                        <div class="nav flex-column nav-pills sub-menu-heading-link-box" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                                                            <a class="sub-menu-heading-link active" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home" role="tab" aria-controls="v-pills-home" aria-selected="true">COMPONENTS</a>
+                                                            <a class="sub-menu-heading-link" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="false">Integrated Circuit</a>
+                                                            <a class="sub-menu-heading-link" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-messages" role="tab" aria-controls="v-pills-messages" aria-selected="false">PCB Robotics</a>
+                                                            <a class="sub-menu-heading-link" id="v-pills-settings-tab" data-toggle="pill" href="#v-pills-settings" role="tab" aria-controls="v-pills-settings" aria-selected="false">Kits</a>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-9">
+                                                        <div class="tab-content" id="v-pills-tabContent">
+                                                            <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
+                                                                <div class="container-fluid">
+                                                                    <div class="row">
+                                                                        <div class="col-12 col-lg-3 col-md-6">
+                                                                            <ul class="sub-menu">
+                                                                                <li class="sub-menu-inner-heading">
+                                                                                    <h4>Pumps & Accessories</h4>
+                                                                                </li>
+                                                                                <li class="sub-menu-item">
+                                                                                    <a href="#" class="sub-menu-link">Pumps & Accessories</a>
+                                                                                </li>
+                                                                                <li class="sub-menu-item">
+                                                                                    <a href="#" class="sub-menu-link">Pumps & Accessories</a>
+                                                                                </li>
+                                                                                <li class="sub-menu-item">
+                                                                                    <a href="#" class="sub-menu-link">Pumps & Accessories</a>
+                                                                                </li>
+                                                                                <li class="sub-menu-item">
+                                                                                    <a href="#" class="sub-menu-link">Pumps & Accessories</a>
+                                                                                </li>
+                                                                            </ul>
+                                                                        </div>
+                                                                        <div class="col-12 col-lg-3 col-md-6">
+                                                                            <ul class="sub-menu">
+                                                                                <li class="sub-menu-inner-heading">
+                                                                                    <h4>Pumps & Accessories</h4>
+                                                                                </li>
+                                                                                <li class="sub-menu-item">
+                                                                                    <a href="#" class="sub-menu-link">Pumps & Accessories</a>
+                                                                                </li>
+                                                                                <li class="sub-menu-item">
+                                                                                    <a href="#" class="sub-menu-link">Pumps & Accessories</a>
+                                                                                </li>
+                                                                                <li class="sub-menu-item">
+                                                                                    <a href="#" class="sub-menu-link">Pumps & Accessories</a>
+                                                                                </li>
+                                                                                <li class="sub-menu-item">
+                                                                                    <a href="#" class="sub-menu-link">Pumps & Accessories</a>
+                                                                                </li>
+                                                                            </ul>
+                                                                        </div>
+                                                                        <div class="col-12 col-lg-3 col-md-6">
+                                                                            <ul class="sub-menu">
+                                                                                <li class="sub-menu-inner-heading">
+                                                                                    <h4>Pumps & Accessories</h4>
+                                                                                </li>
+                                                                                <li class="sub-menu-item">
+                                                                                    <a href="#" class="sub-menu-link">Pumps & Accessories</a>
+                                                                                </li>
+                                                                                <li class="sub-menu-item">
+                                                                                    <a href="#" class="sub-menu-link">Pumps & Accessories</a>
+                                                                                </li>
+                                                                                <li class="sub-menu-item">
+                                                                                    <a href="#" class="sub-menu-link">Pumps & Accessories</a>
+                                                                                </li>
+                                                                                <li class="sub-menu-item">
+                                                                                    <a href="#" class="sub-menu-link">Pumps & Accessories</a>
+                                                                                </li>
+                                                                            </ul>
+                                                                        </div>
+                                                                        <div class="col-12 col-lg-3 col-md-6">
+                                                                            <ul class="you-may-like-area">
+                                                                                <li class="you-may-like-heading">
+                                                                                    <h4>You may also like!</h4>
+                                                                                </li>
+                                                                                <div class="you-may-like-Slider owl-carousel owl-theme">
+                                                                                    <div class="item">
+                                                                                        <div class="view-products-single-box">
+                                                                                            <div class="view-products-thumb">
+                                                                                                <img src="{{ asset('theme/images/DC-Motor-12v.jpg') }}">
+                                                                                                <div class="view-products-hover-info">
+                                                                                                    <button class="icon-link-btn" onclick="openNav()"><i class="fa fa-shopping-cart pr-2"></i> Add to cart</button>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                            <div class="view-products-info">                            
+                                                                                                <div class="view-products-title">
+                                                                                                    <h3><a href="#">4WD-Smart-Robot-Car-Chassis-Kit</a></h3>
+                                                                                                    <span class="view-products-price">TZS&nbsp;55,000</span>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                            <div class="hover-icon-link-box">
+                                                                                                <a href="#" class="hover-icon-link" data-toggle="tooltip" data-placement="left" title="" data-original-title="Login to use whishlist"><i class="fa fa-heart-o"></i></a>
+                                                                                                <a href="#" class="hover-icon-link" data-toggle="tooltip" data-placement="left" title="" data-original-title="Compare"><i class="fa fa-refresh"></i></a>
+                                                                                                <a href="#" class="hover-icon-link" data-toggle="tooltip" data-placement="left" title="" data-original-title="Quick view"><i class="fa fa-search-plus" data-toggle="modal" data-target="#quickViewModal"></i></a>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </ul>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">...</div>
+                                                            <div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">...</div>
+                                                            <div class="tab-pane fade" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab">...</div>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>  
@@ -345,18 +464,16 @@
     </section>
 </div>
 
-<div class="modal fade" id="InactiveModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal fade inactive-modal" id="InactiveModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-            </div>
             <div class="modal-body">
-                Are You want to Continue?
+                <span><i class="fa fa-exclamation-triangle"></i></span>
+                <h2>Are You want to Continue?</h2>
             </div>
             <div class="modal-footer">
-                <button type="button" class="close" id ="yess" data-dismiss="modal">Yes</button>
-                <button type="button" class="btn btn-primary" id="continueBtn">No</button>
+                <button type="button" class="comn-btn" id ="yess" data-dismiss="modal">Yes</button>
+                <button type="button" class="comn-btn black-btn" id="continueBtn">No</button>
            </div>
         </div>
     </div>
@@ -396,10 +513,15 @@
                 },
                 type: 'post',
                 success: function (output) {
+                    console.log(output);
                     if (output) {
-                        alert("Subscribed Successfully")
+                        alert("hi");
+                        toastr.success("Subscribed Successfully" , {timeOut: 5000});
+                        // alert("Subscribed Successfully")
                     } else {
-                        alert("Already Subscribed")
+                         alert("hiiii");
+                        toastr.success("Already Subscribed" , {timeOut: 5000});
+                       // alert("Already Subscribed")
                     }
                 }
             });
@@ -412,20 +534,21 @@
     var stopss ;
     document.onmousemove = function(){
     clearTimeout(timeout);
-        if($('#username').val()!=''){
+        if($('#user_Name').val()!=''){
+            
             timeout = setTimeout(function(){ 
                 $('#InactiveModal').modal('show');   
                 var stopss = setTimeout(function(){
                     $('#InactiveModal').modal('hide');
                     $.ajax({
-                        url: 'https://new.bafredo.com/user/userlogout',
+                        url: 'http://178.128.177.194/new.bafredo.com/user/userlogout',
                         type: 'get',
                         success: function(data) {
                             console.log("fckg");
                             location.reload();
                         }
                     });
-                }, 60000);
+                }, 5000);
 
                 $("#yess").click(function(){
                     clearInterval(stopss);
@@ -434,7 +557,7 @@
                 document.onmousemove = function(){
                     clearInterval(stopss);
                 }
-            }, 600000);
+            }, 2000);
         }
     }
     $("#continueBtn").click(function(){

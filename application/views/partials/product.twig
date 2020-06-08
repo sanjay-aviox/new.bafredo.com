@@ -10,12 +10,12 @@
 
            <a href="#" v-on:click="addToWishList({{ product.id }})" class="icon-link" data-toggle="tooltip" data-placement="top" title="Login to use whishlist"><i class="fa fa-heart-o"></i></a>
 
-            <a href="#" class="icon-link" data-toggle="tooltip" data-placement="top" title="Compare"><i class="fa fa-refresh"></i></a>
+            <!--a href="#" class="icon-link" data-toggle="tooltip" data-placement="top" title="Compare"><i class="fa fa-refresh"></i></a-->
         </div>
     </div>
     <div class="featured-products-info">                            
         <div class="featured-products-title">
-            <h3><a href="#">{{ product.name }}</a></h3>
+            <h3><a href="#">{{ product.name |striptags|slice(0, 20) }}</a></h3>
             <span class="featured-products-price">{{ product.currency ~' '~ product.price }}</span>
         </div>
     </div>

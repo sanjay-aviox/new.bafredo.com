@@ -94,50 +94,26 @@
                         <p>These are some of our best selling products. Please check them out These are some of our best selling products. Please check them out!</p>
                     </div>
                     <div class="shop-detail">
+
                         <div class="shop-category-box">
-                            <div class="shop-category-item">
-                                <a href="#">
-                                    <div class="shop-category-thumb">
-                                        <img src="{{ asset('theme/images/4WD-Smart-Robot-Car-Chassis-Kit.png') }}">
-                                    </div>
-                                    <div class="shop-category-title">
-                                        <h4>Multichannel Relay Board </h4>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="shop-category-item">
-                                <a href="#">
-                                    <div class="shop-category-thumb">
-                                        <img src="{{ asset('theme/images/SW420-Vibration-Sensor-Module.png') }}">
-                                    </div>
-                                    <div class="shop-category-title">
-                                        <h4>SW-420 Vibration Sensor Module</h4>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="shop-category-item">
-                                <a href="#">
-                                    <div class="shop-category-thumb">
-                                        <img src="{{ asset('theme/images/DC-Motor-12v.png') }}">
-                                    </div>
-                                    <div class="shop-category-title">
-                                        <h4>DC Motor 12v</h4>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="shop-category-item">
-                                <a href="#">
-                                    <div class="shop-category-thumb">
-                                        <img src="{{ asset('theme/images/SM900.png') }}">
-                                    </div>
-                                    <div class="shop-category-title">
-                                        <h4>GSM/GPRS SIM900 Module</h4>
-                                    </div>
-                                </a>
-                            </div>
+                            
+                            {% for product in specail_products %}
+                                <div class="shop-category-item">
+                                    <a href="{{ base_url("product/detail/#{product.slug}") }}">
+                                        <div class="shop-category-thumb">
+                                            <img src="{{ asset("uploads/product/thumbnail/#{product.image}") }}">
+                                        </div>
+                                        <div class="shop-category-title">
+                                            <h4>{{ product.name |striptags|slice(0, 20) }}</h4>
+                                        </div>
+                                    </a>
+                                </div>
+                           {% endfor %}
+                           
+                           
                         </div>
-                        <a href="#" class="comn-btn mr-2">Visit Our Shop</a>
-                        <a href="#" class="comn-outline-btn">Read More</a>
+                        <a href="#" class="comn-btn mr-2">See More</a>
+                        <!---a href="#" class="comn-outline-btn">Read More</a-->
                     </div>
                 </div>
             </div>
@@ -159,7 +135,7 @@
                         <div class="product-category-thumb">
                             <img src="{{ asset("uploads/product/thumbnail/#{new_arrival_products.0.image}") }}">
                             <div class="product-category-hover-info">
-                                <h4>{{ new_arrival_products.0.name }}</h4>
+                                <h4>{{ new_arrival_products.0.name|striptags|slice(0, 20) }}</h4>
                             </div>
                         </div>
                     </div>
@@ -170,7 +146,7 @@
                             <div class="product-category-thumb">
                                 <img src="{{ asset("uploads/product/thumbnail/#{new_arrival_products.1.image}") }}">
                                 <div class="product-category-hover-info">
-                                    <h4>{{ new_arrival_products.1.name }}</h4>
+                                    <h4>{{ new_arrival_products.1.name |striptags|slice(0, 20) }}</h4>
                                 </div>
                             </div>
                         </div>
@@ -180,7 +156,7 @@
                             <div class="product-category-thumb">
                                 <img src="{{ asset("uploads/product/thumbnail/#{new_arrival_products.2.image}") }}">
                                 <div class="product-category-hover-info">
-                                    <h4>{{ new_arrival_products.2.name }}</h4>
+                                    <h4>{{ new_arrival_products.2.name|striptags|slice(0, 20) }}</h4>
                                 </div>
                             </div>
                         </div>
@@ -188,7 +164,7 @@
                             <div class="product-category-thumb">
                                 <img src="{{ asset("uploads/product/thumbnail/#{new_arrival_products.3.image}") }}">
                                 <div class="product-category-hover-info">
-                                    <h4>{{ new_arrival_products.3.name }}</h4>
+                                    <h4>{{ new_arrival_products.3.name |striptags|slice(0, 20) }}</h4>
                                 </div>
                             </div>
                         </div>
