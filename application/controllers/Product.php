@@ -14,15 +14,16 @@ class Product extends MY_Controller
 	{
          //print_r("hh"); die;
         $product = $this->product->findBySlug($slug);
-        //print_r($product->getId());  die;
-
+       
         $review ='';//$this->product->getReview($product->getId());
-	    $gallery = $this->product->gallery($product->getId());
+	    $gallery = $this->product->gallery($product->getCategoryId());
+     
         $subCategory = $this->category->getOneById($product->getCategoryId());
-        $mainCategory = $this->category->getMainCategoryById($subCategory->getCategoryId());
+      //print_r($subCategory); die;
+        $mainCategory = '';//$this->category->getMainCategoryById($subCategory->getCategoryId());
         $user = $this->session->userdata("user"); 
       
-        $this->twig->display('product/detail', compact('product', 'gallery', 'mainCategory','review','user'));
+        $this->twig->display('product/detail', compact('product', 'gallery', 'subCategory' ,'mainCategory','review','user'));
 	}
 
 	public function all()

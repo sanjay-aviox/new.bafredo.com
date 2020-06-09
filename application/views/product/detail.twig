@@ -2,215 +2,425 @@
 {% block styles %}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.css">
 	<style type="text/css">
-		.productNavFrame h3 {
-			display: block;
-		}
-        .input-group {
-            position: relative;
-            display: flex;
-            border-collapse: separate;
-            justify-content: left;
-        }
-        .plus-minus-input {
-            -webkit-align-items: center;
-            -ms-flex-align: center;
-            align-items: center;
-        }
-        .productNavFrame .quantity .qtyNum label {
-            padding-left: 10px;
-        }
-        .productNavFrame .quantity .qtyNum input {
-            padding: 0px;
-        }
-        .item-quantity-count input {
-            text-align: center;
-        }
+
 	</style>
 {% endblock %}
 {% block content %}
-<div class="container-fluid bodyFrame">
-  <div class="row hidden-xs pc">
-  	<div class="lineFrame">
-		<ul class="breadcrumb">
-			<li><a title="Home" href="{{ base_url('/') }}">Home</a></li>
-			<li><a title="{{ product.getName() }}" href='{{ base_url("product/detail/#{product.getSlug()}") }}'>{{ product.getName() }}</a></li>
-		</ul>
-	</div>
-	<div class="clear"></div>
-	<div class="lineFrame">
-		<div class="productNavFrame">
-	  		<h3>{{ product.getName() }}</h3><br>
-	  		<div> {{ product.getCurrency() }} <span class="price"> {{ product.getPrice() }}</span></div>
-	        <div class="quantity">
-				<div class="clear"></div>
-		        <div class="qtyNum">
-		  			<label class="control-label" for="input-quantity">Qty</label>
-					<div class="input-group plus-minus-input">
-						<div class="widgets-numberpicker">
-							<div class="widgets-numberpicker-decrement" v-on:click="decrementValue"></div>
-						</div>
-						<div class="input-group-field item-quantity-count">
-							<input type="text" class="form-control" v-model="product_quantity" v-on:keypress="onlyNumber" maxlength="9" minlength="1">
-						</div>
-						<div class="widgets-numberpicker">
-							<div class="widgets-numberpicker-increment" v-on:click="incrementValue"></div>
-						</div>
-					</div>
-		  		</div>
-	        </div>
-	  		<div class="opations"></div>
-			<button class="btn buyBtn" v-on:click="addToCart({{ product.toJson() }}, 'redirectToCheckout')">BUY IT NOW</button>
-			<button type="button" v-on:click="addToCart({{ product.toJson() }})" class="addCartBtn">ADD TO CART</button>
-	  		<div class="clear"></div>
-	  	</div>
+    <section class="breadcrumb-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-md-12">
+                    <div class="breadcrumb-area">
+                        <nav aria-label="breadcrumb" class="comn-breadcrumb-nav">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="{{ base_url('/') }}"><i class="fa fa-home pr-2"></i>Home</a></li>
 
-		<div class="productLineFrame">
-			<div class="thumbFrame">
-				<div class="thumbShow">
-		    		<a rel="nofollow" href="javascript:;" title="{{ product.getName() }}">
-		    			<img src='{{ asset("uploads/product/thumbnail/#{product.getImage()}") }}' title="{{ product.getName() }}" alt="{{ product.getName() }}" />
-		    		</a>
-		    	</div>
-		        <div class="thumbNav">
-		        	<span class="l"><i class="iconfont icon-leftarrow2"></i></span>
-		        	<div class="thumbList">
-		        		<ul>
-							{% for galleryObj in gallery %}
-							<li>
-								<a rel="nofollow" href="javascript:;" title="{{ product.getName() }}">
-									<img data-sourceimage='{{ asset("uploads/product/gallery/#{galleryObj.getImage()}") }}' title="{{ product.getName() }}" alt="{{ product.getName() }}"
-										 data-img='{{ asset("uploads/product/gallery/#{galleryObj.getImage()}") }}' src='{{ asset("uploads/product/gallery/#{galleryObj.getImage()}") }}'/>
-								</a>
-					        </li>
-							{% endfor %}
-					    </ul>
-		        	</div>
-		        	<span class="r"><i class="iconfont icon-rightarrow2"></i></span>
-		        </div>
-	    	</div>
-			<div class="info">
-				<h1>{{ product.getName() }}</h1>
-				<div class="class">
-					<span class="info_sku">SKU: {{ product.getSku() }}</span><br/>
-					<span>Brand: {{ product.getBrand() }}</span><br/>
-					<span class="info_reward">Reward Points: {{ product.getRewardPoints() }}</span><br/>
-				</div>
-				<br/>
-				{#<div class="tags">#}
-					{#<p>Tags: </p>#}
-					{#<p>#}
-						{#<a title="SEN0190" href="search-sen0190.html">SEN0190</a>#}
-						{#<a title="PT100" href="search-pt100.html">PT100</a>#}
-						{#<a title="thermistor" href="search-thermistor.html">thermistor</a>#}
-						{#<a title="Overlord" href="search-overlord.html">Overlord</a>#}
-						{#<a title="3D printer" href="search-3d%20printer.html">3D printer</a>#}
-					{#</p>#}
-				{#</div>#}
-				<div class="tags">
-					<p>Related Categories</p>
-					<p>
-						{% for subCategory in mainCategory.getSubCategories() %}
-							<a title="Sensors" href='{{ base_url("category/#{mainCategory.getSlug()}/#{subCategory.getSlug()}") }}'>{{ subCategory.getName() }}</a>
-						{% endfor %}
-					</p>
-				</div>
-				<div class="clear"></div>
-				<div class="addwish">
-					<button type="button" class="btn btn-default on wishlist" v-on:click="addToWishList({{ product.id }})">
-						<div class="oncon">ADD TO WISHLIST</div>
-						<div class="offcon">ON WISHLIST</div>
-					</button>
-				</div>
-			</div>
-		</div>
-		<div class="clear"></div>
-	</div>
-	<div class="lineFrame">
-		<div class="productLineFrame productCon">
-			<section class="info_INTRODUCTION">
-                <p><h4>INTRODUCTION</h4></p>
-                <p>{{ product.getIntroduction() | raw }}<br /></p>
-            </section>
-		</div>
-	</div>
-	
-	{% if review|length %}
-	<div class="lineFrame">
-		<div class="productLineFrame productCon">
-			<section class="info_INTRODUCTION">
-			     <p><h4>Submitted Reviews</h4></p>
-                {% for key, rev in review %}
-                     <p>{{ rev.comment }}</p>
-                     <p>By: {{ rev.name }}</p>
-                {% endfor %}
-            </section>
-		</div>
-	</div>
-	{% endif %}
-	
-	{% if user.name  is not null %}
-	
-    	<div class="lineFrame">
-    		<div class="productLineFrame disqusFrame">
-    			<h4>REVIEW</h4>
-    			<!--disqus begin-->
-    			<div id="disqus_thread" style="width: 100%;">
-    			    <form action="{{ base_url('add-review') }}" method="post">
-    			        <input type="hidden" name="product_id" value="{{ product.id }}">
-    			         <input type="hidden" name="product_slug" value="{{ product.getSlug() }}">
-    			        <div id="rateYo"></div>
-    			        <input type="hidden" name="rating"><br><br>
-    			        <label>Comment:</label>
-    			        <textarea rows="5" name="comment" cols="50"></textarea><br>
-    			        <input type="submit"  value="Submit" class="btn-primary">
-    			    </form>
-    			</div>
-    			<!--disqus end-->
-    		</div>
-    	</div>
-		    
-	{% else %}
-            <a href="{{ base_url('/login') }}">Submit a Review</a>
-    {% endif %}
- 	    
-	
-	<div class="lineFrame">
-		<div class="productLineFrame">
-    		<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-		</div>
-	</div>
-  </div>
-</div>
-{% endblock %}
-{% block scripts %}
-  <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
- <script src="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.js"></script>
-	<script type="text/javascript">
-	     $(function() {
-          // VARIABLES
-          var rateYo = $("#rateYo");
-          var rateYoField = $("input[name='rating']");
-        
-          // ON CLICK ASSIGN RATING TO HIDDEN FIELD
-          $(rateYo).rateYo({
-            onSet: function(rating, rateYoInstance) {
-              $(rateYoField).val(rating);
-            }
-          });
-        });
-        // var disqus_shortname = 'bafredo';
-        // var disqus_disable_mobile = true;
-        // var disqus_identifier = 'prod-1333';
-        // (function() {
-        //     var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-        //     dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-        //     (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-        // })();
-         $(".wishlist").click(function(){
-            setInterval(function() {
-                  window.location.reload();
-                }, 3000); 
-        });
-        
-	</script>
+
+                                <li class="breadcrumb-item active" aria-current="page">Product Detail</li>
+                            </ol>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- breadcrumb section end -->
+
+    <!-- product-detail-section start -->
+    <section class="product-detail-section py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-md-6">
+                    <div class="product-thumb-detail-box">
+                      
+                        <img src='{{ asset("uploads/product/thumbnail/#{product.getImage()}") }}' title="{{ product.getName() }}" class="demo-trigger" alt="{{ product.getName() }}" />
+                    </div>
+                    <div class="product-selector-box"></div>
+                </div>
+                <div class="col-12 col-md-6">
+                    <div class="product-content-box product-demo-detail">
+                        <div class="product-detail-heading"><h3>{{ product.getName() }}</h3></div>
+                        <div class="product-detail-review-box">
+                            <i class="fa fa-star-o"></i>
+                            <i class="fa fa-star-o"></i>
+                            <i class="fa fa-star-o"></i>
+                            <i class="fa fa-star-o"></i>
+                            <i class="fa fa-star-o"></i>
+                            <a class="review-caption">No reviews</a>
+                        </div>
+                        <div class="product-price"><span>{{ product.getCurrency() }} {{ product.getPrice() }}</span></div>
+                        <!--div class="product-sold-box"><span>25 sold in last 4 hours</span></div-->
+
+                        <div class="product-detail-info">
+                            <p>{{ product.getIntroduction() | raw }}</p>
+                        </div>
+                        <div class="product-quantity-box">
+                            <button type="submit" class="product-quantity-btn widgets-numberpicker-decrement" v-on:click="decrementValue"><i class="fa fa-minus"></i></button>
+                            
+
+                            <input type="text" class="form-control product-quantity-input" v-model="product_quantity" v-on:keypress="onlyNumber" maxlength="9" minlength="1">
+                            <button type="buttom" class="product-quantity-btn widgets-numberpicker-increment" v-on:click="incrementValue"><i class="fa fa-plus"></i></button>   
+                        </div>
+                        <div class="product-btn-box mb-4"><button type="button" v-on:click="addToCart({{ product.toJson() }})" class="addCartBtn comn-btn black-btn w-100">Add to cart</button></div>
+
+                        <div class="product-wishlist-box">                            
+                            <a href="#" class="btn btn-default on wishlist" v-on:click="addToWishList({{ product.id }})" ><i class="fa fa-heart-o pr-2"></i>Add To Wishlist</a>
+                        </div>
+                        
+
+                        <!--div class="product-compare-box">                            
+                            <a href="#"><i class="fa fa-refresh pr-2"></i>Compare</a>
+                        </div><hr-->
+                        <div class="product-meta-area">
+                            <div class="product-meta-box">
+                                <span class="product-meta-title">Vender :</span>
+                                <a href="#" class="product-meta-name">abcd</a>
+                            </div>
+                            <div class="product-meta-box">
+                                <span class="product-meta-title">SKU:</span>
+                                <a href="#" class="product-meta-name">{{ product.getSku() }}</a>
+                            </div>
+                            <!--div class="product-meta-box">
+                                <span class="product-meta-title">Categories:</span>
+                                <a href="#" class="product-meta-name">Lighting</a>
+                            </div>
+                            <div class="product-meta-box">
+                                <span class="product-meta-title">Tags:</span>
+                                <a href="#" class="product-meta-name">lightning</a>
+                                <a href="#" class="product-meta-name">£450.00 +</a>
+                            </div>
+                            <div class="product-meta-box mb-0">
+                                <span class="product-meta-title">Share:</span>
+                                <a href="#" class="product-meta-social-icon"><i class="fa fa-facebook"></i></a>
+                                <a href="#" class="product-meta-social-icon"><i class="fa fa-twitter"></i></a>
+                                <a href="#" class="product-meta-social-icon"><i class="fa fa-envelope"></i></a>
+                                <a href="#" class="product-meta-social-icon"><i class="fa fa-pinterest"></i></a>
+                                <a href="#" class="product-meta-social-icon"><i class="fa fa-tumblr"></i></a>
+                            </div-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- product-detail-section end -->
+
+    <!-- product-detail-tab-section start -->
+    <section class="product-detail-tab-section py-5">
+        <div class="container">
+            <div class="product-detail-tab-area">
+                <ul class="nav nav-tabs product-detail-nav-tabs" id="myTab" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Description</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Reviews</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Shipping & Delivery</a>
+                    </li>
+                </ul>
+                <div class="tab-content" id="myTabContent">
+                    <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                        <div class="product-description-area">
+                            <div class="row">
+                                <div class="col-12 col-md-6">
+                                    <div class="description-box">
+                                        <div class="comn-description-title"><h3>TEMPUS CONSECTETUR</h3></div>
+                                        <div class="description-info">
+                                            <p>
+                                                {{ product.getIntroduction() | raw }}
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-6">
+                                    <div class="size-description-box">
+                                        <div class="comn-description-title"><h3>FIND YOUR SIZE</h3></div>
+                                        <div class="table-responsive">
+                                            <table class="table">
+                                                <thead>
+                                                    <tr>
+                                                        <th scope="col">SIZE</th>
+                                                        <th scope="col">CHEST</th>
+                                                        <th scope="col">WAIST</th>
+                                                        <th scope="col">HIPS</th>
+                                                        <th scope="col">HEIGHT</th>
+                                                        <th scope="col">AGE</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <th scope="row">S</th>
+                                                        <td>6–7</td>
+                                                        <td>64.5–66</td>
+                                                        <td>59.5–61.5</td>
+                                                        <td>68.5–71</td>
+                                                        <td>122–128</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th scope="row">S</th>
+                                                        <td>6–7</td>
+                                                        <td>64.5–66</td>
+                                                        <td>59.5–61.5</td>
+                                                        <td>68.5–71</td>
+                                                        <td>122–128</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th scope="row">S</th>
+                                                        <td>6–7</td>
+                                                        <td>64.5–66</td>
+                                                        <td>59.5–61.5</td>
+                                                        <td>68.5–71</td>
+                                                        <td>122–128</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th scope="row">S</th>
+                                                        <td>6–7</td>
+                                                        <td>64.5–66</td>
+                                                        <td>59.5–61.5</td>
+                                                        <td>68.5–71</td>
+                                                        <td>122–128</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                        <div class="product-review-area">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-12 col-md-12">
+                                        <div class="product-review-box">
+                                            <div class="customer-review-title"><h3>Customer Reviews</h3></div>
+                                            <div class="customer-review-box">
+                                                {% if review|length %}
+							<div class="lineFrame">
+								<div class="productLineFrame productCon">
+									<section class="info_INTRODUCTION">
+									     <p><h4>Submitted Reviews</h4></p>
+						                {% for key, rev in review %}
+						                     <p>{{ rev.comment }}</p>
+						                     <p>By: {{ rev.name }}</p>
+						                {% endfor %}
+						            </section>
+								</div>
+							</div>
+							{% endif %}
+							
+							{% if user.name  is not null %}
+							
+						    	<div class="lineFrame">
+						    		<div class="productLineFrame disqusFrame">
+						    			<h4>REVIEW</h4>
+						    			<!--disqus begin-->
+						    			<div id="disqus_thread" style="width: 100%;">
+						    			    <form action="{{ base_url('add-review') }}" method="post">
+						    			        <input type="hidden" name="product_id" value="{{ product.id }}">
+						    			         <input type="hidden" name="product_slug" value="{{ product.getSlug() }}">
+						    			        <div id="rateYo"></div>
+						    			        <input type="hidden" name="rating"><br><br>
+						    			        <label>Comment:</label>
+						    			        <textarea rows="5" name="comment" cols="50"></textarea><br>
+						    			        <input type="submit"  value="Submit" class="btn-primary">
+						    			    </form>
+						    			</div>
+						    			<!--disqus end-->
+						    		</div>
+						    	</div>
+								    
+							{% else %}
+						            <a href="{{ base_url('/login') }}">Submit a Review</a>
+						    {% endif %}
+                                                <!--span class="reviews-heading">No reviews yet</span>
+                                                <a href="#" class="review-link">Write a review</a-->
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
+                        <div class="product-shipping-box">
+                            <div class="row">
+                                <div class="col-12 col-md-3">
+                                    <div class="comn-thumb-box">
+                                        <img src="images/shipping-man.png">
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-9">
+                                    <div class="comn-info-box">
+                                        <p>
+                                            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                                            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                                            quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                                            consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+                                            cillum dolore eu fugiat nulla pariatur.
+                                        </p>
+                                        <p>
+                                            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                                            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                                            quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                                            consequat.
+                                        </p>
+                                        <p>
+                                            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                                            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                                            quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                                            consequat.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- product-detail-tab-section end -->       
+
+    
+   
+    <section class="related-products-section pt-5">
+        <div class="container">
+            <div class="comn-section-heading pb-4">
+                <h2>Related Product</h2>
+            </div>
+            <div class="row">
+                {% if subCategory|length > 1 %}
+                <div class="col-12 col-md-12">
+                    <div class="relatedProductSlider owl-carousel owl-theme">
+                       {% for related in subCategory %}
+                       {% if related.id != product.id %}
+                            <div class="item">
+                                <div class="related-products-single-box">
+                                    <div class="related-products-thumb">
+                                        <img src='{{ asset("uploads/product/thumbnail/#{related.image }") }}' title="{{ related.name }}" class="demo-trigger" alt="{{ related.name  }}" />
+                                    </div>
+                                    <div class="related-products-info">                            
+                                        <div class="related-products-title">
+                                            <h3><a href="#">{{ related.name  }}</a></h3>
+                                            <span class="related-products-price">{{ related.currency }} {{ related.price }}
+                                                <div class="hover-comn-link-btn-box">
+                                                    <a href="#" v-on:click="addToCart({{ product.toJson() }})" class="hover-comn-link-btn addCartBtn"><i class="fa fa-shopping-cart pr-2"></i> Add to cart</a>
+                                                </div>
+                                            </span>                                       
+                                        </div>                                    
+                                    </div>
+                                    <div class="hover-icon-link-box">                            
+                                        <a href="#" class="hover-icon-link" data-toggle="tooltip" data-placement="left" title="Login to use whishlist"><i class="fa fa-heart-o"></i></a>
+                                        <a href="#" class="hover-icon-link" data-toggle="tooltip" data-placement="left" title="Compare"><i class="fa fa-refresh"></i></a>
+                                        <a href="#" class="hover-icon-link" data-toggle="tooltip" data-placement="left" title="Quick view"><i class="fa fa-search-plus"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                       {% endif %}
+                       {% endfor %}
+                    </div>
+                </div>
+                {% else %}                 
+                   <h5>No Records Found ....</h5>
+                {% endif %}
+            </div>
+        </div>
+    </section>
+
+    <section class="view-products-section py-4">
+        <div class="container">
+            <div class="comn-section-heading">
+                <h2>Recently Viewed Products</h2>
+            </div>
+            <div class="row">
+                <div class="col-12 col-lg-3 col-md-4 col-sm-6">
+                    <div class="view-products-single-box">
+                        <div class="view-products-thumb">
+                            <img src="images/DC-Motor-12v.jpg">
+                            <div class="view-products-hover-info">
+                                <button href="#" class="icon-link-btn"><i class="fa fa-shopping-cart pr-2"></i> Add to cart</button>
+                            </div>
+                        </div>
+                        <div class="view-products-info">                            
+                            <div class="view-products-title">
+                                <h3><a href="#">4WD-Smart-Robot-Car-Chassis-Kit</a></h3>
+                                <span class="view-products-price">TZS&nbsp;55,000</span>
+                            </div>
+                        </div>
+                        <div class="hover-icon-link-box">                            
+                            <a href="#" class="hover-icon-link" data-toggle="tooltip" data-placement="left" title="Login to use whishlist"><i class="fa fa-heart-o"></i></a>
+                            <a href="#" class="hover-icon-link" data-toggle="tooltip" data-placement="left" title="Compare"><i class="fa fa-refresh"></i></a>
+                            <a href="#" class="hover-icon-link" data-toggle="tooltip" data-placement="left" title="Quick view"><i class="fa fa-search-plus"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="footer-section pt-5 pb-4">
+        <div class="container">
+            <div class="row">
+
+                <div class="col-12 col-lg-4 col-md-6">
+                    <div class="footer-logo-box">
+                        <div class="footer-thumb">
+                            <a href="index.html"><img src="images/color-logo.png"></a>
+                        </div>
+                        <div class="pb-4">
+                            <h4 class="footer-comn-inner-heading">You can reach us on</h4>
+                            <span class="footer-comn-title"><i class="fa fa-phone-square pr-2"></i>+44 (0) 20 8450 9222</span>
+                        </div>
+
+                        <div>
+                            <h4 class="footer-comn-inner-heading">Or email our team on</h4>
+                            <span class="footer-comn-title"><i class="fa fa-envelope pr-2"></i>abcd@gmail.com</span>
+                        </div>                        
+                    </div>
+                </div>
+
+                <div class="col-12 col-lg-3 col-md-6">
+                    <div class="footer-quick-link-box">
+                        <h3 class="footer-comn-heading">Quick link</h3>
+                        <ul class="footer-quick-link-list">
+                            <li><a href="about-us.html" class="footer-link">About Us</a></li>
+                            <li><a href="contact-us.html" class="footer-link">Contact Us</a></li>
+                            <li><a href="terms-conditions.html" class="footer-link">Terms & Conditions</a></li>
+                            <li><a href="privacy-policy.html" class="footer-link">Privacy policy</a></li>
+                            <li><a href="faqs.html" class="footer-link">Faqs</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="col-12 col-lg-5 col-md-6">
+                    <div class="footer-social-link-box">
+                        <h3 class="footer-comn-heading">Social media</h3>
+                        <h4 class="footer-comn-title">Subscribe to our newsletter with
+                        monthly product updates & offers</h4>
+                        <div class="subscribe-form">
+                            <form class="footer-newsletter">
+                                <input required="required" type="email" autocomplete="off" placeholder="Enter you email address here..." class="form-control"> 
+                                <button type="submit" class="subscribe-btn">Subscribe</button>
+                            </form>
+                        </div>
+                        <h3 class="footer-comn-inner-heading">Follow us on</h3>
+                        <ul class="social-list-box">
+                            <li><a href="#" class="footer-social-link"><img src="images/mailchimp.png"></a></li>
+                            <li><a href="#" class="footer-social-link"><img src="images/github.png"></a></li>
+                            <li><a href="#" class="footer-social-link"><img src="images/linkedin.png"></a></li>
+                            <li><a href="#" class="footer-social-link"><img src="images/facebook.png"></a></li>
+                            <li><a href="#" class="footer-social-link"><img src="images/youtube.png"></a></li>
+                            <li><a href="#" class="footer-social-link"><img src="images/instagram-sketched.png"></a></li>
+                            <li><a href="#" class="footer-social-link"><img src="images/twitter.png"></a></li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </div>        
+    </section>
 {% endblock %}

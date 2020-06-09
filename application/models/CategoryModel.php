@@ -16,7 +16,13 @@ class CategoryModel extends CI_Model
 
     public function getOneById($id)
     {
-        return $this->subCategory->findOneById($id);
+         $q = $this->db->select('*')
+                 ->from('products')
+                // ->join('users','users.id = reviews.user_id')
+                 ->where('category_id',$id)
+                 ->get();
+        return $q->result();
+       // return $this->subCategory->findOneById($id);
     }
 
     public function getMainCategoryById($id)
