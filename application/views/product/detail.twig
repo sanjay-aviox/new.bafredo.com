@@ -1,9 +1,9 @@
 {% extends "layouts/front.twig" %}
 {% block styles %}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.css">
-	<style type="text/css">
+    <style type="text/css">
 
-	</style>
+    </style>
 {% endblock %}
 {% block content %}
     <section class="breadcrumb-section">
@@ -198,44 +198,53 @@
                                         <div class="product-review-box">
                                             <div class="customer-review-title"><h3>Customer Reviews</h3></div>
                                             <div class="customer-review-box">
+                                               
                                                 {% if review|length %}
-							<div class="lineFrame">
-								<div class="productLineFrame productCon">
-									<section class="info_INTRODUCTION">
-									     <p><h4>Submitted Reviews</h4></p>
-						                {% for key, rev in review %}
-						                     <p>{{ rev.comment }}</p>
-						                     <p>By: {{ rev.name }}</p>
-						                {% endfor %}
-						            </section>
-								</div>
-							</div>
-							{% endif %}
-							
-							{% if user.name  is not null %}
-							
-						    	<div class="lineFrame">
-						    		<div class="productLineFrame disqusFrame">
-						    			<h4>REVIEW</h4>
-						    			<!--disqus begin-->
-						    			<div id="disqus_thread" style="width: 100%;">
-						    			    <form action="{{ base_url('add-review') }}" method="post">
-						    			        <input type="hidden" name="product_id" value="{{ product.id }}">
-						    			         <input type="hidden" name="product_slug" value="{{ product.getSlug() }}">
-						    			        <div id="rateYo"></div>
-						    			        <input type="hidden" name="rating"><br><br>
-						    			        <label>Comment:</label>
-						    			        <textarea rows="5" name="comment" cols="50"></textarea><br>
-						    			        <input type="submit"  value="Submit" class="btn-primary">
-						    			    </form>
-						    			</div>
-						    			<!--disqus end-->
-						    		</div>
-						    	</div>
-								    
-							{% else %}
-						            <a href="{{ base_url('/login') }}">Submit a Review</a>
-						    {% endif %}
+                                                    <div class="lineFrame">
+                                                        <div class="productLineFrame productCon">
+                                                            <section class="info_INTRODUCTION">
+                                                                
+                                                                             {% for key, rev in review %}
+                <div style="background:#e6e6e6;">
+                  
+                     
+                    {% set k = rev.review %}
+                        {% for i in range(1, k) %}
+                            <span class="fa fa-star checked"></span>
+                        {% endfor %}
+                      <span>{{ rev.comment }}</span> 
+                    <p>By: {{ rev.name }}</p>
+                </div>
+                {% endfor %}
+                                                            </section>
+                                                        </div>
+                                                    </div>
+                                                {% endif %}
+                            
+                             {% if user.name  is not null %}
+    
+        <div class="lineFrame">
+            <div class="productLineFrame disqusFrame">
+                <h4>REVIEW</h4>
+                <!--disqus begin-->
+                <div id="disqus_thread" style="width: 100%;">
+                    <form action="{{ base_url('add-review') }}" method="post">
+                        <input type="hidden" name="product_id" value="{{ product.id }}">
+                         <input type="hidden" name="product_slug" value="{{ product.getSlug() }}">
+                        <div id="rateYo"></div>
+                        <input type="hidden" name="rating"><br><br>
+                        <label>Comment:</label>
+                        <textarea rows="5" name="comment" cols="50"></textarea><br>
+                        <input type="submit"  value="Submit" class="btn-primary">
+                    </form>
+                </div>
+                <!--disqus end-->
+            </div>
+        </div>
+            
+    {% else %}
+            <a href="{{ base_url('/login') }}">Submit a Review</a>
+    {% endif %}
                                                 <!--span class="reviews-heading">No reviews yet</span>
                                                 <a href="#" class="review-link">Write a review</a-->
                                             </div>
@@ -250,7 +259,7 @@
                             <div class="row">
                                 <div class="col-12 col-md-3">
                                     <div class="comn-thumb-box">
-                                        <img src="images/shipping-man.png">
+                                        <img src="http://localhost/new.bafredo.com/assets/uploads/product/thumbnail/3753159vi38k4gksw0.jpg">
                                     </div>
                                 </div>
                                 <div class="col-12 col-md-9">
@@ -340,7 +349,7 @@
                 <div class="col-12 col-lg-3 col-md-4 col-sm-6">
                     <div class="view-products-single-box">
                         <div class="view-products-thumb">
-                            <img src="images/DC-Motor-12v.jpg">
+                            <img src="http://localhost/new.bafredo.com/assets/uploads/product/thumbnail/3753159vi38k4gksw0.jpg">
                             <div class="view-products-hover-info">
                                 <button href="#" class="icon-link-btn"><i class="fa fa-shopping-cart pr-2"></i> Add to cart</button>
                             </div>
@@ -368,8 +377,8 @@
 
                 <div class="col-12 col-lg-4 col-md-6">
                     <div class="footer-logo-box">
-                        <div class="footer-thumb">
-                            <a href="index.html"><img src="images/color-logo.png"></a>
+                        <div class="footer-thumb"> 
+                            <a href="index.html"><img src="{{ base_url("assets/img/color-logo.png") }}"></a>
                         </div>
                         <div class="pb-4">
                             <h4 class="footer-comn-inner-heading">You can reach us on</h4>
@@ -409,13 +418,16 @@
                         </div>
                         <h3 class="footer-comn-inner-heading">Follow us on</h3>
                         <ul class="social-list-box">
-                            <li><a href="#" class="footer-social-link"><img src="images/mailchimp.png"></a></li>
-                            <li><a href="#" class="footer-social-link"><img src="images/github.png"></a></li>
-                            <li><a href="#" class="footer-social-link"><img src="images/linkedin.png"></a></li>
-                            <li><a href="#" class="footer-social-link"><img src="images/facebook.png"></a></li>
-                            <li><a href="#" class="footer-social-link"><img src="images/youtube.png"></a></li>
-                            <li><a href="#" class="footer-social-link"><img src="images/instagram-sketched.png"></a></li>
-                            <li><a href="#" class="footer-social-link"><img src="images/twitter.png"></a></li>
+                            <li><a href="#" class="footer-social-link"><img src="{{ base_url("assets/img/mailchimp.png") }}"></a></li>
+
+                            
+                            
+                            <li><a href="#" class="footer-social-link"><img src="{{ base_url("assets/img/github.png") }}"></a></li>
+                            <li><a href="#" class="footer-social-link"><img src=" {{ base_url("assets/img/linkedin.png") }}"></a></li>
+                            <li><a href="#" class="footer-social-link"><img src=" {{ base_url("assets/img/facebook.png") }}"></a></li>
+                            <li><a href="#" class="footer-social-link"><img src=" {{ base_url("assets/img/youtube.png") }}"></a></li>
+                            <li><a href="#" class="footer-social-link"><img src="{{ base_url("assets/img/instagram-sketched.png") }}"></a></li>
+                            <li><a href="#" class="footer-social-link"><img src="{{ base_url("assets/img/twitter.png") }}"></a></li>
                         </ul>
                     </div>
                 </div>
@@ -423,4 +435,36 @@
             </div>
         </div>        
     </section>
+{% endblock %}
+{% block scripts %}
+  <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.js"></script>
+    <script type="text/javascript">
+         $(function() {
+          // VARIABLES
+          var rateYo = $("#rateYo");
+          var rateYoField = $("input[name='rating']");
+        
+          // ON CLICK ASSIGN RATING TO HIDDEN FIELD
+          $(rateYo).rateYo({
+            onSet: function(rating, rateYoInstance) {
+              $(rateYoField).val(rating);
+            }
+          });
+        });
+        // var disqus_shortname = 'bafredo';
+        // var disqus_disable_mobile = true;
+        // var disqus_identifier = 'prod-1333';
+        // (function() {
+        //     var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        //     dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        //     (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        // })();
+         $(".wishlist").click(function(){
+            setInterval(function() {
+                  window.location.reload();
+                }, 3000); 
+        });
+        
+    </script>
 {% endblock %}

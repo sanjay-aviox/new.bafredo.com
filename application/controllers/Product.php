@@ -15,7 +15,7 @@ class Product extends MY_Controller
          //print_r("hh"); die;
         $product = $this->product->findBySlug($slug);
        
-        $review ='';//$this->product->getReview($product->getId());
+        $review =$this->product->getReview($product->getId());
 	    $gallery = $this->product->gallery($product->getCategoryId());
      
         $subCategory = $this->category->getOneById($product->getCategoryId());
