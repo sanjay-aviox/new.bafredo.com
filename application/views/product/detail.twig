@@ -31,10 +31,31 @@
         <div class="container">
             <div class="row">
                 <div class="col-12 col-md-6">
-                    <div class="product-thumb-detail-box">
-                      
-                        <img src='{{ asset("uploads/product/thumbnail/#{product.getImage()}") }}' title="{{ product.getName() }}" class="demo-trigger" alt="{{ product.getName() }}" />
+                    <div class="product-thumb-detail-box">                      
+                        <img src='{{ asset("uploads/product/thumbnail/#{product.getImage()}") }}' title="{{ product.getName() }}" class="demo-trigger" alt="{{ product.getName() }}"  data-zoom='{{ asset("uploads/product/thumbnail/#{product.getImage()}") }}' />
                     </div>
+                    <button type="button" class="product-selector-prev-btn"><i class="fa fa-chevron-left"></i></button>
+                    <div class="product-selector-box">
+                    	<a href="#" class="selector-thumb">
+                    		<img src='{{ asset("uploads/product/thumbnail/#{product.getImage()}") }}'>
+                    	</a>
+                    	<a href="#" class="selector-thumb">
+                    		<img src='{{ asset("uploads/product/thumbnail/#{product.getImage()}") }}'>
+                    	</a>
+                    	<a href="#" class="selector-thumb">
+                    		<img src='{{ asset("uploads/product/thumbnail/#{product.getImage()}") }}'>
+                    	</a>
+                    	<a href="#" class="selector-thumb">
+                    		<img src='{{ asset("uploads/product/thumbnail/#{product.getImage()}") }}'>
+                    	</a>
+                    	<a href="#" class="selector-thumb">
+                    		<img src='{{ asset("uploads/product/thumbnail/#{product.getImage()}") }}'>
+                    	</a>
+                    	<a href="#" class="selector-thumb">
+                    		<img src='{{ asset("uploads/product/thumbnail/#{product.getImage()}") }}'>
+                    	</a>
+                    </div>
+                    <button type="button" class="product-selector-next-btn"><i class="fa fa-chevron-right"></i></button>
                     <div class="product-selector-box"></div>
                 </div>
                 <div class="col-12 col-md-6">
@@ -370,71 +391,6 @@
             </div>
         </div>
     </section>
-
-    <section class="footer-section pt-5 pb-4">
-        <div class="container">
-            <div class="row">
-
-                <div class="col-12 col-lg-4 col-md-6">
-                    <div class="footer-logo-box">
-                        <div class="footer-thumb"> 
-                            <a href="index.html"><img src="{{ base_url("assets/img/color-logo.png") }}"></a>
-                        </div>
-                        <div class="pb-4">
-                            <h4 class="footer-comn-inner-heading">You can reach us on</h4>
-                            <span class="footer-comn-title"><i class="fa fa-phone-square pr-2"></i>+44 (0) 20 8450 9222</span>
-                        </div>
-
-                        <div>
-                            <h4 class="footer-comn-inner-heading">Or email our team on</h4>
-                            <span class="footer-comn-title"><i class="fa fa-envelope pr-2"></i>abcd@gmail.com</span>
-                        </div>                        
-                    </div>
-                </div>
-
-                <div class="col-12 col-lg-3 col-md-6">
-                    <div class="footer-quick-link-box">
-                        <h3 class="footer-comn-heading">Quick link</h3>
-                        <ul class="footer-quick-link-list">
-                            <li><a href="about-us.html" class="footer-link">About Us</a></li>
-                            <li><a href="contact-us.html" class="footer-link">Contact Us</a></li>
-                            <li><a href="terms-conditions.html" class="footer-link">Terms & Conditions</a></li>
-                            <li><a href="privacy-policy.html" class="footer-link">Privacy policy</a></li>
-                            <li><a href="faqs.html" class="footer-link">Faqs</a></li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="col-12 col-lg-5 col-md-6">
-                    <div class="footer-social-link-box">
-                        <h3 class="footer-comn-heading">Social media</h3>
-                        <h4 class="footer-comn-title">Subscribe to our newsletter with
-                        monthly product updates & offers</h4>
-                        <div class="subscribe-form">
-                            <form class="footer-newsletter">
-                                <input required="required" type="email" autocomplete="off" placeholder="Enter you email address here..." class="form-control"> 
-                                <button type="submit" class="subscribe-btn">Subscribe</button>
-                            </form>
-                        </div>
-                        <h3 class="footer-comn-inner-heading">Follow us on</h3>
-                        <ul class="social-list-box">
-                            <li><a href="#" class="footer-social-link"><img src="{{ base_url("assets/img/mailchimp.png") }}"></a></li>
-                            <li><a href="#" class="footer-social-link"><img src="{{ base_url("assets/img/github.png") }}"></a></li>
-                            <li><a href="#" class="footer-social-link"><img src=" {{ base_url("assets/img/linkedin.png") }}"></a></li>
-                            <li><a href="#" class="footer-social-link"><img src=" {{ base_url("assets/img/facebook.png") }}"></a></li>
-                            <li><a href="#" class="footer-social-link"><img src=" {{ base_url("assets/img/youtube.png") }}"></a></li>
-                            <li><a href="#" class="footer-social-link"><img src="{{ base_url("assets/img/instagram-sketched.png") }}"></a></li>
-                            <li><a href="#" class="footer-social-link"><img src="{{ base_url("assets/img/twitter.png") }}"></a></li>
-                        </ul>
-                    </div>
-                </div>
-
-            </div>
-        </div>        
-    </section>
-{% endblock %}
-{% block scripts %}
-  <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
  <script src="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.js"></script>
     <script type="text/javascript">
          $(function() {

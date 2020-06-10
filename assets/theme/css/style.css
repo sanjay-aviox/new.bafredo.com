@@ -1626,7 +1626,45 @@ input.searchInput:focus, input.searchInput:active{
 }
 .product-thumb-detail-box img{
 	width: 100%;
-	background-color: #ffffff;
+    height: 100%;
+    object-fit: cover;
+    background-color: #ffffff;
+}
+.product-selector-box{
+	display: flex;
+    overflow: auto;
+    width: 400px;
+    margin-top: 10px;
+}
+.product-selector-box::-webkit-scrollbar {
+  width: 0px;
+}
+.selector-thumb{
+	padding: 4px;
+    border: 1px solid #edebeb;
+}
+.selector-thumb img{
+	width: 90px;
+    object-fit: cover;
+}
+.product-selector-prev-btn,
+.product-selector-next-btn{
+    background: transparent;
+    border: none;
+    padding: 5px;
+    font-size: 28px;
+    color: #3c2b86;
+    font-weight: 100 !important;
+}
+.product-selector-prev-btn{
+	position: absolute;
+    left: -18px;
+    bottom: 50px;
+}
+.product-selector-next-btn{
+	position: absolute;
+    right: 120px;
+    bottom: 50px;
 }
 /*******************************/
 /********* cart-section ********/

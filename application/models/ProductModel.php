@@ -46,11 +46,20 @@ class ProductModel extends CI_Model
     
      public function getReview($id)
     {
-         $q = $this->db->select('*')
+        //   $q = $this->db->select('*')
+        //          ->from('reviews')
+        //          ->get();
+        //            echo "df"; die;
+        // return $q->result();
+
+        
+         $q = $this->db->select('users.*,reviews.*')
                  ->from('reviews')
-                 ->join('users','users.id = reviews.user_id')
                  ->where('product_id',$id)
+                 ->join('users','users.id = reviews.user_id')
+                
                  ->get();
+       // print_r($q->result()); echo"bub"; die;
         return $q->result();
        
     }
