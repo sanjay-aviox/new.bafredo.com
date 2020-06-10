@@ -1,21 +1,67 @@
 {% extends "layouts/front.twig" %}
 {% block content %}
 
-    <div class="container-fluid bodyFrame">
-        <div class="row hidden-xs pc">
-            <div class="blogTit">
-                <h1>{{ blog_detail.blog_name }}</h1>
-            </div>
-
-            <div class="blogCon">
-              <img src='{{ asset("front/uploads/blog/#{blog_detail.image}") }}' style="color: inherit; font-family: inherit; width: 700px;">
-              <div>
-                  <br>
-                  <div>{{ blog_detail.description|raw }}</div>
-              </div>
-
+    <section class="breadcrumb-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-md-12">
+                    <div class="breadcrumb-area">
+                        <nav aria-label="breadcrumb" class="comn-breadcrumb-nav">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="{{ base_url('/')}}"><i class="fa fa-home pr-2"></i>Home</a></li>
+                                <li class="breadcrumb-item"><a href="{{ base_url('/blog')}}">Blog</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">Blog Detail</li>
+                            </ol>
+                        </nav>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
+    </section>
+    <!-- breadcrumb section end -->
+
+    <!-- blog-detail-section start -->
+    <section class="blog-section blog-detail-section py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-md-10 mx-auto">
+                    <div class="blog-single-box">
+                        <div class="blog-thumb">
+                            <a href="#"><img src="{{ asset("front/uploads/blog/#{blog_detail.image}") }}"></a>
+                            <div class="blog-post-date">
+                                <span class="blog-post-date-day">21</span>
+                                <span class="blog-post-date-month">May</span>
+                            </div>
+                            <!--a href="#" class="meta-post-categories">Lorem ipsum</a-->
+                        </div>
+                        <div class="blog-detail">
+                            <h4 class="blog-title"><a href="#">{{ blog_detail.blog_name }}</a></h4>
+                            <div class="blog-info">
+                                {{ blog_detail.description|raw }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--div class="row">
+                <div class="col-12 col-md-10 mx-auto">
+                    <div class="blog-social-media-box">
+                        <span>Share This Post On : </span>
+                         <ul class="social-list-box">
+                            <li><a href="#" class="blog-social-link"><img src="{{ base_url("assets/img/mailchimp.png") }}"></a></li>
+                            <li><a href="#" class="blog-social-link"><img src="{{ base_url("assets/img/github.png") }}"></a></li>
+                            <li><a href="#" class="blog-social-link"><img src=" {{ base_url("assets/img/linkedin.png") }}"></a></li>
+                            <li><a href="#" class="blog-social-link"><img src=" {{ base_url("assets/img/facebook.png") }}"></a></li>
+                            <li><a href="#" class="blog-social-link"><img src=" {{ base_url("assets/img/youtube.png") }}"></a></li>
+                            <li><a href="#" class="blog-social-link"><img src="{{ base_url("assets/img/instagram-sketched.png") }}"></a></li>
+                            <li><a href="#" class="blog-social-link"><img src="{{ base_url("assets/img/twitter.png") }}"></a></li>
+
+                        </ul>
+                    </div>
+                </div>
+            </div-->
+
+        </div>
+    </section>
 
 {% endblock %}

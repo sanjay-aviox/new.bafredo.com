@@ -302,7 +302,7 @@
                 <h2>Related Product</h2>
             </div>
             <div class="row">
-                {% if subCategory|length > 1 %}
+                {% if subCategory %}
                 <div class="col-12 col-md-12">
                     <div class="relatedProductSlider owl-carousel owl-theme">
                        {% for related in subCategory %}
@@ -419,9 +419,6 @@
                         <h3 class="footer-comn-inner-heading">Follow us on</h3>
                         <ul class="social-list-box">
                             <li><a href="#" class="footer-social-link"><img src="{{ base_url("assets/img/mailchimp.png") }}"></a></li>
-
-                            
-                            
                             <li><a href="#" class="footer-social-link"><img src="{{ base_url("assets/img/github.png") }}"></a></li>
                             <li><a href="#" class="footer-social-link"><img src=" {{ base_url("assets/img/linkedin.png") }}"></a></li>
                             <li><a href="#" class="footer-social-link"><img src=" {{ base_url("assets/img/facebook.png") }}"></a></li>
