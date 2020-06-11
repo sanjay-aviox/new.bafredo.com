@@ -90,7 +90,7 @@ class PageModel extends CI_Model
         $q = $this->db->select('*')
                  ->from('securities')
                  ->get();
-                 echo "df"; die;
+               
         return $q->result();
     }
     public function adduserSecurity($data)

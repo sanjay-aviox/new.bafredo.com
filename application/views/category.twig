@@ -27,7 +27,7 @@
                     <div class="col-12 col-lg-3 col-md-4 col-sm-6">
                         <div class="view-products-single-box">
                             <div class="view-products-thumb">
-                                <img src="{{ asset("uploads/product/thumbnail/#{product.getImage()}") }}">
+                                <a href="{{ base_url("product/detail/#{product.slug}") }}"> <img src="{{ asset("uploads/product/thumbnail/#{product.getImage()}") }}"></a>
                                 <div class="view-products-hover-info">
                                     <a href="#" v-on:click="addToCart({{ product.toJson() }})" class="icon-link-btn" data-toggle="tooltip" data-placement="top" title="Add to cart"> 
 
@@ -47,159 +47,110 @@
 
                                 <i class="fa fa-heart-o"></i></a>
                                 <!--a href="#" class="hover-icon-link" data-toggle="tooltip" data-placement="left" title="Compare"><i class="fa fa-refresh"></i></a-->
-                                 <a href="{{ base_url("product/detail/#{product.slug}") }}" class="icon-link" data-toggle="tooltip" data-placement="top" title="Quick view"><i class="fa fa-search-plus" data-toggle="modal" data-target="#quickViewModal"></i></a>
+                                <a href="#" class="hover-icon-link" data-toggle="tooltip" data-placement="left" title="Quick view"><i class="fa fa-search-plus" data-toggle="modal" data-target="#quickViewModal_{{product.id}}"></i></a>
+
+                                 <!--a href="{{ base_url("product/detail/#{product.slug}") }}" class="hover-icon-link icon-link" data-toggle="tooltip" data-placement="top" title="Quick view"><i class="fa fa-search-plus" data-toggle="modal" data-target="#quickViewModal"></i></a-->
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="modal fade quick-view-modal" id="quickViewModal_{{product.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header border-0 pb-0">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                     <div class="container">
+                                        <div class="row">
+                                            <div class="col-12 col-md-5">
+                                                <div class="quick-view-thumb-box">
+                                                    <img class="demo-trigger" src="{{ asset("uploads/product/thumbnail/#{product.getImage()}") }}" data-zoom="{{ asset("uploads/product/thumbnail/#{product.getImage()}") }}">
+                                                    <div class="view-products-hover-info">
+                                                        <a href="{{ base_url("product/detail/#{product.slug}") }}" class="icon-link-btn">VIEW DETAILS</a>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-12 col-md-7">
+                                                <div class="quick-view-content-box">
+                                                    <div class="product-detail-heading"><h3>{{ product.getName() }} </h3></div>
+                                                    <div class="product-detail-review-box">
+                                                        <i class="fa fa-star-o"></i>
+                                                        <i class="fa fa-star-o"></i>
+                                                        <i class="fa fa-star-o"></i>
+                                                        <i class="fa fa-star-o"></i>
+                                                        <i class="fa fa-star-o"></i>
+                                                        <a class="review-caption">No reviews</a>
+                                                    </div>
+                                                    <div class="product-price"><span>{{ product.getCurrency() ~' '~ product.getPrice() | round }}</span></div>
+                                                    <div class="product-sold-box"><span>25 sold in last 4 hours</span></div>
+                                                    <div class="product-detail-info">
+                                                        <p>{{ product.getDescription() }}</p>
+                                                    </div>
+                                                    <div class="product-quantity-box">
+                                                       
+                                                        <button type="submit" class="product-quantity-btn widgets-numberpicker-decrement" v-on:click="decrementValue"><i class="fa fa-minus"></i></button>
+                                                        
+
+                                                        <input type="text" class="form-control product-quantity-input" v-model="product_quantity" v-on:keypress="onlyNumber" maxlength="9" minlength="1">
+                                                        <button type="buttom" class="product-quantity-btn widgets-numberpicker-increment" v-on:click="incrementValue"><i class="fa fa-plus"></i></button>   
+                      
+
+                                       
+                                                    </div>
+
+
+                                                    <div class="product-btn-box mb-4"><button type="button" v-on:click="addToCart({{ product.toJson() }})" class="addCartBtn comn-btn black-btn w-100">Add to cart</button></div>
+
+                                                    <div class="product-wishlist-box">                            
+                                                        <a href="#"><i class="fa fa-heart-o pr-2"></i>Login to use Wishlist</a>
+                                                    </div>
+                                                    <div class="product-compare-box">                            
+                                                        <a href="#"><i class="fa fa-refresh pr-2"></i>Compare</a>
+                                                    </div><hr>
+                                                    <div class="product-meta-area">
+                                                        <div class="product-meta-box">
+                                                            <span class="product-meta-title">Vender :</span>
+                                                            <a href="#" class="product-meta-name">abcd</a>
+                                                        </div>
+                                                        <div class="product-meta-box">
+                                                            <span class="product-meta-title">SKU:</span>
+                                                            <a href="#" class="product-meta-name">N/A</a>
+                                                        </div>
+                                                        <div class="product-meta-box">
+                                                            <span class="product-meta-title">Categories:</span>
+                                                            <a href="#" class="product-meta-name">Lighting</a>
+                                                        </div>
+                                                        <div class="product-meta-box">
+                                                            <span class="product-meta-title">Tags:</span>
+                                                            <a href="#" class="product-meta-name">lightning</a>
+                                                            <a href="#" class="product-meta-name">£450.00 +</a>
+                                                        </div>
+                                                        <div class="product-meta-box mb-0">
+                                                            <span class="product-meta-title">Share:</span>
+                                                            <a href="#" class="product-meta-social-icon"><i class="fa fa-facebook"></i></a>
+                                                            <a href="#" class="product-meta-social-icon"><i class="fa fa-twitter"></i></a>
+                                                            <a href="#" class="product-meta-social-icon"><i class="fa fa-envelope"></i></a>
+                                                            <a href="#" class="product-meta-social-icon"><i class="fa fa-pinterest"></i></a>
+                                                            <a href="#" class="product-meta-social-icon"><i class="fa fa-tumblr"></i></a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 {% endfor %}
-                <!--div class="col-12 col-lg-3 col-md-4 col-sm-6">
-                    <div class="view-products-single-box">
-                        <div class="view-products-thumb">
-                            <img src="images/4WD-Smart-Robot-Car-Chassis-Kit.png">
-                            <div class="view-products-hover-info">
-                                <button  onclick="openNav()" class="icon-link-btn"><i class="fa fa-shopping-cart pr-2"></i> Add to cart</button>
-                            </div>
-                        </div>
-                        <div class="view-products-info">                            
-                            <div class="view-products-title">
-                                <h3><a href="#">4WD-Smart-Robot-Car-Chassis-Kit</a></h3>
-                                <span class="view-products-price">TZS&nbsp;55,000</span>
-                            </div>
-                        </div>
-                        <div class="hover-icon-link-box">                            
-                            <a href="#" class="hover-icon-link" data-toggle="tooltip" data-placement="left" title="Login to use whishlist"><i class="fa fa-heart-o"></i></a>
-                            <a href="#" class="hover-icon-link" data-toggle="tooltip" data-placement="left" title="Compare"><i class="fa fa-refresh"></i></a>
-                            <a href="#" class="hover-icon-link" data-toggle="tooltip" data-placement="left" title="Quick view"><i class="fa fa-search-plus" data-toggle="modal" data-target="#quickViewModal"></i></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12 col-lg-3 col-md-4 col-sm-6">
-                    <div class="view-products-single-box">
-                        <div class="view-products-thumb">
-                            <img src="images/HX711-5KG-Digital-Load-Cell.png">
-                            <div class="view-products-hover-info">
-                                <button  onclick="openNav()" class="icon-link-btn"><i class="fa fa-shopping-cart pr-2"></i> Add to cart</button>
-                            </div>
-                        </div>
-                        <div class="view-products-info">                            
-                            <div class="view-products-title">
-                                <h3><a href="#">4WD-Smart-Robot-Car-Chassis-Kit</a></h3>
-                                <span class="view-products-price">TZS&nbsp;55,000</span>
-                            </div>
-                        </div>
-                        <div class="hover-icon-link-box">                            
-                            <a href="#" class="hover-icon-link" data-toggle="tooltip" data-placement="left" title="Login to use whishlist"><i class="fa fa-heart-o"></i></a>
-                            <a href="#" class="hover-icon-link" data-toggle="tooltip" data-placement="left" title="Compare"><i class="fa fa-refresh"></i></a>
-                            <a href="#" class="hover-icon-link" data-toggle="tooltip" data-placement="left" title="Quick view"><i class="fa fa-search-plus" data-toggle="modal" data-target="#quickViewModal"></i></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12 col-lg-3 col-md-4 col-sm-6">
-                    <div class="view-products-single-box">
-                        <div class="view-products-thumb">
-                            <img src="images/SW420-Vibration-Sensor-Module.png">
-                            <div class="view-products-hover-info">
-                                <button  onclick="openNav()" class="icon-link-btn"><i class="fa fa-shopping-cart pr-2"></i> Add to cart</button>
-                            </div>
-                        </div>
-                        <div class="view-products-info">                            
-                            <div class="view-products-title">
-                                <h3><a href="#">4WD-Smart-Robot-Car-Chassis-Kit</a></h3>
-                                <span class="view-products-price">TZS&nbsp;55,000</span>
-                            </div>
-                        </div>
-                        <div class="hover-icon-link-box">                            
-                            <a href="#" class="hover-icon-link" data-toggle="tooltip" data-placement="left" title="Login to use whishlist"><i class="fa fa-heart-o"></i></a>
-                            <a href="#" class="hover-icon-link" data-toggle="tooltip" data-placement="left" title="Compare"><i class="fa fa-refresh"></i></a>
-                            <a href="#" class="hover-icon-link" data-toggle="tooltip" data-placement="left" title="Quick view"><i class="fa fa-search-plus"  data-toggle="modal" data-target="#quickViewModal"></i></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12 col-lg-3 col-md-4 col-sm-6">
-                    <div class="view-products-single-box">
-                        <div class="view-products-thumb">
-                            <img src="images/HX711-5KG-Digital-Load-Cell.png">
-                            <div class="view-products-hover-info">
-                                <button  onclick="openNav()" class="icon-link-btn"><i class="fa fa-shopping-cart pr-2"></i> Add to cart</button>
-                            </div>
-                        </div>
-                        <div class="view-products-info">                            
-                            <div class="view-products-title">
-                                <h3><a href="#">4WD-Smart-Robot-Car-Chassis-Kit</a></h3>
-                                <span class="view-products-price">TZS&nbsp;55,000</span>
-                            </div>
-                        </div>
-                        <div class="hover-icon-link-box">                            
-                            <a href="#" class="hover-icon-link" data-toggle="tooltip" data-placement="left" title="Login to use whishlist"><i class="fa fa-heart-o"></i></a>
-                            <a href="#" class="hover-icon-link" data-toggle="tooltip" data-placement="left" title="Compare"><i class="fa fa-refresh"></i></a>
-                            <a href="#" class="hover-icon-link" data-toggle="tooltip" data-placement="left" title="Quick view"><i class="fa fa-search-plus" data-toggle="modal" data-target="#quickViewModal"></i></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12 col-lg-3 col-md-4 col-sm-6">
-                    <div class="view-products-single-box">
-                        <div class="view-products-thumb">
-                            <img src="images/SM900.png">
-                            <div class="view-products-hover-info">
-                                <button  onclick="openNav()" class="icon-link-btn"><i class="fa fa-shopping-cart pr-2"></i> Add to cart</button>
-                            </div>
-                        </div>
-                        <div class="view-products-info">                            
-                            <div class="view-products-title">
-                                <h3><a href="#">4WD-Smart-Robot-Car-Chassis-Kit</a></h3>
-                                <span class="view-products-price">TZS&nbsp;55,000</span>
-                            </div>
-                        </div>
-                        <div class="hover-icon-link-box">                            
-                            <a href="#" class="hover-icon-link" data-toggle="tooltip" data-placement="left" title="Login to use whishlist"><i class="fa fa-heart-o"></i></a>
-                            <a href="#" class="hover-icon-link" data-toggle="tooltip" data-placement="left" title="Compare"><i class="fa fa-refresh"></i></a>
-                            <a href="#" class="hover-icon-link" data-toggle="tooltip" data-placement="left" title="Quick view"><i class="fa fa-search-plus" data-toggle="modal" data-target="#quickViewModal"></i></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12 col-lg-3 col-md-4 col-sm-6">
-                    <div class="view-products-single-box">
-                        <div class="view-products-thumb">
-                            <img src="images/DC-Motor-12v.png">
-                            <div class="view-products-hover-info">
-                                <button  onclick="openNav()" class="icon-link-btn"><i class="fa fa-shopping-cart pr-2"></i> Add to cart</button>
-                            </div>
-                        </div>
-                        <div class="view-products-info">                            
-                            <div class="view-products-title">
-                                <h3><a href="#">4WD-Smart-Robot-Car-Chassis-Kit</a></h3>
-                                <span class="view-products-price">TZS&nbsp;55,000</span>
-                            </div>
-                        </div>
-                        <div class="hover-icon-link-box">                            
-                            <a href="#" class="hover-icon-link" data-toggle="tooltip" data-placement="left" title="Login to use whishlist"><i class="fa fa-heart-o"></i></a>
-                            <a href="#" class="hover-icon-link" data-toggle="tooltip" data-placement="left" title="Compare"><i class="fa fa-refresh"></i></a>
-                            <a href="#" class="hover-icon-link" data-toggle="tooltip" data-placement="left" title="Quick view"><i class="fa fa-search-plus" data-toggle="modal" data-target="#quickViewModal"></i></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12 col-lg-3 col-md-4 col-sm-6">
-                    <div class="view-products-single-box">
-                        <div class="view-products-thumb">
-                            <img src="images/4WD-Smart-Robot-Car-Chassis-Kit.png">
-                            <div class="view-products-hover-info">
-                                <button  onclick="openNav()" class="icon-link-btn"><i class="fa fa-shopping-cart pr-2"></i> Add to cart</button>
-                            </div>
-                        </div>
-                        <div class="view-products-info">                            
-                            <div class="view-products-title">
-                                <h3><a href="#">4WD-Smart-Robot-Car-Chassis-Kit</a></h3>
-                                <span class="view-products-price">TZS&nbsp;55,000</span>
-                            </div>
-                        </div>
-                        <div class="hover-icon-link-box">                            
-                            <a href="#" class="hover-icon-link" data-toggle="tooltip" data-placement="left" title="Login to use whishlist"><i class="fa fa-heart-o"></i></a>
-                            <a href="#" class="hover-icon-link" data-toggle="tooltip" data-placement="left" title="Compare"><i class="fa fa-refresh"></i></a>
-                            <a href="#" class="hover-icon-link" data-toggle="tooltip" data-placement="left" title="Quick view"><i class="fa fa-search-plus" data-toggle="modal" data-target="#quickViewModal"></i></a>
-                        </div>
-                    </div>
-                </div-->
+              
             </div>
         </div>
+
+
     </section>
 {% endblock %}

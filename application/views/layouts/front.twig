@@ -126,163 +126,114 @@
                                     </li>
                                     <li class="nav-item">
                                         <a class="nav-link" href="{{ base_url('/blog') }}">Blog</a>                                        
-                                    </li>
-
-                                    <!-- <li class="nav-item mega-menu-item">
-                                        <a class="nav-link" href="#">Category</a>
-                                        <div class="mega-menu">
-                                            <div class="container">
-                                                <div class="row">
-                                                    {% for menu in menus %}
-                                                    {% if menu.getSubCategories() != null %}
-                                                    <div class="col-12 col-md-3">
-                                                        <ul class="sub-menu">
-                                                            
-                                                            <li class="sub-menu-heading-box"> <a title="Arduino" class="sub-menu-heading" href='{{ base_url("category/#{menu.getSlug()}") }}'>{{ menu.getName() }}</a></li>
-                                                             {% for smenu in menu.getSubCategories() %}
-                                                            <li class="sub-menu-item"><a title="{{ smenu.getName() }}" href='{{ base_url("category/#{menu.getSlug()}/#{smenu.getSlug()}") }}' class="sub-menu-link">{{ smenu.getName() }}</a></li>
-                                                             {% endfor %}
-                                                        </ul>
-                                                    </div>
-                                                    {% endif %}
-                                                    {% endfor %}
-
-                                                    <div class="col-12 col-md-3">
-                                                        <ul class="sub-menu">
-
-                                                    {% for menu in menus %}
-                                                    {% if menu.getSubCategories() == null %}
-                                                            <li>
-                                                                 <input type="hidden" value="{{ getAuthUser('user').name }}" id="user_Name"><a href='{{ base_url("category/#{menu.getSlug()}") }}' class="sub-menu-heading">{{ menu.getName() }}</a></li>
-                                                    {% endif %}
-                                                    {% endfor %}
-                                                    <li><a class="sub-menu-heading" href="{{ base_url('product/new') }}">New Products</a></li>
-                                                    <li><a class="sub-menu-heading" href="{{ base_url('product/sales') }}">Sales</a></li>
-                                                    <li><a class="sub-menu-heading" href="{{ base_url('product/all') }}">All Products</a></li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </div>  
-                                        </div>
-                                    </li> -->
- <input type="hidden" value="{{ getAuthUser('user').name }}" id="user_Name">
-                                     <li class="nav-item mega-menu-item">
+                                    </li>                             
+                                    <input type="hidden" value="{{ getAuthUser('user').name }}" id="user_Name">
+                                    <li class="nav-item mega-menu-item">
                                         <a class="nav-link" href="#">Category</a>
                                         <div class="mega-menu">
                                             <div class="container-fluid">
-                                                <div class="row">
+                                            <div class="row">
+                                            <div class="col-12 col-md-3">
+                                                <div class="nav flex-column nav-pills sub-menu-heading-link-box" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                                                    <a  class="sub-menu-heading-link active"  title="All Products" href="{{ base_url('product/all') }}">All Products</a>
+                                                    {% for menu in menus %}
+                                                    {% if menu.getSubCategories() == null %}
+                                                        <a class="sub-menu-heading-link" id="v-pills-home-tab" data-toggle="pill" href="#BlankTab" role="tab" aria-controls="v-pills-home" aria-selected="true">{{ menu.getName() }}</a>
+                                                    {% endif %}
+                                                    {% endfor %}
 
-
-                                                    <div class="col-12 col-md-3">
-                                                        <div class="nav flex-column nav-pills sub-menu-heading-link-box" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-                                                           
-                                                            <a  class="sub-menu-heading-link active"  title="All Products" href="{{ base_url('product/all') }}">All Products</a>
-
-                                                            <a class="sub-menu-heading-link" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home" role="tab" aria-controls="v-pills-home" aria-selected="true">COMPONENTS</a>
-                                                            <a class="sub-menu-heading-link" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="false">Integrated Circuit</a>
-                                                            <a class="sub-menu-heading-link" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-messages" role="tab" aria-controls="v-pills-messages" aria-selected="false">PCB Robotics</a>
-                                                            <a class="sub-menu-heading-link" id="v-pills-settings-tab" data-toggle="pill" href="#v-pills-settings" role="tab" aria-controls="v-pills-settings" aria-selected="false">Kits</a>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-9">
-                                                        <div class="tab-content" id="v-pills-tabContent">
-                                                            <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
-                                                                <div class="container-fluid">
-                                                                    <div class="row">
-                                                                        <div class="col-12 col-lg-3 col-md-6">
-                                                                            <ul class="sub-menu">
-                                                                                <li class="sub-menu-inner-heading">
-                                                                                    <h4>Pumps & Accessories</h4>
-                                                                                </li>
-                                                                                 
-                                                                                <li class="sub-menu-item">
-                                                                                    <a href="#" class="sub-menu-link">Pumps & Accessories</a>
-                                                                                </li>
-                                                                                <li class="sub-menu-item">
-                                                                                    <a href="#" class="sub-menu-link">Pumps & Accessories</a>
-                                                                                </li>
-                                                                                <li class="sub-menu-item">
-                                                                                    <a href="#" class="sub-menu-link">Pumps & Accessories</a>
-                                                                                </li>
-                                                                            </ul>
+                                                    {% for menu in menus %}
+                                                    {% if menu.getSubCategories() != null %}
+                                                        <a class="sub-menu-heading-link" id="v-{{ menu.getName() }}" data-toggle="pill" href="#{{ menu.getName() }}" role="tab" aria-controls="v-pills-home" aria-selected="true">{{ menu.getName() }}</a>
+                                                    {% endif %}
+                                                    {% endfor %}
+                                                </div>
+                                            </div>
+                                            <div class="col-9">
+                                            <div class="tab-content" id="v-pills-tabContent">
+                                                {% for menu in menus %}
+                                                    <div class="tab-pane fade" id="{{ menu.getName() }}" role="tabpanel" aria-labelledby="v-{{ menu.getName() }}">
+                                                        <div class="container-fluid">
+                                                            <div class="row">
+                                                                <div class="col-12 col-lg-3 col-md-6">
+                                                                    <ul class="sub-menu">
+                                                                    {% for smenu in menu.getSubCategories() %}
+                                                                        <li class="sub-menu-item">
+                                                                            <a href="#" class="sub-menu-link">{{ smenu.getName() }}</a>
+                                                                        </li>
+                                                                    {% endfor %}
+                                                                    </ul>
+                                                                </div>
+                                                                <div class="col-12 col-lg-3 col-md-6">
+                                                                    <ul class="you-may-like-area">
+                                                                        <li class="you-may-like-heading">
+                                                                            <h4>You may also like!</h4>
+                                                                        </li>
+                                                                        <div class="you-may-like-Slider owl-carousel owl-theme">
+                                                                        <div class="item">
+                                                                        <div class="view-products-single-box">
+                                                                        <div class="view-products-thumb">
+                                                                            <img src="{{ asset('theme/images/DC-Motor-12v.jpg') }}">
+                                                                            <div class="view-products-hover-info">
+                                                                            <button class="icon-link-btn" onclick="openNav()"><i class="fa fa-shopping-cart pr-2"></i> Add to cart</button>
+                                                                            </div>
                                                                         </div>
-                                                                        <div class="col-12 col-lg-3 col-md-6">
-                                                                            <ul class="sub-menu">
-                                                                                <li class="sub-menu-inner-heading">
-                                                                                    <h4>Pumps & Accessories</h4>
-                                                                                </li>
-                                                                                <li class="sub-menu-item">
-                                                                                    <a href="#" class="sub-menu-link">Pumps & Accessories</a>
-                                                                                </li>
-                                                                                <li class="sub-menu-item">
-                                                                                    <a href="#" class="sub-menu-link">Pumps & Accessories</a>
-                                                                                </li>
-                                                                                <li class="sub-menu-item">
-                                                                                    <a href="#" class="sub-menu-link">Pumps & Accessories</a>
-                                                                                </li>
-                                                                                <li class="sub-menu-item">
-                                                                                    <a href="#" class="sub-menu-link">Pumps & Accessories</a>
-                                                                                </li>
-                                                                            </ul>
+                                                                        <div class="view-products-info">                            
+                                                                            <div class="view-products-title">
+                                                                                <h3><a href="#">4WD-Smart-Robot-Car-Chassis-Kit</a></h3>
+                                                                                <span class="view-products-price">TZS&nbsp;55,000</span>
+                                                                            </div>
                                                                         </div>
-                                                                        <div class="col-12 col-lg-3 col-md-6">
-                                                                            <ul class="sub-menu">
-                                                                                <li class="sub-menu-inner-heading">
-                                                                                    <h4>Pumps & Accessories</h4>
-                                                                                </li>
-                                                                                <li class="sub-menu-item">
-                                                                                    <a href="#" class="sub-menu-link">Pumps & Accessories</a>
-                                                                                </li>
-                                                                                <li class="sub-menu-item">
-                                                                                    <a href="#" class="sub-menu-link">Pumps & Accessories</a>
-                                                                                </li>
-                                                                                <li class="sub-menu-item">
-                                                                                    <a href="#" class="sub-menu-link">Pumps & Accessories</a>
-                                                                                </li>
-                                                                                <li class="sub-menu-item">
-                                                                                    <a href="#" class="sub-menu-link">Pumps & Accessories</a>
-                                                                                </li>
-                                                                            </ul>
+                                                                        <div class="hover-icon-link-box">
+                                                                            <a href="#" class="hover-icon-link" data-toggle="tooltip" data-placement="left" title="" data-original-title="Login to use whishlist"><i class="fa fa-heart-o"></i></a>
+                                                                            <a href="#" class="hover-icon-link" data-toggle="tooltip" data-placement="left" title="" data-original-title="Compare"><i class="fa fa-refresh"></i></a>
+                                                                            <a href="#" class="hover-icon-link" data-toggle="tooltip" data-placement="left" title="" data-original-title="Quick view"><i class="fa fa-search-plus" data-toggle="modal" data-target="#quickViewModal"></i></a>
+                                                                            </div>
                                                                         </div>
-                                                                        <div class="col-12 col-lg-3 col-md-6">
-                                                                            <ul class="you-may-like-area">
-                                                                                <li class="you-may-like-heading">
-                                                                                    <h4>You may also like!</h4>
-                                                                                </li>
-                                                                                <div class="you-may-like-Slider owl-carousel owl-theme">
-                                                                                    <div class="item">
-                                                                                        <div class="view-products-single-box">
-                                                                                            <div class="view-products-thumb">
-                                                                                                <img src="{{ asset('theme/images/DC-Motor-12v.jpg') }}">
-                                                                                                <div class="view-products-hover-info">
-                                                                                                    <button class="icon-link-btn" onclick="openNav()"><i class="fa fa-shopping-cart pr-2"></i> Add to cart</button>
-                                                                                                </div>
-                                                                                            </div>
-                                                                                            <div class="view-products-info">                            
-                                                                                                <div class="view-products-title">
-                                                                                                    <h3><a href="#">4WD-Smart-Robot-Car-Chassis-Kit</a></h3>
-                                                                                                    <span class="view-products-price">TZS&nbsp;55,000</span>
-                                                                                                </div>
-                                                                                            </div>
-                                                                                            <div class="hover-icon-link-box">
-                                                                                                <a href="#" class="hover-icon-link" data-toggle="tooltip" data-placement="left" title="" data-original-title="Login to use whishlist"><i class="fa fa-heart-o"></i></a>
-                                                                                                <a href="#" class="hover-icon-link" data-toggle="tooltip" data-placement="left" title="" data-original-title="Compare"><i class="fa fa-refresh"></i></a>
-                                                                                                <a href="#" class="hover-icon-link" data-toggle="tooltip" data-placement="left" title="" data-original-title="Quick view"><i class="fa fa-search-plus" data-toggle="modal" data-target="#quickViewModal"></i></a>
-                                                                                            </div>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </ul>
                                                                         </div>
-                                                                    </div>
+                                                                        </div>
+                                                                    </ul>
                                                                 </div>
                                                             </div>
-                                                            <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">...</div>
-                                                            <div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">...</div>
-                                                            <div class="tab-pane fade" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab">...</div>
                                                         </div>
                                                     </div>
+                                                {% endfor %}
+                                                <div class="tab-pane fade" id="BlankTab" role="tabpanel" aria-labelledby="v-pills-profile-tab">
+                                                    <div class="col-12 col-lg-3 col-md-6">
+                                                                    <ul class="you-may-like-area">
+                                                                        <li class="you-may-like-heading">
+                                                                            <h4>You may also like!</h4>
+                                                                        </li>
+                                                                        <div class="you-may-like-Slider owl-carousel owl-theme">
+                                                                        <div class="item">
+                                                                        <div class="view-products-single-box">
+                                                                        <div class="view-products-thumb">
+                                                                            <img src="{{ asset('theme/images/DC-Motor-12v.jpg') }}">
+                                                                            <div class="view-products-hover-info">
+                                                                            <button class="icon-link-btn" onclick="openNav()"><i class="fa fa-shopping-cart pr-2"></i> Add to cart</button>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="view-products-info">                            
+                                                                            <div class="view-products-title">
+                                                                                <h3><a href="#">4WD-Smart-Robot-Car-Chassis-Kit</a></h3>
+                                                                                <span class="view-products-price">TZS&nbsp;55,000</span>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="hover-icon-link-box">
+                                                                            <a href="#" class="hover-icon-link" data-toggle="tooltip" data-placement="left" title="" data-original-title="Login to use whishlist"><i class="fa fa-heart-o"></i></a>
+                                                                            <a href="#" class="hover-icon-link" data-toggle="tooltip" data-placement="left" title="" data-original-title="Compare"><i class="fa fa-refresh"></i></a>
+                                                                            <a href="#" class="hover-icon-link" data-toggle="tooltip" data-placement="left" title="" data-original-title="Quick view"><i class="fa fa-search-plus" data-toggle="modal" data-target="#quickViewModal"></i></a>
+                                                                            </div>
+                                                                        </div>
+                                                                        </div>
+                                                                        </div>
+                                                                    </ul>
+                                                                </div>
                                                 </div>
+                                               
+                                            </div>
+                                            </div>
+                                            </div>
                                             </div>  
                                         </div>
                                     </li>

@@ -9,8 +9,6 @@ class Registration extends MY_Controller
         $this->load->library('doctrine');
         $this->load->Model('PageModel','PM');
         
-        
-       
         $this->load->helper('url');
     }
 
@@ -25,6 +23,8 @@ class Registration extends MY_Controller
         $email = $this->session->flashdata('email');
         $password = $this->session->flashdata('password');
         $confirm_password= $this->session->flashdata('confirm_password');
+
+
         $this->twig->display('registration',compact('emailexit','name','email','password','confirm_password','questions','cap'));
     }
 
