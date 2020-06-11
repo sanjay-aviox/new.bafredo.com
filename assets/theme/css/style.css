@@ -1480,7 +1480,6 @@ input.searchInput:focus, input.searchInput:active{
 .customer-review-box{
 	display: flex;
 	justify-content: space-between;
-	align-items: center;
 }
 .reviews-heading{
 	color: #4c4c4c;
@@ -1499,6 +1498,33 @@ input.searchInput:focus, input.searchInput:active{
 .product-shipping-box .comn-thumb-box img{
 	height: 200px;
 	object-fit: contain;
+}
+.customer-single-review-box{
+
+}
+.customer-single-review-box span{
+	font-size: 16px;
+    font-weight: 400;
+}
+.customer-single-review-box p{
+	color: #503ca7;
+    font-size: 16px;
+    font-weight: 500;
+}
+.review-btn{
+	font-weight: 500;
+    position: absolute;
+    right: 45px;
+    top: 28px;
+    background: #ebe8f8;
+    padding: 4px 8px;
+    color: #3c2b86;
+    font-size: 14px;
+}
+#rateYo .jq-ry-rated-group{
+	overflow: hidden;
+    height: 30px;
+    margin-top: -33px;
 }
 /*******************************/
 /*** product-detail-section ****/
@@ -1632,11 +1658,16 @@ input.searchInput:focus, input.searchInput:active{
 }
 .product-selector-box{
 	display: flex;
-    overflow: auto;
     width: 400px;
     margin-top: 10px;
 }
-.product-selector-box::-webkit-scrollbar {
+.product-selector-list{
+	overflow: auto;
+	display: flex;
+	overflow-y: hidden;
+	overflow-x: auto;
+}
+.product-selector-list::-webkit-scrollbar {
   width: 0px;
 }
 .selector-thumb{
@@ -1651,20 +1682,13 @@ input.searchInput:focus, input.searchInput:active{
 .product-selector-next-btn{
     background: transparent;
     border: none;
-    padding: 5px;
-    font-size: 28px;
+    padding: 0px 10px;
+    font-size: 24px;
     color: #3c2b86;
     font-weight: 100 !important;
-}
-.product-selector-prev-btn{
-	position: absolute;
-    left: -18px;
-    bottom: 50px;
-}
-.product-selector-next-btn{
-	position: absolute;
-    right: 120px;
-    bottom: 50px;
+    display: flex;
+    align-items: center;
+    height: 70px;
 }
 /*******************************/
 /********* cart-section ********/
@@ -2613,8 +2637,8 @@ p.privacy-text a{
 }
 .blog-thumb img{
 	width: 100%;
-	height: 250px;
-	object-fit: contain;
+	height: 300px;
+	object-fit: cover;
 	transition: 0.5s ease all;
 }
 .blog-single-box:hover .blog-thumb img{
@@ -2641,8 +2665,8 @@ p.privacy-text a{
 }
 .blog-post-date{
 	position: absolute;
-    top: -10px;
-    left: -10px;
+    top: 0px;
+    left: 0px;
     background-color: #ffffff;
     box-shadow: 0 0 9px rgba(0,0,0,.1);
     z-index: 2;
@@ -2918,6 +2942,21 @@ p.privacy-text a{
 	.account-dropdown-menu{
 		left: unset;
 		right: 0px;
+	}
+	.lineFrame{
+		margin-bottom: 20px;
+	}
+	.product-selector-box {
+	    display: flex;
+	    overflow: auto;
+	    width: 100%;
+	    margin: 10px auto 0px auto;
+	}
+	.product-content-box{
+		padding-top: 25px;
+	}
+	.customer-review-box {
+	    display: block;
 	}
 }
 @media (max-width: 768px) {

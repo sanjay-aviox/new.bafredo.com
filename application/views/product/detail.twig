@@ -30,35 +30,39 @@
     <section class="product-detail-section py-5">
         <div class="container">
             <div class="row">
-                <div class="col-12 col-md-6">
-                    <div class="product-thumb-detail-box">                      
-                        <img src='{{ asset("uploads/product/thumbnail/#{product.getImage()}") }}' title="{{ product.getName() }}" class="demo-trigger" alt="{{ product.getName() }}"  data-zoom='{{ asset("uploads/product/thumbnail/#{product.getImage()}") }}' />
+                <div class="col-12 col-lg-6">
+                    <div class="product-thumb-detail-area">
+                    	<div class="product-thumb-detail-box">                      
+	                        <img src='{{ asset("uploads/product/thumbnail/#{product.getImage()}") }}' title="{{ product.getName() }}" class="demo-trigger" alt="{{ product.getName() }}"  data-zoom='{{ asset("uploads/product/thumbnail/#{product.getImage()}") }}' />
+	                    </div>
+	                    <div class="product-selector-box">
+	                    	<button type="button" class="product-selector-prev-btn"><i class="fa fa-chevron-left"></i></button>
+	                    	<div class="product-selector-list">
+	                    		<a href="#" class="selector-thumb">
+		                    		<img src='{{ asset("uploads/product/thumbnail/#{product.getImage()}") }}'>
+		                    	</a>
+		                    	<a href="#" class="selector-thumb">
+		                    		<img src='{{ asset("uploads/product/thumbnail/#{product.getImage()}") }}'>
+		                    	</a>
+		                    	<a href="#" class="selector-thumb">
+		                    		<img src='{{ asset("uploads/product/thumbnail/#{product.getImage()}") }}'>
+		                    	</a>
+		                    	<a href="#" class="selector-thumb">
+		                    		<img src='{{ asset("uploads/product/thumbnail/#{product.getImage()}") }}'>
+		                    	</a>
+		                    	<a href="#" class="selector-thumb">
+		                    		<img src='{{ asset("uploads/product/thumbnail/#{product.getImage()}") }}'>
+		                    	</a>
+		                    	<a href="#" class="selector-thumb">
+		                    		<img src='{{ asset("uploads/product/thumbnail/#{product.getImage()}") }}'>
+		                    	</a>
+	                    	</div>
+	                    	<button type="button" class="product-selector-next-btn"><i class="fa fa-chevron-right"></i></button>
+	                    </div>
+	                    <div class="product-selector-box"></div>
                     </div>
-                    <button type="button" class="product-selector-prev-btn"><i class="fa fa-chevron-left"></i></button>
-                    <div class="product-selector-box">
-                    	<a href="#" class="selector-thumb">
-                    		<img src='{{ asset("uploads/product/thumbnail/#{product.getImage()}") }}'>
-                    	</a>
-                    	<a href="#" class="selector-thumb">
-                    		<img src='{{ asset("uploads/product/thumbnail/#{product.getImage()}") }}'>
-                    	</a>
-                    	<a href="#" class="selector-thumb">
-                    		<img src='{{ asset("uploads/product/thumbnail/#{product.getImage()}") }}'>
-                    	</a>
-                    	<a href="#" class="selector-thumb">
-                    		<img src='{{ asset("uploads/product/thumbnail/#{product.getImage()}") }}'>
-                    	</a>
-                    	<a href="#" class="selector-thumb">
-                    		<img src='{{ asset("uploads/product/thumbnail/#{product.getImage()}") }}'>
-                    	</a>
-                    	<a href="#" class="selector-thumb">
-                    		<img src='{{ asset("uploads/product/thumbnail/#{product.getImage()}") }}'>
-                    	</a>
-                    </div>
-                    <button type="button" class="product-selector-next-btn"><i class="fa fa-chevron-right"></i></button>
-                    <div class="product-selector-box"></div>
                 </div>
-                <div class="col-12 col-md-6">
+                <div class="col-12 col-lg-6">
                     <div class="product-content-box product-demo-detail">
                         <div class="product-detail-heading"><h3>{{ product.getName() }}</h3></div>
                         <div class="product-detail-review-box">
@@ -224,48 +228,47 @@
                                                     <div class="lineFrame">
                                                         <div class="productLineFrame productCon">
                                                             <section class="info_INTRODUCTION">
-                                                                
-                                                                             {% for key, rev in review %}
-                <div style="background:#e6e6e6;">
-                  
-                     
-                    {% set k = rev.review %}
-                        {% for i in range(1, k) %}
-                            <span class="fa fa-star checked"></span>
-                        {% endfor %}
-                      <span>{{ rev.comment }}</span> 
-                    <p>By: {{ rev.name }}</p>
-                </div>
-                {% endfor %}
+                                                                {% for key, rev in review %}
+													                <div class="customer-single-review-box">
+													                    {% set k = rev.review %}
+													                        {% for i in range(1, k) %}
+													                            <span class="fa fa-star checked"></span>
+													                        {% endfor %}
+													                      <span>{{ rev.comment }}</span> 
+													                    <p>By: {{ rev.name }}</p>
+													                </div>
+													                {% endfor %}
                                                             </section>
                                                         </div>
                                                     </div>
                                                 {% endif %}
                             
-                             {% if user.name  is not null %}
+                             					{% if user.name  is not null %}
     
-        <div class="lineFrame">
-            <div class="productLineFrame disqusFrame">
-                <h4>REVIEW</h4>
-                <!--disqus begin-->
-                <div id="disqus_thread" style="width: 100%;">
-                    <form action="{{ base_url('add-review') }}" method="post">
-                        <input type="hidden" name="product_id" value="{{ product.id }}">
-                         <input type="hidden" name="product_slug" value="{{ product.getSlug() }}">
-                        <div id="rateYo"></div>
-                        <input type="hidden" name="rating"><br><br>
-                        <label>Comment:</label>
-                        <textarea rows="5" name="comment" cols="50"></textarea><br>
-                        <input type="submit"  value="Submit" class="btn-primary">
-                    </form>
-                </div>
-                <!--disqus end-->
-            </div>
-        </div>
-            
-    {% else %}
-            <a href="{{ base_url('/login') }}">Submit a Review</a>
-    {% endif %}
+										        <div class="lineFrame">
+										            <div class="productLineFrame disqusFrame">
+										                <h4>REVIEW</h4>
+										                <!--disqus begin-->
+										                <div id="disqus_thread">
+										                    <form action="{{ base_url('add-review') }}" method="post">
+										                        <input type="hidden" name="product_id" value="{{ product.id }}">
+										                        <input type="hidden" name="product_slug" value="{{ product.getSlug() }}">
+										                        <div id="rateYo"></div>
+										                        <input type="hidden" name="rating">
+										                        <div class="form-group mt-4">
+											                        <label for="textarea1">Comment:</label>
+											                        <textarea rows="5" name="comment" cols="50" class="form-control" id="textarea1"></textarea>
+											                    </div>
+										                        <input type="submit"  value="Submit" class="comn-btn">
+										                    </form>
+										                </div>
+										                <!--disqus end-->
+										            </div>
+										        </div>
+										            
+										    {% else %}
+										            <a href="{{ base_url('/login') }}" class="review-btn">Submit a Review</a>
+										    {% endif %}
                                                 <!--span class="reviews-heading">No reviews yet</span>
                                                 <a href="#" class="review-link">Write a review</a-->
                                             </div>
