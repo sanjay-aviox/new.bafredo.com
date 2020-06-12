@@ -1,5 +1,75 @@
-<h2>Address Book</h2>
-<div class="orderListFrame">
+<div class="add-address-modal">
+    <h2 class="comn-dash-account-heading">Address Book</h2>
+    <form>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="inputEmail4">First Name</label>
+                <input type="email" class="form-control" id="inputEmail4">
+            </div>
+            <div class="form-group col-md-6">
+                <label for="inputPassword4">Last Name</label>
+                <input type="password" class="form-control" id="inputPassword4">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="inputAddress">Company</label>
+            <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="inputEmail4">Address1</label>
+                <input type="email" class="form-control" id="inputEmail4">
+            </div>
+            <div class="form-group col-md-6">
+                <label for="inputPassword4">Address2</label>
+                <input type="password" class="form-control" id="inputPassword4">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="inputAddress">City</label>
+            <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="inputState">Country</label>
+                <select id="inputState" class="form-control">
+                    <option selected="">Choose...</option>
+                    <option>...</option>
+                </select>
+            </div>
+            <div class="form-group col-md-6">
+                <label for="inputState">Province</label>
+                <select id="inputState" class="form-control">
+                    <option selected="">Choose...</option>
+                    <option>...</option>
+                </select>
+            </div>
+        </div>  
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="inputEmail4">Postal/Zip Code</label>
+                <input type="email" class="form-control" id="inputEmail4">
+            </div>
+            <div class="form-group col-md-6">
+                <label for="inputPassword4">Phone</label>
+                <input type="password" class="form-control" id="inputPassword4">
+            </div>
+        </div>                     
+        <div class="form-group">
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="gridCheck">
+                <label class="form-check-label" for="gridCheck">Set as default address</label>
+            </div>
+        </div>
+        <div class="form-group">                        
+            <button type="button" class="comn-btn black-btn">Add Address</button>
+            <button type="button" class="comn-btn black-btn" data-dismiss="modal">Cancel</button>
+        </div>
+    </form>
+</div>
+
+
+<!-- <div class="orderListFrame">
     <form action="#" method="post" class="form-horizontal">
         <fieldset>
             <legend></legend>
@@ -75,7 +145,7 @@
             </div>
         </div>
     </form>
-</div>
+</div> -->
 {% block scripts %}
 <script>
     $(document).ready(function () {

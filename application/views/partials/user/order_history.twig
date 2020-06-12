@@ -1,17 +1,17 @@
 <div class="orders-area">
-    <div class="my-account-bg-content">
-        <strong>Order History :</strong>
-    </div>
+    <h2 class="comn-dash-account-heading">
+       Order History :
+    </h2>
     
         {% if orders %}
         <table class="table table-striped order-history" class="display" cellspacing="0" width="100%"  id="orderhistory">
             <thead>
                 <tr>
-                    <th class="col-md-3">Order ID</th>
-                    <th class="col-md-2">Status</th>
-                    <th class="col-md-2">Total</th>
-                    <th class="col-md-3">Date</th>
-                    <th class="col-md-2">Options</th>
+                    <th>Order ID</th>
+                    <th>Status</th>
+                    <th>Total</th>
+                    <th>Date</th>
+                    <th>Options</th>
                 </tr>
             </thead>
             <tbody>
@@ -24,7 +24,7 @@
                     <td>
                         <a href='{{ base_url("account/order_history/#{order.id}") }}'  onclick="return confirm('Confirm deletion of Order ID {{ order.id }}?')" id="cancel_order" class="btn btn-xs btn-danger">Delete</a>
                         <a href='{{ base_url("cart/invoice/#{order.id}") }}' target="_blank" class="btn btn-xs btn-primary">Invoice</a>
-                        <button class="reoders" data-id="{{order.id}}">Reorder</button>
+                        <button class="reoders btn btn-xs btn-secondary" data-id="{{order.id}}">Reorder</button>
                     </td>
                 </tr>
                 {% endfor %}
@@ -55,10 +55,10 @@
             <table id="dataResult" style="width:100%">
                 <thead>
                     <tr>
-                        <th class="col-md-3">Order ID</th>
-                        <th class="col-md-2">Status</th>
-                        <th class="col-md-2">Total</th>
-                        <th class="col-md-3">Date</th>
+                        <th>Order ID</th>
+                        <th>Status</th>
+                        <th>Total</th>
+                        <th>Date</th>
                     </tr>
                 </thead>
                 <tbody id="DResult">
