@@ -147,7 +147,9 @@ class Account extends MY_Controller
         $this->data['user'] = getAuthUser('user');
         $this->data['page'] = 'wish_list';
         $this->data['result'] = $this->AM->get_wish_list($this->data['user']->getId());
-        $this->twig->display('user/profile', $this->data);
+        //$this->twig->display('user/profile', $this->data);
+      //  echo "<pre>"; print_r($this->data); die;
+        $this->twig->display('partials/user/wish_list', $this->data);
     }
     public function verifyemail(){
         $data = $this->input->post();  

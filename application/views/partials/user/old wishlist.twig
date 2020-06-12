@@ -1,0 +1,96 @@
+<style type="text/css">
+    .bodyFrame .pc .accountFrame .rightFrame .btn {
+        width: auto;
+        height: auto;
+        font-size: 12px;
+    }
+    .btn-black {
+        background: #383838 !important;
+        color: #FFFFFF !important;
+    }
+    .order-history {
+        font-size: 16px;
+    }
+</style>
+
+<h2>My Account</h2>
+<h3>WISHLIST items</h3>
+<div class="orderListFrame">
+    <P Id="msg" style="background-colot:green"></P>
+
+    <table class="table table-striped order-history" id="wishlistTable">
+        <thead>
+        <tr>
+            <th class="col-md-3">ID</th>
+            <th class="col-md-2">Product Name</th>
+            <th class="col-md-3">Date</th>
+            <th class="col-md-2">Delete</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for res in result %}
+        <tr>
+            <td>{{ loop.index }}</td>
+            <td>{{ res.name }}</td>
+            <td>{{ res.created_at }}</td>
+            <td>
+                <button type="button" class="btn btn-xs btn-danger delete" data-id="{{ res.id}}">Delete</button>
+                
+                {#<a href="{{ base_url('account/remove_history/')~res.id }}" class="btn btn-xs btn-danger">Delete</a>#}
+            </td>
+            {% endfor %}
+        </tr>
+        </tbody>
+    </table>
+</div>
+<div class="modal fade" id="deletemodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Delete Item</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+          
+        <input type="hidden" id="item_id">
+        <p class="delete-text">Are you sure you want to delete this WISHLIST item?</p>
+      </div>
+      <div class="modal-footer text-center">
+          <button type="button" class="btn btn-danger confirmDelete">Delete</button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+ $(document).on('click', '.delete', function(){
+   var id = $(this).data('id');
+  // alert(id);
+   $('#item_id').val(id);
+    $('#deletemodal').modal('show');
+ });
+  $(document).on('click', '.confirmDelete', function(){
+   var id = $('#item_id').val();
+
+        if(id)
+        $('#deletemodal').modal('hide');
+        {
+            $.ajax({
+               url: '/account/remove_history/'+id,
+               type: 'DELETE',
+               error: function() {
+                  alert('Something is wrong');
+               },
+               success: function(data) {
+                    $("#msg").addClass("alert alert-success");
+                    $("#msg").html("Record removed successfully").show().fadeOut(3000);
+                    
+                    setTimeout(function () { location.reload(); }, 2000);
+               }
+            });
+        }
+    });
+</script>
