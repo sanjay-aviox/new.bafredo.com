@@ -119,6 +119,34 @@
                             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                                 <span class="navbar-toggler-icon"></span>
                             </button>
+
+                            <!-- mobile sidebar start -->
+                            <span class="mobile-sidebar-toggle" onclick="openMobileNav()">&#9776;</span>
+                            <div id="myMobileNav" class="mobile-overlay">
+                                <a href="javascript:void(0)" class="closebtn" onclick="closeMobileNav()">&times;</a>
+                                <ul class="mobile-overlay-content">
+                                    <li class="mob-nav-item active">
+                                        <a href="#" class="mob-nav-link">Home</a>
+                                    </li>
+                                    <li class="mob-nav-item">
+                                        <a href="#" class="mob-nav-link">Category</a>
+                                    </li>
+                                    <li class="mob-nav-item">
+                                        <a href="#" class="mob-nav-link">Community</a>
+                                    </li>
+                                    <li class="mob-nav-item">
+                                        <a href="#" class="mob-nav-link">Blog</a>
+                                    </li>
+                                    <li class="mob-nav-item">
+                                        <a href="#" class="mob-nav-link">Wiki</a>
+                                    </li>
+                                    <li class="mob-nav-item">
+                                        <a href="#" class="mob-nav-link">Corency</a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <!-- mobile sidebar end -->
+
                             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                                 <ul class="navbar-nav mr-auto">
                                     <li class="nav-item active">
@@ -149,13 +177,13 @@
                                                     {% endfor %}
                                                 </div>
                                             </div>
-                                            <div class="col-9">
+                                            <div class="col-12 col-md-9">
                                             <div class="tab-content" id="v-pills-tabContent">
                                                 {% for menu in menus %}
                                                     <div class="tab-pane fade" id="{{ menu.getName() }}" role="tabpanel" aria-labelledby="v-{{ menu.getName() }}">
                                                         <div class="container-fluid">
                                                             <div class="row">
-                                                                <div class="col-12 col-lg-3 col-md-6">
+                                                                <div class="col-12  col-md-8">
                                                                     <ul class="sub-menu">
                                                                     {% for smenu in menu.getSubCategories() %}
                                                                         <li class="sub-menu-item">
@@ -164,7 +192,7 @@
                                                                     {% endfor %}
                                                                     </ul>
                                                                 </div>
-                                                                <div class="col-12 col-lg-3 col-md-6">
+                                                                <div class="col-12 col-md-4">
                                                                     <ul class="you-may-like-area">
                                                                         <li class="you-may-like-heading">
                                                                             <h4>You may also like!</h4>
@@ -199,7 +227,7 @@
                                                     </div>
                                                 {% endfor %}
                                                 <div class="tab-pane fade" id="BlankTab" role="tabpanel" aria-labelledby="v-pills-profile-tab">
-                                                    <div class="col-12 col-lg-3 col-md-6">
+                                                    <div class="col-12 col-lg-4 col-md-6">
                                                                     <ul class="you-may-like-area">
                                                                         <li class="you-may-like-heading">
                                                                             <h4>You may also like!</h4>
@@ -531,6 +559,13 @@
         });         
     });
 
+    // mobile-sidebar
+    function openMobileNav() {
+      document.getElementById("myMobileNav").style.width = "100%";
+    }
+    function closeMobileNav() {
+      document.getElementById("myMobileNav").style.width = "0%";
+    }
 
 </script>
     <!-- copyright-section end -->
