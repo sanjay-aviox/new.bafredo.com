@@ -58,86 +58,51 @@
     </style>
 {% endblock %}
 {% block content %}
-
-    <div class="row pc">
-        {% if success is not empty %}
-            <div class="alert alert-success">
-                <strong>Success! </strong> Updated successfully.
+<section class="breadcrumb-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-md-12">
+                <div class="breadcrumb-area">
+                    <nav aria-label="breadcrumb" class="comn-breadcrumb-nav">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="#"><i class="fa fa-home pr-2"></i>Home</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">My Account</li>
+                        </ol>
+                    </nav>
+                </div>
             </div>
-        {% endif %}
-        <div class="lineFrame">
-            <ul class="breadcrumb">
-                <li><a href="{{ base_url('/') }}"><i class="fa fa-home"></i></a></li>
-                <li><a href="{{ base_url('account') }}">Account</a></li>
-            </ul>
         </div>
-        <div class="clear"></div>
-        <div class="lineFrame accountTit">
-            My Account
-        
-        </div>
-        <div class="lineFrame accountFrame">
-            <div class="leftFrame">
-                <aside id="column-right">
-                    <div class="myName">
-                        <div class="head">
-                            <img src="{{ user.getUserImg() is empty ? base_url('assets/front/image/profile.png') : base_url("assets/front/image/users/")~user.getUserImg() }}  " class="profile-content profile"  alt="my head">
-                            <lable id="imgmsg" style="display:none">Max size is 2 Mb</lable>
-                            {#<p id="imgmsg"></p>#}
-                            <input id="hprofile" type="file"  alt="my head">
-                            	
-                        </div>
-                        {#<div class="text">#}
-                        {#    <h4>{{ user.getName() }}</h4>#}
-                        {#    <h6>{{ user.getEmail() }}</h6>#}
-                        {#    <h6>{{ user.getTelephone() }}</h6>#}
-
-                        {#</div>#}
-                    </div>
-                    <div class="accountNav" style="margin-top: 44px;">
-                        <a class="aMenu_0 {{(page=='account')?'select':''}}" href="{{ base_url('account') }}">My Account</a>
-                        <hr>
-                        <a class="aMenu_1 {{(page=='order_history')?'select':''}}" href="{{ base_url('account/order_history') }}">Order History</a>
-                        <hr>
-                        <a class="aMenu_2 {{(page=='address_book')?'select':''}}" href="{{ base_url('account/address_book') }}">Address Book</a>
-                        <hr>
-                        <a class="aMenu_3 {{(page=='wish_list')?'select':''}}" href="{{ base_url('account/wish_list') }}">Wishlist</a>
-                        <hr>
-                        {#<a class="aMenu_4" href="{{ base_url('account') }}">Affiliates</a>#}
-                        {#<hr>#}
-                        <!--<a class="aMenu_7" href="https://www.dfrobot.com/index.php?route=account/transaction&tab=transaction">Store Credit</a>-->
-                        <hr>
-
-                        {#<a class="aMenu_8" href="{{ base_url('account') }}">Your Reward Points</a>#}
-                        {#<hr>#}
-                        <a href="{{ base_url('user/logout') }}">Logout</a>
-                    </div>
-                </aside>
-            </div>
-
-            <div class="rightFrame">
-                {{ include("partials/user/#{page}.twig") }}
-            </div>
-
-        </div>
-        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-       
-      </div>
-      <div class="modal-body">
-        Are YOu want to Continue?
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
-        <button type="button" class="btn btn-primary">yes</button>
-      </div>
     </div>
-  </div>
-</div>
+</section>
+<section class="my-account-section py-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-md-4">
+                <div class="my-account-menu-area">
+                    <div class="nav flex-column">
+                        
+                        <a class="nav-link active aMenu_0 {{(page=='account')?'select':''}}" href="{{ base_url('account') }}">My Account</a>
+                        <hr>
+                        <a class="nav-link aMenu_1 {{(page=='order_history')?'select':''}}" href="{{ base_url('account/order_history') }}">Order History</a>
+                        <hr>
+                        <a class="nav-link aMenu_2 {{(page=='address_book')?'select':''}}" href="{{ base_url('account/address_book') }}">Address Book</a>
+                        <hr>
+                        <a class="nav-link" href="{{ base_url('user/logout') }}">Logout</a>
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-8">
+                <div class="my-account-area">
+                    <div class="my-account-bg-content">
+                         {{ include("partials/user/#{page}.twig") }}
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
+</section>
+
 {% endblock %}
 
 {% block scripts %}

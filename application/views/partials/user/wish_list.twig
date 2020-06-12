@@ -30,6 +30,7 @@
             <div class="row">
                 <div class="col-12 col-md-12">
                     <div class="wishlist-list-area">
+                        <p id="msg" style="background-colot:green"></p>
                         <div class="table-responsive">
                             <table class="table">
                                 <thead>
@@ -43,10 +44,12 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    {% if result %}
                                     {% for res in result %}
                                         <tr>
 
-                                            <td class="product-remove-icon"><a href="#"><i class="fa fa-times-circle"></i></a></td>
+                                            <td class="product-remove-icon"> <button type="button" class="btn btn-xs btn-danger delete" data-id="{{ res.id}}"><i class="fa fa-times-circle"></i></button></td>
+
                                              <td class="wishlist-product-image"><img src='{{ asset("uploads/product/thumbnail/#{res.image}") }}'></td>
                                             <td>{{ res.name }}</td>
                                             <td>{{ res.currency }} {{ res.price }}</td>
@@ -55,6 +58,12 @@
 
                                         </tr>
                                     {% endfor %}
+                                    {% else %}
+                                        <tr>
+                                          <td colspan="4" class="product-remove-icon"> No Records Found..</td>
+                                        </tr>
+                                    {% endif %}
+
                                 </tbody>
                             </table>
                         </div>
@@ -63,4 +72,52 @@
             </div>
         </div>
     </section>
+    <div class="modal fade" id="deletemodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Delete Item</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <input type="hidden" id="item_id">
+                    <p class="delete-text">Are you sure you want to delete this WISHLIST item?</p>
+                </div>
+                <div class="modal-footer text-center">
+                    <button type="button" class="btn btn-danger confirmDelete">Delete</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        $(document).on('click', '.delete', function(){
+            var id = $(this).data('id');
+            $('#item_id').val(id);
+            $('#deletemodal').modal('show');
+        });
+        $(document).on('click', '.confirmDelete', function(){
+            var id = $('#item_id').val();
+            alert(id);
+            if(id){
+                $('#deletemodal').modal('hide');
+            }
+            {
+                $.ajax({
+                    url: 'http://localhost/new.bafredo.com/account/remove_history/'+id,
+                    type: 'DELETE',
+                    error: function() {
+                       alert('Something is wrong');
+                    },
+                    success: function(data) {
+                        $("#msg").addClass("alert alert-success");
+                        $("#msg").html("Record removed successfully").show().fadeOut(3000);
+                        setTimeout(function () { location.reload(); }, 2000);
+                    }
+                });
+            }
+        });
+    </script>
 {% endblock %}

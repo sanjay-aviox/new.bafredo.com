@@ -92,6 +92,7 @@
                                     <div class="headImg"><img src="{{ user.getUserImg() is empty ? base_url('assets/front/image/profile.png') : base_url('assets/front/image/users/')~user.getUserImg() }} " alit="dp">{{ getAuthUser("user").name }}</div>
                                     <a class="account-dropdown-item" href="{{ base_url('account') }}">My Account</a>
                                     <a class="account-dropdown-item" href="{{ base_url('account/order_history') }}">Order history</a>
+                                    <a class="account-dropdown-item" href="{{ base_url('account/wish_list') }}">Wishlist</a>
                                     <a class="account-dropdown-item" href="{{ base_url('user/logout') }}">Logout</a>
                                 </div>
                             </div>
@@ -172,7 +173,7 @@
 
                                                     {% for menu in menus %}
                                                     {% if menu.getSubCategories() != null %}
-                                                        <a class="sub-menu-heading-link" id="v-{{ menu.getName() }}" data-toggle="pill" href="#{{ menu.getName() }}" role="tab" aria-controls="v-pills-home" aria-selected="true">{{ menu.getName() }}</a>
+                                                        <a class="sub-menu-heading-link" id="v-{{ menu.getName() }}" data-toggle="pill" href="#{{ menu.getName() |replace({' ': ''})}}" role="tab" aria-controls="v-pills-home" aria-selected="true">{{ menu.getName() }}</a>
                                                     {% endif %}
                                                     {% endfor %}
                                                 </div>
@@ -180,7 +181,7 @@
                                             <div class="col-12 col-md-9">
                                             <div class="tab-content" id="v-pills-tabContent">
                                                 {% for menu in menus %}
-                                                    <div class="tab-pane fade" id="{{ menu.getName() }}" role="tabpanel" aria-labelledby="v-{{ menu.getName() }}">
+                                                    <div class="tab-pane fade" id="{{ menu.getName() |replace({' ': ''}) }}" role="tabpanel" aria-labelledby="v-{{ menu.getName() }}">
                                                         <div class="container-fluid">
                                                             <div class="row">
                                                                 <div class="col-12  col-md-8">
@@ -502,11 +503,11 @@
                 success: function (output) {
                     console.log(output);
                     if (output) {
-                        alert("hi");
+                       // alert("hi");
                         toastr.success("Subscribed Successfully" , {timeOut: 5000});
                         // alert("Subscribed Successfully")
                     } else {
-                         alert("hiiii");
+                       //  alert("hiiii");
                         toastr.success("Already Subscribed" , {timeOut: 5000});
                        // alert("Already Subscribed")
                     }

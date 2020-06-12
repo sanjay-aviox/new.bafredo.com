@@ -1,39 +1,42 @@
-<h2>Order History</h2>
-<h3>Latest order</h3>
-<div class="orderListFrame"><p id="check"></p>
-   <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal"> Download Orders</button><br><br>
-    <div id="msg"> </div>
-    <table class="table table-striped order-history" class="display" cellspacing="0" width="100%"  id="orderhistory">
-        <thead>
-        <tr>
-            <th class="col-md-3">Order ID</th>
-            <th class="col-md-2">Status</th>
-            <th class="col-md-2">Total</th>
-            <th class="col-md-3">Date</th>
-            <th class="col-md-2">Options</th>
-        </tr>
-        </thead>
-        <tbody>
-        {% for order in orders %}
-            <tr>
-                <td>{{ order.id }}</td>
-                <td>{{ order.order_status }}</td>
-                <td>{{ order.currency ~' '~ order.total }}</td>
-                <td>{{ order.created_at }}</td>
-                <td>
-                    <a href='{{ base_url("account/order_history/#{order.id}") }}'  onclick="return confirm('Confirm deletion of Order ID {{ order.id }}?')" id="cancel_order" class="btn btn-xs btn-danger">Delete</a>
-                    <a href='{{ base_url("cart/invoice/#{order.id}") }}' target="_blank" class="btn btn-xs btn-primary">Invoice</a>
-                    
-                    <button class="reoders" data-id="{{order.id}}">Reorder</button>
-                </td>
-            </tr>
-        {% endfor %}
-        </tbody>
+<div class="orders-area">
+    <div class="my-account-bg-content">
+        <strong>Order History :</strong>
+    </div>
+    
+        {% if orders %}
+        <table class="table table-striped order-history" class="display" cellspacing="0" width="100%"  id="orderhistory">
+            <thead>
+                <tr>
+                    <th class="col-md-3">Order ID</th>
+                    <th class="col-md-2">Status</th>
+                    <th class="col-md-2">Total</th>
+                    <th class="col-md-3">Date</th>
+                    <th class="col-md-2">Options</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for order in orders %}
+                <tr>
+                    <td>{{ order.id }}</td>
+                    <td>{{ order.order_status }}</td>
+                    <td>{{ order.currency ~' '~ order.total }}</td>
+                    <td>{{ order.created_at }}</td>
+                    <td>
+                        <a href='{{ base_url("account/order_history/#{order.id}") }}'  onclick="return confirm('Confirm deletion of Order ID {{ order.id }}?')" id="cancel_order" class="btn btn-xs btn-danger">Delete</a>
+                        <a href='{{ base_url("cart/invoice/#{order.id}") }}' target="_blank" class="btn btn-xs btn-primary">Invoice</a>
+                        <button class="reoders" data-id="{{order.id}}">Reorder</button>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
     </table>
-    
-    
-    
+    {% else %}
+        <div class="my-account-outline-content">
+            <strong><i class="fa fa-check"></i> No order has been made yet. :</strong>
+        </div>
+    {% endif %}
 </div>
+
 
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
