@@ -29,9 +29,9 @@
                             <div class="view-products-thumb">
                                 <a href="{{ base_url("product/detail/#{product.slug}") }}"> <img src="{{ asset("uploads/product/thumbnail/#{product.getImage()}") }}"></a>
                                 <div class="view-products-hover-info">
-                                    <a href="#" v-on:click="addToCart({{ product.toJson() }})" class="icon-link-btn" data-toggle="tooltip" data-placement="top" title="Add to cart"> 
+                                    <button v-on:click="addToCart({{ product.toJson() }})" class="icon-link-btn" onclick="openNav()" data-toggle="tooltip" data-placement="top" title="Add to cart"> 
 
-                                    <i class="fa fa-shopping-cart pr-2"></i> Add to cart</a>
+                                    <i class="fa fa-shopping-cart pr-2"></i> Add to cart</button>
                                 </div>
                             </div>
                             <div class="view-products-info">                            
@@ -152,5 +152,67 @@
         </div>
 
 
+
+
     </section>
+       <div id="mySidenav" class="cart-sidenav">
+        <div class="cart-sidenav-header">
+            <h3 class="sidenav-heading">Shopping cart</h3>
+            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">Close &times;</a>
+        </div>
+        <ul class="sidenav-cart-list-area"> 
+            <li v-for="product in cart">
+                <div class="cart-product-thumb">
+                   <img :src="productImage(product.image)" :alt="product.name" :title="product.name">
+                </div>
+
+
+
+                <div class="cart-product-detail">
+                    <a href="#" class="cart-sidenav-heading">${ product.name }</a>
+                    <div class="sidenav-cart-list-box">
+                        
+
+                           <div class="input-group plus-minus-input">
+                                    <div class="widgets-numberpicker">
+                                        <div class="widgets-numberpicker-decrement" v-on:click="cartItemQuantityDecrement(product)"><i class="fa fa-minus"></i></div>
+                                    </div>
+                                    <div class="input-group-field item-quantity-count">
+                                        <input type="text" class="form-control" v-model="product.quantity" v-on:keypress="onlyNumber" maxlength="9">
+                                    </div>
+                                    <div class="widgets-numberpicker">
+                                        <div class="widgets-numberpicker-increment" v-on:click="cartItemQuantityIncrement(product)"><i class="fa fa-plus"></i></div>
+                                    </div>
+                                </div>
+   
+
+                        <span class="cart-price pl-2">
+                       
+                         <button class="removeBtn" v-on:click="removeFromCart(product)"> <i class="fa fa-times pr-2"></i></button>
+                        ${ product.currency +' '+ product.price*product.quantity }</span>
+                    </div>                    
+                </div>  
+                <li>
+                </ul>
+
+        <div class="sidenav-cart-detail">
+            <form>
+                <!--div class="form-group">
+                    <label for="exampleFormControlTextarea1">Special instructions for seller</label>
+                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                </div-->
+                <!--p class="sidenav-cart-total">
+                    <strong>Subtotal:</strong>
+                    <td><span v-text="subtotal"></span></td>
+                </p-->
+                <!--div class="custom-control custom-checkbox mr-sm-2 mb-4">
+                    <input type="checkbox" class="custom-control-input" id="customControlAutosizing">
+                    <label class="custom-control-label" for="customControlAutosizing">I agree with the <a href="#" class="tc-link">terms and conditions.</a></label>
+                </div-->
+                 <a class="comn-btn grey-btn d-block w-100 mb-3 showCartBtn" href="{{ base_url('cart') }}">View my cart</a>
+                <!--button class="comn-btn grey-btn d-block w-100 mb-3">VIEW CART</button-->
+                <button class="comn-btn d-block w-100"><a href="checkout.html">CHECKOUT</a></button>
+            </form>            
+        </div>
+    </div>
 {% endblock %}
