@@ -28,30 +28,36 @@
                 <div class="col-12 col-md-6">
                     <div class="account-form-area">
                         <div class="account-heading"><h2><i class="fa fa-user"></i>Register</h2></div>
-                         <form id="register" name="registration" action="{{ base_url('registration/process') }}" method="post">
+
+                        <form id="register" name="registration" action="{{ base_url('registration/process') }}" method="post">
+
                             <div class="form-group">
                                 <label for="user-name">User name <span class="required">*</span></label>
-                                <input type="text"  class="form-control" id="user-name" aria-describedby="emailHelp">
+                                <input type="text" name="name"  class="form-control" id="user-name" aria-describedby="emailHelp">
                             </div>
                             <div class="form-group">
                                 <label for="mob">Mobile Number <span class="required">*</span></label>
-                                <input type="text" class="form-control" id="mob" aria-describedby="emailHelp">
+                                <input type="text" name="phone" class="form-control" id="mob" aria-describedby="emailHelp">
                             </div>
                             <div class="form-group">
                                 <label for="email">Email address <span class="required">*</span></label>
-                                <input type="text" class="form-control" id="email" aria-describedby="emailHelp">
+                                <input type="text" name="email" class="form-control" id="email" aria-describedby="emailHelp">
+
+                                 <span class="alert">   {{ emailexit | raw }}  </span>
+
                             </div>
                             <div class="form-group">
                                 <label for="pass1">Password <span class="required">*</span></label>
-                                <input type="password" class="form-control" id="pass1">
+                                <input type="password" name="password" class="form-control" id="pass1">
                             </div>
                             <div class="form-group">
                                 <label for="pass2">Confirm Password <span class="required">*</span></label>
-                                <input type="password" class="form-control" id="pass2">
+                                <input type="password" name="confirm_password" class="form-control" id="pass2">
                             </div>
                             <div class="form-group">
                                 <label for="q1">Question #1 <span class="required">*</span></label>
                                 <select class="form-control" name="question[]" id="q1">
+                                    <option value="0">Select Question</option>
                                     {% for question in questions %}
                                         <option value="{{question.id}}">{{ question.question}}</option>
                                     {% endfor %}
@@ -59,11 +65,12 @@
                             </div>
                             <div class="form-group">
                                 <label for="a1">Answer <span class="required">*</span></label>
-                                <input type="text" name="answer[]" class="form-control" id="a1">
+                                <input type="text" name="answer[]" class="form-control ques" id="a1">
                             </div>
                             <div class="form-group">
                                 <label for="q2">Question #2 <span class="required">*</span></label>
                                 <select class="form-control" name="question[]" id="q2">
+                                     <option value="0">Select Question</option>
                                     {% for question in questions %}
                                         <option value="{{question.id}}">{{ question.question}}</option>
                                     {% endfor %}
@@ -71,8 +78,23 @@
                             </div>
                             <div class="form-group">
                                 <label for="a2">Answer <span class="required">*</span></label>
-                                <input type="text" name="answer[]" class="form-control" id="qa">
+                                <input type="text" name="answer[]" class="form-control ans1" id="qa">
                             </div>
+                            <div class="form-group">
+                                <label for="q1">Question #3 <span class="required">*</span></label>
+                                <select class="form-control" name="question[]" id="qa1">
+                                     <option value="0">Select Question</option>
+                                    {% for question in questions %}
+                                        <option value="{{question.id}}">{{ question.question}}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="a1">Answer <span class="required">*</span></label>
+                                <input type="text" name="answer[]" class="form-control ques" id="a21d">
+                            </div>
+
+                            <span id="warning"></span>
                             <div class="form-group">
                                 <label for="cp" class="captcha-box">
                                 <div style="margin-left:50px;width:30%;float:left;" id="captchaImg">
@@ -83,7 +105,7 @@
                                 <input type="text" name="captcha" class="form-control" id="cp" placeholder="Enter Captcha..">
                             </div>
                             <div class="form-group form-check">
-                                <input type="checkbox" name="termCondition" class="form-check-input" id="exampleCheck1">
+                                <input type="checkbox" name="agree" class="form-check-input" id="exampleCheck1">
                                 <label class="form-check-label" for="exampleCheck1">I have seen and accepted<a href="{{ base_url('page/privacy-policy') }}">Privacy Policy</a> and  <a href="{{ base_url('page/terms-conditions') }}">Terms & Conditions</a></label>
                             </div>
                             <button type="submit" class="account-outline-btn">REGISTER</button>
@@ -120,58 +142,6 @@
 
 
     $(document).ready(function(){
-        $("#registration").validate({
-            rules: {
-                username: {
-                    required: true,
-                }, 
-                phone: {
-                    required: true,
-                },
-                email: {
-                    required: true,
-                    email: true
-                },
-                password: {
-                    required: true,
-                },
-                'question[]':{
-                    required: true,
-                },
-                captcha:{
-                    required: true,
-                },
-                termCondition:{
-                    required: true,
-                }
-
-            },
-
-            messages: {
-                username: {
-                    required: "Username is required",
-                }, 
-                phone: {
-                    required: "Phone Number is required",
-                },
-                email: {
-                    required: "Email is required",
-                },     
-                password: {
-                    required: "Password is required",
-                },
-                'question[]':{
-                    required: "Question is required",
-                },
-                captcha:{
-                    required: "Captcha is required",
-                },
-                termCondition:{
-                    required: "Please accept terms & conditions.",
-                }
-
-            },
-        });
-    });
+ 
 </script>
 {% endblock %}

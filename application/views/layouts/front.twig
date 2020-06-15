@@ -481,7 +481,8 @@
                   },
                   success: function(data) {
                       console.log(data);
-                      $("#bodyupdate").html(data.data);
+                     $("#bodyupdate").html('<div data-pc="Latest" class="row" style="border-bottom: 2px solid green;"><b>Filter</b><div class="sort-section" style="float:right;"><label>Sort</label><select class="form-control" id="filter"><option>Select Filter</option><option value="hightolow">Price: High to Low</option> <option value="lowtohigh">Price: Low to High</option></select></div></div><div class="row">'+data.data+'</div>');
+
                   }
             });
         });

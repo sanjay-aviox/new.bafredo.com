@@ -90,7 +90,7 @@
        var id =  $(this).attr("data-id");
        alert("Are you sure, you want to re-order?");
         $.ajax({
-            url: '/cart/addCart',
+            url: 'http://localhost/new.bafredo.com/cart/addCart',
             type: 'get',
             data: {'id': id},
             dataType : "json",

@@ -127,6 +127,7 @@ class Account extends MY_Controller
         $this->data['page'] = 'address_book';
         $this->data['addressBook'] = $this->AM->get_user_address_book($this->data['user']->getId());
         $post = $this->input->post();
+       // print_r($this->data['addressBook']); die;
         if(!empty($post))
         {
             $this->data['user'] = $this->AM->update_address_book($post,$this->data['user']->getId());

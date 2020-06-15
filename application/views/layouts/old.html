@@ -797,7 +797,7 @@ $(document).on('click','#view_result', function(){
               },
               success: function(data) {
                   console.log(data);
-                  $("#bodyupdate").html(data.data);
+                  $("#bodyupdate").html('<div class="row">'+ data.data +'</div>');
                     // $("#msg").addClass("alert alert-success");
                     // $("#msg").html("Record removed successfully").show().fadeOut(3000);
                     

@@ -92,18 +92,20 @@ class Home extends MY_Controller
             ->result();
             
         $option=array();
-        array_push($option,'<div class="row hidden-xs pc"><br>
-                    <div data-pc="Latest" class="productTitle featured" style="border-bottom: 2px solid green;">
-                    <b>Filter</b> 
-                    <div class="sort-section" style="float:right;">
-                    <label>Sort</label>
-                    <select class="form-control" id="filter">
-                    <option>Select Filter</option>
-                    <option value="hightolow">Price: High to Low</option>
-                    <option value="lowtohigh">Price: Low to High</option>
-                    </select>
-                    </div>
-                    </div><br>');
+        //array_push($option,'  <div class="container">
+            // <div class="row hidden-xs pc"><br>
+            //         <div data-pc="Latest" class="productTitle featured" style="border-bottom: 2px solid green;">
+            //         <b>Filter</b> 
+            //         <div class="sort-section" style="float:right;">
+            //         <label>Sort</label>
+            //         <select class="form-control" id="filter">
+            //         <option>Select Filter</option>
+            //         <option value="hightolow">Price: High to Low</option>
+            //         <option value="lowtohigh">Price: Low to High</option>
+            //         </select>
+            //         </div>
+            //         </div><br>
+            //         <div class="row">');
                 
       if(count($result)>0){
         foreach ($result as $res){
@@ -122,11 +124,11 @@ class Home extends MY_Controller
                              <span>
                              <button type="button"><i class="iconfont icon-cart"></i></button>
                              </span>
-                        </div></div>'
+                        </div></div></div>'
                   );
          }
      }else{
-        array_push($option,'<div class="row noRecords" style=" background:white;height:50px;margin-left:40px;"><h3 style="margin-left:10px;">No Results Found..</h3></div>');
+        array_push($option,'</div><div class="row noRecords" style=" background:white;height:50px;margin-left:40px;"><h3 style="margin-left:10px;">No Results Found..</h3></div>');
      }
 
          $arr = array('data'=>$option,'view'=>'search');

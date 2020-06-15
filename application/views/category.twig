@@ -9,7 +9,7 @@
                         <nav aria-label="breadcrumb" class="comn-breadcrumb-nav">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="#"><i class="fa fa-home pr-2"></i>Home</a></li>
-                                <li class="breadcrumb-item active" aria-current="page">View Product</li>
+                                <li class="breadcrumb-item active" aria-current="page">All Product</li>
                             </ol>
                         </nav>
                     </div>
@@ -43,7 +43,7 @@
                             <div class="hover-icon-link-box">                            
                                 
 
-                                <a href="#" v-on:click="addToWishList({{ product.id }})" class="hover-icon-link" data-toggle="tooltip" data-placement="top" title="Login to use whishlist">   
+                                <a href="#" v-on:click="addToWishList({{ product.id }})" class="hover-icon-link" data-toggle="tooltip" data-placement="top" title="Wishlist">   
 
                                 <i class="fa fa-heart-o"></i></a>
                                 <!--a href="#" class="hover-icon-link" data-toggle="tooltip" data-placement="left" title="Compare"><i class="fa fa-refresh"></i></a-->
@@ -69,7 +69,7 @@
                                                 <div class="quick-view-thumb-box">
                                                     <img class="demo-trigger" src="{{ asset("uploads/product/thumbnail/#{product.getImage()}") }}" data-zoom="{{ asset("uploads/product/thumbnail/#{product.getImage()}") }}">
                                                     <div class="view-products-hover-info">
-                                                        <a href="{{ base_url("product/detail/#{product.slug}") }}" class="icon-link-btn">VIEW DETAILS</a>
+                                                        <a href="{{ base_url("product/detail/#{product.slug}") }}" class="icon-link-btn">&nbsp VIEW DETAILS</a>
 
                                                     </div>
                                                 </div>
@@ -86,7 +86,7 @@
                                                         <a class="review-caption">No reviews</a>
                                                     </div>
                                                     <div class="product-price"><span>{{ product.getCurrency() ~' '~ product.getPrice() | round }}</span></div>
-                                                    <div class="product-sold-box"><span>25 sold in last 4 hours</span></div>
+                                                    <!--div class="product-sold-box"><span>25 sold in last 4 hours</span></div-->
                                                     <div class="product-detail-info">
                                                         <p>{{ product.getDescription() }}</p>
                                                     </div>
@@ -106,10 +106,10 @@
                                                     <div class="product-btn-box mb-4"><button type="button" v-on:click="addToCart({{ product.toJson() }})" class="addCartBtn comn-btn black-btn w-100">Add to cart</button></div>
 
                                                     <div class="product-wishlist-box">                            
-                                                        <a href="#"><i class="fa fa-heart-o pr-2"></i>Login to use Wishlist</a>
+                                                        <a href="#"><i class="fa fa-heart-o pr-2"></i>Wishlist</a>
                                                     </div>
                                                     <div class="product-compare-box">                            
-                                                        <a href="#"><i class="fa fa-refresh pr-2"></i>Compare</a>
+                                                        <!--a href="#"><i class="fa fa-refresh pr-2"></i>Compare</a-->
                                                     </div><hr>
                                                     <div class="product-meta-area">
                                                         <div class="product-meta-box">

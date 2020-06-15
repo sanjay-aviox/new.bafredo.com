@@ -1,151 +1,109 @@
-<div class="add-address-modal">
-    <h2 class="comn-dash-account-heading">Address Book</h2>
-    <form>
-        <div class="form-row">
-            <div class="form-group col-md-6">
-                <label for="inputEmail4">First Name</label>
-                <input type="email" class="form-control" id="inputEmail4">
+<div class="col-12 col-md-8">
+    <div class="address-area">
+        <div class="my-account-bg-content">
+            <p>The following addresses will be used on the checkout page by default.</p>
+        </div>
+        <div class="address-info">
+            <div class="address-title"><h2>Current Address</h2></div>
+                <div class="address-info-box">
+                    <p>Name : {{ addressBook.first_name }}&nbsp {{ addressBook.last_name }}</p>
+                    <p>Email : {{ addressBook.email }}</p>
+                    <p>Mobile : {{ addressBook.phone }}</p>
+                    <p>Address : {{ addressBook.address }}</p>
+                    <p>District : {{ addressBook.city}}</p>
+
+                    <p>Region : {{ addressBook.region }}</p>
+                    <p>Postal Code :{{ addressBook.postal_code }}</p>
+
+                </div>
             </div>
-            <div class="form-group col-md-6">
-                <label for="inputPassword4">Last Name</label>
-                <input type="password" class="form-control" id="inputPassword4">
+            <div class="addresses-btn-box">
+                <button type="button" class="comn-btn black-btn" data-toggle="modal" data-target="#editAddressModal">Change Address</button>
             </div>
         </div>
-        <div class="form-group">
-            <label for="inputAddress">Company</label>
-            <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
-        </div>
-        <div class="form-row">
-            <div class="form-group col-md-6">
-                <label for="inputEmail4">Address1</label>
-                <input type="email" class="form-control" id="inputEmail4">
-            </div>
-            <div class="form-group col-md-6">
-                <label for="inputPassword4">Address2</label>
-                <input type="password" class="form-control" id="inputPassword4">
-            </div>
-        </div>
-        <div class="form-group">
-            <label for="inputAddress">City</label>
-            <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
-        </div>
-        <div class="form-row">
-            <div class="form-group col-md-6">
-                <label for="inputState">Country</label>
-                <select id="inputState" class="form-control">
-                    <option selected="">Choose...</option>
-                    <option>...</option>
-                </select>
-            </div>
-            <div class="form-group col-md-6">
-                <label for="inputState">Province</label>
-                <select id="inputState" class="form-control">
-                    <option selected="">Choose...</option>
-                    <option>...</option>
-                </select>
-            </div>
-        </div>  
-        <div class="form-row">
-            <div class="form-group col-md-6">
-                <label for="inputEmail4">Postal/Zip Code</label>
-                <input type="email" class="form-control" id="inputEmail4">
-            </div>
-            <div class="form-group col-md-6">
-                <label for="inputPassword4">Phone</label>
-                <input type="password" class="form-control" id="inputPassword4">
-            </div>
-        </div>                     
-        <div class="form-group">
-            <div class="form-check">
-                <input class="form-check-input" type="checkbox" id="gridCheck">
-                <label class="form-check-label" for="gridCheck">Set as default address</label>
-            </div>
-        </div>
-        <div class="form-group">                        
-            <button type="button" class="comn-btn black-btn">Add Address</button>
-            <button type="button" class="comn-btn black-btn" data-dismiss="modal">Cancel</button>
-        </div>
-    </form>
+    </div>
 </div>
 
-
-<!-- <div class="orderListFrame">
-    <form action="#" method="post" class="form-horizontal">
-        <fieldset>
-            <legend></legend>
-            <div class="form-group">
-                <label class="col-sm-2 control-label" for="first_name">First Name</label>
-                <div class="col-sm-10">
-                    <input type="text" name="first_name" required value="{{ addressBook.first_name }}" placeholder="First Name" id="first_name" class="form-control">
-                </div>
+<div class="modal fade add-address-modal" id="editAddressModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalCenterTitle">Edit ADDRESS</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
             </div>
-            <div class="form-group">
-                <label class="col-sm-2 control-label" for="last_name">Last Name</label>
-                <div class="col-sm-10">
-                    <input type="text" name="last_name" required value="{{ addressBook.last_name }}" placeholder="Last Name" id="last_name" class="form-control">
-                </div>
-            </div>
-            <div class="form-group">
-                <label class="col-sm-2 control-label" for="email">Email</label>
-                <div class="col-sm-10">
-                    <input type="text" name="email" required value="{{ addressBook.email }}" placeholder="Email" id="email" class="form-control">
-                </div>
-            </div>
-            <div class="form-group">
-                <label class="col-sm-2 control-label" for="phone">Phone</label>
-                <div class="col-sm-10">
-                    <input type="text" name="phone" required value="{{ addressBook.phone }}" placeholder="phone" id="phone" class="form-control">
-                    <p id="errmsg"></p>
-                </div>
-            </div>
-            <div class="form-group">
-                <label class="col-sm-2 control-label" for="address">Address</label>
-                <div class="col-sm-10">
-                    <input type="text" name="address" required value="{{ addressBook.address }}" placeholder="Address" id="address" class="form-control">
-                </div>
-            </div>
-            <div class="form-group">
-                <label class="col-sm-2 control-label" for="country">Country</label>
-                <div class="col-sm-10">
-                <input name="country" class="form-control" type="text" readonly value="Tanzania" />
-                </div>
-            </div>
-            <div class="form-group">
-                <label class="col-sm-2 control-label" for="city">Region</label>
-                <div class="col-sm-10">
-                    <select name="region" class="form-control" id="region" onchange="myFunctiondepartment()">
-                        <option value="{{ addressBook.region }}">{{ addressBook.region }}</option>
-                        {% for distirct  in  distircts %}
-                            <option value="{{ distirct.name }}">{{ distirct.name }}</option>
-                        {% endfor %}
-
-                    </select>
-                </div>
-            </div>
-            <div class="form-group">
-                <label class="col-sm-2 control-label" for="region">District</label>
-                <div class="col-sm-10">
-                    <select name="city" class="form-control" id="city">
-                        <option  value="{{ addressBook.city}}">{{ addressBook.city }}</option>
-
-                    </select>
-                </div>
-            </div>
-            <div class="form-group">
-                <label class="col-sm-2 control-label" for="postal_code">Postal Code</label>
-                <div class="col-sm-10">
-                    <input type="text" name="postal_code" required value="{{ addressBook.postal_code }}" placeholder="Postal Code" id="postal_code" class="form-control">
+            <div class="modal-body">
+                <form action="#" method="post" class="form-horizontal">
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="inputEmail4">First Name</label>
+                            <input type="text" name="first_name" class="form-control" id="firstname" value="{{ addressBook.first_name }}">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="inputPassword4">Last Name</label>
+                            <input type="text" name="last_name" class="form-control" id="last_name" value="{{addressBook.last_name}}">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputAddress">Email</label>
+                        <input type="email"  name="email"  class="form-control" id="email" value="{{addressBook.email}}">
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="inputEmail4">Phone Number</label>
+                            <input type="text" name="phone" class="form-control" id="phone" value="{{ addressBook.phone }}">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="inputPassword4">Address</label>
+                            <input type="text" name="address" class="form-control" id="address" value="{{ addressBook.address }}">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputAddress">Country</label>
+                         <input name="country" class="form-control" type="text" readonly value="Tanzania" />
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="inputState">Country</label>
+                            <select name="region" class="form-control" id="region" onchange="myFunctiondepartment()">
+                                <option value="{{ addressBook.region }}">{{ addressBook.region }}</option>
+                                {% for distirct  in  distircts %}
+                                    <option value="{{ distirct.name }}">{{ distirct.name }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="inputState">Province</label>
+                            <select name="city" class="form-control" id="city">
+                                <option  value="{{ addressBook.city}}">{{ addressBook.city }}</option>
+                            </select>
+                        </div>
+                    </div>  
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="inputEmail4">Postal/Zip Code</label>
+                            <input type="text" name="postal_code" required value="{{ addressBook.postal_code }}" placeholder="Postal Code" id="postal_code" class="form-control">
                     <p id="errmsg1"></p>
-                </div>
-            </div>
-        </fieldset>
-        <div class="buttons clearfix">
-            <div class="pull-right">
-                <input type="submit" value="Save" class="btn btn-primary">
+                        </div>
+                       
+                    </div>                     
+                    <!--div class="form-group">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="gridCheck" value="marpur">
+                            <label class="form-check-label" for="gridCheck">Set as default address</label>
+                        </div>
+                    </div-->
+                    <div class="form-group">                        
+                       <input type="submit" value="Save" class="btn btn-primary">
+                        <button type="button" class="comn-btn black-btn" data-dismiss="modal">Cancel</button>
+                    </div>
+                </form>
             </div>
         </div>
-    </form>
-</div> -->
+    </div>
+</div>
+
 {% block scripts %}
 <script>
     $(document).ready(function () {
