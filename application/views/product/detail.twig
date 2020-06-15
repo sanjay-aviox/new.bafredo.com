@@ -32,30 +32,23 @@
             <div class="row">
                 <div class="col-12 col-lg-6">
                     <div class="product-thumb-detail-area">
-                    	<div class="product-thumb-detail-box">                      
-	                        <img src='{{ asset("uploads/product/thumbnail/#{product.getImage()}") }}' title="{{ product.getName() }}" class="demo-trigger" alt="{{ product.getName() }}"  data-zoom='{{ asset("uploads/product/thumbnail/#{product.getImage()}") }}' />
-	                    </div>
+                        <div class="product-thumb-detail-box">
+                            <img class="demo-trigger" src="{{ asset("uploads/product/thumbnail/#{product.getImage()}") }}" data-zoom="{{ asset("uploads/product/thumbnail/#{product.getImage()}") }}">
+                        </div>
+                    	
 	                    <div class="product-selector-box">
 	                    	<button type="button" class="product-selector-prev-btn"><i class="fa fa-chevron-left"></i></button>
+                            
 	                    	<div class="product-selector-list">
-	                    		<a href="#" class="selector-thumb">
-		                    		<img src='{{ asset("uploads/product/thumbnail/#{product.getImage()}") }}'>
-		                    	</a>
-		                    	<a href="#" class="selector-thumb">
-		                    		<img src='{{ asset("uploads/product/thumbnail/#{product.getImage()}") }}'>
-		                    	</a>
-		                    	<a href="#" class="selector-thumb">
-		                    		<img src='{{ asset("uploads/product/thumbnail/#{product.getImage()}") }}'>
-		                    	</a>
-		                    	<a href="#" class="selector-thumb">
-		                    		<img src='{{ asset("uploads/product/thumbnail/#{product.getImage()}") }}'>
-		                    	</a>
-		                    	<a href="#" class="selector-thumb">
-		                    		<img src='{{ asset("uploads/product/thumbnail/#{product.getImage()}") }}'>
-		                    	</a>
-		                    	<a href="#" class="selector-thumb">
-		                    		<img src='{{ asset("uploads/product/thumbnail/#{product.getImage()}") }}'>
-		                    	</a>
+                                {% for galleryObj in gallery %}
+                            
+                                <a rel="nofollow" href="javascript:;" title="{{ product.getName() }}"class="selector-thumb">
+                                     <img data-sourceimage='{{ asset("uploads/product/gallery/#{galleryObj.getImage()}") }}' title="{{ product.getName() }}" alt="{{ product.getName() }}"
+                                         data-img='{{ asset("uploads/product/gallery/#{galleryObj.getImage()}") }}' src='{{ asset("uploads/product/gallery/#{galleryObj.getImage()}") }}'/>
+                                </a>
+                          
+                            {% endfor %}
+
 	                    	</div>
 	                    	<button type="button" class="product-selector-next-btn"><i class="fa fa-chevron-right"></i></button>
 	                    </div>
@@ -65,14 +58,14 @@
                 <div class="col-12 col-lg-6">
                     <div class="product-content-box product-demo-detail">
                         <div class="product-detail-heading"><h3>{{ product.getName() }}</h3></div>
-                        <div class="product-detail-review-box">
+                        <!--div class="product-detail-review-box">
                             <i class="fa fa-star-o"></i>
                             <i class="fa fa-star-o"></i>
                             <i class="fa fa-star-o"></i>
                             <i class="fa fa-star-o"></i>
                             <i class="fa fa-star-o"></i>
                             <a class="review-caption">No reviews</a>
-                        </div>
+                        </div-->
                         <div class="product-price"><span>{{ product.getCurrency() }} {{ product.getPrice() }}</span></div>
                         <!--div class="product-sold-box"><span>25 sold in last 4 hours</span></div-->
 
@@ -97,10 +90,10 @@
                             <a href="#"><i class="fa fa-refresh pr-2"></i>Compare</a>
                         </div><hr-->
                         <div class="product-meta-area">
-                            <div class="product-meta-box">
+                            <!--div class="product-meta-box">
                                 <span class="product-meta-title">Vender :</span>
                                 <a href="#" class="product-meta-name">abcd</a>
-                            </div>
+                            </div-->
                             <div class="product-meta-box">
                                 <span class="product-meta-title">SKU:</span>
                                 <a href="#" class="product-meta-name">{{ product.getSku() }}</a>
@@ -326,7 +319,7 @@
                 <h2>Related Product</h2>
             </div>
             <div class="row">
-                {% if subCategory %}
+                {% if subCategory|length  > 1 %}
                 <div class="col-12 col-md-12">
                     <div class="relatedProductSlider owl-carousel owl-theme">
                        {% for related in subCategory %}
@@ -364,7 +357,7 @@
         </div>
     </section>
 
-    <section class="view-products-section py-4">
+    <!--section class="view-products-section py-4">
         <div class="container">
             <div class="comn-section-heading">
                 <h2>Recently Viewed Products</h2>
@@ -393,7 +386,7 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section-->
 
  <script src="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.js"></script>
     <script type="text/javascript">
