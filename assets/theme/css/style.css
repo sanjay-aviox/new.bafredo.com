@@ -1741,6 +1741,18 @@ input.searchInput:focus, input.searchInput:active{
     align-items: center;
     height: 70px;
 }
+.product-selector-prev-btn{
+	position: absolute;
+	left: 0px;
+}
+.product-selector-next-btn{
+	position: absolute;
+	right: 0px;	
+}
+.product-selector-box{
+	position: relative;
+	min-height: 70px !important;
+}
 /*******************************/
 /********* cart-section ********/
 /*******************************/
@@ -2351,6 +2363,33 @@ p.privacy-text a{
 }
 .email-verify-btn{
 	margin-top: 30px;
+}
+.del-btn{
+	font-size: 12px;
+    color: #ffffff !important;
+    padding: 5px 8px;
+    background-color: #dc3545;
+    border: 0px;
+    border-radius: 3px;
+}
+.rec-btn{
+	font-size: 12px;
+    color: #ffffff !important;
+    padding: 5px 8px;
+    background-color: #007bff;
+    border: 0px;
+    border-radius: 3px;
+}
+.invc-btn{
+	font-size: 12px;
+    color: #ffffff !important;
+    padding: 5px 8px;
+    background-color: #6c757d;
+    border: 0px;
+    border-radius: 3px;
+}
+.dataTables_wrapper .row{
+	width: 100% !important;
 }
 /*add-address-modal*/
 .add-address-modal .modal-title{
