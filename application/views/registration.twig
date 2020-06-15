@@ -1,6 +1,6 @@
 {% extends "layouts/front.twig" %}
 {% block styles %}
-    
+    #refreshCaptcha{  cursor: pointer !important; }
 {% endblock %}
 {% block content %}
      <section class="breadcrumb-section">
@@ -106,7 +106,7 @@
                             </div>
                             <div class="form-group form-check">
                                 <input type="checkbox" name="agree" class="form-check-input" id="exampleCheck1">
-                                <label class="form-check-label" for="exampleCheck1">I have seen and accepted<a href="{{ base_url('page/privacy-policy') }}">Privacy Policy</a> and  <a href="{{ base_url('page/terms-conditions') }}">Terms & Conditions</a></label>
+                                <label class="form-check-label" for="exampleCheck1">I have seen and accepted <a href="{{ base_url('page/privacy-policy') }}">Privacy Policy</a> and  <a href="{{ base_url('page/terms-conditions') }}">Terms & Conditions</a></label>
                             </div>
                             <button type="submit" class="account-outline-btn">REGISTER</button>
                         </form>
@@ -126,22 +126,21 @@
 {% block scripts %} 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.js"></script>
 <script>
-    $(document).on('click', '#refreshCaptcha', function(){
+   $(document).on('click', '#refreshCaptcha', function(){
+
         $.ajax({
-            url: 'http://localhost/new.bafredo.com/refresh-captcha',
+            url: 'http://178.128.177.194/new.bafredo.com/refresh-captcha',
             type: 'get',
             error: function() {
                 alert('Something is wrong');
             },
             success: function(data) {
                 console.log(data);
-                $('#captchaImg').replaceWith(data);
+                $('#captchaImg').html(data);
             }
         });
     });
 
 
-    $(document).ready(function(){
- 
 </script>
 {% endblock %}
