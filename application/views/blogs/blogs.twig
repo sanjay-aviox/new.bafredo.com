@@ -25,7 +25,8 @@
         <div class="container">
             <div class="row">
 
-                 {% for blog in blogs %}
+                {% for  key, blog in blogs %}
+
                 <div class="col-12 col-md-6">
                     <div class="blog-single-box">
                         <div class="blog-thumb">
@@ -35,7 +36,9 @@
                                 <!--span class="blog-post-date-day">21</span>
                                 <span class="blog-post-date-month">May</span-->
                             </div>
-                            <a href="#" class="meta-post-categories">Lorem ipsum</a>
+                          
+
+                         
                         </div>
                         <div class="blog-detail">
                             <h4 class="blog-title"><a href="{{ base_url("blog/detail/#{blog.getSlug()}") }}" style="text-transform: capitalize;">{{ blog.getSlug() }}</a></h4>

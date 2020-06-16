@@ -29,10 +29,10 @@
                         <div class="blog-thumb">
                             <a href="#"><img src="{{ asset("front/uploads/blog/#{blog_detail.image}") }}"></a>
                             <div class="blog-post-date">
-                                <span class="blog-post-date-day">21</span>
-                                <span class="blog-post-date-month">May</span>
+                                {{ blog_detail.created_at | date('d M') }}
                             </div>
-                            <!--a href="#" class="meta-post-categories">Lorem ipsum</a-->
+                            <a href="#" class="meta-post-categories">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp{{ category.category_name }}</a>
+
                         </div>
                         <div class="blog-detail">
                             <h4 class="blog-title"><a href="#">{{ blog_detail.blog_name }}</a></h4>
@@ -43,24 +43,67 @@
                     </div>
                 </div>
             </div>
-            <!--div class="row">
+            <div class="row">
                 <div class="col-12 col-md-10 mx-auto">
                     <div class="blog-social-media-box">
                         <span>Share This Post On : </span>
                          <ul class="social-list-box">
+
                             <li><a href="#" class="blog-social-link"><img src="{{ base_url("assets/img/mailchimp.png") }}"></a></li>
                             <li><a href="#" class="blog-social-link"><img src="{{ base_url("assets/img/github.png") }}"></a></li>
                             <li><a href="#" class="blog-social-link"><img src=" {{ base_url("assets/img/linkedin.png") }}"></a></li>
-                            <li><a href="#" class="blog-social-link"><img src=" {{ base_url("assets/img/facebook.png") }}"></a></li>
+                            <!--li><a href="#" class="blog-social-link"><img src=" {{ base_url("assets/img/facebook.png") }}"></a></li-->
+                             <li><a href="https://www.facebook.com/dialog/share?app_id=276234983358991&amp;display=page&amp;href=http://localhost/new.bafredo.com/blog/detail/shopping-in-tanzania2&amp;redirect_uri=http://localhost/new.bafredo.com/blog/detail/shopping-in-tanzania2" class="blog-social-link" target="_blank"><img src=" {{ base_url("assets/img/facebook.png") }}"></a></li>
                             <li><a href="#" class="blog-social-link"><img src=" {{ base_url("assets/img/youtube.png") }}"></a></li>
-                            <li><a href="#" class="blog-social-link"><img src="{{ base_url("assets/img/instagram-sketched.png") }}"></a></li>
+                            <li><a href="https://www.instagram.com/" class="blog-social-link"><img src="{{ base_url("assets/img/instagram-sketched.png") }}"></a></li>
                             <li><a href="#" class="blog-social-link"><img src="{{ base_url("assets/img/twitter.png") }}"></a></li>
 
                         </ul>
                     </div>
                 </div>
-            </div-->
+            </div>
 
+        </div>
+    </section>
+       <section class="blog-section related-blog-section py-5">
+        <div class="container">
+            <div class="comn-section-heading pb-3">
+                <h2>You might also like...</h2>
+            </div>
+            <div class="row">
+                {% if relatedBlog|length  > 1 %}
+                <div class="col-12 col-md-4">
+                    {% for related in relatedBlog %}
+                       {% if related.id != blog_detail.id %}
+                    <div class="blog-single-box">
+                        <div class="blog-thumb">
+                            <a href="#">
+                               <img src='{{ asset("front/uploads/blog/#{related.image }") }}' title="{{ related.blog_name }}" class="demo-trigger" alt="{{ related.blog_name  }}" />
+                            </a>
+                            <div class="blog-post-date">
+                                <!--span class="blog-post-date-day">21</span>
+                                <span class="blog-post-date-month">May</span-->
+                                {{ related.created_at | date('d M') }}
+                            </div>
+                            <a href="#" class="meta-post-categories">{{ related.category_name }}</a>
+                        </div>
+                        <div class="blog-detail">
+                            <h4 class="blog-title"><a href="#">{{ related.blog_name }}</a></h4>
+                            <div class="blog-info">
+                                <p>{{ related.description}}</p>
+                            </div>
+                            <a href="{{ base_url("blog/detail/#{related.slug}") }}" class="read-more-link">Read more</a>
+                           
+                        </div>
+                    </div>
+                       {% endif %}
+                    {% endfor %}
+                </div>
+                {% else %}                 
+                   <h5>No Records Found ....</h5>
+                {% endif %}
+
+            </div>
         </div>
     </section>
 

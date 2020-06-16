@@ -27,4 +27,28 @@ class BlogModel extends CI_Model
         $this->db->where("slug",$slug);
         return $this->db->get('blogs')->row();
     }
+    public function getCategories()
+    {
+        $this->db->select("id,slug");
+       
+        return $this->db->get('blog_categories')->result_array();
+    }
+    public function getcetagory($id)
+    {
+        $this->db->select("blog_categories.*");
+        $this->db->where("id",$id);
+        return $this->db->get('blog_categories')->row();
+    }
+    public function getBlogCategory($id)
+    {
+
+
+            $this->db->select('blogs.*,blog_categories.category_name');
+            $this->db->from('blogs');
+            $this->db->where("blogs.category_id",$id);
+            
+            $this->db->join('blog_categories','blog_categories.id = blogs.category_id');
+            $query = $this->db->get();
+            return $query->result();
+    }
 }

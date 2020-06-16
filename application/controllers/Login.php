@@ -144,8 +144,10 @@ class Login extends MY_Controller
         $em->merge($user);
         $em->flush();
     }
-
     public function forgotpassword(){
+        $this->twig->display('user/forget');
+    }
+    public function forgotpasswordProcess(){
         $this->load->model('AccountModel');
         $mail = $this->input->post('email');
         $check = $this->AccountModel->forgotpassword($mail);
@@ -178,7 +180,8 @@ class Login extends MY_Controller
             $this->session->set_flashdata('item','Sorry, the Email you have entered does not exist!');
             redirect("login");
         }
-
     }
+
+    
     
 }

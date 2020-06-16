@@ -35,14 +35,9 @@ class PageModel extends CI_Model
     
     public function getEmailRecord()
     {
-            // $this->db->select('email.*,COUNT(email_subscriber.subscribe_id) as subscriber');
-            // $this->db->from('email');
             
-            // $this->db->join('email_subscriber', 'email.id=email_subscriber.email_id'); 
-            // $query = $this->db->get();
-            
-            $query =$this->db->query("SELECT email.* , COUNT(email_subscriber.subscribe_id) as subscriber FROM `email` INNER JOIN email_subscriber ON email.id=email_subscriber.email_id GROUP BY email_subscriber.email_id ");
-            return $query->result();
+        $query =$this->db->query("SELECT email.* , COUNT(email_subscriber.subscribe_id) as subscriber FROM `email` INNER JOIN email_subscriber ON email.id=email_subscriber.email_id GROUP BY email_subscriber.email_id ");
+        return $query->result();
     
     }
     public function insert_template($data)

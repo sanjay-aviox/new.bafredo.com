@@ -50,12 +50,12 @@ class Registration extends MY_Controller
                 if ($agree == 'on') {
                     $config = Array(
                         'protocol' => 'smtp',
-                        'smtp_host' => 'bafredo.com',
-                        'smtp_port' => 2525,
-                        'smtp_user' => 'bafredo123@bafredo.com',
-                        'smtp_pass' => 'Jf,WWM2o&5{*',
-                        'mailtype' => 'html',
-                        'charset' => 'iso-8859-1'
+                        'smtp_host' => 'smtp.gmail.com',
+                        'smtp_port' => 465,
+                        'smtp_user' => 'redexsolutionspvtlmt@gmail.com',
+                        'smtp_pass' => 'rajinder@1994',
+                       // 'mailtype' => 'html',
+                        //'charset' => 'iso-8859-1'
                     );
     
     

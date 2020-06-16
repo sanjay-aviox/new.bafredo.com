@@ -197,8 +197,7 @@ class Account extends MY_Controller
               $arr = array('stattus'=>'failure','message'=>'OTP not verified.');
         } 
        
-        echo json_encode($arr); 
-            
+        echo json_encode($arr);         
     }
-    
+
 }
