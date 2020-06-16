@@ -42,7 +42,7 @@ $(document).ready(function(){
 
 	// ourProductSlider
 	$('.ourProductSlider').owlCarousel({
-	    loop:true,
+	    loop:false,
 	    nav:true,
 	    navText : ["<i class='fa fa-angle-left'></i>","<i class='fa fa-angle-right'></i>"],
 	    autoplay:true,
@@ -63,7 +63,7 @@ $(document).ready(function(){
 
 	// relatedProductSlider
 	$('.relatedProductSlider').owlCarousel({
-	    loop:true,
+	    loop:false,
 	    nav:true,
 	    navText : ["<i class='fa fa-angle-left'></i>","<i class='fa fa-angle-right'></i>"],
 	    autoplay:true,
@@ -84,7 +84,7 @@ $(document).ready(function(){
 
 	// you-may-like-Slider
 	$('.you-may-like-Slider').owlCarousel({
-	    loop:true,
+	    loop:false,
 	    nav:true,
 	    navText : ["<i class='fa fa-angle-left'></i>","<i class='fa fa-angle-right'></i>"],
 	    autoplay:true,
@@ -103,6 +103,26 @@ $(document).ready(function(){
 	    }
 	});
 	
+	// selector-product-Slider
+	$('.selector-product-Slider').owlCarousel({
+	    loop:false,
+	    nav:true,
+	    navText : ["<i class='fa fa-angle-left'></i>","<i class='fa fa-angle-right'></i>"],
+	    autoplay:false,
+	    margin:2,
+	    dots:false,
+	    responsive:{
+	        0:{
+	            items:4
+	        },
+	        600:{
+	            items:4
+	        },
+	        1000:{
+	            items:4
+	        }
+	    }
+	});
 
 	// tooltip
 	$(function () {

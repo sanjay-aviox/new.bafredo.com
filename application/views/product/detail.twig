@@ -37,22 +37,21 @@
                         </div>
                     	
 	                    <div class="product-selector-box">
-	                    	<button type="button" class="product-selector-prev-btn"><i class="fa fa-chevron-left"></i></button>
+	                    	<!-- <button type="button" class="product-selector-prev-btn"><i class="fa fa-chevron-left"></i></button> -->
                             
-	                    	<div class="product-selector-list">
+	                    	<div class="product-selector-list selector-product-Slider owl-carousel owl-theme">
                                 {% for galleryObj in gallery %}
                             
-                                <a rel="nofollow" href="javascript:;" title="{{ product.getName() }}"class="selector-thumb">
+                                <div class="item"><a rel="nofollow" href="javascript:;" title="{{ product.getName() }}"class="item selector-thumb">
                                      <img data-sourceimage='{{ asset("uploads/product/gallery/#{galleryObj.getImage()}") }}' title="{{ product.getName() }}" alt="{{ product.getName() }}"
                                          data-img='{{ asset("uploads/product/gallery/#{galleryObj.getImage()}") }}' src='{{ asset("uploads/product/gallery/#{galleryObj.getImage()}") }}'/>
-                                </a>
+                                </a></div>
                           
                             {% endfor %}
 
 	                    	</div>
-	                    	<button type="button" class="product-selector-next-btn"><i class="fa fa-chevron-right"></i></button>
+	                    	<!-- <button type="button" class="product-selector-next-btn"><i class="fa fa-chevron-right"></i></button> -->
 	                    </div>
-	                    <div class="product-selector-box"></div>
                     </div>
                 </div>
                 <div class="col-12 col-lg-6">
@@ -69,7 +68,7 @@
                         <div class="product-price"><span>{{ product.getCurrency() }} {{ product.getPrice() }}</span></div>
                         <!--div class="product-sold-box"><span>25 sold in last 4 hours</span></div-->
 
-                        <div class="product-detail-info">
+                        <div class="product-detail-info comn-info-scroll">
                             <p>{{ product.getIntroduction() | raw }}</p>
                         </div>
                         <div class="product-quantity-box">
@@ -145,7 +144,7 @@
                                 <div class="col-12 col-md-6">
                                     <div class="description-box">
                                         <div class="comn-description-title"><h3>TEMPUS CONSECTETUR</h3></div>
-                                        <div class="description-info">
+                                        <div class="description-info comn-info-scroll">
                                             <p>
                                                 {{ product.getIntroduction() | raw }}
                                             </p>
@@ -351,7 +350,7 @@
                     </div>
                 </div>
                 {% else %}                 
-                   <h5>No Records Found ....</h5>
+                   <h5 class="pb-5 mb-5">No Records Found ....</h5>
                 {% endif %}
             </div>
         </div>

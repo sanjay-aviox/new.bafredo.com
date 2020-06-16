@@ -22,9 +22,9 @@
                     <td>{{ order.currency ~' '~ order.total }}</td>
                     <td>{{ order.created_at }}</td>
                     <td>
-                        <a href='{{ base_url("account/order_history/#{order.id}") }}'  onclick="return confirm('Confirm deletion of Order ID {{ order.id }}?')" id="cancel_order" class="btn btn-xs btn-danger">Delete</a>
-                        <a href='{{ base_url("cart/invoice/#{order.id}") }}' target="_blank" class="btn btn-xs btn-primary">Invoice</a>
-                        <button class="reoders btn btn-xs btn-secondary" data-id="{{order.id}}">Reorder</button>
+                        <a href='{{ base_url("account/order_history/#{order.id}") }}'  onclick="return confirm('Confirm deletion of Order ID {{ order.id }}?')" id="cancel_order" class="del-btn">Delete</a>
+                        <a href='{{ base_url("cart/invoice/#{order.id}") }}' target="_blank" class="invc-btn">Invoice</a>
+                        <button class="reoders rec-btn" data-id="{{order.id}}">Reorder</button>
                     </td>
                 </tr>
                 {% endfor %}
@@ -49,8 +49,8 @@
       </div>
       <div class="modal-body">
         
-                <label>Select date</label>
-                <input name="max" class="form-control" id="max" type="text"><br><br>
+        <label>Select date</label>
+        <input name="max" class="form-control" id="max" type="text"><br><br>
         <div class="data">
             <table id="dataResult" style="width:100%">
                 <thead>
@@ -80,7 +80,6 @@
       <div class="modal-footer">
             <input type="button" class="btn btn-primary" id="btnExport" value="Export" />
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-
       </div>
     </div>
   </div>
