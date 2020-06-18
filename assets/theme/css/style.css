@@ -504,7 +504,7 @@ button:visited{
 }
 .mobile-overlay-content {
 	position: relative;
-    top: 65px;
+    top: 45px;
     width: 100%;
 }
 .mobile-overlay .mob-nav-link {
@@ -534,6 +534,53 @@ button:visited{
     cursor: pointer;
     color: #ffffff;
     display: none;
+}
+.dropdown-btn {
+  padding: 6px 8px 6px 16px;
+  text-decoration: none;
+  font-size: 20px;
+  color: #818181;
+  display: block;
+  border: none;
+  background: none;
+  width:100%;
+  text-align: left;
+  cursor: pointer;
+  outline: none;
+  position: relative;
+}
+.dropdown-btn i{
+	position: absolute;
+    right: 20px;
+    color: #ffffff !important;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 12px;
+}
+.mob-dropdown-link{
+	padding: 8px 20px 8px 45px;
+    font-size: 14px;
+    color: #ffffff;
+    background-color: #200f6a;
+    display: block;
+    transition: 0.3s;
+    border-bottom: 1px solid #3e366175;
+}
+.dropdown-container {
+  display: none;
+  border-bottom: 1px solid #7366ab;
+}
+.mob-account-box{
+	display: flex;
+    align-items: center;
+    padding: 20px 0px 0px 20px;
+    color: #ffffff;
+}
+.mob-account-link{
+	padding-left: 5px;
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: 600;
 }
 /*mega menu*/
 .mega-menu-item.nav-item.active .nav-link,
@@ -1641,6 +1688,7 @@ input.searchInput:focus, input.searchInput:active{
 	justify-content: flex-start;
 	align-items: center;
 	margin-bottom: 20px;
+	margin-top: 10px;
 }
 .product-quantity-btn{
 	border-radius: 0px;
@@ -2888,7 +2936,7 @@ p.privacy-text a{
 .blog-detail-section .meta-post-categories, 
 .blog-detail-section .meta-post-categories:hover{
 	bottom: 0px;
-    left: 0px;
+    left: 65px;
 }
 .blog-detail-section .blog-post-date {
     top: 0px;
@@ -2915,6 +2963,10 @@ p.privacy-text a{
 }
 .related-blog-section{
 	background-color: #f9f9f9;
+}
+/*forgot-pass-modal*/
+.forgot-pass-modal .form-control{
+	height: 40px;
 }
 /*******************************/
 /******** footer section *******/
@@ -3243,6 +3295,12 @@ p.privacy-text a{
 	    top: -4px;
 	    left: 6px;
 	}	
+	.blog-social-media-box{
+		display: block;
+	}
+	.social-list-box{
+		margin-top: 12px;
+	}
 }
 @media (max-width: 400px) {
 	.shop-category-box {
