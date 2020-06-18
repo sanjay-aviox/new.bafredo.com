@@ -23,20 +23,24 @@
     </section>
 
     <section class="account-section">
-        <div class="container">
+        <div class="container phoneNumber">
             <div class="row">
                 <div class="col-12 col-md-6">
-                    <form action="{{ base_url('login/forgotpasswordProcess') }}" method="post">
+                    <form action="{{ base_url('login/matchQuestion') }}" method="post">
                         <div class="md-form mb-5">
-                            <label data-error="wrong" data-success="right" for="orangeForm-name">Email</label>
-                            <input type="text" id="email" required name="email" class="form-control validate">
+                        <input tupe="text" name="id" value="{{questions.0.user_id}}">
+                        {% for questions in questions %}
+                            <label data-error="wrong" data-success="right" for="orangeForm-name">{{ questions.question }}</label>
+
+                            <input type="text" id="phone" required name="answer[{{questions.id}}]" class="form-control validate">
+                        {% endfor %}
 
                         </div>
                         <div class="modal-footer">
                             <input type="submit" class="btn btn-default" >
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-default" id ="confirmPhone">Close</button>
                         </div>
-                        <a href="{{ base_url('login/confirmPhone')}}">Try Another way</a>
+                       
                     </form>
                 </div>
             </div>
@@ -46,6 +50,7 @@
 {% block scripts %}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.js"></script>
 	<script>
+  
       
 	</script>
 {% endblock %}

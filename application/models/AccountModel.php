@@ -154,9 +154,49 @@ class AccountModel extends CI_Model
          return $this->db->get('users')->row();
      }
 
-     public function updatepassword($mail,$password){
-         $this->db->where('email',$mail);
-         $this->db->update('users',array('password' => $password));
-         return true;
-     }
+    public function updatepassword($mail,$password,$pass){
+        $this->db->where('email',$mail);
+        $this->db->update('users',array('password' => $password,'pass' =>$pass));
+        return true;
+    }
+    public function getQuestion($phone){
+        // $usrs =$this->db->where("telephone",$phn);
+        // $this->db->get('users')->row();
+        // echo "<pre>"; print_r($usrs); die;
+
+        $this->db->select('*');
+        $this->db->where("telephone",$phone);
+        $data = $this->db->get("users")->row();
+
+        $this->db->select('*');
+        $this->db->where("user_id",$data->id);
+        $this->db->join('securities', 'securities.id = user_securities.question_id');
+        $security = $this->db->get("user_securities")->result();
+           
+       // print_r($security); die;
+        //  $this->db->select('wishlist.*,products.name,products.price,products.image,products.currency');
+        // $this->db->where('user_id',$id);
+        // $this->db->join('securities', 'securities.id = wishlist.product_id');
+        return $security;
+
+
+        //echo "<pre>"; print_r($security); die;
+    }
+    public function matchQues($id){
+        //echo $id; die;
+        $this->db->select('*');
+        $this->db->where("user_id",$id);
+        $this->db->join('securities', 'securities.id = user_securities.question_id');
+        $security = $this->db->get("user_securities")->result();
+        return $security;
+    }
+
+    public function getDetail($id){
+       // echo $id; die;
+        $this->db->select('*');
+        $this->db->where("id",$id);
+        $detail = $this->db->get("users")->row();
+       // print_r($detail); die;
+        return $detail;
+    }
 }

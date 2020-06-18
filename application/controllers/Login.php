@@ -152,34 +152,73 @@ class Login extends MY_Controller
         $mail = $this->input->post('email');
         $check = $this->AccountModel->forgotpassword($mail);
         if(!empty($check)){
-            $password = rand();
+           $password = rand();
            $newpassword =  password_hash($password, PASSWORD_DEFAULT);
-            $this->AccountModel->updatepassword($mail,$newpassword);
+           $this->AccountModel->updatepassword($mail,$newpassword,$password);
 
-            $config = Array(
-                'protocol' => 'smtp',
-                'smtp_host' => 'bafredo.com',
-                'smtp_port' => 2525,
-                'smtp_user' => 'bafredo123@bafredo.com',
-                'smtp_pass' => 'Jf,WWM2o&5{*',
-                'mailtype'  => 'html',
-                'charset'   => 'iso-8859-1'
-            );
-            $this->load->library('email', $config);
-            $this->email->from('info@bafredo.com', 'Bafredo');
-            $this->email->to($mail);
+            //  $config = Array(
+            //     'protocol' => 'smtp',
+            //     'smtp_host' => 'bafredo.com',
+            //     'smtp_port' => 2525,
+            //     'smtp_user' => 'bafredo123@bafredo.com',
+            //     'smtp_pass' => 'Jf,WWM2o&5{*',
+            //     'mailtype'  => 'html',
+            //     'charset'   => 'iso-8859-1'
+            // );
+            // $this->load->library('email', $config);
+            // $this->email->from('info@bafredo.com', 'Bafredo');
+            // $this->email->to($mail);
 
-            $this->email->subject('Forgot Password BAFREDO Account');
-            $this->email->message("Your New Password ".$password);
+            // $this->email->subject('Forgot Password BAFREDO Account');
+            // $this->email->message("Your New Password ".$password);
 
-            $this->email->send();
+            // $this->email->send();
 
-            $this->session->set_flashdata('item','Please check your Email to retrieve the password.');
-            redirect("login");
-        }else{
+
+             $this->session->set_flashdata('item','Please check your Email to retrieve the password.');
+             redirect("login");
+         }else{
             $this->session->set_flashdata('item','Sorry, the Email you have entered does not exist!');
             redirect("login");
         }
+    }
+    public function confirmPhone(){
+        $this->twig->display('user/confirm');
+    }
+    public function getSecurityQuetion(){
+        $this->load->model('AccountModel');
+        $phone = $this->input->post('phone');
+        //echo $phone; die;
+        $questions = $this->AccountModel->getQuestion($phone);
+
+        $this->twig->display('user/question', compact('questions'));
+    }
+    public function matchQuestion(){
+        $answers = $this->input->post();
+        $this->load->model('AccountModel');
+       //echo "<pre>";
+        //print_r($answers['answer']); //die;
+        $questions = $this->AccountModel->matchQues($answers['id']);
+        $i=0;
+       foreach ($questions as $key => $value) {
+            if($answers['answer'][$value->id] != $value->answer){
+              $i++;
+            }
+       }
+      // echo $i; die;
+       if($i==0){
+           $detail = $this->AccountModel->getDetail($answers['id']);
+         // print_r($detail); die;
+           $this->twig->display('user/resetpassword');
+       }else{
+
+       // $this->load->model('AccountModel');
+       // $phone = $this->input->post('phone');
+        //echo $phone; die;
+       // $questions = $this->AccountModel->getQuestion($phone);
+
+        $this->twig->display('user/question', compact('questions'));
+       }
     }
 
     
