@@ -129,6 +129,23 @@ $(document).ready(function(){
 		$('[data-toggle="tooltip"]').tooltip()
 	});
 
+	// mobile sidebar dropdown menu
+	var dropdown = document.getElementsByClassName("dropdown-btn");
+    var i;
+
+    for (i = 0; i < dropdown.length; i++) {
+      dropdown[i].addEventListener("click", function() {
+        this.classList.toggle("active");
+        var dropdownContent = this.nextElementSibling;
+        if (dropdownContent.style.display === "block") {
+          dropdownContent.style.display = "none";
+        } else {
+          dropdownContent.style.display = "block";
+        }
+      });
+    }
+
+
 });
 
 // cart sidenav bar 
@@ -138,12 +155,3 @@ function openNav() {
 function closeNav() {
 	document.getElementById("mySidenav").style.right = "-340px";
 }
-
-// js for zoom image
-var demoTrigger = document.querySelector('.demo-trigger');
-var paneContainer = document.querySelector('.product-demo-detail');
-
-// new Drift(demoTrigger, {
-//     paneContainer: paneContainer,
-//     inlinePane: false,
-// });

@@ -55,7 +55,8 @@
                     </div>
                 </div>
                 <div class="col-12 col-lg-6">
-                    <div class="product-content-box product-demo-detail">
+                    <div class="product-demo-detail"></div>
+                    <div class="product-content-box">
                         <div class="product-detail-heading"><h3>{{ product.getName() }}</h3></div>
                         <!--div class="product-detail-review-box">
                             <i class="fa fa-star-o"></i>
@@ -326,7 +327,7 @@
                             <div class="item">
                                 <div class="related-products-single-box">
                                     <div class="related-products-thumb">
-                                        <img src='{{ asset("uploads/product/thumbnail/#{related.image }") }}' title="{{ related.name }}" class="demo-trigger" alt="{{ related.name  }}" />
+                                        <img src='{{ asset("uploads/product/thumbnail/#{related.image }") }}' title="{{ related.name }}" alt="{{ related.name  }}" />
                                     </div>
                                     <div class="related-products-info">                            
                                         <div class="related-products-title">
@@ -387,7 +388,9 @@
         </div>
     </section-->
 
- <script src="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.js"></script>
+<script src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/164071/Drift.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.js"></script>
+
     <script type="text/javascript">
          $(function() {
           // VARIABLES
@@ -414,6 +417,15 @@
                   window.location.reload();
                 }, 3000); 
         });
+
+        // js for zoom image
+        var demoTrigger = document.querySelector('.demo-trigger');
+        var paneContainer = document.querySelector('.product-demo-detail');
+
+        new Drift(demoTrigger, {
+            paneContainer: paneContainer,
+            inlinePane: false,
+        }); 
         
     </script>
 {% endblock %}

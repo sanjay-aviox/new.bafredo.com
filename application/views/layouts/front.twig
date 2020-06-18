@@ -124,13 +124,40 @@
                             <!-- mobile sidebar start -->
                             <span class="mobile-sidebar-toggle" onclick="openMobileNav()">&#9776;</span>
                             <div id="myMobileNav" class="mobile-overlay">
-                                <a href="javascript:void(0)" class="closebtn" onclick="closeMobileNav()">&times;</a>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div class="mob-account-box">
+                                        <i class="fa fa-user"></i>
+                                        <a href="#" class="mob-account-link">Login <span class="pl-1">/</span></a>
+                                        <a href="#" class="mob-account-link">Register</a>
+                                    </div>
+                                    <a href="javascript:void(0)" class="closebtn" onclick="closeMobileNav()">&times;</a>
+                                </div>
                                 <ul class="mobile-overlay-content">
-                                    <li class="mob-nav-item active">
+                                    <li class="mob-nav-item">
                                         <a href="#" class="mob-nav-link">Home</a>
                                     </li>
-                                    <li class="mob-nav-item">
-                                        <a href="#" class="mob-nav-link">Category</a>
+                                    <li class="mob-nav-item active">
+                                        <a href="#" class="mob-nav-link dropdown-btn">Category <i class="fa fa-chevron-down"></i></a>
+                                        <ul class="dropdown-container">
+                                            <li class="mob-dropdown-item">
+                                                <a href="#" class="mob-dropdown-link">New Products</a>
+                                            </li>
+                                            <li class="mob-dropdown-item">
+                                                <a href="#" class="mob-dropdown-link">Sales</a>
+                                            </li>
+                                            <li class="mob-dropdown-item">
+                                                <a href="#" class="mob-dropdown-link">All Products</a>
+                                            </li>
+                                            <li class="mob-dropdown-item">
+                                                <a href="#" class="mob-dropdown-link">COMPONENTS</a>
+                                            </li>
+                                            <li class="mob-dropdown-item">
+                                                <a href="#" class="mob-dropdown-link">Integrated Circuit</a>
+                                            </li>
+                                            <li class="mob-dropdown-item">
+                                                <a href="#" class="mob-dropdown-link">PCB Manufacturing</a>
+                                            </li>
+                                        </ul>
                                     </li>
                                     <li class="mob-nav-item">
                                         <a href="#" class="mob-nav-link">Community</a>
