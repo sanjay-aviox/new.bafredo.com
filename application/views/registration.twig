@@ -30,6 +30,7 @@
                         <div class="account-heading"><h2><i class="fa fa-user"></i>Register</h2></div>
 
                         <form id="register" name="registration" action="{{ base_url('registration/process') }}" method="post">
+                            <span class="alert">   {{ userexit | raw }}  </span>
 
                             <div class="form-group">
                                 <label for="user-name">User name <span class="required">*</span></label>
@@ -43,7 +44,7 @@
                                 <label for="email">Email address <span class="required">*</span></label>
                                 <input type="text" name="email" class="form-control" id="email" aria-describedby="emailHelp">
 
-                                 <span class="alert">   {{ emailexit | raw }}  </span>
+                              
 
                             </div>
                             <div class="form-group">
@@ -54,10 +55,11 @@
                                 <label for="pass2">Confirm Password <span class="required">*</span></label>
                                 <input type="password" name="confirm_password" class="form-control" id="pass2">
                             </div>
+                            <h4>Security Questions</h4></hr>
                             <div class="form-group">
                                 <label for="q1">Question #1 <span class="required">*</span></label>
-                                <select class="form-control" name="question[]" id="q1">
-                                    <option value="0">Select Question</option>
+                                <select class="form-control" required name="question[]" id="q1">
+                                    <option value="">Select Question</option>
                                     {% for question in questions %}
                                         <option value="{{question.id}}">{{ question.question}}</option>
                                     {% endfor %}
@@ -65,12 +67,12 @@
                             </div>
                             <div class="form-group">
                                 <label for="a1">Answer <span class="required">*</span></label>
-                                <input type="text" name="answer[]" class="form-control ques" id="a1">
+                                <input type="text" name="answer[]" required class="form-control ques" id="a1">
                             </div>
                             <div class="form-group">
                                 <label for="q2">Question #2 <span class="required">*</span></label>
-                                <select class="form-control" name="question[]" id="q2">
-                                     <option value="0">Select Question</option>
+                                <select class="form-control" required name="question[]" id="q2">
+                                     <option value="">Select Question</option>
                                     {% for question in questions %}
                                         <option value="{{question.id}}">{{ question.question}}</option>
                                     {% endfor %}
@@ -78,11 +80,11 @@
                             </div>
                             <div class="form-group">
                                 <label for="a2">Answer <span class="required">*</span></label>
-                                <input type="text" name="answer[]" class="form-control ans1" id="qa">
+                                <input type="text" required name="answer[]" class="form-control ans1" id="qa">
                             </div>
                             <div class="form-group">
-                                <label for="q1">Question #3 <span class="required">*</span></label>
-                                <select class="form-control" name="question[]" id="qa1">
+                                <label for="q3">Question #3 <span class="required">*</span></label>
+                                <select class="form-control"  required name="question[]" id="q3">
                                      <option value="0">Select Question</option>
                                     {% for question in questions %}
                                         <option value="{{question.id}}">{{ question.question}}</option>
@@ -91,7 +93,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="a1">Answer <span class="required">*</span></label>
-                                <input type="text" name="answer[]" class="form-control ques" id="a21d">
+                                <input type="text" name="answer[]" required class="form-control ques" id="a21d">
                             </div>
 
                             <span id="warning"></span>
@@ -100,7 +102,7 @@
                                 <div style="margin-left:50px;width:30%;float:left;" id="captchaImg">
                                     {{ cap.image | raw }}
                                 </div>
-                                <img src="{{ asset('img/refrsh.jpeg') }}" height="50px" id="refreshCaptcha">
+                                <img src="{{ asset('img/refrsh.jpeg') }}" title="Refresh" height="50px" id="refreshCaptcha">
                                 </label>
                                 <input type="text" name="captcha" class="form-control" id="cp" placeholder="Enter Captcha..">
                             </div>
@@ -125,11 +127,12 @@
 {% endblock %}
 {% block scripts %} 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.js"></script>
+
 <script>
    $(document).on('click', '#refreshCaptcha', function(){
 
         $.ajax({
-            url: 'http://localhost/new.bafredo.com/refresh-captcha',
+            url: 'http://178.128.177.194/new.bafredo.com/refresh-captcha',
             type: 'get',
             error: function() {
                 alert('Something is wrong');
@@ -140,6 +143,122 @@
             }
         });
     });
+    $("#q1").change(function(){
+        var a=$(this).val();
+        var b=$("#q3").val();
+        $("#q2 option[value]").show();
+        $("#q2 option[value=" + a + "]").hide();
+        $("#q3 option[value=" + a + "]").hide();
+        if(b != 0){
+            $("#q2 option[value=" + b + "]").hide();
+        }
+    });
+     $("#q2").change(function(){
+        var a = $(this).val();
+        var b = $("#q1").val();
+        var c = $("#q3").val();
+
+        $("#q1 option[value]").show();
+        $("#q3 option[value]").show();
+
+        $("#q1 option[value=" + a + "]").hide();
+        $("#q3 option[value=" + a + "]").hide();
+
+        if(b != 0){
+          
+            $("#q3 option[value=" + b + "]").hide();
+        }
+        if(c!= 0){
+            $("#q1 option[value=" + c + "]").hide();
+        }
+       
+    });
+    $("#q3").change(function(){
+        var a = $(this).val();
+        var b = $("#q1").val();
+        var c = $("#q2").val();
+
+        $("#q1 option[value]").show();
+        $("#q2 option[value]").show();
+
+
+        $("#q1 option[value=" + a + "]").hide();
+        $("#q2 option[value=" + a + "]").hide();
+
+        if(b != 0){
+            $("#q2 option[value=" + b + "]").hide();
+        }
+        if(c!= 0){
+            $("#q3 option[value=" + c + "]").hide();
+        }
+    });
+
+
+        $().ready(function() {
+            $("#register").validate({
+            
+                rules: {
+                    name:{
+                        required: true,
+                    },
+                    phone:{
+                        required: true,
+                    },
+                    email: {
+                        required: true,
+                        email: true
+                    },      
+                    password: {
+                        required: true,
+                    },
+                    confirm_password:{
+                        required: true,
+                        equalTo: "#pass1"
+                    },
+                    captcha:{
+                        required: true,
+                    },
+                    agree:{
+                        required: true,
+                    },
+                },
+
+                messages: {
+                    name:{
+                        required: "User Name is required",
+                    },
+                    phone:{
+                       required: "Mobile Number is required",
+                    },
+                    email: {
+                        required: "Email is required",
+                    },     
+                    password: {
+                        required: "Password is required",
+                    },
+                    confirm_password: " Enter Confirm Password Same as Password",
+                    captcha:{
+                        required: "Captcha is required",
+                    },
+                    agree:{
+                        required: "Accept terms and condition is required",
+                    }
+                },
+            });
+            /*$("#q1").rules("add", {
+                required:true,
+                messages: {
+                    required: "Question #1 is required."
+                }
+            });
+            $("#q2").rules("add", {
+                required:true,
+                messages: {
+                    required: "Question #2 is required."
+                }
+            });*/
+            
+        });
 
 
 </script>
