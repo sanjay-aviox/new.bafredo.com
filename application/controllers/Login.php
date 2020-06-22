@@ -187,20 +187,29 @@ class Login extends MY_Controller
     }
     public function getSecurityQuetion(){
         $this->load->model('AccountModel');
-        $phone = $this->input->post('phone');
-        //echo $phone; die;
+        $phone = $this->input->get('phone');
+        
         $questions = $this->AccountModel->getQuestion($phone);
 
-        $this->twig->display('user/question', compact('questions'));
+        $option=array();
+
+        foreach ($questions as $val){
+           
+              array_push($option,'<label data-error="wrong" data-success="right" for="orangeForm-name">'.$val->question.'</label><input type="text" id="answer" required name="answer['.$val->id.']" data-num = "'.$val->user_id.'" data-id="'.$val->id.'" class="form-control validate answer">');
+        
+             
+        }
+         $arr = array('data'=>$option,'msg'=>'200');
+                echo json_encode($arr);
+
+       // $this->twig->display('user/question', compact('questions'));
     }
     public function matchQuestion(){
         $answers = $this->input->post();
         $this->load->model('AccountModel');
-       //echo "<pre>";
-        //print_r($answers['answer']); //die;
         $questions = $this->AccountModel->matchQues($answers['id']);
         $i=0;
-       foreach ($questions as $key => $value) {
+        foreach ($questions as $key => $value) {
             if($answers['answer'][$value->id] != $value->answer){
               $i++;
             }
@@ -208,8 +217,11 @@ class Login extends MY_Controller
       // echo $i; die;
        if($i==0){
            $detail = $this->AccountModel->getDetail($answers['id']);
-         // print_r($detail); die;
-           $this->twig->display('user/resetpassword');
+          print_r($detail); die;
+            $arr = array('data'=>$option,'msg'=>'200');
+                echo json_encode($arr);
+
+           //$this->twig->display('user/resetpassword');
        }else{
 
        // $this->load->model('AccountModel');

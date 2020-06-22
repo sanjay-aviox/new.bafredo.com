@@ -164,111 +164,104 @@
 	</style>
 {% endblock %}
 {% block content %}
-	<div class="container-fluid bodyFrame">
-        <div class="row pc checkoutApp">
-        	<div class="lineFrame">
-                <ul class="breadcrumb">
-                    <li><a href="{{ base_url('/') }}"><i class="fa fa-home"></i></a></li>
-                    <li><a href="{{ base_url('cart/checkout') }}">Checkout</a></li>
-                </ul>
+    <section class="breadcrumb-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-md-12">
+                    <div class="breadcrumb-area">
+                        <nav aria-label="breadcrumb" class="comn-breadcrumb-nav">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="#"><i class="fa fa-home pr-2"></i>Home</a></li>
+                                <li class="breadcrumb-item"><a href="#">Cart</a></li>
+                                <li class="breadcrumb-item"><a href="#">Information</a></li>
+                                <li class="breadcrumb-item" aria-current="page">Shipping</li>
+                                <li class="breadcrumb-item active" aria-current="page">Payment</li>
+                            </ol>
+                        </nav>
+                    </div>
+                </div>
             </div>
-            <div class="clear"></div>
-            <div class="lineFrame">
-				<form action="{{ base_url('cart/confirm') }}" class="form" method="post">
-					<div class="row">
-						<div class="col-md-6">
-							<h2>Cart Checkout</h2>
-						</div>
-						<div class="col-md-6">
-							<div class="shoppingNavFrame">
-								<ul>
-									<li>1. Shopping Cart</li>
-									<li class="select">2. Check Out</li>
-									<li>3. Confirm Order</li>
-								</ul>
-							</div>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-md-6">
-							<h3>Shipping Address</h3>
-							<div class="row">
-								<div class="col-md-12">
-									<div class="form-group">
-										<label for="first_name">First Name <span class="red-asterisk">*</span></label>
+        </div>
+    </section>
+
+    <section class="checkout-section">
+        <div class="container-fluid px-5">
+            <div class="row">
+                <div class="col-12 col-md-7 py-5 pr-5">
+                    <div class="">
+                        <div class="checkout-heading-box">
+                            <div class="checkout-section-heading"><h3>Contact information</h3></div>
+                            <p class="mb-0 checkout-inner-heading"><span>Already have an account?</span> <a href="#">Log in</a></p>
+                        </div>  
+                        <form action="{{ base_url('cart/confirm') }}" class="form" method="post">
+                            <div class="form-group">
+                                <input type="text" class="form-control" id="inputmobile" placeholder="Email or mobile phone number">
+                                <div class="custom-control custom-checkbox my-2 mr-sm-2">
+                                    <input type="checkbox" class="custom-control-input" id="customControlInline">
+                                    <label class="custom-control-label" for="customControlInline">Keep me up to date on news and exclusive offers</label>
+                                </div>
+                            </div>
+                            <div class="checkout-section-heading pt-3"><h3>Shipping address</h3></div>
+                            <div class="form-row">                            
+                                <div class="form-group col-md-6">
 										<input type="text" name="shippingAddress[first_name]" value="{{ formdata('first_name', shippingAddress.first_name) }}" required id="first_name" class="form-control" placeholder="First Name"/>
-									</div>
-								</div>
-								<div class="col-md-12">
-									<div class="form-group">
-										<label for="last_name">Last Name <span class="red-asterisk">*</span></label>
+                                </div>
+                                <div class="form-group col-md-6">
 										<input type="text" name="shippingAddress[last_name]" value="{{ formdata('last_name', shippingAddress.last_name) }}" required id="last_name" class="form-control" placeholder="Last Name"/>
-									</div>
 								</div>
-								<div class="col-md-12">
-									<div class="form-group">
-										<label for="email">Email <span class="red-asterisk">*</span></label>
-										<input type="email" name="shippingAddress[email]" value="{{ formdata('email', shippingAddress.email) }}" required id="email" class="form-control" placeholder="Email"/>
-									</div>
-								</div>
-								<div class="col-md-12">
-									<div class="form-group">
-										<label for="phone">Phone <span class="red-asterisk">*</span></label>
-										<input type="text" name="shippingAddress[phone]" value="{{ formdata('phone', shippingAddress.phone) }}" required id="phone" class="form-control" placeholder="Phone"/>
+                            </div>
+                                                   
+                            <div class="form-group">
+                                        <input type="email" name="shippingAddress[email]" value="{{ formdata('email', shippingAddress.email) }}" required id="email" class="form-control" placeholder="Email"/>
+                            </div>
+                            <div class="form-group">
+                               <input type="text" name="shippingAddress[phone]" value="{{ formdata('phone', shippingAddress.phone) }}" required id="phone" class="form-control" placeholder="Phone"/>
 										<p id="errmsg"></p>
-									</div>
-								</div>
-								<div class="col-md-12">
-									<div class="form-group">
-										<label for="country">Country <span class="red-asterisk">*</span></label>
-										<input type="text" name="shippingAddress[country]" readonly value="Tanzania" required id="country" class="form-control" placeholder="Country"/>
-									</div>
-								</div>
-								<div class="col-md-12">
-									<div class="form-group">
-										<label for="city">Region <span class="red-asterisk">*</span></label>
-										{#										<input type="text" name="shippingAddress[city]" value="{{ formdata('city', shippingAddress.city) }}" required id="city" class="form-control" placeholder="City"/>#}
-										<select name="shippingAddress[region]" class="form-control" id="region" onchange="myFunctiondepartment()" required>
+                            </div>
+                            <div class="form-group">
+                                  <input type="text" name="shippingAddress[country]" readonly value="Tanzania" required id="country" class="form-control" placeholder="Country"/>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-6">                            
+                                 
+                                   <select name="shippingAddress[region]" class="form-control" id="region" onchange="myFunctiondepartment()" required>
 										      <option value="">Select Region</option>
-				{#<option value="{{ addressBook.region }}">{{ addressBook.region }}</option>#}
+				                        {#<option value="{{ addressBook.region }}">{{ addressBook.region }}</option>#}
 											{% for distirct  in  distircts %}
 												<option value="{{ distirct.name }}">{{ distirct.name }}</option>
 											{% endfor %}
 
 										</select>
-									</div>
-								</div>
-								<div class="col-md-12">
-									<div class="form-group">
-										<label for="region">District <span class="red-asterisk">*</span></label>
-										{#										<input type="text" name="shippingAddress[region]" value="{{ formdata('region', shippingAddress.region) }}" required id="region" class="form-control" placeholder="District/Region"/>#}
-										<select name="shippingAddress[city]" class="form-control" id="city" required>
+                                </div>
+                                <div class="form-group col-md-6">
+                                   <select name="shippingAddress[city]" class="form-control" id="city" required>
 										     <option value="">Select District</option>
 											<option  value="{{ addressBook.city}}">{{ addressBook.city }}</option>
 
 										</select>
-									</div>
-								</div>
-								<div class="col-md-12">
-									<div class="form-group">
-										<label for="address">Street Address <span class="red-asterisk">*</span></label>
-										<input type="text" name="shippingAddress[address]" value="{{ formdata('address', shippingAddress.address) }}" required id="address" class="form-control" placeholder="Address"/>
-									</div>
-								</div>
-								<div class="col-md-12">
-									<div class="form-group">
-										<label for="postal_code">Postal Code</label>
-										<input type="text" name="shippingAddress[postal_code]" value="{{ formdata('postal_code', shippingAddress.postal_code) }}" id="postal_code" class="form-control" placeholder="Postal Code"/>
+                                </div>
+                                </div>
+                                 <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <input type="text" name="shippingAddress[address]" value="{{ formdata('address', shippingAddress.address) }}" required id="address" class="form-control" placeholder="Address"/>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <input type="text" name="shippingAddress[postal_code]" value="{{ formdata('postal_code', shippingAddress.postal_code) }}" id="postal_code" class="form-control" placeholder="Postal Code"/>
 										<p id="errmsg1"></p>
-									</div>
-								</div>
-								<div class="col-md-12">
-									<div class="form-group">
-										<input class="chkBike" type="checkbox" name="save_address" value="Yes" id="save_address"/>
-										<label for="save_address" class="form-label">Save as default shipping address</label>
-									</div>
-								</div>
-							</div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="custom-control custom-checkbox my-2 mr-sm-2">
+                                    <input type="checkbox" class="custom-control-input" id="customControlInline2">
+                                    <label class="custom-control-label" for="customControlInline2">Save this information for next time</label>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+									<input class="chkBike" type="checkbox" name="save_address" value="Yes" id="save_address"/>
+									<label for="save_address" class="form-label">Save as default shipping address</label>
+							</div>  
+
 							<h3>Shipping Method <span class="red-asterisk">*</span></h3>
 							<ul class="sec-shipping-method">
 								<li>
@@ -328,133 +321,69 @@
 									</label>
 								</li>
 							</ul>
-
-							<h3>Order notes (optional)</h3>
-							<textarea class="form-control" name="order_notes">{{ formdata('order_notes') }}</textarea>
-
-							<div class="info-message">
-								Note: The personal data you submitted to our website may be used to process your order, improve your shopping experience, and/or achieve other user-centered goals described in our <a href="{{ base_url('page/privacy-policy') }}">privacy policy</a>.
-							</div>
-
-							<p class="sec-agreement">
-								<input class="chkBike" type="checkbox" name="agreement_flag" required value="1" id="agreement_flag">
-								<label for="agreement_flag">I have read and agreed the <a href="{{ base_url('page/privacy-policy') }}">Privacy Policy</a> and <a href="{{ base_url('page/terms-conditions') }}">Terms & Conditions</a> of the website. <span class="red-asterisk">*</span></label>
-							</p>
-						</div>
-						<div class="col-md-6">
-							<div class="cartListFrame">
-								<h3>SHOPPING CART</h3>
-								<table class="table cart-table">
-									<thead>
-										<tr>
-											<th>Product Name</th>
-											<th>Price</th>
-											<th>Quantity</th>
-											<th>Total</th>
-										</tr>
-									</thead>
-									<tbody>
-								         {% set totalPrice = 0 %}
-									     {% for cart in cart_checkout %}
+                                                 
+                            <div class="return-cart-shipping-box">
+                                <a href="#" class="return-cart-text"><i class="fa fa-chevron-left mr-1"></i> Return to cart</a>
+                                <!--button type="submit" class="shipping-btn">Continue to shipping</button--->
+                                <button type="submit" class="shipping-btn btn-confirm">Confirm Order</button>
+                            </div>
+                        </form>                  
+                    </div>
+                </div>
+                <div class="col-12 col-md-5 pb-5 checkout-product-list-area">
+                    <div class="checkout-product-list-box">
+                        <div class="table-responsive checkout-product-list-table-box">
+                            <table class="table table-borderless">
+                                <tbody>
+                                    {% set totalPrice = 0 %}
+									    {% for cart in cart_checkout %}
 									       <tr>
-																						<td>
-												<img src="{{ base_url('//assets/uploads/product/thumbnail/') }}{{cart.image}}">
-												<p>{{cart.name}}</p>
-											    </td>
-											     <td>{{cart.currency }} {{cart.price }}</td>
-											      <td>{{cart.quantity }}</td>
-											      <td>{{ cart.currency }} {{cart.price * cart.quantity }}</td>
+												<td>
+													<div class="checkout-product-thumb">
+                                                        <img src="{{ base_url('//assets/uploads/product/thumbnail/') }}{{cart.image}}">
+                                                        <div class="checkout-product-quantity">{{cart.quantity }}</div>
+                                                    </div>
+                                                <td>
+												
+												<td class="checkout-product-title">{{cart.name}}</td>
+											    <td class="checkout-product-price">{{cart.currency }} {{cart.price }}</td>
+											   
 										
 										 {% set totalPrice = totalPrice + (cart.quantity * cart.price) %}
 										</tr>
 									     
 									     
-									     {% endfor %}
-									    
-									    
-									    
-										{#<tr v-for="item in cart_checkout">#}
-										{#	<td>#}
-										{#		<img v-bind:src="productImage(item.image)" v-bind:alt="item.name" v-bind:title="item.name" class="img-thumbnail">#}
-										{#		<p v-text="item.name"></p>#}
-										{#	</td>#}
-										{#	<td v-text="item.currency +' '+ item.price"></td>#}
-										{#	<td v-text="item.quantity"></td>#}
-										{#	<td v-text="item.currency +' '+ (item.price * item.quantity)"></td>#}
-										{#</tr>#}
-									</tbody>
-								</table>
-								<div class="cart-footer">
-									<table>
-										<tbody>
-										<tr>
-											<td>Subtotal</td>
-											<td><span>TZS {{ totalPrice }}</span></td>
-										</tr>
-										<tr>
-											<td>Tax</td>
-											<td><span>0</span></td>
-										</tr>
-										<tr>
-											<td>Shipping</td>
-											<td><span>0</span></td>
-										</tr>
-										<tr>
-											<td>Total</td>
-											<td><span>TZS {{ totalPrice }}</span></td>
-										</tr>
-										{#<tr>#}
-										{#	<td>Subtotal</td>#}
-										{#	<td><span v-text="subtotal"></span></td>#}
-										{#</tr>#}
-										{#<tr>#}
-										{#	<td>Tax</td>#}
-										{#	<td><span v-text="tax"></span></td>#}
-										{#</tr>#}
-										{#<tr>#}
-										{#	<td>Shipping</td>#}
-										{#	<td><span v-text="shipping"></span></td>#}
-										{#</tr>#}
-										{#<tr>#}
-										{#	<td>Total</td>#}
-										{#	<td><span v-text="total"></span></td>#}
-										{#</tr>#}
-
-										</tbody>
-									</table>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="row footer-row">
-						<div class="col-md-4">
-							Subtotal: <span> TZS {{ totalPrice }}</span>
-						</div>
-						<div class="col-md-4">
-							Tax: <span>0</span>
-						</div>
-						<div class="col-md-4">
-							Total: <span>TZS {{ totalPrice }}</span>
-						</div>
-					</div>
-					{#	<div class="row footer-row">#}
-					{#	<div class="col-md-4">#}
-					{#		Subtotal: <span v-text="subtotal">{{ totalPrice }}</span>#}
-					{#	</div>#}
-					{#	<div class="col-md-4">#}
-					{#		Tax: <span v-text="tax">0</span>#}
-					{#	</div>#}
-					{#	<div class="col-md-4">#}
-					{#		Total: <span v-text="total">{{ totalPrice }}</span>#}
-					{#	</div>#}
-					{#</div>#}
-					<div class="btn-contine">
-						<button type="submit" class="btn-confirm">Confirm Order</button>
-					</div>
-				</form>
+									{% endfor %}
+                                   
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="checkout-product-total-box">
+                            <table class="table table-borderless">
+                                <tbody>
+                                    <tr>
+                                        <td>Subtotal</td>
+                                        <th><span>TZS {{ totalPrice }}</span></th>
+                                    </tr>
+                                    <tr>
+                                        <td>Shipping</td>
+                                        <td>0</td>
+                                    </tr>
+                                    <tr class="border-top">
+                                        <td>Total</td>
+                                        <td class="checkout-total-price"><span>TZS {{ totalPrice }}</span></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
+    </section>
+
+
+
 {% endblock %}
 {% block scripts %}
 	<script>

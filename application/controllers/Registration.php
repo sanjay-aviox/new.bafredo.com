@@ -19,13 +19,14 @@ class Registration extends MY_Controller
 
         $questions = $this->PM->getsecurity();
         $emailexit = $this->session->flashdata('emailexit');
+        $userexit = $this->session->flashdata('userexit'); 
         $name = $this->session->flashdata('name');
         $email = $this->session->flashdata('email');
         $password = $this->session->flashdata('password');
         $confirm_password= $this->session->flashdata('confirm_password');
 
 
-        $this->twig->display('registration',compact('emailexit','name','email','password','confirm_password','questions','cap'));
+        $this->twig->display('registration',compact('emailexit','userexit','name','email','password','confirm_password','questions','cap'));
     }
 
     public function process()
@@ -42,7 +43,8 @@ class Registration extends MY_Controller
                 //$email = 'usamam744@gmail.com';
                 $password = $this->input->post('password');
                 $confirm_password = $this->input->post('confirm_password');
-                $this->form_validation->set_rules('email', 'Email', 'required|valid_email|is_unique[users.email]');
+                $this->form_validation->set_rules('name', 'Name', 'required|is_unique[users.name]');
+                 $this->form_validation->set_rules('email', 'Email', 'required|valid_email|is_unique[users.email]');
                 $this->form_validation->set_rules('password', 'Password', 'required');
                 $this->form_validation->set_rules('confirm_password', 'Confirm Password', 'required|matches[password]');
         
@@ -105,6 +107,7 @@ class Registration extends MY_Controller
                     //$this->AccountModel->form_insert($data);
     
                     $this->session->unset_userdata('emailexit');
+                    $this->session->unset_userdata('userexit');
                     $this->session->unset_userdata('password');
     
     
@@ -143,6 +146,7 @@ class Registration extends MY_Controller
                 $this->session->set_flashdata('password', $password);
                 $this->session->set_flashdata('confirm_password', $confirm_password);
                 $this->session->set_flashdata('emailexit', validation_errors());
+                 $this->session->set_flashdata('userexit', validation_errors());
                 //$this->session->set_flashdata('password','Password not Confirmed.');
                 redirect("registration");
             }else{

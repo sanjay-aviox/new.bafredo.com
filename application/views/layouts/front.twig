@@ -28,10 +28,9 @@
     <link rel="stylesheet" href="{{ asset('theme/css/owl.carousel.min.css') }}">
     <link rel="stylesheet" href="{{ asset('theme/css/owl.theme.default.min.css') }}"> 
 
-    <!---------- animate css ------------->
     <link rel="stylesheet" href="{{ asset('theme/css/animate.css') }}">
 
-    <!----------  main css ------------->
+  
     <link rel="stylesheet" type="text/css" href="{{ asset('theme/css/style.css') }}">
 
 
@@ -41,19 +40,19 @@
     <script type="text/javascript" src="{{ asset('theme/js/proper.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('theme/js/bootstrap.min.js') }}"></script>
 
-
     <script src="{{ asset('plugins/typeahead/js/jquery.xdomainrequest.min.js') }}"></script>
     <script src="{{ asset('plugins/typeahead/js/typeahead.bundle.js') }}"></script>
     <link href="{{ asset('plugins/typeahead/css/normalize.min.css') }}" rel="stylesheet" media="screen" />
+  
 
     <link href="{{ asset('plugins/typeahead/css/main.css') }}" rel="stylesheet" media="screen" />
 
     <script src="{{ asset('front/js/hammer.min.js') }}" type="text/javascript"></script>
     <script src="{{ asset('front/js/iscroll.js') }}" type="text/javascript"></script>
-
+  
     <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Roboto+Condensed|Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
-    <!-- <link href="{{ asset('front/css/stylesheet.css') }}" rel="stylesheet"> -->
+
     <link href="{{ asset('front/css/iconfont.css') }}" rel="stylesheet">
     <link href="{{ asset('front/image/logo/icon-100x100.png') }}" rel="icon" />
     <script type="text/javascript" src="{{ asset('theme/js/custom.js') }}"></script>
@@ -374,10 +373,11 @@
                                 </a>
                             </div>
                             <div class="cart-box">
-                                <a href="#" class="cart-icon">
+                                <a href="#" onclick="openNav()" class="cart-icon">
                                     <i class="fa fa-shopping-cart"></i>
                                     <span  v-text="cart.length" class="header-count-box">0</span>
                                 </a>
+                                
                             </div>
                         </div>
                     </div>
@@ -600,11 +600,68 @@
     <!-- copyright-section end -->
 
 
-
 <script src="{{ asset('plugins/typeahead/js/handlebars.js') }}"></script>
 <script src="{{ asset('plugins/typeahead/js/main.js') }}"></script>
-<script src="{{ asset('js/app.js') }}"></script>
+<script src="{{ asset('js/app.js') }}"></script> 
 {% block scripts %} {% endblock %}
 
+       <div id="mySidenav" class="cart-sidenav">
+        <div class="cart-sidenav-header">
+            <h3 class="sidenav-heading">Shopping cart</h3>
+            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">Close &times;</a>
+        </div>
+        <ul class="sidenav-cart-list-area"> 
+            <li v-for="product in cart">
+                <div class="cart-product-thumb">
+                   <img :src="productImage(product.image)" :alt="product.name" :title="product.name">
+                </div>
+
+                <div class="cart-product-detail">
+                    <a href="#" class="cart-sidenav-heading">${ product.name }</a>
+                    <div class="sidenav-cart-list-box">
+                        
+
+                           <div class="input-group plus-minus-input">
+                                    <div class="widgets-numberpicker">
+                                        <div class="widgets-numberpicker-decrement" v-on:click="cartItemQuantityDecrement(product)"><i class="fa fa-minus"></i></div>
+                                    </div>
+                                    <div class="input-group-field item-quantity-count">
+                                        <input type="text" class="form-control" v-model="product.quantity" v-on:keypress="onlyNumber" maxlength="9">
+                                    </div>
+                                    <div class="widgets-numberpicker">
+                                        <div class="widgets-numberpicker-increment" v-on:click="cartItemQuantityIncrement(product)"><i class="fa fa-plus"></i></div>
+                                    </div>
+                                </div>
+   
+
+                        <span class="cart-price pl-2">
+                       
+                         <button class="removeBtn" v-on:click="removeFromCart(product)"> <i class="fa fa-times pr-2"></i></button>
+                        ${ product.currency +' '+ product.price*product.quantity }</span>
+                    </div>                    
+                </div>  
+                <li>
+        </ul>
+
+        <div class="sidenav-cart-detail">
+            <form>
+                <!--div class="form-group">
+                    <label for="exampleFormControlTextarea1">Special instructions for seller</label>
+                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                </div-->
+                <!--p class="sidenav-cart-total">
+                    <strong>Subtotal:</strong>
+                    <td><span v-text="subtotal"></span></td>
+                </p-->
+                <!--div class="custom-control custom-checkbox mr-sm-2 mb-4">
+                    <input type="checkbox" class="custom-control-input" id="customControlAutosizing">
+                    <label class="custom-control-label" for="customControlAutosizing">I agree with the <a href="#" class="tc-link">terms and conditions.</a></label>
+                </div-->
+                 <a class="comn-btn grey-btn d-block w-100 mb-3 showCartBtn" href="{{ base_url('cart') }}">View my cart</a>
+                <!--button class="comn-btn grey-btn d-block w-100 mb-3">VIEW CART</button-->
+                <button class="comn-btn d-block w-100"><a href="checkout.html">CHECKOUT</a></button>
+            </form>            
+        </div>
+    </div>
 </body>
 </html>

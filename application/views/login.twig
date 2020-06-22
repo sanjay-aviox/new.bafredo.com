@@ -50,7 +50,7 @@
                                     <input type="checkbox" class="form-check-input" id="exampleCheck1">
                                     <label class="form-check-label" for="exampleCheck1">Remember me</label>
                                 </div-->
-                                <p class="mb-0"><a href="{{ base_url('login/forgotpassword') }}" class="lost-pass" data-toggle="modal" data-target="#forgotPassModal"><i class="fa fa-life-bouy"></i>Lost your password?</a></p>
+                                <p class="mb-0"><a href="{{ base_url('login/forgotpassword') }}" class="lost-pass"><i class="fa fa-life-bouy"></i>Lost your password?</a></p>
                             </div>
                             <input class="account-outline-btn login-btn" type="submit" value="LOGIN">
                         </form>
@@ -65,33 +65,6 @@
                 </div>
             </div>
         </div>
-
-        <div class="modal fade forgot-pass-modal add-address-modal" id="forgotPassModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalCenterTitle">Forgot Password</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <form action="#" method="post" class="form-horizontal">
-                    <div class="form-row pb-3">
-                        <div class="form-group col-12">
-                            <input type="text" name="first_name" class="form-control" id="inputEmail4" placeholder="Enter email">
-                        </div>
-                    </div>                        
-                    <div class="form-group text-center">                        
-                       <input type="submit" value="Save" class="comn-btn">
-                        <button type="button" class="comn-btn black-btn" data-dismiss="modal">Cancel</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
-
     </section>
 {% endblock %}
 {% block scripts %}
