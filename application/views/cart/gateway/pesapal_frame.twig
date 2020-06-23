@@ -104,20 +104,40 @@
     </style>
 {% endblock %}
 {% block content %}
-    <div class="container-fluid bodyFrame">
-        <div class="row pc checkoutApp">
-            <div class="lineFrame">
-                <ul class="breadcrumb">
-                    <li><a href="{{ base_url('/') }}"><i class="fa fa-home"></i></a></li>
-                    <li><a href="{{ base_url('cart/confirm') }}">Confirm Order</a></li>
-                </ul>
-            </div>
-            <div class="clear"></div>
-            <div class="lineFrame">
-                <iframe src="{{ iframe_src }}" width="100%" height="700px"  scrolling="no" frameBorder="0">
-                    <p>Browser unable to load iFrame</p>
-                </iframe>
+        <section class="breadcrumb-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-md-12">
+                    <div class="breadcrumb-area">
+                        <nav aria-label="breadcrumb" class="comn-breadcrumb-nav">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="#"><i class="fa fa-home pr-2"></i>Home</a></li>
+                                <li class="breadcrumb-item"><a href="#">Cart</a></li>
+                                <li class="breadcrumb-item"><a href="#">Checkout</a></li>
+                                <li class="breadcrumb-item" aria-current="page">Confirm Payment</li>
+                            </ol>
+                        </nav>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
+    </section>
+
+    <section class="confirm-payment-section py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-md-12">
+                    <div class="">
+                        
+                        <div class="payment-card-area">
+                           <iframe src="{{ iframe_src }}" width="100%" height="700px"  scrolling="no" frameBorder="0">
+                                <p>Browser unable to load iFrame</p>
+                            </iframe>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 {% endblock %}
+

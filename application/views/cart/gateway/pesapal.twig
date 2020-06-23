@@ -104,61 +104,65 @@
     </style>
 {% endblock %}
 {% block content %}
-    <div class="container-fluid bodyFrame">
-        <div class="row pc checkoutApp">
-            <div class="lineFrame">
-                <ul class="breadcrumb">
-                    <li><a href="{{ base_url('/') }}"><i class="fa fa-home"></i></a></li>
-                    <li><a href="{{ base_url('cart/confirm') }}">Confirm Order</a></li>
-                </ul>
-            </div>
-            <div class="clear"></div>
-            <div class="lineFrame">
-                <form action="{{ base_url('cart/pesapal') }}" class="form" method="post">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <h2>Confirm Order</h2>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="shoppingNavFrame">
-                                <ul>
-                                    <li>1. Shopping Cart</li>
-                                    <li>2. Check Out</li>
-                                    <li class="select">3. Confirm Order</li>
-                                </ul>
-                            </div>
-                        </div>
+        <section class="breadcrumb-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-md-12">
+                    <div class="breadcrumb-area">
+                        <nav aria-label="breadcrumb" class="comn-breadcrumb-nav">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="#"><i class="fa fa-home pr-2"></i>Home</a></li>
+                                <li class="breadcrumb-item"><a href="#">Cart</a></li>
+                                <li class="breadcrumb-item"><a href="#">Checkout</a></li>
+                                <li class="breadcrumb-item" aria-current="page">Confirm Payment</li>
+                            </ol>
+                        </nav>
                     </div>
-                    <div class="row">
-                        <div class="col-md-6">
+                </div>
+            </div>
+        </div>
+    </section>
+     <section class="confirm-order-section py-5">
+        <div class="container">
+            <h2 class="comn-payment-heading">Confirm Order</h2>
+            <div class="row">
+                <div class="col-12 col-md-12">
+                    <div class="confirm-order-area">
+                        <form action="{{ base_url('cart/pesapal') }}" class="form" method="post">
+                        <div class="table-responsive">
                             <table class="table">
                                 <tbody>
                                     <tr>
-                                        <td class="font-weight-bold">Order Number:</td>
+                                        <th>Order Number:</th>
                                         <td>{{ order.id }}</td>
                                     </tr>
                                     <tr>
-                                        <td class="font-weight-bold">Date:</td>
+                                        <th>Date:</th>
                                         <td>{{ order.created_at }}</td>
+                                  
                                     </tr>
                                     <tr>
-                                        <td class="font-weight-bold">Total:</td>
+                                        <th>Total:</th>
                                         <td>{{ order.total + charge }}</td>
+                                   
                                     </tr>
                                     <tr>
-                                        <td class="font-weight-bold">Payment Method:</td>
-                                        <td>{{ order.payment_method | upper }}</td>
+                                        <th>Payment method:</th>
+                                        <td>{{ order.payment_method | replace({'_': " "}) | upper }}</td>
                                     </tr>
                                 </tbody>
                             </table>
-                        </div>
-                    </div>
-                    <div class="btn-contine">
+                        </div> 
                         <input type="hidden" name="order_number" value="{{ order.id }}"/>
-                        <button type="submit" class="btn-confirm">Pay Now</button>
+                        <button type="submit" class="comn-btn btn-confirm">Pay Now</button>
+                        </form>
                     </div>
-                </form>
+                </div>
             </div>
         </div>
-    </div>
+    </section>
+
+
+
+
 {% endblock %}

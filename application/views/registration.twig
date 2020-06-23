@@ -135,7 +135,7 @@
    $(document).on('click', '#refreshCaptcha', function(){
 
         $.ajax({
-            url: 'http://178.128.177.194/new.bafredo.com/refresh-captcha',
+            url: 'http://localhost/new.bafredo.com/refresh-captcha',
             type: 'get',
             error: function() {
                 alert('Something is wrong');
@@ -221,6 +221,10 @@
                     captcha:{
                         required: true,
                     },
+                    '#a1':{
+                      required: true,
+                    },
+
                     agree:{
                         required: true,
                     },
@@ -240,6 +244,9 @@
                         required: "Password is required",
                     },
                     confirm_password: " Enter Confirm Password Same as Password",
+                    '#a1':{
+                       required: "Answer a1 is required",
+                    },
                     captcha:{
                         required: "Captcha is required",
                     },
@@ -248,18 +255,7 @@
                     }
                 },
             });
-            /*$("#q1").rules("add", {
-                required:true,
-                messages: {
-                    required: "Question #1 is required."
-                }
-            });
-            $("#q2").rules("add", {
-                required:true,
-                messages: {
-                    required: "Question #2 is required."
-                }
-            });*/
+           
             
         });
 

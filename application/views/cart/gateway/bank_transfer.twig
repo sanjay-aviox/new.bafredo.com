@@ -107,122 +107,125 @@
     </style>
 {% endblock %}
 {% block content %}
-    <div class="container-fluid bodyFrame">
-        <div class="row pc checkoutApp">
-            <div class="lineFrame">
-                <ul class="breadcrumb">
-                    <li><a href="{{ base_url('/') }}"><i class="fa fa-home"></i></a></li>
-                    <li><a href="{{ base_url('cart/confirm') }}">Confirm Order</a></li>
-                </ul>
-            </div>
-            <div class="clear"></div>
-            <div class="lineFrame">
-                <div class="row">
-                    <div class="col-md-6">
-                        <h2>Confirm Order</h2>
+     <section class="breadcrumb-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-md-12">
+                    <div class="breadcrumb-area">
+                        <nav aria-label="breadcrumb" class="comn-breadcrumb-nav">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="#"><i class="fa fa-home pr-2"></i>Home</a></li>
+                                <li class="breadcrumb-item"><a href="#">Cart</a></li>
+                                <li class="breadcrumb-item"><a href="#">Checkout</a></li>
+                                <li class="breadcrumb-item" aria-current="page">Confirm Payment</li>
+                            </ol>
+                        </nav>
                     </div>
-                    <div class="col-md-6">
-                        <div class="shoppingNavFrame">
-                            <ul>
-                                <li>1. Shopping Cart</li>
-                                <li>2. Check Out</li>
-                                <li class="select">3. Confirm Order</li>
-                            </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+     <section class="confirm-order-section py-5">
+        <div class="container">
+            <h2 class="comn-payment-heading">Confirm Order</h2>
+            <div class="row">
+                <div class="col-12 col-md-12">
+                    <div class="confirm-order-area">
+                        <div class="table-responsive">
+                            <table class="table">
+                                <tbody>
+                                    <tr>
+                                        <th>Order Number:</th>
+                                        <td>{{ order.id }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Date:</th>
+                                        <td>{{ order.created_at }}</td>
+                                  
+                                    </tr>
+                                    <tr>
+                                        <th>Total:</th>
+                                        <td>{{ order.total + charge }}</td>
+                                   
+                                    </tr>
+                                    <tr>
+                                        <th>Payment method:</th>
+                                        <td>{{ order.payment_method | replace({'_': " "}) | upper }}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="proceed-alert-area">
+                            <!--div class="alert alert-danger" role="alert">
+                                You cannot proceed because your amount is less then TZS 1000, which does not satisfy tigopesa min amount limit.
+                            </div-->
+                            <form>
+                                <div class="form-group mt-4">
+                                    <label for="email" class="mb-0">Tigopesa Phone Number:</label>
+                                    <input type="text" class="form-control" id="email" value="" placeholder="Example: 0656897425">
+                                </div>                                
+                            </form>
+                        </div>  
+                        <button type="submit" class="comn-btn">Pay Now</button>
+                    </div>
+                    <div class="bank-detail-area">
+                        <h2 class="comn-payment-heading">Bank Details</h2>
+                        <div class="table-responsive">
+                            <table class="table table-striped">
+                                 <tbody>
+                                    <tr>
+                                        <td class="strong">Bank Name</td>
+                                        <td>CRDB</td>
+                                        <td>NMB</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="strong">Branch</td>
+                                        <td>UDSM</td>
+                                        <td>University</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="strong">SWIFT CODE</td>
+                                        <td>CORUTZTZ</td>
+                                        <td>NMIBTZTZ</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="strong">Address</td>
+                                        <td>CRDB Bank PLC, P. O. Box 268, Dar es Salaam, TANZANIA</td>
+                                        <td>P. O. Box 35199, Dar es Salaam, TANZANIA</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="strong">Account Name</td>
+                                        <td>BAFREDO Electronics Limited</td>
+                                        <td>BAFREDO Electronics Limited</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="strong">Account Number</td>
+                                        <td>0150345034100</td>
+                                        <td>20810006506</td>
+                                    </tr>
+                               </tbody>
+                            </table>
+                        </div>  
+                        <button type="button" class="comn-btn mt-4 btn-confirm" data-toggle="modal" data-target="#myModal">Confirm</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="modal fade" id="myModal" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <div class="modal-body text-center">
+                        <div class="tick_icon"><img src="{{ asset('front/image/tick.png') }}" alt="icon"/></div>
+                            <p> Your order has been received. Shipping arrangements will immediately be made upon confirmation of the payment.</p>
+                            <a class="btn btn-default"  href="{{ base_url('/account/order_history') }}">Ok</a>
                         </div>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-md-12">
-                        <table class="table">
-                            <tbody>
-                                <tr>
-                                    <td class="font-weight-bold">Order Number:</td>
-                                    <td>{{ order.id }}</td>
-                                </tr>
-                                <tr>
-                                    <td class="font-weight-bold">Date:</td>
-                                    <td>{{ order.created_at }}</td>
-                                </tr>
-                                <tr>
-                                    <td class="font-weight-bold">Total:</td>
-                                    <td>{{ order.total + charge }}</td>
-                                </tr>
-                                <tr>
-                                    <td class="font-weight-bold">Payment Method:</td>
-                                    <td>{{ order.payment_method | replace({'_': " "}) | upper }}</td>
-                                </tr>
-                                <tr>
-                                    <td colspan="2">
-                                        <h2>Bank Details</h2>
-                                        <table class="table table-striped">
-                                            <tbody>
-                                                <tr>
-                                                    <td class="strong">Bank Name</td>
-                                                    <td>CRDB</td>
-                                                    <td>NMB</td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="strong">Branch</td>
-                                                    <td>UDSM</td>
-                                                    <td>University</td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="strong">SWIFT CODE</td>
-                                                    <td>CORUTZTZ</td>
-                                                    <td>NMIBTZTZ</td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="strong">Address</td>
-                                                    <td>CRDB Bank PLC, P. O. Box 268, Dar es Salaam, TANZANIA</td>
-                                                    <td>P. O. Box 35199, Dar es Salaam, TANZANIA</td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="strong">Account Name</td>
-                                                    <td>BAFREDO Electronics Limited</td>
-                                                    <td>BAFREDO Electronics Limited</td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="strong">Account Number</td>
-                                                    <td>0150345034100</td>
-                                                    <td>20810006506</td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                        
-                                        <div class="btn-contine">
-                        {#<button type="button" class="btn-confirm">Confirm Order</button>#}
-                          <button type="button" style="margin-left: 450px;" class="btn-confirm" data-toggle="modal" data-target="#myModal">Confirm</button>
-
-                    </div>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
             </div>
-        </div>
+       </div>
     </div>
-      <div class="modal fade" id="myModal" role="dialog">
-    <div class="modal-dialog">
-    
-      <!-- Modal content-->
-      <div class="modal-content">
-        <div class="modal-header">
-        {#  <button type="button" class="close" data-dismiss="modal">&times;</button>#}
-        {#  <h4 class="modal-title">Modal Header</h4>#}
-        {#</div>#}
-        <div class="modal-body text-center">
-            <div class="tick_icon"><img src="{{ asset('front/image/tick.png') }}" alt="icon"/></div>
-          <p> Your order has been received. Shipping arrangements will immediately be made upon confirmation of the payment.</p>
-         
-           <a class="btn btn-default"  href="{{ base_url('/account/order_history') }}">Ok</a>
-        </div>
-        </div>
- 
-    </div>
-  </div>
-  
-</div>
 
 {% endblock %}
