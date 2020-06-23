@@ -70,7 +70,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="a1">Answer <span class="required">*</span></label>
-                                <input type="text" name="answer[]" required class="form-control ques" id="a1">
+                                <input type="text" name="answer[]" required class="form-control ques vali" id="a1">
                             </div>
                             <div class="form-group">
                                 <label for="q2">Question #2 <span class="required">*</span></label>
@@ -83,12 +83,12 @@
                             </div>
                             <div class="form-group">
                                 <label for="a2">Answer <span class="required">*</span></label>
-                                <input type="text" required name="answer[]" class="form-control ans1" id="qa">
+                                <input type="text" required name="answer[]" class="form-control ans1 vali" id="qa">
                             </div>
                             <div class="form-group">
                                 <label for="q3">Question #3 <span class="required">*</span></label>
                                 <select class="form-control"  required name="question[]" id="q3">
-                                     <option value="0">Select Question</option>
+                                     <option value="">Select Question</option>
                                     {% for question in questions %}
                                         <option value="{{question.id}}">{{ question.question}}</option>
                                     {% endfor %}
@@ -96,7 +96,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="a1">Answer <span class="required">*</span></label>
-                                <input type="text" name="answer[]" required class="form-control ques" id="a21d">
+                                <input type="text" name="answer[]" required class="form-control ques vali" id="a21d">
                             </div>
 
                             <span id="warning"></span>
@@ -113,7 +113,7 @@
                                 <input type="checkbox" name="agree" class="form-check-input" id="exampleCheck1">
                                 <label class="form-check-label" for="exampleCheck1">I have seen and accepted <a href="{{ base_url('page/privacy-policy') }}">Privacy Policy</a> and  <a href="{{ base_url('page/terms-conditions') }}">Terms & Conditions</a></label>
                             </div>
-                            <button type="submit" class="account-outline-btn">REGISTER</button>
+                            <button type="submit" id= "btns" class="account-outline-btn">REGISTER</button>
                         </form>
                     </div>
                 </div>
@@ -198,6 +198,10 @@
 
 
         $().ready(function() {
+
+
+
+  
             $("#register").validate({
             
                 rules: {
@@ -228,6 +232,7 @@
                     agree:{
                         required: true,
                     },
+
                 },
 
                 messages: {
@@ -254,11 +259,41 @@
                         required: "Accept terms and condition is required",
                     }
                 },
+
+
+
             });
-           
-            
+
+
+
+$("#btns").click(function(){
+            setTimeout(function() {
+            $("#q2").focusin();
+            $("#q2").focusout();
+            $("#q3").focusin();
+            $("#q3").focusout();
+            $("#qa").focusin();
+            $("#qa").focusout();
+            $("#a21d").focusin();
+            $("#a21d").focusout();
+         
+                    }, 1500);
+
+});
+            /*$("#q1").rules("add", {
+                required:true,
+                messages: {
+                    required: "Question #1 is required."
+                }
+            });
+            $("#q2").rules("add", {
+                required:true,
+                messages: {
+                    required: "Question #2 is required."
+                }
+            });*/
+      
         });
-
-
+        
 </script>
 {% endblock %}
