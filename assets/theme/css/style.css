@@ -2969,6 +2969,133 @@ p.privacy-text a{
 	height: 40px;
 }
 /*******************************/
+/**** confirm order section ****/
+/*******************************/
+.confirm-order-area{
+	padding-bottom: 40px;
+}
+.comn-payment-heading{
+    color: #1b1919;
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 28px;
+}
+.bank-detail-area{
+	padding-bottom: 20px;
+}
+.proceed-alert-area{
+	width: 550px;
+	margin-bottom: 15px;
+}
+.proceed-alert-area .form-control{
+	width: 250px;
+}
+.proceed-alert-area .form-group{
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+.confirm-order-section .form-control {
+    height: 40px;
+}
+.confirm-order-section .form-control:focus{
+	outline: none;
+    border-color: #1990c6;
+    box-shadow: 0 0 0 1px #1990c6;
+}
+/*******************************/
+/*** confirm-payment-section ***/
+/*******************************/
+.billing-detail-area ul{
+	display: flex;
+	width: 100%;
+	align-items: center;
+	margin-bottom: 5px;
+}
+.billing-detail-area li:first-child{
+	width: 35%;
+	text-align: right;
+	padding: 5px 20px;
+}
+.billing-detail-area li:last-child{
+	width: 75%;
+}
+.confirm-payment-section .form-control {
+    height: 38px;
+    border-radius: 0px !important;
+}
+.confirm-payment-section .form-control:focus{
+	outline: none;
+    border-color: #1990c6;
+    box-shadow: 0 0 0 1px #1990c6;
+}
+.cc-selector{
+	padding: 20px 0px;
+}
+.cc-selector input{
+	margin:0;padding:0;
+	-webkit-appearance:none;
+	-moz-appearance:none;
+	appearance:none;
+}
+.cc-selector input:active +.drinkcard-cc{opacity: .5;}
+.cc-selector input:checked +.drinkcard-cc{
+	-webkit-filter: none;
+	-moz-filter: none;
+	filter: none;
+}
+.drinkcard-cc{
+	cursor:pointer;
+	background-size:contain;
+	background-repeat:no-repeat;
+	display:inline-block;
+	width:100px;
+	height:70px;
+	transition: all 100ms ease-in;
+	filter: brightness(1.8) grayscale(1) opacity(.7);
+}
+.drinkcard-cc:hover{
+	filter: brightness(1.2) grayscale(.5) opacity(.9);
+}
+.secure-paypal-payment-area{
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-top: 20px;
+	padding: 20px;
+	background-color: #eeeeee7a;
+    border: 1px dashed #dddddd;
+}
+.paypal-info p{
+	font-size: 14px;
+	margin-bottom: 0px;
+}
+.paypal-thumb img{
+	width: 60px;
+	margin-left: 15px;
+}
+.confirm-order-area{
+	width: 55%;
+}
+/*******************************/
+/**** confirm order section ****/
+/*******************************/
+.filter-product-section .form-control {
+    height: 40px;
+    border-radius: 0px;
+    background: #f9f9f9;
+}
+.filter-product-section .form-control:focus{
+	outline: none;
+    border-color: #1990c6;
+    box-shadow: 0 0 0 1px #1990c6;
+}
+.product-select-box{
+	background: #f9f9f9;
+    padding: 5px 15px;
+    box-shadow: 0px 1px 2px #d1d0d0;
+}
+/*******************************/
 /******** footer section *******/
 /*******************************/
 .footer-section{
@@ -3202,6 +3329,9 @@ p.privacy-text a{
 	.mobile-sidebar-toggle{
 		display: block;
 	}
+	.confirm-order-area{
+		width: 90%;
+	}
 }
 @media (max-width: 768px) {
    .slider-category-box{
@@ -3262,6 +3392,21 @@ p.privacy-text a{
 	}
 	.top-left-label{
 		display: none;
+	}
+	.confirm-order-area{
+		width: 100%;
+	}
+	.proceed-alert-area{
+		width: 100%;
+	}
+	.proceed-alert-area .form-group{
+		display: block;
+	}
+	.proceed-alert-area label{
+		margin-bottom: 10px !important;
+	}
+	.proceed-alert-area .form-control{
+		width: 100%;
 	}
 @media (max-width: 576px) {
    .slider-category-box{
