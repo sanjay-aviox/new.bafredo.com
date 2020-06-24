@@ -81,3 +81,6 @@ $route['filter-product'] = 'home/filters';
 $route['refresh-captcha'] = 'registration/refreshCaptcha';
 $route['forgot-pass'] = 'login/forgotview';
 $route['add-review'] = 'product/addReviews';
+
+$route['reset-password'] ='account/resetPassword';
+

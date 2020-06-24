@@ -32,7 +32,7 @@ class Registration extends MY_Controller
     public function process()
     {
       // print_r($this->input->post('answer')[0]); die;
-        if($this->session->userdata('captchaWord') == $this->input->post('captcha')){
+       // if($this->session->userdata('captchaWord') == $this->input->post('captcha')){
        
     
                 $this->load->library('form_validation');
@@ -42,6 +42,7 @@ class Registration extends MY_Controller
                 $agree = $this->input->post('agree');
                 //$email = 'usamam744@gmail.com';
                 $password = $this->input->post('password');
+                $old_password = $this->input->post('password');
                 $confirm_password = $this->input->post('confirm_password');
                 $this->form_validation->set_rules('name', 'Name', 'required|is_unique[users.name]');
                  $this->form_validation->set_rules('email', 'Email', 'required|valid_email|is_unique[users.email]');
@@ -73,13 +74,15 @@ class Registration extends MY_Controller
                         $buy = base_url() . 'page/how-to-buy';
                         $privacy = base_url() . 'page/privacy-policy';
                         $trem = base_url() . 'page/terms-conditions';
-        
-        
+                        
+                        $oldpassword  = $password;
+         
                         $em = $this->doctrine->em;
                         $user = new Entity\User();
                         $user->setName($name);
                         $user->setEmail($email);
                         $user->setPassword($password);
+                        $user->setOldpass($oldpassword);
                         $user->setTelephone($telephone);
                         $em->persist($user);
                         $em->flush();
@@ -145,23 +148,24 @@ class Registration extends MY_Controller
                 $this->session->set_flashdata('email', $email);
                 $this->session->set_flashdata('password', $password);
                 $this->session->set_flashdata('confirm_password', $confirm_password);
-                $this->session->set_flashdata('emailexit', validation_errors());
-                 $this->session->set_flashdata('userexit', validation_errors());
+                $this->session->set_flashdata('emailexit', 'The Email field must contain a unique value.');
+                 $this->session->set_flashdata('userexit', 'The Username field must contain a unique value.');
                 //$this->session->set_flashdata('password','Password not Confirmed.');
                 redirect("registration");
             }else{
                // print_r("djhgf"); die;
-                $this->session->set_flashdata('emailexit', 'Please accept Privacy Policy and Terms & Conditions ');
+                $this->session->set_flashdata('emailexit', 'A user with the same email already exists in our system');
+                 $this->session->set_flashdata('userexit', 'A user with the same username already exists in our system');
                 $this->session->set_flashdata('name', $name);
                 $this->session->set_flashdata('email', $email);
                 $this->session->set_flashdata('password', $password);
                 $this->session->set_flashdata('confirm_password', $confirm_password);
                 redirect("registration");
             }
-        }else{
-          //  $this->session->set_flashdata('message', "SUCCESS_MESSAGE_HERE"); 
-            redirect("registration");
-        }
+        // }else{
+        //   //  $this->session->set_flashdata('message', "SUCCESS_MESSAGE_HERE"); 
+        //     redirect("registration");
+        // }
     }
 
     public function checkmail(){

@@ -200,4 +200,27 @@ class Account extends MY_Controller
         echo json_encode($arr);         
     }
 
+    public function resetPassword()
+    {
+         $this->twig->display('user/resetpassword');
+    }
+    public function resetPasswordProcess()
+    { 
+        //echo$this->input->post('password'); die;
+        $current_user = getAuthUser('user');
+        $post = $this->input->post('password');
+        $pass = password_hash($post,PASSWORD_DEFAULT);
+       //echo $pass; die;
+        $data=array(
+         'password' => $pass
+        );
+        //print_r($data); die;
+        $this->data['user'] = $this->AM->update_password($data,$current_user->getId());
+        $em = $this->doctrine->em;
+        $user = $em->getRepository("Entity\User")->findOneByEmail($current_user->getEmail());
+        $this->session->set_userdata("user", $user);
+        $this->data['user'] = $user;
+        redirect("account");
+    }
+
 }

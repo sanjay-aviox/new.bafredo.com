@@ -17199,7 +17199,9 @@ var app = new Vue({
       }, function (response) {
             
         if(response.status == 'cancel'){
-           window.location.href = "http://178.128.177.194/new.bafredo.com/login";
+
+           //window.location.href = "http://178.128.177.194/new.bafredo.com/login";
+            toastr.warning('Please login first to like the product' , {timeOut: 5000})
         }else{
         toastr.success(response.message , {timeOut: 5000});
       // _this6.notificationMsg = response.message;

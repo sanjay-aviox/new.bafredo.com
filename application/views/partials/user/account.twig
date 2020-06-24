@@ -1,111 +1,51 @@
-
 <div>
-  <h2 class="comn-dash-account-heading">Personal Information</h2>
-  <form class="per-info-form">
-    <div class="form-group">
-      <label for="name1">Name</label>
-      <input type="text" class="form-control" value="{{ user.name }}" id="name1">
-    </div>
-    <div class="form-row">
-        <div class="form-group col-12 col-md-8">
-            <label for="email1">Email</label>
-            <input type="email" class="form-control" value="{{ user.email }}" id="email1">
+    <h2 class="comn-dash-account-heading">Personal Information</h2>
+    <form action="#" method="post" enctype="multipart/form-data" class="form-horizontal" id="userAccount">
+        <div class="form-group">
+            <label for="name1">Username</label>
+            <input type="text" name="name" class="form-control" value="{{ user.name }}" id="name1">
         </div>
-        <div class="form-group col-12 col-md-4">
-        {% if(verfiy.is_verified == '0') %}
-            <button type="button" class="comn-btn w-100 verify email-verify-btn">Verify Your Email</button>
-        {% else %}
-            <button type="button" class="comn-btn w-100 disable">Verified</button>
-        {% endif %}
-       
-      </div>
-    </div>
-    <div class="form-group" id="otp_section" style="display:none">
-        <label class="col-sm-2 control-label" for="telephone">OTP</label>
-        <div class="col-sm-8">
-            <input type="text"  placeholder="OTP" id="otp" class="form-control">
+        <div class="form-row">
+            <div class="form-group col-12 col-md-8">
+                <label for="email1">Email</label>
+                <input type="email" name="email" class="form-control" value="{{ user.email }}" id="email1">
+            </div>
+            <div class="form-group col-12 col-md-4">
+                {% if(verfiy.is_verified == '0') %}
+                    <button type="button" class="comn-btn w-100 verify email-verify-btn">Verify Your Email</button>
+                {% else %}
+                    <button type="button" class="comn-btn w-100 disable">Verified</button>
+                {% endif %}
+            </div>
         </div>
-        <div class="col-sm-2">
-            <button type="button" class="btn btn-primary" id="confirmOtp">Submit</button>
+        <div class="form-group" id="otp_section" style="display:none">
+            <label class="col-sm-2 control-label" for="telephone">OTP</label>
+            <div class="col-sm-8">
+                <input type="text"  placeholder="OTP" id="otp" class="form-control">
+            </div>
+            <div class="col-sm-2">
+                <button type="button" class="btn btn-primary" id="confirmOtp">Submit</button>
+            </div>
         </div>
-    </div>
-    <div class="form-group">
-        <label for="mob1">Mobile number</label>    
-        <input type="text" class="form-control" value="{{ user.telephone }}" id="mob1">
-    </div>
-    <div class="form-group">                      
-        <button type="button" class="comn-btn">Save</button>
-    </div>
-  </form>
-</div>
-
-
-<!-- <div class="orderListFrame">
-    <form action="#" method="post" enctype="multipart/form-data" class="form-horizontal">
-        <fieldset>
-            <legend></legend>
-            <div class="form-group">
-                <label class="col-sm-2 control-label" for="name">Name</label>
-                <div class="col-sm-10">
-                    <input type="text" name="name" required value="{{ user.name }}" placeholder="Name" id="name" class="form-control">
-                </div>
-            </div>
-            {% if verfiy.code %}
-            <div class="text-center bg-danger"><span class="alert">
-                   Unverified Email</span></div>
-            {% endif %}
-            <div class="form-group">
-                <label class="col-sm-2 control-label" for="email">Email</label>
-                <div class="col-sm-8">
-                    <input type="text" name="email" required value="{{ user.email }}" placeholder="Email" id="email" class="form-control">
-                </div>
-                <div class="col-sm-2">
-                    {% if(verfiy.is_verified == '0') %}
-                         <button type="button" class="btn btn-primary verify">Verify Your Email</button>
-                    {% else %}
-                        <button type="button" class="btn btn-default disable">Verified</button>
-                    {% endif %}
-               </div>
-            </div>
-            <p id="verify_msg" style="margin-left:85px"></p>
-             
-            <div class="form-group" id="otp_section" style="display:none">
-               
-                    <label class="col-sm-2 control-label" for="telephone">OTP</label>
-                    <div class="col-sm-8">
-                        <input type="text"  placeholder="OTP" id="otp" class="form-control">
-                    </div>
-                     <div class="col-sm-2">
-                          <button type="button" class="btn btn-primary" id="confirmOtp">Submit</button>
-                   </div>
-               
-            </div>
-            <div class="form-group">
-                <label class="col-sm-2 control-label" for="telephone">Mobile Number</label>
-                    
-
-                <div class="col-sm-10">
-                    <input type="text" name="telephone" required value="{{ user.telephone }}" placeholder="Mobile Number" id="telephone" class="form-control">
-                    <p id="errmsg"></p>
-                </div>
-            </div>
-        </fieldset>
-        <div class="buttons clearfix">
-            <div class="pull-right">
-                <input type="submit" value="Save" id="updatebutton" class="btn btn-primary">
-            </div>
+        <div class="form-group">
+            <label for="mob1">Mobile number</label>    
+            <input type="text" class="form-control"  name="telephone" value="{{ user.telephone }}" id="mob1">
+        </div>
+        <div class="form-group">                      
+             <input type="submit" value="Save" id="updatebutton" class="comn-btn">
+             <!--  <button type="button" class="comn-btn">Save</button> -->
         </div>
     </form>
-</div> -->
+</div>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.js"></script>
 <script>
     $("#updatebutton").click(function(){
-        alert("hi");
         setInterval(function() {
             window.location.reload();
         }, 3000); 
     });
     $(document).ready(function () {
-        $("#telephone").keypress(function (e) {
+        $("#mob1").keypress(function (e) {
             if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57))
             {
                 $("#errmsg").html("Please Enter Numeric values Only").show().fadeOut("slow");
@@ -164,11 +104,37 @@ console.log(data);
      // }
     });
      
-             $("#updatebutton").click(function(){
-           
-            setInterval(function() {
-                  location.reload();
-                }, 3000); 
-        });
+    $("#updatebutton").click(function(){
+        setInterval(function() {
+            location.reload();
+        }, 3000); 
+    });
+
+
+    $("#userAccount").validate({
+        rules: {   
+            name: {
+                required: true,
+            },
+            email:{
+                required: true,
+            },
+            telephone:{
+                required: true,
+            }
+        },
+        messages: {
+            name: {
+                required: "Username is required",
+            },
+            email:{
+                required: "Email is required",
+            },
+            telephone:{
+                required: "Phone Number is required",
+            }
+        },
+    });
+    
     
 </script>

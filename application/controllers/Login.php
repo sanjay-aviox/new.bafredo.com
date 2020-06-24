@@ -21,12 +21,20 @@ class Login extends MY_Controller
         $this->twig->display('login', compact('redirectAfterLogin','error'));
     }
 
+  
     public function process()
     {
         $email = $this->input->post('email');
         $redirectAfterLogin = $this->input->post('redirectAfterLogin');
+       
         $em = $this->doctrine->em;
-        $user = $em->getRepository("Entity\User")->findOneByEmail($email);
+        if(!preg_match("^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,3})$^",$email)){ 
+            $user = $em->getRepository("Entity\User")->findOneByName($email);
+        }else{ 
+            $user = $em->getRepository("Entity\User")->findOneByEmail($email);
+        } 
+    
+        
         //$user = $this->AM->loginProcess($email);
         // echo "<pre>";
         // print_r($user); die;
@@ -56,6 +64,55 @@ class Login extends MY_Controller
 
         redirect("login".$redirectAfterLogin);
     }
+
+    public function LoginprocesswithOldpassword()
+    {
+
+        $email = $this->input->post('email');
+        //$redirectAfterLogin = $this->input->post('redirectAfterLogin');
+       
+        $em = $this->doctrine->em;
+        if(!preg_match("^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,3})$^",$email)){ 
+            $user = $em->getRepository("Entity\User")->findOneByName($email);
+        }else{ 
+            $user = $em->getRepository("Entity\User")->findOneByEmail($email);
+        } 
+       
+        
+        //$user = $this->AM->loginProcess($email);
+        // echo "<pre>";
+       
+
+        if (! empty($user)) {
+            $password = $this->input->post('password');
+                // match password
+
+                if (password_verify($password, $user->getOldpass())) {
+
+                    $this->session->set_userdata("isUserLoggedin", 1);
+                    $this->session->set_userdata("user", $user);
+                   // $this->session->set_userdata("userids", $wishlistCount);
+
+                    if (!empty($redirectAfterLogin)) {
+                        redirect($redirectAfterLogin);
+                    } else {
+                        redirect("reset-password");
+                    }
+                }else{
+                    $this->session->set_flashdata('item','Please confirm password type.');
+                }
+
+            $redirectAfterLogin = "?href=".urlencode($redirectAfterLogin);
+        }else{
+            $this->session->set_flashdata('item','Incorrect Email or username or password.');
+        }
+       // $this->session->set_userdata('error', 'username or email or password is incorrect.');
+
+        redirect("login".$redirectAfterLogin);
+    }
+
+
+
     
     public function forgotview()
     {

@@ -32,7 +32,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form action="#" method="post" class="form-horizontal">
+                <form action="#" method="post" id="addressForm" class="form-horizontal">
                     <div class="form-row">
                         <div class="form-group col-md-6">
                             <label for="inputEmail4">First Name</label>
@@ -63,7 +63,7 @@
                     </div>
                     <div class="form-row">
                         <div class="form-group col-md-6">
-                            <label for="inputState">Country</label>
+                            <label for="inputState">Region</label>
                             <select name="region" class="form-control" id="region" onchange="myFunctiondepartment()">
                                 <option value="{{ addressBook.region }}">{{ addressBook.region }}</option>
                                 {% for distirct  in  distircts %}
@@ -93,7 +93,7 @@
                         </div>
                     </div-->
                     <div class="form-group">                        
-                       <input type="submit" value="Save" class="btn btn-primary">
+                       <input type="submit" value="Save" id="saveRecord" class="btn btn-primary">
                         <button type="button" class="comn-btn black-btn" data-dismiss="modal">Cancel</button>
                     </div>
                 </form>
@@ -103,6 +103,7 @@
 </div>
 
 {% block scripts %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.js"></script>
 <script>
     $(document).ready(function () {
         $("#phone").keypress(function (e) {
@@ -138,5 +139,65 @@
             }
         });
     }
+    $("#addressForm").validate({
+        rules: {   
+            first_name: {
+                required: true,
+                minlength :3,
+            },
+            last_name:{
+                required: true,
+                minlength :3,
+            },
+            email:{
+                required: true,
+                email:true
+            },
+            phone:{
+                required: true,
+                number:true
+            },
+            address:{
+                required: true,
+            },
+            region:{
+                required: true,
+            },
+            city:{
+                required: true,
+            },
+            postal_code:{
+                required: true, 
+            }
+        },
+        messages: {
+             first_name: {
+                required: "First name is required",
+            },
+            last_name:{
+                required: "Last name is required",
+            },
+            email:{
+                required: "Email Is required"
+            },
+            phone:{
+                required: "Phone Number is required"
+            },
+            address:{
+                required: "Address is required"
+            },
+           
+            region:{
+                required: "Region is required",
+            },
+            city:{
+                required: "City is required",
+            },
+            postal_code:{
+                required: "Zip Code is required", 
+            }
+        },
+    });
+
 </script>
 {% endblock %}

@@ -240,7 +240,7 @@
                                                                             </div>
                                                                         </div>
                                                                         <div class="hover-icon-link-box">
-                                                                            <a href="#" class="hover-icon-link" data-toggle="tooltip" data-placement="left" title="" data-original-title="Login to use whishlist"><i class="fa fa-heart-o"></i></a>
+                                                                            <a href="#" class="hover-icon-link" data-toggle="tooltip" data-placement="left" title="" data-original-title="Wishlist"><i class="fa fa-heart-o"></i></a>
                                                                             <a href="#" class="hover-icon-link" data-toggle="tooltip" data-placement="left" title="" data-original-title="Compare"><i class="fa fa-refresh"></i></a>
                                                                             <a href="#" class="hover-icon-link" data-toggle="tooltip" data-placement="left" title="" data-original-title="Quick view"><i class="fa fa-search-plus" data-toggle="modal" data-target="#quickViewModal"></i></a>
                                                                             </div>
@@ -373,7 +373,7 @@
                                 </a>
                             </div>
                             <div class="cart-box">
-                                <a href="#" onclick="openNav()" class="cart-icon">
+                                <a href="{{ base_url('/cart') }}" class="cart-icon">
                                     <i class="fa fa-shopping-cart"></i>
                                     <span  v-text="cart.length" class="header-count-box">0</span>
                                 </a>
@@ -496,6 +496,33 @@
            toastr.success('We do have the Kapua suite available.', 'Success Alert', {timeOut: 5000})
         });
 
+         $(document).on('change', '#filter', function(){  
+        var val = $(this).val(); 
+        var x = $("#typeahead").val();
+          if(x== ''){
+              location.reload();
+          }
+        
+         $.ajax({
+               url: "https://localhost/new.bafredo.com/filter-product/",
+               type: 'get',
+               data: {"x" : x,'val':val},
+               dataType : "json",
+               error: function() {
+                  alert('Something is wrong');
+               },
+               success: function(data) {
+                   console.log(data);
+                   $("#bodyupdate").html(data.data);
+                    // $("#msg").addClass("alert alert-success");
+                    // $("#msg").html("Record removed successfully").show().fadeOut(3000);
+                    
+                    // setTimeout(function () { location.reload(); }, 2000);
+               }
+         });
+     
+    });
+
         $(document).on('click','#view_result', function(){
             var x = $("#typeahead").val();
             $.ajax({
@@ -508,7 +535,7 @@
                   },
                   success: function(data) {
                       console.log(data);
-                     $("#bodyupdate").html('<div data-pc="Latest" class="row" style="border-bottom: 2px solid green;"><b>Filter</b><div class="sort-section" style="float:right;"><label>Sort</label><select class="form-control" id="filter"><option>Select Filter</option><option value="hightolow">Price: High to Low</option> <option value="lowtohigh">Price: Low to High</option></select></div></div><div class="row">'+data.data+'</div>');
+                     $("#bodyupdate").html('<section class="breadcrumb-section"><div class="container"><div class="row"><div class="col-12 col-md-12"><div class="breadcrumb-area"><nav aria-label="breadcrumb" class="comn-breadcrumb-nav"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="#"><i class="fa fa-home pr-2"></i>Home</a></li><li class="breadcrumb-item active" aria-current="page">Filter Product</li></ol></nav></div></div></div></div></section><section class="filter-product-section view-products-section py-4"><div class="container"><div class="row"><div class="col-12 col-md-12"><div class="product-select-box mb-4"><ul class="d-flex justify-content-between align-items-center mb-0"><li><p class="mb-0">Filter</p></li><li><select class="form-control mr-sm-2" id="filter"><option selected="">Most Popular</option><option value="1">Most Popular</option><option value="lowtohigh">Price: Low to High</option><option value="hightolow">Price: High to Low</option></select></li></ul></div></div></div><div class="row">'+data.data+'</div></div></section>');
 
                   }
             });
@@ -523,7 +550,7 @@
     {
         if (validateEmail($("#newsletter_email").val() || $("#newsletter_email").val().trim() != "")) {
             $.ajax({
-                url: '{{ base_url('home/subscribe') }}',
+                url: "{{ base_url('home/subscribe') }}",
                 data: {
                     email: $('#newsletter_email').val(),
                 },
@@ -599,10 +626,11 @@
 </script>
     <!-- copyright-section end -->
 
-
+<!-- 
 <script src="{{ asset('plugins/typeahead/js/handlebars.js') }}"></script>
 <script src="{{ asset('plugins/typeahead/js/main.js') }}"></script>
-<script src="{{ asset('js/app.js') }}"></script> 
+<script src="{{ asset('js/app.js') }}"></script>  -->
+
 {% block scripts %} {% endblock %}
 
        <div id="mySidenav" class="cart-sidenav">

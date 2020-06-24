@@ -17,10 +17,6 @@ class Cart extends MY_Controller
     {
         parent::__construct();
 
-         if (! authCheck("user")) {
-            redirect("login");
-        }
-
         // sandbox: https://demo.pesapal.com/api/PostPesapalDirectOrderV4
         // live: https://www.pesapal.com/API/PostPesapalDirectOrderV4
         $this->pesapal_endpoint = 'https://www.pesapal.com/API/PostPesapalDirectOrderV4';

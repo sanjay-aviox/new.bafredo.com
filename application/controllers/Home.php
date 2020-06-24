@@ -105,27 +105,46 @@ class Home extends MY_Controller
             //         </select>
             //         </div>
             //         </div><br>
+                     // <div class="item" style="float:left;margin-left:40px;" >
+                     //    <a title="'.$res->name.'" href="https://new.bafredo.com/product/detail/'.$res->slug.'">
+                     //    <div class="img">
+                     //        <img src="'.$res->thumbnail.'" alt="'.$res->name.'" title="'.$res->name.'" class="filter-img" width="100%">
+                     //    </div>
+                     //    </a> 
+                     //    <div class="title">
+                     //         <a title="'.$res->name.'" href="https://new.bafredo.com/product/detail/'.$res->name.'">'.$res->name.'</a>
+                     //    </div> 
+                     //    <div class="btns">
+                     //         <b class="price">'.$res->currency.'&nbsp'.$res->price.'</b> 
+                     //         <span>
+                     //         <button type="button"><i class="iconfont icon-cart"></i></button>
+                     //         </span>
+                     //    </div></div></div>
             //         <div class="row">');
                 
       if(count($result)>0){
         foreach ($result as $res){
-            array_push($option,'
-                    <div class="item" style="float:left;margin-left:40px;" >
-                        <a title="'.$res->name.'" href="https://new.bafredo.com/product/detail/'.$res->slug.'">
-                        <div class="img">
-                            <img src="'.$res->thumbnail.'" alt="'.$res->name.'" title="'.$res->name.'" class="filter-img" width="100%">
+            array_push($option,'<div class="col-12 col-lg-3 col-md-4 col-sm-6">
+                    <div class="view-products-single-box">
+                        <div class="view-products-thumb">
+                            <img src="'.$res->thumbnail.'">
+                            <div class="view-products-hover-info">
+                                <button class="icon-link-btn" onclick="openNav()"><i class="fa fa-shopping-cart pr-2"></i> Add to cart</button>
+                            </div>
                         </div>
-                        </a> 
-                        <div class="title">
-                             <a title="'.$res->name.'" href="https://new.bafredo.com/product/detail/'.$res->name.'">'.$res->name.'</a>
-                        </div> 
-                        <div class="btns">
-                             <b class="price">'.$res->currency.'&nbsp'.$res->price.'</b> 
-                             <span>
-                             <button type="button"><i class="iconfont icon-cart"></i></button>
-                             </span>
-                        </div></div></div>'
-                  );
+                        <div class="view-products-info">                            
+                            <div class="view-products-title">
+                                <h3><a href="#">"'.$res->name.'"</a></h3>
+                                <span class="view-products-price">'.$res->currency.'&nbsp'.$res->price.'</span>
+                            </div>
+                        </div>
+                        <div class="hover-icon-link-box">                            
+                            <a href="#" class="hover-icon-link" data-toggle="tooltip" data-placement="left" title="Login to use whishlist"><i class="fa fa-heart-o"></i></a>
+                            <a href="#" class="hover-icon-link" data-toggle="tooltip" data-placement="left" title="Compare"><i class="fa fa-refresh"></i></a>
+                            <a href="#" class="hover-icon-link" data-toggle="tooltip" data-placement="left" title="Quick view"><i class="fa fa-search-plus" data-toggle="modal" data-target="#quickViewModal"></i></a>
+                        </div>
+                    </div>
+                </div>');
          }
      }else{
         array_push($option,'</div><div class="row noRecords" style=" background:white;height:50px;margin-left:40px;"><h3 style="margin-left:10px;">No Results Found..</h3></div>');

@@ -37,6 +37,14 @@ class AccountModel extends CI_Model
         return $this->get_user($id);
     }
 
+    public function update_password($data,$id)
+    {
+      //print_r($data); die; 
+        $this->db->where("id",$id);
+        $this->db->update('users',$data);
+        return $this->get_user($id);
+    }
+
     public function verfiymail($id){
         $this->db->where("id",$id);
         return $this->db->get('users')->row();
