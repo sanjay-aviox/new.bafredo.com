@@ -49,7 +49,6 @@ class Registration extends MY_Controller
                 $this->form_validation->set_rules('password', 'Password', 'required');
                 $this->form_validation->set_rules('confirm_password', 'Confirm Password', 'required|matches[password]');
         
-    
                 if ($agree == 'on') {
                     $config = Array(
                         'protocol' => 'smtp',
@@ -60,8 +59,9 @@ class Registration extends MY_Controller
                        // 'mailtype' => 'html',
                         //'charset' => 'iso-8859-1'
                     );
+
     
-    
+                    
                     if ($this->form_validation->run() == True) {
                         $this->load->library('email', $config);
                         $secret = "35onoi2=-7#%g03kl";
@@ -75,14 +75,16 @@ class Registration extends MY_Controller
                         $privacy = base_url() . 'page/privacy-policy';
                         $trem = base_url() . 'page/terms-conditions';
                         
-                        $oldpassword  = $password;
-         
+                        $oldpass  = $password;
+
                         $em = $this->doctrine->em;
                         $user = new Entity\User();
                         $user->setName($name);
                         $user->setEmail($email);
                         $user->setPassword($password);
-                        $user->setOldpass($oldpassword);
+          
+                        $user->setOldPassword($oldpass);
+                        
                         $user->setTelephone($telephone);
                         $em->persist($user);
                         $em->flush();
@@ -96,8 +98,6 @@ class Registration extends MY_Controller
                           }
                    
                     $security = $this->PM->adduserSecurity($data);
-                    
-                    
     
                    // $this->load->model('AccountModel');
     
@@ -148,8 +148,8 @@ class Registration extends MY_Controller
                 $this->session->set_flashdata('email', $email);
                 $this->session->set_flashdata('password', $password);
                 $this->session->set_flashdata('confirm_password', $confirm_password);
-                $this->session->set_flashdata('emailexit', 'The Email field must contain a unique value.');
-                 $this->session->set_flashdata('userexit', 'The Username field must contain a unique value.');
+                $this->session->set_flashdata('emailexit', 'A user with the same username already exists in our system');
+                 $this->session->set_flashdata('userexit', 'A user with the same email already exists in our system');
                 //$this->session->set_flashdata('password','Password not Confirmed.');
                 redirect("registration");
             }else{

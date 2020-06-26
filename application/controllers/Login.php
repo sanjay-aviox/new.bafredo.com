@@ -37,7 +37,7 @@ class Login extends MY_Controller
         
         //$user = $this->AM->loginProcess($email);
         // echo "<pre>";
-        // print_r($user); die;
+         // print_r($user); die;
 
         if (! empty($user)) {
             $password = $this->input->post('password');
