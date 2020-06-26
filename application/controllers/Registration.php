@@ -148,8 +148,8 @@ class Registration extends MY_Controller
                 $this->session->set_flashdata('email', $email);
                 $this->session->set_flashdata('password', $password);
                 $this->session->set_flashdata('confirm_password', $confirm_password);
-                $this->session->set_flashdata('emailexit', 'The Email field must contain a unique value.');
-                 $this->session->set_flashdata('userexit', 'The Username field must contain a unique value.');
+                $this->session->set_flashdata('emailexit', 'A user with the same email already exists in our system');
+                 $this->session->set_flashdata('userexit', 'A user with the same username already exists in our system');
                 //$this->session->set_flashdata('password','Password not Confirmed.');
                 redirect("registration");
             }else{
