@@ -46,12 +46,11 @@ class User
     private $password;
 
     /**
-     * @var string $oldpassword
+     * @var string $oldpass
      *
      * @Column(type="string", length=191)
      */
     private $oldpass;
-
     /**
      * @var string $telephone
      *
@@ -116,9 +115,12 @@ class User
         $this->password = password_hash($password, PASSWORD_DEFAULT);
     }
     
-    public function setOldPassword($old_password)
-    {
-        //print $oldpassword; die;
+    /**
+     * @param string $oldpass
+     */ 
+    public function setOldPassword($oldpass)
+    {  
+       // print_r($oldpass); die;
         $this->oldpass  = password_hash($oldpass, PASSWORD_DEFAULT);
     }
     /**
