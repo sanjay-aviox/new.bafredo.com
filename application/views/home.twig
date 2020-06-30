@@ -119,7 +119,7 @@
                             quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
                             consequat.</p>
                         </div> -->
-                        <a href="{{ base_url("feature-product") }}"><button type="submit" class="comn-btn">Read more</button></a>
+                        <a href="{{ base_url('feature-product') }}"><button type="submit" class="comn-btn">Read more</button></a>
                     </div>
                 </div>
                 <div class="col-12 col-md-6">
@@ -148,8 +148,7 @@
                             <div class="item">
                                 <div class="our-products-single-box">
                                     <div class="our-products-thumb">
-                                    <img src="{{ asset('front/uploads/blog/#{blog.getImage()}') }}" alt="{{ blog.getBlogName() }}">
-                                        <!--div class="post-date">
+                                    <img src="{{ asset('front/uploads/blog/')}}{{blog.getImage()}}" alt="{{ blog.getBlogName() }}">                                        <!--div class="post-date">
                                             <span class="post-date-day">21</span>
                                             <span class="post-date-month">May</span>
                                         </div-->

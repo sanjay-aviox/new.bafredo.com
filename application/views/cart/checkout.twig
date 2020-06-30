@@ -193,7 +193,7 @@
                             <div class="checkout-section-heading"><h3>Contact information</h3></div>
                             <p class="mb-0 checkout-inner-heading"><span>Already have an account?</span> <a href="#">Log in</a></p>
                         </div-->  
-                        <form action="{{ base_url('cart/confirm') }}" class="form" method="post">
+                        <form action="{{ base_url('cart/confirm') }}" id="checkoutForm" class="form" method="post">
                             <!--div class="form-group">
                                 <input type="text" class="form-control" id="inputmobile" placeholder="Email or mobile phone number">
                                 <div class="custom-control custom-checkbox my-2 mr-sm-2">
@@ -204,27 +204,27 @@
                             <div class="checkout-section-heading pt-3"><h3>Shipping address</h3></div>
                             <div class="form-row">                            
                                 <div class="form-group col-md-6">
-										<input type="text" name="shippingAddress[first_name]" value="{{ formdata('first_name', shippingAddress.first_name) }}" required id="first_name" class="form-control" placeholder="First Name"/>
+										<input type="text" name="shippingAddress[first_name]" value="{{ formdata('first_name', shippingAddress.first_name) }}"  id="first_name" class="form-control" placeholder="First Name" required/>
                                 </div>
                                 <div class="form-group col-md-6">
-										<input type="text" name="shippingAddress[last_name]" value="{{ formdata('last_name', shippingAddress.last_name) }}" required id="last_name" class="form-control" placeholder="Last Name"/>
+										<input type="text" name="shippingAddress[last_name]" value="{{ formdata('last_name', shippingAddress.last_name) }}" id="last_name" class="form-control" placeholder="Last Name" required/>
 								</div>
                             </div>
                                                    
                             <div class="form-group">
-                                        <input type="email" name="shippingAddress[email]" value="{{ formdata('email', shippingAddress.email) }}" required id="email" class="form-control" placeholder="Email"/>
+                                        <input type="email" name="shippingAddress[email]" value="{{ formdata('email', shippingAddress.email) }}"  id="email" class="form-control" placeholder="Email" required/>
                             </div>
                             <div class="form-group">
-                               <input type="text" name="shippingAddress[phone]" value="{{ formdata('phone', shippingAddress.phone) }}" required id="phone" class="form-control" placeholder="Phone"/>
-										<p id="errmsg"></p>
+                               <input type="text" name="shippingAddress[phone]" value="{{ formdata('phone', shippingAddress.phone) }}"  id="phone" class="form-control" placeholder="Phone" required/>
+										<p id="errmsg" style="color:red"></p>
                             </div>
                             <div class="form-group">
-                                  <input type="text" name="shippingAddress[country]" readonly value="Tanzania" required id="country" class="form-control" placeholder="Country"/>
+                                  <input type="text" name="shippingAddress[country]" readonly value="Tanzania"  id="country" class="form-control" placeholder="Country" required/>
                             </div>
                             <div class="form-row">
                                 <div class="form-group col-md-6">                            
                                  
-                                   <select name="shippingAddress[region]" class="form-control" id="region" onchange="myFunctiondepartment()" required>
+                                   <select name="shippingAddress[region]" class="form-control" id="region" onchange="myFunctiondepartment()" required >
 										      <option value="">Select Region</option>
 				                        {#<option value="{{ addressBook.region }}">{{ addressBook.region }}</option>#}
 											{% for distirct  in  distircts %}
@@ -243,24 +243,25 @@
                                 </div>
                                  <div class="form-row">
                                 <div class="form-group col-md-6">
-                                    <input type="text" name="shippingAddress[address]" value="{{ formdata('address', shippingAddress.address) }}" required id="address" class="form-control" placeholder="Address"/>
+                                    <input type="text" name="shippingAddress[address]" value="{{ formdata('address', shippingAddress.address) }}"  id="address" class="form-control" placeholder="Address" required/>
                                 </div>
                                 <div class="form-group col-md-6">
-                                    <input type="text" name="shippingAddress[postal_code]" value="{{ formdata('postal_code', shippingAddress.postal_code) }}" id="postal_code" class="form-control" placeholder="Postal Code"/>
-										<p id="errmsg1"></p>
+                                    <input type="text" name="shippingAddress[postal_code]" value="{{ formdata('postal_code', shippingAddress.postal_code) }}" id="postal_code" class="form-control" placeholder="Postal Code" required/>
+										<p id="errmsg1" style="color:red"></p>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <div class="custom-control custom-checkbox my-2 mr-sm-2">
-                                    <input type="checkbox" class="custom-control-input" id="customControlInline2">
+                                    <input type="checkbox" value="Yes" class="custom-control-input chkBike" id="customControlInline2">
+                                   <!--  <input class="chkBike" type="checkbox custom-control-input" name="save_address" value="Yes" id="customControlInline2"/> -->
                                     <label class="custom-control-label" for="customControlInline2">Save this information for next time</label>
                                 </div>
                             </div>
                             
-                            <div class="form-group">
+                           <!--  <div class="form-group">
 									<input class="chkBike" type="checkbox" name="save_address" value="Yes" id="save_address"/>
 									<label for="save_address" class="form-label">Save as default shipping address</label>
-							</div>  
+							</div>   -->
 
 							<h3>Shipping Method <span class="red-asterisk">*</span></h3>
 							<ul class="sec-shipping-method">
@@ -388,6 +389,78 @@
 {% endblock %}
 {% block scripts %}
 	<script>
+        
+          /*$("#checkoutForm").validate({
+        rules: {   
+            shippingAddress[first_name]: {
+                required: true,
+            },
+            'shippingAddress[last_name]': {
+                required: true,
+            },
+            'shippingAddress[email]':{
+                required: true,
+            },
+            'shippingAddress[phone]':{
+                required: true,
+            },
+            'shippingAddress[country]':{
+                required: true,
+            },
+            'shippingAddress[region]':{
+                required: true,
+            },
+            'shippingAddress[city]':{
+                required: true,
+            },
+            'shippingAddress[address]':{
+                required: true,
+            },
+            'shippingAddress[postal_code]':{
+                required: true,
+            },
+            save_address:{
+                required: true,
+            }
+        },
+        messages: {
+            'shippingAddress[first_name]': {
+                required: "First name is required",
+            },
+            'shippingAddress[last_name]': {
+                required: "Last name is required",
+            },
+            'shippingAddress[email]':{
+                required: "Email is required",
+            },
+            'shippingAddress[phone]':{
+                required: "Phone Number is required",
+            },
+            'shippingAddress[country]':{
+                required: "Country is required",
+            },
+            'shippingAddress[region]':{
+                required: "Region is required",
+            },
+            'shippingAddress[city]':{
+                required: "City is required",
+            },
+            'shippingAddress[address]':{
+                required: "Address is required",
+            },
+            'shippingAddress[postal_code]':{
+                required: "Postal Code is required",
+            },
+            save_address:{
+                required: "This field is required",
+            }
+        },
+    }); */
+
+
+
+
+
         $(document).ready(function () {
             $("#phone").keypress(function (e) {
             if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {

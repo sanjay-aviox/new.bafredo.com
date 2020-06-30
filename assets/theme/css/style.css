@@ -47,6 +47,14 @@ ul{
 .comn-btn a:hover{
 	color: #b6b4c1;
 }
+
+button.comn-btn.w-100.btn-confirm:disabled {
+    background-color: #A696DB !important;
+}
+
+button#deletedItem:disabled {
+    background-color: #585858 !important;
+}
 /*comn-outline-btn*/
 .comn-outline-btn{
 	background-color: transparent;
@@ -664,7 +672,7 @@ button:visited{
     top: 11px;
 }
 input.searchInput{
-	position: absolute;
+	/*position: absolute;*/
 	right: 0px;
 	width: 425px;
 	height: 40px;

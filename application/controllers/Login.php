@@ -13,11 +13,25 @@ class Login extends MY_Controller
 
     public function index()
     {
-//        $products = $this->em->getRepository(\Entity\Products::class)->findAll();
-      //  $error = $this->session->userdata('error');
+        $url = parse_url($_SERVER['HTTP_REFERER'], PHP_URL_PATH);
+       // echo $url;
+        $parsed = parse_url($url);
+        $path = $parsed['path'];
+        $path_parts = explode('/', $path);
+       // print_r($path_parts); die;
+       // $desired_output = $path_parts[3];
+
+    if($path_parts[3] == 'detail'){
+        $this->session->set_userdata( "previousUrl" , $_SERVER['HTTP_REFERER'] );
+    }
+
+
+        
+
         $error = $this->session->flashdata('item');
         //print_r($error);die;
         $redirectAfterLogin = $this->input->get('href');
+
         $this->twig->display('login', compact('redirectAfterLogin','error'));
     }
 
@@ -33,8 +47,8 @@ class Login extends MY_Controller
         }else{ 
             $user = $em->getRepository("Entity\User")->findOneByEmail($email);
         } 
-    
         
+     
         //$user = $this->AM->loginProcess($email);
         // echo "<pre>";
          // print_r($user); die;
@@ -46,9 +60,15 @@ class Login extends MY_Controller
                     $this->session->set_userdata("isUserLoggedin", 1);
                     $this->session->set_userdata("user", $user);
                    // $this->session->set_userdata("userids", $wishlistCount);
-
-                    if (!empty($redirectAfterLogin)) {
-                        redirect($redirectAfterLogin);
+ 
+                    // if (!empty($redirectAfterLogin)) {
+                    //     redirect($redirectAfterLogin);
+                    // } else {
+                    //     redirect("account");
+                    // }
+                  // echo $this->session->userdata('previousUrl'); die;
+                     if (!empty($this->session->userdata('previousUrl'))) {
+                        redirect($this->session->userdata('previousUrl'));
                     } else {
                         redirect("account");
                     }
@@ -213,23 +233,25 @@ class Login extends MY_Controller
            $newpassword =  password_hash($password, PASSWORD_DEFAULT);
            $this->AccountModel->updatepassword($mail,$newpassword,$password);
 
-            //  $config = Array(
-            //     'protocol' => 'smtp',
-            //     'smtp_host' => 'bafredo.com',
-            //     'smtp_port' => 2525,
-            //     'smtp_user' => 'bafredo123@bafredo.com',
-            //     'smtp_pass' => 'Jf,WWM2o&5{*',
-            //     'mailtype'  => 'html',
-            //     'charset'   => 'iso-8859-1'
-            // );
-            // $this->load->library('email', $config);
-            // $this->email->from('info@bafredo.com', 'Bafredo');
-            // $this->email->to($mail);
+             $config = Array(
+                'protocol' => 'smtp',
+                'smtp_host' => 'ssl://smtp.googlemail.com',
+                'smtp_port' => 465,
+                'smtp_user' => 'redexsolutionspvtlmt@gmail.com',
+                'smtp_pass' => 'rajinder@1995',
+                'mailtype'  => 'html',
+                'charset'   => 'iso-8859-1'
+            );
 
-            // $this->email->subject('Forgot Password BAFREDO Account');
-            // $this->email->message("Your New Password ".$password);
+           
+            $this->load->library('email', $config);
+            $this->email->from('info@bafredo.com', 'Bafredo');
+            $this->email->to('dofobig763@6mails.com');
 
-            // $this->email->send();
+            $this->email->subject('Forgot Password BAFREDO Account');
+            $this->email->message("Your New Password ".$password);
+
+            $this->email->send();
 
 
              $this->session->set_flashdata('item','Please check your Email to retrieve the password.');
@@ -274,7 +296,7 @@ class Login extends MY_Controller
       // echo $i; die;
        if($i==0){
            $detail = $this->AccountModel->getDetail($answers['id']);
-          print_r($detail); die;
+         // print_r($detail); die;
             $arr = array('data'=>$option,'msg'=>'200');
                 echo json_encode($arr);
 

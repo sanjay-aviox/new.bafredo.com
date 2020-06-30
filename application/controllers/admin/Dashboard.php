@@ -15,10 +15,12 @@ class Dashboard extends MY_Controller
     public function index()
     {
         $menu = $this->loadMenu("dashboard");
-       $data['orders'] = $this->DashboardModel->numoforder();
+        $data['orders'] = $this->DashboardModel->numoforder();
         $data['numberofusers'] = $this->DashboardModel->numberofusers();
         $data['numberofsubscribe'] = $this->DashboardModel->numberofsubscribe();
         $data['numberofvisitor'] = $this->DashboardModel->numberofvisitor();
+
+    
 
         $xcrud = xcrud_get_instance();
         $xcrud->table('orders');
