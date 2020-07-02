@@ -19,7 +19,7 @@
     <link rel="shortcut icon" href="{{ asset('theme/images/favicon.png') }}">
 
     <!----------  font-awesome css ------------->
-    <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="http://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <!----------  bootstrap css ------------->
     <link rel="stylesheet" type="text/css" href="{{ asset('theme/css/bootstrap.min.css') }}">
@@ -50,12 +50,13 @@
     <script src="{{ asset('front/js/hammer.min.js') }}" type="text/javascript"></script>
     <script src="{{ asset('front/js/iscroll.js') }}" type="text/javascript"></script>
   
-    <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
-    <link href='https://fonts.googleapis.com/css?family=Roboto+Condensed|Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Roboto+Condensed|Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
 
     <link href="{{ asset('front/css/iconfont.css') }}" rel="stylesheet">
     <link href="{{ asset('front/image/logo/icon-100x100.png') }}" rel="icon" />
     <script type="text/javascript" src="{{ asset('theme/js/custom.js') }}"></script>
+
 
     <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" rel="stylesheet">
     <link src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-sweetalert/1.0.1/sweetalert.min.css" rel="stylesheet">
@@ -72,6 +73,7 @@
    <!--  <script src="{{ asset('front/js/mobile.js') }}" type="text/javascript"></script> -->
     <script src="{{ asset('front/js/pc.js') }}" type="text/javascript"></script>
     <script src="{{ asset('front/js/common.js') }}" type ="text/javascript"></script>
+
 
    
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-sweetalert/1.0.1/sweetalert.min.js" type ="text/javascript">
@@ -460,15 +462,15 @@
                             
                             <li><a href="#" class="footer-social-link"><img src="{{ asset('theme/images/github.png') }}"></a></li> -->
 
-                            <li><a href="https://www.linkedin.com/company/bafredo-electronics-limited/" target="_blank" class="footer-social-link"><img src="{{ asset('theme/images/linkedin.png') }}"></a></li>
+                            <li><a href="http://www.linkedin.com/company/bafredo-electronics-limited/" target="_blank" class="footer-social-link"><img src="{{ asset('theme/images/linkedin.png') }}"></a></li>
 
-                            <li><a href="https://www.facebook.com/bafredonics/" target="_blank" class="footer-social-link"><img src="{{ asset('theme/images/facebook.png') }}"></a></li>
+                            <li><a href="http://www.facebook.com/bafredonics/" target="_blank" class="footer-social-link"><img src="{{ asset('theme/images/facebook.png') }}"></a></li>
 
-                            <li><a href="https://www.youtube.com/channel/UC601Ys2fPPwhkmyhdp9MrhQ?view_as=subscriber" target="_blank" class="footer-social-link"><img src="{{ asset('theme/images/youtube.png') }}"></a></li>
+                            <li><a href="http://www.youtube.com/channel/UC601Ys2fPPwhkmyhdp9MrhQ?view_as=subscriber" target="_blank" class="footer-social-link"><img src="{{ asset('theme/images/youtube.png') }}"></a></li>
 
-                            <li><a href="https://www.instagram.com/bafredonics/" target="_blank" class="footer-social-link"><img src="{{ asset('theme/images/instagram-sketched.png') }}"></a></li>
+                            <li><a href="http://www.instagram.com/bafredonics/" target="_blank" class="footer-social-link"><img src="{{ asset('theme/images/instagram-sketched.png') }}"></a></li>
 
-                            <li><a href="https://twitter.com/bafredonics" target="_blank" class="footer-social-link"><img src="{{ asset('theme/images/twitter.png') }}"></a></li>
+                            <li><a href="http://twitter.com/bafredonics" target="_blank" class="footer-social-link"><img src="{{ asset('theme/images/twitter.png') }}"></a></li>
                         </ul>
                     </div>
                 </div>
@@ -521,7 +523,7 @@
           }
         
          $.ajax({
-               url: "https://localhost/new.bafredo.com/filter-product/",
+               url: "http://178.128.177.194/new.bafredo.com/filter-product/",
                type: 'get',
                data: {"x" : x,'val':val},
                dataType : "json",
@@ -543,7 +545,7 @@
         $(document).on('click','#view_result', function(){
             var x = $("#typeahead").val();
             $.ajax({
-                  url: "http://localhost/new.bafredo.com/search-product",
+                  url: "http://178.128.177.194/new.bafredo.com/search-product",
                   type: 'get',
                   data: {"x" : x},
                   dataType : "json",
@@ -623,7 +625,7 @@
     $("#continueBtn").click(function(){
          // alert("hi");
         $.ajax({
-            url: 'https://new.bafredo.com/user/userlogout',
+            url: 'http://178.128.177.194//user/userlogout',
             type: 'get',
             success: function(data) {
                 console.log("fckg");

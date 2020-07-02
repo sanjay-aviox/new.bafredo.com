@@ -55,7 +55,7 @@ class Registration extends MY_Controller
                         'smtp_host' => 'smtp.gmail.com',
                         'smtp_port' => 465,
                         'smtp_user' => 'redexsolutionspvtlmt@gmail.com',
-                        'smtp_pass' => 'rajinder@1994',
+                        'smtp_pass' => 'rajinder@1995',
                        // 'mailtype' => 'html',
                         //'charset' => 'iso-8859-1'
                     );
@@ -148,8 +148,10 @@ class Registration extends MY_Controller
                 $this->session->set_flashdata('email', $email);
                 $this->session->set_flashdata('password', $password);
                 $this->session->set_flashdata('confirm_password', $confirm_password);
+
                 $this->session->set_flashdata('emailexit', 'A user with the same username already exists in our system');
                  $this->session->set_flashdata('userexit', 'A user with the same email already exists in our system');
+
                 //$this->session->set_flashdata('password','Password not Confirmed.');
                 redirect("registration");
             }else{

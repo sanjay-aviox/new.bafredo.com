@@ -17203,7 +17203,7 @@ var app = new Vue({
            //window.location.href = "http://178.128.177.194/new.bafredo.com/login";
             toastr.warning('Please login first to like the product' , {timeOut: 5000})
                 setTimeout(function () { 
-                    window.location.href = "http://localhost/new.bafredo.com/login";
+                    window.location.href = "http://178.128.177.194/new.bafredo.com/login";
                 }, 5000);
         }else{
         toastr.success(response.message , {timeOut: 5000});
@@ -17215,7 +17215,7 @@ var app = new Vue({
         // }, 2000);
          }
         //console.log(response);
-         //window.location.reload()
+         window.location.reload()
       });
     },
     onlyNumber: function onlyNumber($event) {

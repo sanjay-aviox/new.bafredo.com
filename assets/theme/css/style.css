@@ -672,7 +672,11 @@ button:visited{
     top: 11px;
 }
 input.searchInput{
+<<<<<<< HEAD
+/*	position: absolute; */
+=======
 	/*position: absolute;*/
+>>>>>>> 87afed845d81778ab96f90906a27379a1ac69745
 	right: 0px;
 	width: 425px;
 	height: 40px;

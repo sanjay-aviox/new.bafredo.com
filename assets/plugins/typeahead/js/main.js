@@ -60,7 +60,7 @@ $(document).ready(function() {
     source: engineWithDefaults,
     name: 'slug',
     display: 'name',
-    limit: 5,
+    limit: 3,
     templates: {
        footer:header,
       
