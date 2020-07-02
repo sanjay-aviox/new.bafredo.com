@@ -75,7 +75,7 @@ class Registration extends MY_Controller
                         $privacy = base_url() . 'page/privacy-policy';
                         $trem = base_url() . 'page/terms-conditions';
                         
-                        $oldpass  = $password;
+                       // $oldpass  = $password;
 
                         $em = $this->doctrine->em;
                         $user = new Entity\User();
@@ -83,7 +83,7 @@ class Registration extends MY_Controller
                         $user->setEmail($email);
                         $user->setPassword($password);
           
-                        $user->setOldPassword($oldpass);
+                      //  $user->setOldPassword($oldpass);
                         
                         $user->setTelephone($telephone);
                         $em->persist($user);

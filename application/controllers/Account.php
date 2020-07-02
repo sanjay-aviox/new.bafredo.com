@@ -152,6 +152,39 @@ class Account extends MY_Controller
       //  echo "<pre>"; print_r($this->data); die;
         $this->twig->display('partials/user/wish_list', $this->data);
     }
+
+    public function changePassword()
+    {
+        $this->data['user'] = getAuthUser('user');
+        $this->data['page'] = 'password';
+        $this->twig->display('user/profile', $this->data, compact('password'));
+    }
+    public function changePasswordProcess()
+    {
+        $this->data['user'] = getAuthUser('user');
+        $this->data['page'] = 'password';
+
+        $user = getAuthUser('user');
+        $old_pass= $this->input->post('oldpassword'); 
+        
+        if (password_verify($old_pass, $user->getPassword())) {
+            $data=array(
+                'password' =>  password_hash($this->input->post('newpassword'),PASSWORD_DEFAULT),
+                'oldpass'  =>  password_hash($this->input->post('oldpassword'),PASSWORD_DEFAULT)
+            );
+            $this->AM->update_password($data,$user->getId());
+            redirect('account/changePassword');
+        }else{
+           // $this->session->set_flashdata('item','Incorrect Email or username or password.');
+           // $error = "Incorrect Email or username or password.";
+             $this->session->set_flashdata('wrongpassword', 'A user with the same email already exists in our system');
+            redirect('account/changePassword');
+
+        }
+        // die;
+        // $this->twig->display('user/profile', $this->data);
+    }
+
     public function verifyemail(){
         $data = $this->input->post();  
        // print_r($data['email']);

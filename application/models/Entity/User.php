@@ -45,12 +45,12 @@ class User
      */
     private $password;
 
-    /**
-     * @var string $oldpass
-     *
-     * @Column(type="string", length=191)
-     */
-    private $oldpass;
+    // *
+    //  * @var string $oldpass
+    //  *
+    //  * @Column(type="string", length=191)
+     
+    // private $oldpass;
     /**
      * @var string $telephone
      *

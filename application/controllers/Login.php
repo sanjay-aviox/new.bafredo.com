@@ -25,9 +25,6 @@ class Login extends MY_Controller
         $this->session->set_userdata( "previousUrl" , $_SERVER['HTTP_REFERER'] );
     }
 
-
-        
-
         $error = $this->session->flashdata('item');
         //print_r($error);die;
         $redirectAfterLogin = $this->input->get('href');

@@ -3191,7 +3191,7 @@ p.privacy-text a{
     transition: 0.5s ease;
 }
 .footer-social-link:hover{
-    transform: rotateY(360deg);
+  /*  transform: rotateY(360deg);*/
     background-color: #ffffff;
 }
 .social-list-box img{

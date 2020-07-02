@@ -75,6 +75,7 @@
         </div>
     </div>
 </section>
+
 <section class="my-account-section py-5">
     <div class="container">
         <div class="row">
@@ -87,6 +88,8 @@
                         <a class="nav-link aMenu_1 {{(page=='order_history')?'select':''}}" href="{{ base_url('account/order_history') }}">Order History</a>
                         <hr>
                         <a class="nav-link aMenu_2 {{(page=='address_book')?'select':''}}" href="{{ base_url('account/address_book') }}">Address Book</a>
+                        <hr>
+                         <a class="nav-link aMenu_2 {{(page=='address_book')?'select':''}}" href="{{ base_url('account/changePassword') }}">Change Password</a>
                         <hr>
                         <a class="nav-link" href="{{ base_url('user/logout') }}">Logout</a>
 
@@ -121,6 +124,8 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/datepicker/1.0.9/datepicker.min.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.22/pdfmake.min.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.js"></script>
   
     <script>
        
@@ -268,5 +273,31 @@
                   }
           });
         });
-    </script>
+
+    $(document).ready(function(){
+        $("#changePassword").validate({
+            rules: {   
+                oldpassword: {
+                    required: true,
+                },
+                newpassword:{
+                    required: true,
+                },
+                confirmpassword:{
+                    required: true,
+                    equalTo: "#newpassword"
+                }
+            },
+            messages: {
+                oldpassword: {
+                    required: "Current password is required",
+                },
+                newpassword:{
+                     required: "New password is required",
+                },
+                confirmpassword: " Enter confirm password same as password",
+            },
+        });
+    });
+</script>
 {% endblock %}
