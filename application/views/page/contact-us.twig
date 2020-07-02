@@ -114,4 +114,38 @@
     <section class="map-section">
         <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d15847.390813209326!2d39.2093687!3d-6.7883799!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xa54079e95134dc55!2sBAFREDO+Electronics!5e0!3m2!1sen!2stz!4v1549870603123" width="100%" height="450" frameborder="0" style="border: 0px; pointer-events: none;" allowfullscreen=""></iframe>
     </section>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.js"></script>
+    <script>
+$(document).ready(function(){
+  $("#contactUs").validate({
+    // Specify validation rules
+    rules: {
+      subject: "required",
+      name: "required",
+      email: {
+        required: true,
+        email: true
+      },      
+      message: {
+        required: true,
+      },
+    },
+    messages: {
+      subject: {
+      required: "Subject is required",
+     },      
+     name: {
+      required: "Name is required",
+     },     
+     email: {
+      required: "Email is required",
+     },     
+     message: {
+        required: "Message is required",
+     },
+    },
+  
+  });
+});
+</script>
 {% endblock %}

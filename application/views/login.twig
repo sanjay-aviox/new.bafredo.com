@@ -31,6 +31,8 @@
                     <div class="account-form-area">
                         <div class="account-heading"><h2><i class="fa fa-sign-in"></i>Login</h2></div>
                         <form action="{{ base_url('login/process') }}" id="login" method="post">
+                          
+
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Username or email address <span class="required">*</span></label>
                                 <input type="text" spellcheck="false" placeholder="Email or username" class="form-control" id="input-email"  name="email" aria-describedby="emailHelp">
@@ -51,7 +53,7 @@
                                     <label class="form-check-label" for="exampleCheck1">Remember me</label>
                                 </div-->
 
-                                <!---p class="mb-0"><a href="{{ base_url('login/forgotpassword') }}" class="lost-pass"><i class="fa fa-life-bouy"></i>Lost your password?</a></p-->
+                                <!--p class="mb-0"><a href="{{ base_url('login/forgotpassword') }}" class="lost-pass"><i class="fa fa-life-bouy"></i>Lost your password?</a></p-->
 
                             </div>
                             <input class="account-outline-btn login-btn" type="submit" value="LOGIN">

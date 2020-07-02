@@ -30,10 +30,13 @@ class DashboardModel extends CI_Model
     /*Number of User Count */
     public function numberofvisitor(){
         
-        $this->db->select('visitor_count');
-        $numberofvisitor = $this->db->get('visitor')->row();
+        // $this->db->select('visitor_count');
+        // $numberofvisitor = $this->db->get('visitor')->result();
+        
+        $numberofvisitor = $this->db->count_all_results('visitor');
 
-    return $numberofvisitor->visitor_count; 
+        //echo $numberofvisitor; die;
+        return $numberofvisitor; 
     }
 
     /*Visitor Count Store In database */

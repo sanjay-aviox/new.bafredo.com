@@ -82,7 +82,7 @@
                         <div class="product-btn-box mb-4"><button type="button" v-on:click="addToCart({{ product.toJson() }})" class="addCartBtn comn-btn black-btn w-100">Add to cart</button></div>
 
                         <div class="product-wishlist-box">                            
-                            <a href="#" class="btn btn-default on wishlist" v-on:click="addToWishList({{ product.id }})" ><i class="fa fa-heart-o pr-2"></i>Add To Wishlist</a>
+                            <a href="#" class="btn btn-default on wishlist addWishList" v-on:click="addToWishList({{ product.id }})" ><i class="fa fa-heart-o pr-2"></i>Add To Wishlist</a>
                         </div>
                         
 
@@ -392,7 +392,14 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.js"></script>
 
     <script type="text/javascript">
-         $(function() {
+        $(".addWishList").click(function(){
+            alert('hi');
+            setInterval(function() {
+                window.location.reload();
+            }, 2000); 
+        });
+        
+        $(function() {
           // VARIABLES
           var rateYo = $("#rateYo");
           var rateYoField = $("input[name='rating']");
@@ -412,11 +419,7 @@
         //     dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
         //     (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
         // })();
-         $(".wishlist").click(function(){
-            setInterval(function() {
-                  window.location.reload();
-                }, 3000); 
-        });
+       
 
         // js for zoom image
         var demoTrigger = document.querySelector('.demo-trigger');

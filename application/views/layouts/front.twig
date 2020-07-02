@@ -57,9 +57,27 @@
     <link href="{{ asset('front/image/logo/icon-100x100.png') }}" rel="icon" />
     <script type="text/javascript" src="{{ asset('theme/js/custom.js') }}"></script>
 
-    <link href="http://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" rel="stylesheet">
-    <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
 
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" rel="stylesheet">
+    <link src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-sweetalert/1.0.1/sweetalert.min.css" rel="stylesheet">
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+    
+
+<!--         <script src="{{ asset('front/js/config.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('front/js/cart.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('front/js/head.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('front/js/djs.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('front/js/pbl.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('front/js/bigeye.js') }}" type="text/javascript"></script>
+     -->
+   <!--  <script src="{{ asset('front/js/mobile.js') }}" type="text/javascript"></script> -->
+    <script src="{{ asset('front/js/pc.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('front/js/common.js') }}" type ="text/javascript"></script>
+
+
+   
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-sweetalert/1.0.1/sweetalert.min.js" type ="text/javascript">
+    </script>
 </head>
 <body>
     <div id="app">
@@ -373,7 +391,7 @@
                                 </a>
                             </div>
                             <div class="cart-box">
-                                <a href="{{ base_url('/cart') }}" class="cart-icon">
+                                <a   href="{{ base_url('/cart') }}" class="cart-icon showCartBtn">
 
                                     <i class="fa fa-shopping-cart"></i>
                                     <span  v-text="cart.length" class="header-count-box">0</span>
@@ -688,7 +706,7 @@
                 </div-->
                  <a class="comn-btn grey-btn d-block w-100 mb-3 showCartBtn" href="{{ base_url('cart') }}">View my cart</a>
                 <!--button class="comn-btn grey-btn d-block w-100 mb-3">VIEW CART</button-->
-                <button class="comn-btn d-block w-100"><a href="checkout.html">CHECKOUT</a></button>
+              <!--   <button class="comn-btn d-block w-100"><a href="checkout.html">CHECKOUT</a></button> -->
             </form>            
         </div>
     </div>

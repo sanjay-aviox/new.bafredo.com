@@ -51,6 +51,7 @@
                         <div class="form-group col-md-6">
                             <label for="inputEmail4">Phone Number</label>
                             <input type="text" name="phone" class="form-control" id="phone" value="{{ addressBook.phone }}">
+                             <p id="errmsg" style="color:red;"></p>
                         </div>
                         <div class="form-group col-md-6">
                             <label for="inputPassword4">Address</label>
@@ -108,13 +109,13 @@
     $(document).ready(function () {
         $("#phone").keypress(function (e) {
             if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
-                   $("#errmsg").html("Please Enter Numeric values Only").show().fadeOut("slow");
+                   $("#errmsg").html("Please Enter Numeric values Only").css('color','red').show().fadeOut("slow");
                    return false;
                }
            });
             $("#postal_code").keypress(function (e) {
             if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
-                   $("#errmsg1").html("Please Enter Numeric values Only").show().fadeOut("slow");
+                   $("#errmsg1").html("Please Enter Numeric values Only").css('color','red').show().fadeOut("slow");
                    return false;
                }
            });
@@ -199,5 +200,11 @@
         },
     });
 
+
+   
+
+ 
+
+        
 </script>
 {% endblock %}

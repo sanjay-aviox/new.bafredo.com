@@ -36,7 +36,7 @@
                                     <tr>
 			                           <th class="text-left">
 											<label class="container-checkbox">
-												<input type="checkbox" v-model="allCartItemOptionSelected" v-on:click="checkAllCartItems" id="fcheck">
+                                                <input type="checkbox" v-model="allCartItemOptionSelected" v-on:click="checkAllCartItems" id="fcheck">
 												<span class="checkmark"></span>
 											</label>
 										</th>
@@ -51,10 +51,12 @@
                                 <tbody>
                                     <tr v-for="item in cart">
 										<td  class="text-left">
-											<label class="container-checkbox">
-												<input type="checkbox" v-model="allCartItemOptionSelected" v-on:click="checkAllCartItems" id="fcheck">
-												<span class="checkmark"></span>
-											</label>
+											
+
+                                            <label class="container-checkbox">
+                                                <input type="checkbox" name="cart" v-model="selectedCartItems" :value="item.id" v-on:click="pushSelectedToCheckoutCart(item, this)">
+                                                <span class="checkmark"></span>
+                                            </label>
 										</td>
 										<td class="cart-product-image">
 											<a v-bind:title="item.name" v-bind:href="productDetail(item.slug)"><img v-bind:src="productImage(item.image)" v-bind:alt="item.name" v-bind:title="item.name" class="img-thumbnail"></a>
@@ -62,17 +64,17 @@
 										</td>
 										<td v-text="item.currency +' '+ item.price"></td>
 										<td>
-											<div class="input-group plus-minus-input">
-												<div class="widgets-numberpicker">
-													<div class="widgets-numberpicker-decrement" v-on:click="cartItemQuantityDecrement(item)"></div>
-												</div>
-												<div class="input-group-field item-quantity-count">
-													<input type="text" class="form-control" v-model="item.quantity" v-on:keypress="onlyNumber" maxlength="9">
-												</div>
-												<div class="widgets-numberpicker">
-													<div class="widgets-numberpicker-increment" v-on:click="cartItemQuantityIncrement(item)"></div>
-												</div>
-											</div>
+                                            <div class="input-group plus-minus-input">
+                                                <div class="widgets-numberpicker">
+                                                    <div class="widgets-numberpicker-decrement" v-on:click="cartItemQuantityDecrement(item)"><i class="fa fa-minus"></i></div>
+                                                </div>
+                                                <div class="input-group-field item-quantity-count">
+                                                    <input type="text" class="form-control" v-model="item.quantity" v-on:keypress="onlyNumber" maxlength="9">
+                                                </div>
+                                                <div class="widgets-numberpicker">
+                                                    <div class="widgets-numberpicker-increment" v-on:click="cartItemQuantityIncrement(item)"><i class="fa fa-plus"></i></div>
+                                                </div>
+                                            </div>
 										</td>
 										
 										<td class="total-price" v-text="item.currency +' '+  Math.round((item.price * item.quantity))"></td>
@@ -90,7 +92,7 @@
             <div class="row pt-4">
                 <div class="col-12 col-md-12">
                     <div class="cart-actions-box">
-                        <button class="comn-btn black-btn" id="deletedItem">Deleted Selected</button>
+                        <button class="comn-btn black-btn" v-bind:disabled="selectedCartItems.length == 0" id="deletedItem">Deleted Selected</button>
 
                       
                     </div>
@@ -137,6 +139,8 @@
                                     <label class="form-check-label" for="exampleCheck1">I agree with the terms and conditions.</label>
                                 </div>
                             </form-->
+                           
+
                             <button class="comn-btn w-100 btn-confirm" v-on:click="cartCheckout()" v-bind:disabled="selectedCartItems.length == 0">Continue</button>
                             <!---button type="submit" class="comn-btn w-100"><a href="checkout.html">Proceed to Checkout</a></button--->
                         </div>
@@ -145,35 +149,56 @@
             </div>
         </div>
     </section>
-
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.css">
 <script>
+
  $(document).on('click', '#deletedItem', function(){
-     alert("Are you sure, you want to delete?");
-    var item = [];
+    
+
+    swal({
+        title: "Are you sure?",
+        text: "You will not be able to recover this imaginary file!",
+        type: "warning",
+        showCancelButton: true,
+        confirmButtonColor: '#DD6B55',
+        confirmButtonText: 'Yes, delete it!',
+        cancelButtonText: "No, cancel plx!",
+        closeOnConfirm: false,
+        closeOnCancel: false
+    },
+    function(isConfirm){
+    if (isConfirm){
+    	 var item = [];
     $.each($("input[name='cart']:checked"), function(){
             item.push($(this).val());
     });
     $.ajax({
-        url: '/cart/deletedCart',
+        url: 'http://178.128.177.194/new.bafredo.com/cart/deletedCart',
         type: 'get',
         data: {'item': item},
         dataType : "json",
-        error: function() {
-        alert('Something is wrong');
-        },
+        // error: function() {
+        // alert('Something is wrong');
+        // },
         success: function(data) {
-        //   $("#msg").addClass("alert alert-success");
-        //   $("#msg").html("Record removed successfully").show().fadeOut(3000);
-                    
-        //             setTimeout(function () { 
-        location.reload(); 
+        	swal("Deleted!", "Your imaginary file has been deleted!", "success");
+       setTimeout(function () { 
+      location.reload(); 
             
-        //}, 2000);
+        }, 2000);
         //       }
         //     });
-    alert("My favourite sports are: " + favorite.join(", "));
+    //alert("My favourite sports are: " + favorite.join(", "));
         }
     });
+      
+    } else {
+      swal("Cancelled", "Your imaginary file is safe :)", "error");
+    }
+    });
 });
+
+
+
 </script>
 {% endblock %}

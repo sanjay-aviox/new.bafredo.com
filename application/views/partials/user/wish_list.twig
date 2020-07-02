@@ -39,22 +39,23 @@
                                         <th></th>
                                         <th>PRODUCT NAME</th>
                                         <th>UNIT PRICE</th>
-                                        <th>STOCK STATUS</th>
-                                        <th></th>
+                                       <!--  <th></th> -->
+                                       
                                     </tr>
                                 </thead>
                                 <tbody>
                                     {% if result %}
                                     {% for res in result %}
                                         <tr>
-
+                                             
                                             <td class="product-remove-icon"> <button type="button" class="btn btn-xs btn-danger delete" data-id="{{ res.id}}"><i class="fa fa-times-circle"></i></button></td>
 
                                              <td class="wishlist-product-image"><img src='{{ asset("uploads/product/thumbnail/#{res.image}") }}'></td>
                                             <td>{{ res.name }}</td>
                                             <td>{{ res.currency }} {{ res.price }}</td>
-                                            <td><button type="button" v-on:click="addToCart({{ product.toJson() }})" class="addCartBtn comn-btn">Add to cart</button>
-                                            </td>
+                                          <!--   <td><button type="button" v-on:click="addToCart({{ res.toJson() }})" class="addCartBtn comn-btn">Add to cart</button>
+                                              
+                                            </td> -->
 
                                         </tr>
                                     {% endfor %}
@@ -100,13 +101,13 @@
         });
         $(document).on('click', '.confirmDelete', function(){
             var id = $('#item_id').val();
-            alert(id);
+           // alert(id);
             if(id){
                 $('#deletemodal').modal('hide');
             }
             {
                 $.ajax({
-                    url: 'http://localhost/new.bafredo.com/account/remove_history/'+id,
+                    url: 'http://178.128.177.194/new.bafredo.com/account/remove_history/'+id,
                     type: 'DELETE',
                     error: function() {
                        alert('Something is wrong');
