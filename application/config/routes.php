@@ -79,8 +79,9 @@ $route['feature-product'] = 'home/feature';
 $route['search-product'] = 'home/searchresult';
 $route['filter-product'] = 'home/filters';
 $route['refresh-captcha'] = 'registration/refreshCaptcha';
-$route['forgot-pass'] = 'login/forgotview';
+$route['forgot-password'] = 'login/forgotpassword';
 $route['add-review'] = 'product/addReviews';
 
 $route['reset-password'] ='account/resetPassword';
+
 

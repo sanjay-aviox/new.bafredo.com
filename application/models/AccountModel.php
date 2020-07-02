@@ -39,7 +39,7 @@ class AccountModel extends CI_Model
 
     public function update_password($data,$id)
     {
-      //print_r($data); die; 
+      //print_r($data); echo $id; die; 
         $this->db->where("id",$id);
         $this->db->update('users',$data);
         return $this->get_user($id);

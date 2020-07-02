@@ -84,10 +84,9 @@ class Login extends MY_Controller
 
     public function LoginprocesswithOldpassword()
     {
-
+         
         $email = $this->input->post('email');
-        //$redirectAfterLogin = $this->input->post('redirectAfterLogin');
-       
+        
         $em = $this->doctrine->em;
         if(!preg_match("^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,3})$^",$email)){ 
             $user = $em->getRepository("Entity\User")->findOneByName($email);
@@ -96,15 +95,12 @@ class Login extends MY_Controller
         } 
        
         
-        //$user = $this->AM->loginProcess($email);
-        // echo "<pre>";
+        $user = $this->AM->loginProcess($email);
        
-
         if (! empty($user)) {
             $password = $this->input->post('password');
-                // match password
 
-                if (password_verify($password, $user->getOldpass())) {
+                if (password_verify($password, $user['oldpass'])) {
 
                     $this->session->set_userdata("isUserLoggedin", 1);
                     $this->session->set_userdata("user", $user);
@@ -116,25 +112,25 @@ class Login extends MY_Controller
                         redirect("reset-password");
                     }
                 }else{
-                    $this->session->set_flashdata('item','Please confirm password type.');
+                    $this->session->set_flashdata('password','Please confirm password.');
+                     redirect('forgot-password');
                 }
 
             $redirectAfterLogin = "?href=".urlencode($redirectAfterLogin);
         }else{
-            $this->session->set_flashdata('item','Incorrect Email or username or password.');
-        }
-       // $this->session->set_userdata('error', 'username or email or password is incorrect.');
 
-        redirect("login".$redirectAfterLogin);
+           $this->session->set_flashdata('item','No user exist with this email/username');
+            redirect('forgot-password');
+        }
     }
 
 
 
     
-    public function forgotview()
-    {
-        $this->twig->display('auth/forgot');
-    }
+    // public function forgotview()
+    // {
+    //     $this->twig->display('auth/forgot');
+    // }
 
     /**
      * Social login handling.
@@ -219,7 +215,14 @@ class Login extends MY_Controller
         $em->flush();
     }
     public function forgotpassword(){
-        $this->twig->display('user/forget');
+
+        $userexist = $this->session->flashdata('item');
+        $password = $this->session->flashdata('password');
+       
+        $redirectAfterLogin = $this->input->get('href');
+
+       
+        $this->twig->display('user/forget',compact('redirectAfterLogin','userexist','password'));
     }
     public function forgotpasswordProcess(){
         $this->load->model('AccountModel');

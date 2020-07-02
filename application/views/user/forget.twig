@@ -2,7 +2,11 @@
 
 
 {% block content %}
-      
+<style>
+    .error{
+            float: left;
+    }
+</style>    
     <section class="breadcrumb-section">
         <div class="container">
             <div class="row">
@@ -30,19 +34,27 @@
                     <h2 class="fs-title">Forgot password</h2>
                     <form action="{{ base_url('login/LoginprocesswithOldpassword') }}" id="oldPassword" method="post">
                         <input type="text" name="email" placeholder="Enter email"/>
+                        {% if userexist %}
+                            <div class="alert alert-red error" style="color:red;float: left;">{{ userexist }}</div>
+                        {% endif %}
                         <input type="password" name="password" placeholder="Enter Old Password"/>
+                          {% if password %}
+                            <div class="alert alert-red error" style="color:red;float: left;">{{ password }}</div>
+                        {% endif %}
+
                         <input type="submit" name="" class="action-button" value="Submit"/>
                        
                     </form>
-                    <input type="button" name="next" class="next action-link-button" value="Another option"/>
+                    <input type="button" name="next" class="next action-link-button" value="Try Another option"/>
               </fieldset>
               <fieldset>
+                <h2 class="fs-title">Forgot password</h2>
                     <form action="{{ base_url('login/forgotpasswordProcess') }}" method="post">
                         
                         <input type="text" id="email" required name="email" placeholder="Email" class="form-control validate">
-                        <input type="button" name="previous" class="previous action-button" value="Previous" />
                         <input type="submit" name="" class="action-button" value="Submit"/>
                     </form>
+                      <input type="button" name="previous" class="previous action-button" value="Previous" />
               </fieldset>
             </div>
             <!-- <div id="msform">  
@@ -249,8 +261,6 @@
             },
             password:{
                 required: true,
-                minlength :3,
-                maxlength :8
             },
         },
         messages: {

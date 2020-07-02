@@ -29,7 +29,8 @@ class Account extends MY_Controller
     {
         $post = $this->input->post();
         $current_user = getAuthUser('user');
-    
+        
+       // print_r(current_user);
                 
         $this->data['verfiy'] = $this->AM->verfiymail($current_user->getId());
         $this->data['user'] = $current_user;
@@ -157,17 +158,26 @@ class Account extends MY_Controller
     {
         $this->data['user'] = getAuthUser('user');
         $this->data['page'] = 'password';
-        $this->twig->display('user/profile', $this->data, compact('password'));
+
+        $password = $this->session->flashdata('wrongpassword');
+        //print_r($error);die;
+        $redirectAfterLogin = $this->input->get('href');
+
+        $this->twig->display('user/profile', $this->data, compact('redirectAfterLogin','password'));
     }
     public function changePasswordProcess()
     {
+        print_r($this->input->post());
         $this->data['user'] = getAuthUser('user');
         $this->data['page'] = 'password';
 
         $user = getAuthUser('user');
         $old_pass= $this->input->post('oldpassword'); 
+
+         $redirectAfterLogin = "?href=".urlencode($redirectAfterLogin);
         
         if (password_verify($old_pass, $user->getPassword())) {
+
             $data=array(
                 'password' =>  password_hash($this->input->post('newpassword'),PASSWORD_DEFAULT),
                 'oldpass'  =>  password_hash($this->input->post('oldpassword'),PASSWORD_DEFAULT)
@@ -177,7 +187,7 @@ class Account extends MY_Controller
         }else{
            // $this->session->set_flashdata('item','Incorrect Email or username or password.');
            // $error = "Incorrect Email or username or password.";
-             $this->session->set_flashdata('wrongpassword', 'A user with the same email already exists in our system');
+            $this->session->set_flashdata('wrongpassword', 'A user with the same email already exists in our system');
             redirect('account/changePassword');
 
         }
@@ -234,8 +244,9 @@ class Account extends MY_Controller
     }
 
     public function resetPassword()
-    {
-         $this->twig->display('user/resetpassword');
+    {     
+        
+        $this->twig->display('user/resetpassword');
     }
     public function resetPasswordProcess()
     { 
@@ -247,10 +258,12 @@ class Account extends MY_Controller
         $data=array(
          'password' => $pass
         );
-        //print_r($data); die;
-        $this->data['user'] = $this->AM->update_password($data,$current_user->getId());
+        
+        $this->data['user'] = $this->AM->update_password($data,$current_user['id']);
+        
         $em = $this->doctrine->em;
-        $user = $em->getRepository("Entity\User")->findOneByEmail($current_user->getEmail());
+        $user = $em->getRepository("Entity\User")->findOneByEmail($current_user['email']);
+       // print_r($user); die;
         $this->session->set_userdata("user", $user);
         $this->data['user'] = $user;
         redirect("account");
