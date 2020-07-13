@@ -73,6 +73,7 @@ class Account extends MY_Controller
             redirect(base_url(implode("/",$segments)));
         }
         $this->data['orders'] = $this->OrderModel->allByUserId($this->data['user']->getId());
+     //   echo "<pre>"; print_r( $this->data['orders']); die;
         $this->twig->display('user/profile', $this->data);
     }
     public function delete_history_record()

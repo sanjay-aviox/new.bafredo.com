@@ -80,6 +80,11 @@
     </script>
 </head>
 <body>
+    <style>
+        a:focus {
+outline: none !important;
+}
+    </style>
     <div id="app">
    
     <!-- top-section start -->
@@ -193,7 +198,7 @@
                             <!-- mobile sidebar end -->
 
                             <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                                <ul class="navbar-nav mr-auto">
+                                <ul class="navbar-nav mr-auto" id="mainMenu">
                                     <li class="nav-item active">
                                         <a class="nav-link" href="{{ base_url('/') }}">Home</a>
                                     </li>
@@ -511,6 +516,8 @@
    
     <script type="text/javascript">
         //$(".success").click(function(){
+
+
         $(document).on('click','.success', function(){
            toastr.success('We do have the Kapua suite available.', 'Success Alert', {timeOut: 5000})
         });

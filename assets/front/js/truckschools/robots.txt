@@ -1,0 +1,10 @@
+User-agent: *
+Allow: /wp-admin/admin-ajax.php
+Disallow: /wp-admin/
+Disallow: /category/
+Disallow: /tag/
+Disallow: /category_media/
+Disallow: /author/
+Disallow: /page/
+
+Sitemap: https://truckschool.com/sitemap_index.xml

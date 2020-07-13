@@ -224,6 +224,43 @@ class Login extends MY_Controller
        
         $this->twig->display('user/forget',compact('redirectAfterLogin','userexist','password'));
     }
+    public function send(){
+         $sender = 'monuaviox@gmail.com';
+        // $recipient = 'you@yourdomain.tld';
+
+        // $subject = "php mail test";
+        // $message = "php test message";
+        // $headers = 'From:' . $sender;
+
+        // if (mail($recipient, $subject, $message, $headers))
+        // {
+        //     echo "Message accepted";
+        // }
+        // else
+        // {
+        //     echo "Error: Message not accepted";
+        // }
+                 $config = Array(
+                'protocol' => 'smtp',
+                'smtp_host' => 'smtp.gmail.com',
+                'smtp_port' => 25,
+                'smtp_user' => 'redexsolutionspvtlmt@gmail.com',
+                'smtp_pass' => 'rajinder@1995',
+                'mailtype'  => 'html',
+                'charset'   => 'iso-8859-1'
+            );
+
+           
+            $this->load->library('email', $config);
+            $this->email->from('info@bafredo.com', 'Bafredo');
+            $this->email->to($sender);
+
+            $this->email->subject('Forgot Password BAFREDO Account');
+            $this->email->message("Your New Password ".$password);
+
+            $this->email->send();
+      
+    }
     public function forgotpasswordProcess(){
         $this->load->model('AccountModel');
         $mail = $this->input->post('email');
@@ -235,8 +272,8 @@ class Login extends MY_Controller
 
              $config = Array(
                 'protocol' => 'smtp',
-                'smtp_host' => 'ssl://smtp.googlemail.com',
-                'smtp_port' => 465,
+                'smtp_host' => 'smtp.gmail.com',
+                'smtp_port' => 567,
                 'smtp_user' => 'redexsolutionspvtlmt@gmail.com',
                 'smtp_pass' => 'rajinder@1995',
                 'mailtype'  => 'html',
@@ -246,12 +283,14 @@ class Login extends MY_Controller
            
             $this->load->library('email', $config);
             $this->email->from('info@bafredo.com', 'Bafredo');
-            $this->email->to('dofobig763@6mails.com');
+            $this->email->to($mail);
 
             $this->email->subject('Forgot Password BAFREDO Account');
             $this->email->message("Your New Password ".$password);
 
             $this->email->send();
+
+           
 
 
              $this->session->set_flashdata('item','Please check your Email to retrieve the password.');

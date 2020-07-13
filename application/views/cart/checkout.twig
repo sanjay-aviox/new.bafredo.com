@@ -369,11 +369,11 @@
                                     </tr>
                                     <tr>
                                         <td>Shipping</td>
-                                        <td>0</td>
+                                        <td v-text="shipping"></td>
                                     </tr>
                                     <tr class="border-top">
                                         <td>Total</td>
-                                        <td class="checkout-total-price"><span>TZS {{ totalPrice }}</span></td>
+                                        <td class="checkout-total-price"><span v-text="total"></span></td>
                                     </tr>
                                 </tbody>
                             </table>
