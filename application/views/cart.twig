@@ -92,7 +92,7 @@
             <div class="row pt-4">
                 <div class="col-12 col-md-12">
                     <div class="cart-actions-box">
-                        <button class="comn-btn black-btn" v-bind:disabled="selectedCartItems.length == 0" id="deletedItem">Deleted Selected</button>
+                        <button class="comn-btn black-btn" v-bind:disabled="selectedCartItems.length == 0" id="deletedItem">Delete Selected</button>
 
                       
                     </div>
@@ -157,12 +157,12 @@
 
     swal({
         title: "Are you sure?",
-        text: "You will not be able to recover this imaginary file!",
+        text: "You will not be able to recover this deleted item!",
         type: "warning",
         showCancelButton: true,
         confirmButtonColor: '#DD6B55',
-        confirmButtonText: 'Yes, delete it!',
-        cancelButtonText: "No, cancel plx!",
+        confirmButtonText: 'Delete',
+        cancelButtonText: "Cancel",
         closeOnConfirm: false,
         closeOnCancel: false
     },
@@ -177,23 +177,21 @@
         type: 'get',
         data: {'item': item},
         dataType : "json",
-        // error: function() {
-        // alert('Something is wrong');
-        // },
+
         success: function(data) {
-        	swal("Deleted!", "Your imaginary file has been deleted!", "success");
+        swal("Deleted!", "The selected items have been deleted successfully!", "success");
        setTimeout(function () { 
       location.reload(); 
             
         }, 2000);
         //       }
         //     });
-    //alert("My favourite sports are: " + favorite.join(", "));
         }
     });
       
     } else {
-      swal("Cancelled", "Your imaginary file is safe :)", "error");
+    swal.close()
+      //swal("Cancelled", "The selected items have been deleted successfully:)", "error");
     }
     });
 });

@@ -32,7 +32,8 @@
 
   
     <link rel="stylesheet" type="text/css" href="{{ asset('theme/css/style.css') }}">
-
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.css" integrity="sha512-wR4oNhLBHf7smjy0K4oqzdWumd+r5/+6QO/vDda76MW5iug4PT7v86FoEkySIJft3XA0Ae6axhIvHrqwm793Nw==" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css" integrity="sha512-yHknP1/AwR+yx26cB1y0cjvQUMvEa2PFzt1c9LlS4pRQ5NOTZFWbhBig+X9G9eYW/8m0/4OXNx8pxJ6z57x0dw==" crossorigin="anonymous" />
 
     <script type="text/javascript" src="{{ asset('theme/js/jquery.min.js') }}"></script>
     <script src="{{ asset('theme/js/owl.carousel.js') }}"></script>
@@ -42,6 +43,7 @@
 
     <script src="{{ asset('plugins/typeahead/js/jquery.xdomainrequest.min.js') }}"></script>
     <script src="{{ asset('plugins/typeahead/js/typeahead.bundle.js') }}"></script>
+   
     <link href="{{ asset('plugins/typeahead/css/normalize.min.css') }}" rel="stylesheet" media="screen" />
   
 
@@ -361,7 +363,7 @@
                             
                    
                             <script id="empty-template" type="text/x-handlebars-template">
-                                <div class="EmptyMessage">Your search turned up 0 results. This most likely means the backend is down, yikes!</div>
+                                <div class="EmptyMessage"><p class="no_result"> Your search returned 0 results</p></div>
                             </script>
                             {% endverbatim %}
                         </div>
@@ -422,31 +424,30 @@
                         </div> 
                         <div class="pb-4">
                             <h4 class="footer-comn-inner-heading">You can reach us on</h4>
-                            <span class="footer-comn-title"><i class="fa fa-phone-square pr-2"></i>+44 (0) 20 8450 9222</span>
+                            <span class="footer-comn-title"><i class="fa fa-phone-square pr-2"></i> +255 746 624 875</span>
                         </div>
                         <div>
                             <h4 class="footer-comn-inner-heading">Or email our team on</h4>
-                            <span class="footer-comn-title"><i class="fa fa-envelope pr-2"></i>abcd@gmail.com</span>
+                            <span class="footer-comn-title"><i class="fa fa-envelope pr-2"></i>info@bafredo.com</span>
                         </div>                
                     </div>
                 </div>
                 <div class="col-12 col-lg-3 col-md-6">
                     <div class="footer-quick-link-box">
-                        <h3 class="footer-comn-heading">Quick link</h3>
+                        <h3 class="footer-comn-heading">Quick links</h3>
                         <ul class="footer-quick-link-list">
                             <li><a href="{{ base_url('page/about-us') }}" class="footer-link">About Us</a></li>
                             <li><a href="{{ base_url('page/contact-us') }}" class="footer-link">Contact Us</a></li>
                            <li><a href="{{ base_url('/blog') }}" class="footer-link">Blog</a></li>
                             <!--li><a href="" class="footer-link">Categories</a></li> -->
-                            <li><a href="{{ base_url('/page/faqs') }}" class="footer-link">Faqs</a></li>
+                            <li><a href="{{ base_url('/page/faqs') }}" class="footer-link">FAQs</a></li>
                         </ul>
                     </div>
                 </div>
                 <div class="col-12 col-lg-5 col-md-12">
                     <div class="footer-social-link-box">
-                        <h3 class="footer-comn-heading">Social links us</h3>
-                        <h4 class="footer-comn-title">Subscribe to our newsletter with
-                        monthly product updates &amp; offers</h4>
+                        <h3 class="footer-comn-heading">Newsletter</h3>
+                        <h4 class="footer-comn-title">Subscribe to our newsletter to receive monthly product updates & offers</h4>
                         <div class="subscribe-form">
                             <form class="footer-newsletter">
                                 <input required="required" type="email" id="newsletter_email" autocomplete="off" placeholder="Enter you email address here..." class="form-control"> 
@@ -454,7 +455,7 @@
                             </form>
 
                         </div>                      
-                        <h3 class="footer-comn-inner-heading">Follow us on :</h3>
+                        <h3 class="footer-comn-inner-heading">Follow us:</h3>
 
                         <ul class="social-list-box">
                             <!-- 
@@ -485,7 +486,7 @@
             <div class="row">
                 <div class="col-12 col-md-12">
                     <div class="copyright-area">
-                        <p class="mb-0">© 2019 BAFREDO Electronics Limited. All rights reserved</p>
+                        <p class="mb-0">© 2015 -2020 BAFREDO Electronics Limited. All rights reserved</p>
                     </div>
                 </div>
             </div>
@@ -532,7 +533,7 @@
                },
                success: function(data) {
                    console.log(data);
-                   $("#bodyupdate").html(data.data);
+                   $("#bodyupdate").html('<section class="filter-product-section view-products-section py-4">'+data.data.join(' ')+'</section>');
                     // $("#msg").addClass("alert alert-success");
                     // $("#msg").html("Record removed successfully").show().fadeOut(3000);
                     
@@ -554,7 +555,9 @@
                   },
                   success: function(data) {
                       console.log(data);
-                     $("#bodyupdate").html('<section class="breadcrumb-section"><div class="container"><div class="row"><div class="col-12 col-md-12"><div class="breadcrumb-area"><nav aria-label="breadcrumb" class="comn-breadcrumb-nav"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="#"><i class="fa fa-home pr-2"></i>Home</a></li><li class="breadcrumb-item active" aria-current="page">Filter Product</li></ol></nav></div></div></div></div></section><section class="filter-product-section view-products-section py-4"><div class="container"><div class="row"><div class="col-12 col-md-12"><div class="product-select-box mb-4"><ul class="d-flex justify-content-between align-items-center mb-0"><li><p class="mb-0">Filter</p></li><li><select class="form-control mr-sm-2" id="filter"><option selected="">Most Popular</option><option value="1">Most Popular</option><option value="lowtohigh">Price: Low to High</option><option value="hightolow">Price: High to Low</option></select></li></ul></div></div></div><div class="row">'+data.data+'</div></div></section>');
+
+                    $('.tt-menu').css('display','none');
+                     $("#bodyupdate").html('<section class="filter-product-section view-products-section py-4"><div class="container"><div class="row"><div class="col-12 col-md-12"><div class="product-select-box mb-4"><ul class="d-flex justify-content-between align-items-center mb-0"><li><p class="mb-0">Filter</p></li><li><select class="form-control mr-sm-2" id="filter"><option selected="">Most Popular</option><option value="1">Select Option</option><option value="lowtohigh">Price: Low to High</option><option value="hightolow">Price: High to Low</option></select></li></ul></div></div></div><div class="row">'+data.data.join(' ')+'</div></div></section>');
 
                   }
             });
@@ -634,6 +637,10 @@
         });         
     });
 
+    $("body").on("mouseenter", '.mega-menu-item' , function () {
+    $(this).find('.mega-menu .sub-menu-heading-link').removeClass('active').first().addClass('active');
+});
+    
     // mobile-sidebar
     function openMobileNav() {
       document.getElementById("myMobileNav").style.width = "100%";

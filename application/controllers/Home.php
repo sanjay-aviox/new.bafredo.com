@@ -92,36 +92,6 @@ class Home extends MY_Controller
             ->result();
             
         $option=array();
-        //array_push($option,'  <div class="container">
-            // <div class="row hidden-xs pc"><br>
-            //         <div data-pc="Latest" class="productTitle featured" style="border-bottom: 2px solid green;">
-            //         <b>Filter</b> 
-            //         <div class="sort-section" style="float:right;">
-            //         <label>Sort</label>
-            //         <select class="form-control" id="filter">
-            //         <option>Select Filter</option>
-            //         <option value="hightolow">Price: High to Low</option>
-            //         <option value="lowtohigh">Price: Low to High</option>
-            //         </select>
-            //         </div>
-            //         </div><br>
-                     // <div class="item" style="float:left;margin-left:40px;" >
-                     //    <a title="'.$res->name.'" href="https://new.bafredo.com/product/detail/'.$res->slug.'">
-                     //    <div class="img">
-                     //        <img src="'.$res->thumbnail.'" alt="'.$res->name.'" title="'.$res->name.'" class="filter-img" width="100%">
-                     //    </div>
-                     //    </a> 
-                     //    <div class="title">
-                     //         <a title="'.$res->name.'" href="https://new.bafredo.com/product/detail/'.$res->name.'">'.$res->name.'</a>
-                     //    </div> 
-                     //    <div class="btns">
-                     //         <b class="price">'.$res->currency.'&nbsp'.$res->price.'</b> 
-                     //         <span>
-                     //         <button type="button"><i class="iconfont icon-cart"></i></button>
-                     //         </span>
-                     //    </div></div></div>
-            //         <div class="row">');
-                
       if(count($result)>0){
         foreach ($result as $res){
             array_push($option,'<div class="col-12 col-lg-3 col-md-4 col-sm-6">
@@ -134,7 +104,7 @@ class Home extends MY_Controller
                         </div>
                         <div class="view-products-info">                            
                             <div class="view-products-title">
-                                <h3><a href="#">"'.$res->name.'"</a></h3>
+                                <h3><a href="#">'.$res->name.'</a></h3>
                                 <span class="view-products-price">'.$res->currency.'&nbsp'.$res->price.'</span>
                             </div>
                         </div>
@@ -175,43 +145,40 @@ class Home extends MY_Controller
                     ->result();
           }
           $option=array();
-       array_push($option,'<div class="row hidden-xs pc">
-                    <div data-pc="Latest" class="productTitle featured" style="border-bottom: 2px solid green;">
-                    <b>Filter</b> 
-                    <div class="sort-section" style="float:right;">
-                    <label>Sort</label>
-                    <select class="form-control" id="filter">
-                    <option>Select Filter</option>
-                    <option value="hightolow">Price: High to Low</option>
-                    <option value="lowtohigh">Price: Low to High</option>
-                    </select>
-                    </div>
-                    </div><br>');
+       array_push($option,'<section class="filter-product-section view-products-section py-4"><div class="container"><div class="row"><div class="col-12 col-md-12"><div class="product-select-box mb-4"><ul class="d-flex justify-content-between align-items-center mb-0"><li><p class="mb-0">Filter</p></li><li><select class="form-control mr-sm-2" id="filter"><option selected="">Most Popular</option><option value="1">Select Option</option><option value="lowtohigh">Price: Low to High</option><option value="hightolow">Price: High to Low</option></select></li></ul></div></div></div><div class="row">');
                 // <div class="productList">
                 // <ul class="simpleMode">');
        if(count($result)>0){
         foreach ($result as $res){
             array_push($option,'
-                    <div class="item" style="float:left;margin-left:40px;" >
-                        <a title="'.$res->name.'" href="https://new.bafredo.com/product/detail/'.$res->slug.'">
-                        <div class="img">
-                            <img src="'.$res->thumbnail.'" alt="'.$res->name.'" title="'.$res->name.'" class="filter-img" width="100%">
+                    <div class="col-12 col-lg-3 col-md-4 col-sm-6">
+                    <div class="view-products-single-box">
+                        <div class="view-products-thumb">
+                            <img src="'.$res->thumbnail.'">
+                            <div class="view-products-hover-info">
+                                <button class="icon-link-btn" onclick="openNav()"><i class="fa fa-shopping-cart pr-2"></i> Add to cart</button>
+                            </div>
                         </div>
-                        </a> 
-                        <div class="title">
-                             <a title="'.$res->name.'" href="https://new.bafredo.com/product/detail/'.$res->name.'">'.$res->name.'</a>
-                        </div> 
-                        <div class="btns">
-                             <b class="price">'.$res->currency.'&nbsp'.$res->price.'</b> 
-                             <span>
-                             <button type="button"><i class="iconfont icon-cart"></i></button>
-                             </span>
-                        </div></div> 
+                        <div class="view-products-info">                            
+                            <div class="view-products-title">
+                                <h3><a href="#">'.$res->name.'</a></h3>
+                                <span class="view-products-price">'.$res->currency.'&nbsp'.$res->price.'</span>
+                            </div>
+                        </div>
+                        <div class="hover-icon-link-box">                            
+                            <a href="#" class="hover-icon-link" data-toggle="tooltip" data-placement="left" title="Login to use whishlist"><i class="fa fa-heart-o"></i></a>
+                            <a href="#" class="hover-icon-link" data-toggle="tooltip" data-placement="left" title="Compare"><i class="fa fa-refresh"></i></a>
+                            <a href="#" class="hover-icon-link" data-toggle="tooltip" data-placement="left" title="Quick view"><i class="fa fa-search-plus" data-toggle="modal" data-target="#quickViewModal"></i></a>
+                        </div>
+                    </div>
+                </div>
                    ');
          }
+
      }else{
-        array_push($option,'<div class="row noRecords" style=" background:white;height:50px;margin-left:40px;"><h3 style="margin-left:10px;">No Results Found..</h3></div>');
+        array_push($option,'<div class="row noRecords" style=" background:white;height:50px;margin-left:40px;"><h3 style="margin-left:10px;">No Results Found..</h3></div></div>');
      }
+     array_push($option,'</div>');
          
          // array_push($option,'</ul>
          //        </div>
