@@ -231,6 +231,38 @@ outline: none !important;
                                             </div>
                                             <div class="col-12 col-md-9">
                                             <div class="tab-content" id="v-pills-tabContent">
+                                                <div id="product">
+                                                    <div class="col-12 col-md-4">
+                                                                    <ul class="you-may-like-area">
+                                                                        <li class="you-may-like-heading">
+                                                                            <h4>You may also like!</h4>
+                                                                        </li>
+                                                                        <div class="you-may-like-Slider owl-carousel owl-theme">
+                                                                        <div class="item">
+                                                                        <div class="view-products-single-box">
+                                                                        <div class="view-products-thumb">
+                                                                            <img src="{{ asset('theme/images/DC-Motor-12v.jpg') }}">
+                                                                            <div class="view-products-hover-info">
+                                                                            <button class="icon-link-btn" onclick="openNav()"><i class="fa fa-shopping-cart pr-2"></i> Add to cart</button>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="view-products-info">                            
+                                                                            <div class="view-products-title">
+                                                                                <h3><a href="#">4WD-Smart-Robot-Car-Chassis-Kit</a></h3>
+                                                                                <span class="view-products-price">TZS&nbsp;55,000</span>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="hover-icon-link-box">
+                                                                            <a href="#" class="hover-icon-link" data-toggle="tooltip" data-placement="left" title="" data-original-title="Wishlist"><i class="fa fa-heart-o"></i></a>
+                                                                            <a href="#" class="hover-icon-link" data-toggle="tooltip" data-placement="left" title="" data-original-title="Compare"><i class="fa fa-refresh"></i></a>
+                                                                            <a href="#" class="hover-icon-link" data-toggle="tooltip" data-placement="left" title="" data-original-title="Quick view"><i class="fa fa-search-plus" data-toggle="modal" data-target="#quickViewModal"></i></a>
+                                                                            </div>
+                                                                        </div>
+                                                                        </div>
+                                                                        </div>
+                                                                    </ul>
+                                                                </div>
+                                                </div>
                                                 {% for menu in menus %}
                                                     <div class="tab-pane fade" id="{{ menu.getName() |replace({' ': ''}) }}" role="tabpanel" aria-labelledby="v-{{ menu.getName() }}">
                                                         <div class="container-fluid">
