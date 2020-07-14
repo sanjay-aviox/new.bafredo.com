@@ -125,6 +125,7 @@ class Account extends MY_Controller
     }
     public function address_book()
     {
+
         $this->data['user'] = getAuthUser('user');
         $this->data['page'] = 'address_book';
         $this->data['addressBook'] = $this->AM->get_user_address_book($this->data['user']->getId());
@@ -132,8 +133,10 @@ class Account extends MY_Controller
        // print_r($this->data['addressBook']); die;
         if(!empty($post))
         {
+            // print_r($post); die;
             $this->data['user'] = $this->AM->update_address_book($post,$this->data['user']->getId());
             $this->data['success'] = "done";
+            redirect("account/address_book");
         }
 
         $this->data['distircts'] = $this->AM->get_region();
@@ -205,24 +208,31 @@ class Account extends MY_Controller
             $current_user = getAuthUser('user');
            // print_r($current_user->getid());
             $post['is_verified'] = '1';
-            
+               
+               $to = "monuaviox@gmail.com";
+$subject = "My subject";
+$txt = "Hello world!";
+$headers = "From: webmaster@example.com" . "\r\n" .
+"CC: somebodyelse@example.com";
 
-                $config = Array(
-                    'protocol' => 'smtp',
-                    'smtp_host' => 'bafredo.com',
-                    'smtp_port' => 2525,
-                    'smtp_user' => 'bafredo123@bafredo.com',
-                    'smtp_pass' => 'Jf,WWM2o&5{*',
-                    'mailtype'  => 'html',
-                    'charset'   => 'iso-8859-1'
-                );
-                $this->load->library('email', $config);
-                $this->email->from('info@bafredo.com', 'Bafredo');
-                $this->email->to($data['email']);
+mail($to,$subject,$txt,$headers);
+
+                // $config = Array(
+                //     'protocol' => 'smtp',
+                //     'smtp_host' => 'bafredo.com',
+                //     'smtp_port' => 2525,
+                //     'smtp_user' => 'bafredo123@bafredo.com',
+                //     'smtp_pass' => 'Jf,WWM2o&5{*',
+                //     'mailtype'  => 'html',
+                //     'charset'   => 'iso-8859-1'
+                // );
+                // $this->load->library('email', $config);
+                // $this->email->from('info@bafredo.com', 'Bafredo');
+                // $this->email->to($data['email']);
     
-                $this->email->subject('Verify your email');
-                $this->email->message("Your verification code ".$otp);
-                $this->email->send();
+                // $this->email->subject('Verify your email');
+                // $this->email->message("Your verification code ".$otp);
+                // $this->email->send();
     
                 
                 $arr = array('stattus'=>'success','message'=>'Verification Code is send on yoyur email');

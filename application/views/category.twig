@@ -43,7 +43,7 @@
                             <div class="hover-icon-link-box">                            
                                 
 
-                                <a href="#" v-on:click="addToWishList({{ product.id }})" class="hover-icon-link" data-toggle="tooltip" data-placement="top" title="Wishlist">   
+                                <a href="#" v-on:click="addToWishList({{ product.toJson() }})" class="hover-icon-link" data-toggle="tooltip" data-placement="top" title="Wishlist">   
 
                                 <i class="fa fa-heart-o"></i></a>
                                 <!--a href="#" class="hover-icon-link" data-toggle="tooltip" data-placement="left" title="Compare"><i class="fa fa-refresh"></i></a-->

@@ -34,22 +34,20 @@ class Wishlist extends MY_Controller
                     "user_id" => $current_user->getId(),
                     "product_id" => $product_id
                 ));
-            }
+            
         
-  
-         
-            //   $userids = $this->session->all_userdata();
-           
-            //   $userid_current = $userids['userids'] + 1;
-            //      $user->wishlistCount = $userid_current;
-            //   $this->session->set_userdata("user", $user);
-            //   $this->session->set_userdata("userids", $userid_current);
-            //  print_r( $this->session->all_userdata());
-        $this->output->set_content_type('application/json');
-        $this->output->set_output(json_encode(array(
-            'status' => 'success',
-            'message' => 'Product added to Wishlist'
-        )));
+            $this->output->set_content_type('application/json');
+            $this->output->set_output(json_encode(array(
+                'status' => 'success',
+                'message' => 'Product added to Wishlist'
+            )));
+        }else{
+             $this->output->set_content_type('application/json');
+            $this->output->set_output(json_encode(array(
+                'status' => 'success',
+                'message' => 'Already Added'
+            )));
+        }
     }else{
         $this->output->set_content_type('application/json');
         $this->output->set_output(json_encode(array(

@@ -17191,33 +17191,32 @@ var app = new Vue({
       quantity = quantity - 1;
       item.quantity = quantity < 1 ? 1 : quantity;
     },
-    addToWishList: function addToWishList(product_id) {
-      var _this6 = this;
+    addToWishList: function addToWishList(product) {
+            var _this6 = this;
 
-      $.post(webPath + 'wishlist/add', {
-        "product_id": product_id
-      }, function (response) {
-            
-        if(response.status == 'cancel'){
+                product['quantity'] = this.product_quantity;
 
-           //window.location.href = "http://178.128.177.194/new.bafredo.com/login";
-            toastr.warning('Please login first to like the product' , {timeOut: 5000})
-                setTimeout(function () { 
-                    window.location.href = "http://178.128.177.194/new.bafredo.com/login";
-                }, 5000);
-        }else{
-        toastr.success(response.message , {timeOut: 5000});
-      // _this6.notificationMsg = response.message;
-        // _this6.addToWishlistNotFlag = true;
-        
-        // setTimeout(function () {
-        //   _this6.addToWishlistNotFlag = false;
-        // }, 2000);
-         }
-        //console.log(response);
-         window.location.reload()
-      });
-    },
+                if (this.containsObject(product, this.wishlist) == false) {
+                        var price = Math.round(Number(product.price));
+                        product.price = price;
+                        this.wishlist.push(product);
+                        $.post(webPath + 'wishlist/add', {
+                                "product_id": product.id
+                        }, function (response) {
+                        console.log(response);
+                            if(response.status == 'cancel'){
+
+                             //window.location.href = "http://178.128.177.194/new.bafredo.com/login";
+                            toastr.warning('Please login first to like the product' , {timeOut: 5000})
+                            setTimeout(function () { 
+                                window.location.href = "http://178.128.177.194/new.bafredo.com/login";
+                            }, 5000);
+                        }else{
+                                toastr.success(response.message );
+                        } 
+                    });
+                }
+        },
     onlyNumber: function onlyNumber($event) {
       var keyCode = $event.keyCode ? $event.keyCode : $event.which;
 
