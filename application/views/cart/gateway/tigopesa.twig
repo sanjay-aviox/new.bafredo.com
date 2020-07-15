@@ -112,8 +112,8 @@
                         <nav aria-label="breadcrumb" class="comn-breadcrumb-nav">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="#"><i class="fa fa-home pr-2"></i>Home</a></li>
-                                <li class="breadcrumb-item"><a href="#">Cart</a></li>
-                                <li class="breadcrumb-item"><a href="#">Checkout</a></li>
+                                <li class="breadcrumb-item"><a href="{{base_url('cart')}}">Cart</a></li>
+                                <li class="breadcrumb-item"><a href="{{base_url('cart/checkout')}}">Checkout</a></li>
                                 <li class="breadcrumb-item" aria-current="page">Confirm Payment</li>
                             </ol>
                         </nav>
@@ -134,25 +134,25 @@
                                     <tbody>
                                         <tr>
                                             <th>Order Number:</th>
-                                            <td>184</td>
+                                            <td>{{ order.id }}</td>
                                         </tr>
                                         <tr>
                                             <th>Date:</th>
-                                            <td>2020-06-20 10:59:00</td>
+                                            <td>{{ order.created_at }}</td>
                                         </tr>
                                         <tr>
                                             <th>Total:</th>
-                                            <td>30</td>
+                                            <td>{{ order.total + charge }}</td>
                                         </tr>
                                         <tr>
                                             <th>Payment method:</th>
-                                            <td>Bank Transfer</td>
+                                            <td>{{ order.payment_method | upper }}</td>
                                         </tr>
                                     </tbody>
                                 </table>
                             </div>
                             <div class="proceed-alert-area">
-                                <div class="alert alert-danger" role="alert">
+                               <div class="alert alert-info" v-if="{{order.total}} > tigoMinLimit">
                                     You cannot proceed because your amount is less then TZS 1000, which does not satisfy tigopesa min amount limit.
                                 </div>
                                 <form>
