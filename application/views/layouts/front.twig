@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <title>BAFREDO Electronics Limited - Innovation. Creativity. Imagination.</title>
     <script type="text/javascript">
+
         var webPath     = '{{ base_url() }}';
         var mobileJSUrl = "{{ asset('front/js/mobile.js') }}";
         var webImgPath  = '{{ base_url() }}';
@@ -104,8 +106,8 @@ outline: none !important;
                     <div class="top-right-menu-box">
                         <ul class="navbar">
                              {% if not authCheck("user") %}
-                            <li class="nav-item"><a href="{{ base_url('login') }}" class="nav-link">LOGIN</a></li>
-                            <li class="nav-item"><a href="{{ base_url('/registration') }}" class="nav-link">REGISTER</a></li>
+                            <li class="nav-item deactive"><a href="{{ base_url('login') }}" class="nav-link">LOGIN</a></li>
+                            <li class="nav-item deactive"><a href="{{ base_url('/registration') }}" class="nav-link">REGISTER</a></li>
                             {% else %}
                             <!-- <li class="nav-item"><a href="{{ base_url('user/logout') }}" class="nav-link">Logout</a></li> -->
                             <div class="account-box">
@@ -134,7 +136,7 @@ outline: none !important;
         <div class="container">
             <div class="row">
                 <div class="col-12 col-lg-3 header-logo-area">
-                    <div class="logo-box">
+                    <div class="logo-box deactive">
                          <a href="{{ base_url('/') }}"><img src="{{ asset('theme/images/color-logo.png') }}"></a>
                     </div>
                 </div>
@@ -158,7 +160,7 @@ outline: none !important;
                                 </div>
                                 <ul class="mobile-overlay-content">
                                     <li class="mob-nav-item">
-                                        <a href="#" class="mob-nav-link">Home</a>
+                                        <a href="#" class="mob-nav-link"> Home</a>
                                     </li>
                                     <li class="mob-nav-item active">
                                         <a href="#" class="mob-nav-link dropdown-btn">Category <i class="fa fa-chevron-down"></i></a>
@@ -201,8 +203,8 @@ outline: none !important;
 
                             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                                 <ul class="navbar-nav mr-auto" id="mainMenu">
-                                    <li class="nav-item active">
-                                        <a class="nav-link" href="{{ base_url('/') }}">Home</a>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="{{ base_url('/') }}"> Home</a>
                                     </li>
                                     <li class="nav-item">
                                         <a class="nav-link" href="{{ base_url('/blog') }}">Blog</a>                                        
@@ -455,7 +457,7 @@ outline: none !important;
         <div class="container">
             <div class="row">
                 <div class="col-12 col-lg-4 col-md-6">
-                    <div class="footer-logo-box">
+                    <div class="footer-logo-box deactive">
                         <div class="footer-thumb">
                            <a href="{ base_url('/') }}"><img src="{{ asset('theme/images/color-logo.png') }}"></a>
                         </div> 
@@ -548,9 +550,24 @@ outline: none !important;
      
    
     <script type="text/javascript">
-        //$(".success").click(function(){
+        //$(".success").click(function(){ deactive
+
+    $( "body" ).on("click",".deactive", function(event) {    
+       //var texts =  $(this).text();
+    alert("hh");
+        localStorage.setItem("activedata", 'Home');
+    });
+   // var x = localStorage.getItem('activedata');
 
 
+ $( "body" ).on("click","#mainMenu li.nav-item", function(event) {    
+    var texts =  $(this).text();
+   
+      localStorage.setItem("activedata", texts);
+    });
+var x = localStorage.getItem('activedata');
+
+$( "#mainMenu li.nav-item:contains('"+x+"')" ).addClass('active');
         $(document).on('click','.success', function(){
            toastr.success('We do have the Kapua suite available.', 'Success Alert', {timeOut: 5000})
         });

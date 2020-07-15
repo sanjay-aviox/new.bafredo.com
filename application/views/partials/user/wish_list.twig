@@ -34,7 +34,13 @@
                         <div class="table-responsive">
                             <table class="table">
                                 <thead>
-                                    <tr>
+                                    <tr> 
+                                        <th class="text-left">
+                                          <label class="container-checkbox">
+                                                <input type="checkbox" id="selectall">
+                                                <span class="checkmark"></span>
+                                            </label>
+                                        </th>
                                         <th></th>
                                         <th></th>
                                         <th>PRODUCT NAME</th>
@@ -47,6 +53,12 @@
                                     {% if result %}
                                     {% for res in result %}
                                         <tr>
+                                            <td  class="text-left">
+                                                <label class="container-checkbox">
+                                                    <input type="checkbox"  onclick="resetSelectAll();" class="selectedId" name="cart">
+                                                    <span class="checkmark"></span>
+                                                </label>
+                                        </td>
                                              
                                             <td class="product-remove-icon"> <button type="button" class="btn btn-xs btn-danger delete" data-id="{{ res.id}}"><i class="fa fa-times-circle"></i></button></td>
 
@@ -71,6 +83,12 @@
                     </div>
                 </div>
             </div>
+        </div>
+        <div class="row">
+            <div class="col-12 col-md-12">  
+            <button id="deletedItem" class="comn-btn black-btn">Delete Selected</button>
+            <button id="deletedItem" class="comn-btn black-btn">Add To Cart Selected</button>
+        </div>
         </div>
     </section>
     <div class="modal fade" id="deletemodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
@@ -120,5 +138,30 @@
                 });
             }
         });
+
+$(document).ready(function () {
+    $('#selectall').click(function () {
+        $('.selectedId').prop('checked', isChecked('selectall'));
+    });
+});
+function isChecked(checkboxId) {
+    var id = '#' + checkboxId;
+    return $(id).is(":checked");
+}
+function resetSelectAll() {
+    // if all checkbox are selected, check the selectall checkbox
+    // and viceversa
+    if ($(".selectedId").length == $(".selectedId:checked").length) {
+        $("#selectall").attr("checked", "checked");
+    } else {
+        $("#selectall").removeAttr("checked");
+    }
+
+    if ($(".selectedId:checked").length > 0) {
+        $('#edit').attr("disabled", false);
+    } else {
+        $('#edit').attr("disabled", true);
+    }
+}
     </script>
 {% endblock %}

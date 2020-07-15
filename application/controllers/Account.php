@@ -135,13 +135,14 @@ class Account extends MY_Controller
         {
             // print_r($post); die;
             $this->data['user'] = $this->AM->update_address_book($post,$this->data['user']->getId());
-            $this->data['success'] = "done";
+            $data['success'] ="done";
+
             redirect("account/address_book");
         }
 
         $this->data['distircts'] = $this->AM->get_region();
         //$this->data['region'] = $this->AM->get_region();
-        $this->twig->display('user/profile', $this->data);
+        $this->twig->display('user/profile', $this->data, compact('data'));
     }
 
     public  function getregion(){
