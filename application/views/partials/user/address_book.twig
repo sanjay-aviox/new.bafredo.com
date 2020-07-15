@@ -1,8 +1,14 @@
 <div class="col-12 col-md-8">
     <div class="address-area">
+        {{ data.success }}
+        {% if success is not empty %}
+                        <div class="alert alert-success">
+                            <strong>Success! </strong>Successfully Submitted.
+                        </div>
+                    {% endif %}
         <p>The following addresses will be used on the checkout page by default.</p>
         <div class="address-info">
-            <div class="address-title"><h2>Current Address</h2></div>
+            <div class="address-title"><h2>Shipping Address</h2></div>
                 <div class="address-info-box">
                     <p>Name : {{ addressBook.first_name }}&nbsp {{ addressBook.last_name }}</p>
                     <p>Email : {{ addressBook.email }}</p>
@@ -15,6 +21,8 @@
 
                 </div>
             </div>
+            
+         
             <div class="addresses-btn-box">
                 <button type="button" class="comn-btn black-btn" data-toggle="modal" data-target="#editAddressModal">Change Address</button>
             </div>
