@@ -22,6 +22,8 @@ class Account extends MY_Controller
 
         $this->load->library('doctrine');
         $this->load->model("AccountModel","AM");
+        $this->load->model("CategoryModel","category");
+
         $this->data['active_link'] = $this->uri->segment(2);
     }
 
@@ -49,9 +51,8 @@ class Account extends MY_Controller
                 $em = $this->doctrine->em;
                 $user = $em->getRepository("Entity\User")->findOneByEmail($this->input->post('email'));
                 $this->session->set_userdata("user", $user);
-                 $this->data['user'] = $user;
-            //     $this->session->set_userdata("user",  $this->data['user'] );
-            //   die;
+                $this->data['user'] = $user;
+          
                
                 $this->data['success'] = "done";
             }
@@ -81,9 +82,18 @@ class Account extends MY_Controller
 
     }
     public function remove_history()
-    {
-        $segments = $this->uri->segment_array();
-        $this->AM->remove_whislist($segments[3]);
+    {   
+        $ids =$this->input->post('id');
+        $searchForValue = ',';
+        if( strpos($ids, $searchForValue) !== false ) {
+            $arr_id =  explode(",",$ids);
+            
+            foreach ($arr_id as $id){
+                $this->AM->remove_whislist($id);
+            }
+        }else{
+            $this->AM->remove_whislist($ids);
+        } 
         redirect(base_url('account/wish_list'));
     }
     public function upload_profile()
@@ -154,8 +164,10 @@ class Account extends MY_Controller
         $this->data['user'] = getAuthUser('user');
         $this->data['page'] = 'wish_list';
         $this->data['result'] = $this->AM->get_wish_list($this->data['user']->getId());
-        //$this->twig->display('user/profile', $this->data);
-      //  echo "<pre>"; print_r($this->data); die;
+        // foreach (  $this->data['result']  as $val){
+         
+        //    $this->data['product'] = $this->category->getProductById($val->id);
+        // }
         $this->twig->display('partials/user/wish_list', $this->data);
     }
 

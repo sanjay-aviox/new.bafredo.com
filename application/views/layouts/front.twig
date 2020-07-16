@@ -90,7 +90,7 @@ outline: none !important;
 }
     </style>
     <div id="app">
-   
+    <input type="hidden" id="base_url" value="{{ base_url() }}" >
     <!-- top-section start -->
     <section class="top-section">
         <div class="container">
@@ -389,7 +389,7 @@ outline: none !important;
                                     <div class="ProfileCard-details">
                                         <div class="ProfileCard-realName">{{name}}</div>
                                         <div class="ProfileCard-screenName">@{{brand}}</div>
-                                        <div class="ProfileCard-description">{{description}}</div>
+                                        <div class="ProfileCard-description">{{ description|striptags|raw }}</div>
                                     </div>
 
                                     <div class="ProfileCard-stats">
@@ -494,7 +494,7 @@ outline: none !important;
                             </form>
 
                         </div>                      
-                        <h3 class="footer-comn-inner-heading">Follow us:</h3>
+                        <h3 class="footer-comn-inner-heading">Follow us</h3>
 
                         <ul class="social-list-box">
                             <!-- 
@@ -546,15 +546,18 @@ outline: none !important;
            </div>
         </div>
     </div>
+   
 </div>
      
    
     <script type="text/javascript">
         //$(".success").click(function(){ deactive
+    
+    if(window.location.href == $('#base_url').val()){
+       localStorage.setItem("activedata", 'Home'); 
+    }
 
     $( "body" ).on("click",".deactive", function(event) {    
-       //var texts =  $(this).text();
-    alert("hh");
         localStorage.setItem("activedata", 'Home');
     });
    // var x = localStorage.getItem('activedata');
@@ -580,7 +583,7 @@ $( "#mainMenu li.nav-item:contains('"+x+"')" ).addClass('active');
           }
         
          $.ajax({
-               url: "http://178.128.177.194/new.bafredo.com/filter-product/",
+               url: "$('#base_url').val()",
                type: 'get',
                data: {"x" : x,'val':val},
                dataType : "json",

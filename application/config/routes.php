@@ -67,7 +67,7 @@ $route['admin/product/([0-9]+)/gallery'] = 'admin/product/gallery/$1';
 
 $route['page/(.*)/(.*)'] = 'page/$1/$2';
 $route['page(.*)'] = 'page/index$1';
-$route['account/remove_history(.*)(.*)'] = 'account/remove_history$1';
+$route['account/remove_history'] = 'account/remove_history';
 $route['account/order_history(.*)'] = 'account/order_history$1';
 $route['account'] = 'account/index';
 $route['product/(.*)/(.*)'] = 'product/$1/$2';

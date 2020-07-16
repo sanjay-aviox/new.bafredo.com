@@ -45,6 +45,7 @@
                                         <th></th>
                                         <th>PRODUCT NAME</th>
                                         <th>UNIT PRICE</th>
+                                        <th></th>
                                        <!--  <th></th> -->
                                        
                                     </tr>
@@ -55,16 +56,28 @@
                                         <tr>
                                             <td  class="text-left">
                                                 <label class="container-checkbox">
-                                                    <input type="checkbox"  onclick="resetSelectAll();" class="selectedId" name="cart">
+                                                    <input type="checkbox"  value="{{ res.id}}" onclick="resetSelectAll();" class="selectedId" name="items">
                                                     <span class="checkmark"></span>
                                                 </label>
                                         </td>
                                              
                                             <td class="product-remove-icon"> <button type="button" class="btn btn-xs btn-danger delete" data-id="{{ res.id}}"><i class="fa fa-times-circle"></i></button></td>
 
-                                             <td class="wishlist-product-image"><img src='{{ asset("uploads/product/thumbnail/#{res.image}") }}'></td>
+                                             <td class="wishlist-product-image"><img src='{{ asset("uploads/product/thumbnail/#{res.image}") }}'>
+                                             
+                                           
+
+
+
+                                             </td>
                                             <td>{{ res.name }}</td>
                                             <td>{{ res.currency }} {{ res.price }}</td>
+                                            <td> 
+                                                <a v-on:click="addToCart({{ res.toJson() }})" class="uicon-link" data-toggle="tooltip" data-placement="top" title="Add to cart"><i class="fa fa-shopping-cart"></i></a>
+
+                                                <a href="{{ base_url("product/detail/#{res.slug}") }}" class="icocn-link" data-toggle="tooltip" data-placement="top" title="Quick view"><i class="fa fa-search-plus"></i></a>
+
+                                            </td>
                                           <!--   <td><button type="button" v-on:click="addToCart({{ res.toJson() }})" class="addCartBtn comn-btn">Add to cart</button>
                                               
                                             </td> -->
@@ -84,10 +97,10 @@
                 </div>
             </div>
         </div>
-        <div class="row">
-            <div class="col-12 col-md-12">  
-            <button id="deletedItem" class="comn-btn black-btn">Delete Selected</button>
-            <button id="deletedItem" class="comn-btn black-btn">Add To Cart Selected</button>
+        <div class="container">
+            <div class="text-center">  
+            <button id="deleteselected" class="comn-btn black-btn mr-5">Delete Selected</button>
+            <button id="selectedItem" class="comn-btn black-btn">Add To Cart Selected</button>
         </div>
         </div>
     </section>
@@ -111,6 +124,7 @@
             </div>
         </div>
     </div>
+
     <script>
         $(document).on('click', '.delete', function(){
             var id = $(this).data('id');
@@ -118,15 +132,17 @@
             $('#deletemodal').modal('show');
         });
         $(document).on('click', '.confirmDelete', function(){
-            var id = $('#item_id').val();
-           // alert(id);
-            if(id){
+            var ids = $('#item_id').val();
+            var link = $('#base_url').val();
+            var url = link+'account/remove_history';
+            if(ids){
                 $('#deletemodal').modal('hide');
             }
             {
                 $.ajax({
-                    url: 'http://localhost/new.bafredo.com/account/remove_history/'+id,
-                    type: 'DELETE',
+                    url: url,
+                    type: 'post',
+                    data: 'id='+ids,
                     error: function() {
                        alert('Something is wrong');
                     },
@@ -137,6 +153,45 @@
                     }
                 });
             }
+        });
+
+        $(document).on('click', '#deleteselected', function(){
+           var item = [];
+           $.each($("input[name='items']:checked"), function(){
+                item.push($(this).val());
+            });
+            $('#item_id').val(item);
+            $('#deletemodal').modal('show');
+        });
+
+        $(document).on('click', '#selectedItem', function(){
+            var link2 = $('#base_url').val();
+            var url = link2+'cart/addCartitem';
+           var item = [];
+           $.each($("input[name='items']:checked"), function(){
+                    item.push($(this).val());
+            });
+            $.ajax({
+                url: url,
+                type: 'get',
+                data: {'ids': item},
+                dataType : "json",
+                error: function() {
+                    alert('Something is wrong');
+                },
+                success: function(data) {
+                        console.log(data.status);
+                            if(data.status=="success"){
+                                   
+                                $("#msg").addClass("alert alert-success");
+                                $("#msg").html("items add to cart").show().fadeOut(3000);
+                            }else{
+                                 $("#msg").addClass("alert alert-warning").html("Already exist!").show().fadeOut(3000);
+                            }
+                      }
+                });
+                 
+           
         });
 
 $(document).ready(function () {

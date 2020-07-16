@@ -91,10 +91,18 @@ class AccountModel extends CI_Model
 
     public function get_wish_list($id)
     {
-        $this->db->select('wishlist.*,products.name,products.price,products.image,products.currency');
+
+        $this->db->select('wishlist.*,products.*');
         $this->db->where('user_id',$id);
         $this->db->join('products', 'products.id = wishlist.product_id');
         return $this->db->get("wishlist")->result();
+    }
+    public function get_wishlist($id)
+    {
+     
+        $this->db->select('wishlist.*');
+        $this->db->where('id',$id);
+        return $this->db->get("wishlist")->row();
     }
     public function get_user($user_id)
     {

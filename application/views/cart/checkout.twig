@@ -187,7 +187,7 @@
     <section class="checkout-section">
         <div class="container-fluid px-5">
             <div class="row">
-                <div class="col-12 col-md-7 py-5 pr-5">
+                <div class="col-12 col-md-6 py-5">
                     <div class="">
                         <!--div class="checkout-heading-box">
                             <div class="checkout-section-heading"><h3>Contact information</h3></div>
@@ -332,7 +332,7 @@
                         </form>                  
                     </div>
                 </div>
-                <div class="col-12 col-md-5 pb-5 checkout-product-list-area">
+                <div class="col-12 col-md-6 pb-5 checkout-product-list-area">
                     <div class="checkout-product-list-box">
                         <div class="table-responsive checkout-product-list-table-box">
                             <table class="table table-borderless">
@@ -348,7 +348,7 @@
                                                 <td>
 												
 												<td class="checkout-product-title">{{cart.name}}</td>
-											    <td class="checkout-product-price">{{cart.currency }} {{cart.price }}</td>
+											    <td style="white-space: nowrap;"class="checkout-product-price">{{cart.currency }} {{cart.price }}</td>
 											   
 										
 										 {% set totalPrice = totalPrice + (cart.quantity * cart.price) %}

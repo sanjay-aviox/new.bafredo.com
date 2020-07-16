@@ -29,4 +29,14 @@ class CategoryModel extends CI_Model
     {
         return $this->category->findOneById($id);
     }
+     public function getProductById($id)
+    {
+         $q = $this->db->select('*')
+                 ->from('products')
+                // ->join('users','users.id = reviews.user_id')
+                 ->where('id',$id)
+                 ->get();
+        return $q->row();
+       // return $this->subCategory->findOneById($id);
+    }
 }

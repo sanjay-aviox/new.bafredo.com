@@ -23,6 +23,7 @@ class Cart extends MY_Controller
         $this->pesapal_consumer_key = 'gJcjkKhFNaW6t9d/sEZddn4k7Kq+0YR9';
         $this->pesapal_consumer_secret = '2hcYdLOXZ/C8ATS8uDTEb1MjpGk=';
         $this->load->model("AccountModel","AM");
+        $this->load->model("CategoryModel","category");
 
     }
 
@@ -34,7 +35,6 @@ class Cart extends MY_Controller
     public function add()
     {
         $cart = $this->input->post();
-         //print_r($cart); die;
         $this->session->set_userdata("cart", $cart);
         $this->output->set_content_type("application/json");
         $this->output->set_output(json_encode(array(
@@ -75,6 +75,31 @@ class Cart extends MY_Controller
                 "message" => "Item added into cart."
             )));
          }
+    }
+    public function addCartitem()
+    {
+       
+        
+        $wish_ids= $this->input->get();
+        foreach($wish_ids['ids'] as $wish_id){
+            $product_ids[] = $this->AM->get_wishlist($wish_id);
+        }
+        foreach($product_ids as $val){
+
+            $products[] = $this->category->getProductById($val->product_id);
+        } 
+    
+         foreach ($products as $value){
+              $record['cart'][]= $value;
+          }
+      $this->session->set_userdata("cart", $record);
+           // print_r("check"); die;
+            $this->output->set_output(json_encode(array(
+                 "status" => "success",
+                 "message" => "Item added into cart."
+             )));
+     
+
     }
     
     public function deletedCart()
