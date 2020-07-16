@@ -551,18 +551,16 @@ outline: none !important;
      
    
     <script type="text/javascript">
-        //$(".success").click(function(){ deactive
+
     
     if(window.location.href == $('#base_url').val()){
        localStorage.setItem("activedata", 'Home'); 
     }
 
+
     $( "body" ).on("click",".deactive", function(event) {    
         localStorage.setItem("activedata", 'Home');
     });
-   // var x = localStorage.getItem('activedata');
-
-
  $( "body" ).on("click","#mainMenu li.nav-item", function(event) {    
     var texts =  $(this).text();
    
