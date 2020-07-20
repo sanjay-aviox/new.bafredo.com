@@ -217,7 +217,7 @@ outline: none !important;
                                             <div class="row">
                                             <div class="col-12 col-md-3">
                                                 <div class="nav flex-column nav-pills sub-menu-heading-link-box" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-                                                    <a  class="sub-menu-heading-link active"  title="All Products" href="{{ base_url('product/all') }}">All Products</a>
+                                                    <a  class="sub-menu-heading-link active" id="allProducts"  title="All Products" href="{{ base_url('product/all') }}">All Products</a>
                                                     {% for menu in menus %}
                                                     {% if menu.getSubCategories() == null %}
                                                         <a class="sub-menu-heading-link" id="v-pills-home-tab" data-toggle="pill" href="#BlankTab" role="tab" aria-controls="v-pills-home" aria-selected="true">{{ menu.getName() }}</a>
@@ -389,7 +389,7 @@ outline: none !important;
                                     <div class="ProfileCard-details">
                                         <div class="ProfileCard-realName">{{name}}</div>
                                         <div class="ProfileCard-screenName">@{{brand}}</div>
-                                        <div class="ProfileCard-description">{{ description|striptags|raw }}</div>
+                                        <div class="ProfileCard-description">{{ description }}</div>
                                     </div>
 
                                     <div class="ProfileCard-stats">
@@ -561,12 +561,12 @@ outline: none !important;
     $( "body" ).on("click",".deactive", function(event) {    
         localStorage.setItem("activedata", 'Home');
     });
- $( "body" ).on("click","#mainMenu li.nav-item", function(event) {    
-    var texts =  $(this).text();
-   
-      localStorage.setItem("activedata", texts);
+
+    $( "body" ).on("click","#mainMenu li.nav-item", function(event) {    
+        var texts =  $(this).text();
+       localStorage.setItem("activedata", texts);
     });
-var x = localStorage.getItem('activedata');
+    var x = localStorage.getItem('activedata');
 
 $( "#mainMenu li.nav-item:contains('"+x+"')" ).addClass('active');
         $(document).on('click','.success', function(){
@@ -602,8 +602,10 @@ $( "#mainMenu li.nav-item:contains('"+x+"')" ).addClass('active');
 
         $(document).on('click','#view_result', function(){
             var x = $("#typeahead").val();
+            var link = $('#base_url').val();
+            var url = link+'search-product';
             $.ajax({
-                  url: "http://178.128.177.194/new.bafredo.com/search-product",
+                  url: url,
                   type: 'get',
                   data: {"x" : x},
                   dataType : "json",
