@@ -29,7 +29,7 @@ class Wishlist extends MY_Controller
             $dataAdapter = $this->db->where("product_id", $product_id)
                                 ->where("user_id", $current_user->getId())
                                 ->get("wishlist");
-            if ($dataAdapter->num_rows() <= 0) {
+            // if ($dataAdapter->num_rows() <= 0) {
                 $this->db->insert("wishlist", array(
                     "user_id" => $current_user->getId(),
                     "product_id" => $product_id
@@ -41,13 +41,7 @@ class Wishlist extends MY_Controller
                 'status' => 'success',
                 'message' => 'Product added to Wishlist'
             )));
-        }else{
-             $this->output->set_content_type('application/json');
-            $this->output->set_output(json_encode(array(
-                'status' => 'success',
-                'message' => 'Already Added'
-            )));
-        }
+       
     }else{
         $this->output->set_content_type('application/json');
         $this->output->set_output(json_encode(array(
