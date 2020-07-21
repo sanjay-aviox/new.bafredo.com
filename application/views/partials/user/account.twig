@@ -3,12 +3,14 @@
     <form action="#" method="post" enctype="multipart/form-data" class="form-horizontal" id="userAccount">
       <div class="user-profile text-center">
         <div class="profile">
-              <img src="{{ asset('front/image/profile.jpg') }}">
+                <img src="{{ user.getUserImg() is empty ? base_url('assets/front/image/profile.png') : base_url('assets/front/image/users/')~user.getUserImg() }}" class="user-img profile-content profile"  alt="my head">
         </div>
         <div class="upload-btn mb-2">
-          <label> Upload
-              <input type="file" size="60" >
-          </label> 
+        
+            <lable id="imgmsg" style="display:none">Max size is 2 Mb</lable>
+            <input id="hprofile" type="file"  alt="my head">
+                              
+          
         </div>
       </div>
         <div class="form-group">
@@ -65,11 +67,12 @@
     });
 
   $(document).on('click', '.verify', function(){
-    alert("hu"); 
-     var email =  $('#email').val();
-      
+   
+    var email =  $('#email').val();
+    var link2 = $('#base_url').val();
+    var url = link2+'verifyEmail';   
             $.ajax({
-               url: 'http://178.128.177.194/new.bafredo.com/verifyEmail',
+               url: url,
                type : "POST",
               // dataType : "json",
                data: {"email" : email},
@@ -77,8 +80,9 @@
                success: 
                function(data) {
                   // alert(data);
-                   //if(data.success)
-                  $("#verify_msg").html("verification code send on your email address please check").show().fadeOut(5000);
+                   if(data.success)
+                  // $("#verify_msg").html("verification code send on your email address please check").show().fadeOut(5000);
+                   toastr.success("Verification code send on your email address please check." , {timeOut: 5000});
                   $('#otp_section').css('display','block');
                     // $("#msg").addClass("alert alert-success");
                     // $("#msg").html("Record removed successfully").show().fadeOut(3000);

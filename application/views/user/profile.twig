@@ -55,6 +55,14 @@
         #errmsg,#errmsg1 {
          color: red;
         }
+       .user-img {
+        width: 200px;
+        height: 200px;
+        object-fit: cover;
+        border: 0;
+        border-image: round;
+        }
+        
     </style>
 {% endblock %}
 {% block content %}
@@ -93,8 +101,7 @@
                         <hr>
                         <a class="nav-link aMenu_3 {{(page=='wish_list')?'select':''}}" href="{{ base_url('account/wish_list') }}">Wishlist</a>
                         <hr>
-                         <a class="nav-link aMenu_3 {{(page=='wish_list')?'select':''}}" href="{{ base_url('account/wish_list') }}">Profile Info</a>
-                        <hr>
+                        
                         <a class="nav-link" href="{{ base_url('user/logout') }}">Logout</a>
 
                     </div>
@@ -205,7 +212,8 @@
                         var par_obj = JSON.parse(response);
                         if(par_obj.status == "success"){
                             $('.profile').attr('src', '{{ base_url("assets/front/image/users/")}}'+par_obj.name);
-                            alert("Updated succesffully")
+                            toastr.success("Updated succesffully" , {timeOut: 5000});
+
                         }
                         else{
                             alert(par_obj.name.replace(/<[^>]*>/g, ''));

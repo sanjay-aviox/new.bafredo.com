@@ -220,7 +220,7 @@ outline: none !important;
                                                     <a  class="sub-menu-heading-link active" id="allProducts"  title="All Products" href="{{ base_url('product/all') }}">All Products</a>
                                                     {% for menu in menus %}
                                                     {% if menu.getSubCategories() == null %}
-                                                        <a class="sub-menu-heading-link" id="v-pills-home-tab" data-toggle="pill" href="#BlankTab" role="tab" aria-controls="v-pills-home" aria-selected="true">{{ menu.getName() }}</a>
+                                                        <a class="sub-menu-heading-link others" id="v-pills-home-tab" data-toggle="pill" href="#BlankTab" role="tab" aria-controls="v-pills-home" aria-selected="true">{{ menu.getName() }}</a>
                                                     {% endif %}
                                                     {% endfor %}
 
@@ -567,6 +567,10 @@ outline: none !important;
        localStorage.setItem("activedata", texts);
     });
     var x = localStorage.getItem('activedata');
+
+     $( "body" ).on("click",".others", function(event) {    
+        $('#product').css('display','none');
+    });
 
 $( "#mainMenu li.nav-item:contains('"+x+"')" ).addClass('active');
         $(document).on('click','.success', function(){
