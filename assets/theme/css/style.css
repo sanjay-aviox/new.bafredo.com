@@ -3290,6 +3290,34 @@ font-size: 16px;
 {
 	right: 10px;
 }
+/*21-07-2020 Account.twig*/
+.user-profile .profile
+{
+	width: 200px;
+	height: 200px;
+	margin: 0 auto 10px;
+}
+.user-profile .profile img
+{
+	width: 200px;
+	height: 200px;
+	object-fit: cover;
+}
+.user-profile label
+{
+	width: 120px;
+    padding: 10px;
+    background: transparent;
+    color: #3c2b86;
+    border: 1px solid #3c2b86; 
+    display: block;
+    margin: 0 auto;
+    cursor: pointer;
+}
+.user-profile input[type="file"] {
+    display: none;
+}
+/*End 21-07-2020 Account.twig*/
 /*******************************/
 /********* media query *********/
 /*******************************/

@@ -1,6 +1,16 @@
 <div>
     <h2 class="comn-dash-account-heading">Personal Information</h2>
     <form action="#" method="post" enctype="multipart/form-data" class="form-horizontal" id="userAccount">
+      <div class="user-profile text-center">
+        <div class="profile">
+              <img src="{{ asset('front/image/profile.jpg') }}">
+        </div>
+        <div class="upload-btn mb-2">
+          <label> Upload
+              <input type="file" size="60" >
+          </label> 
+        </div>
+      </div>
         <div class="form-group">
             <label for="name1">Username</label>
             <input type="text" name="name" class="form-control" value="{{ user.name }}" id="name1">
