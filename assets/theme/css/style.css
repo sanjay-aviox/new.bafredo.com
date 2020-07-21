@@ -983,11 +983,13 @@ input.searchInput:focus, input.searchInput:active{
 	border-bottom: 0px;
 }
 .account-dropdown-menu .headImg{
+	padding: 10px;
 	color: #000000;
 	border: 1px solid #dddddd;
 }
 .account-dropdown-menu .headImg img{
-	width: 75px;
+	width: 60px;
+	margin-right: 10px;
 }
 /*inactive-modal*/
 .inactive-modal .modal-footer{
@@ -2425,7 +2427,7 @@ p.privacy-text a{
 }
 .my-account-menu-area .nav-link:hover{
 	color: #ffffff !important;
-    background-color: #000000;
+    background-color: #999;
 }
 .my-account-menu-area .nav-link.active,
 .my-account-menu-area .nav-link.select{
@@ -2866,6 +2868,7 @@ font-size: 16px;
 /*about-featured-services-section*/
 .featured-services-single-box{
 	text-align: center;
+	height: 100%;
 	box-shadow: 0 5px 20px rgba(0,0,0,0.10);
 	padding: 30px 25px;
 }
@@ -3290,7 +3293,8 @@ font-size: 16px;
 {
 	right: 10px;
 }
-/*21-07-2020 Account.twig*/
+/*21-07-2020*/
+/*Account.twig*/
 .user-profile .profile
 {
 	width: 200px;
@@ -3302,6 +3306,7 @@ font-size: 16px;
 	width: 200px;
 	height: 200px;
 	object-fit: cover;
+	border: 2px solid #000;
 }
 .user-profile label
 {
@@ -3317,7 +3322,15 @@ font-size: 16px;
 .user-profile input[type="file"] {
     display: none;
 }
-/*End 21-07-2020 Account.twig*/
+/*End Account.twig*/
+/*About.twig*/
+.featured-services-single-box.core-values .about-services-info
+{
+	width: 193px;
+	margin: 0 auto;
+}
+/*End About.twig*/
+/*End 21-07-2020*/
 /*******************************/
 /********* media query *********/
 /*******************************/
