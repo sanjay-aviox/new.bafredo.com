@@ -25,25 +25,6 @@ class Registration extends MY_Controller
         $password = $this->session->flashdata('password');
         $confirm_password= $this->session->flashdata('confirm_password');
 
-          $config = Array(
-                    'protocol' => 'sendmail',
-                    'smtp_host' => 'smtp.gmail.com',
-                    'smtp_port' => 465,
-                    'smtp_user' => 'redexsolutionspvtlmt@gmail.com',
-                    'smtp_pass' => 'rajinder@1995',
-                    'mailtype'  => 'html',
-                    'charset'   => 'iso-8859-1'
-                );
-                $this->load->library('email', $config);
-                $this->email->from('info@bafredo.com', 'Bafredo');
-                $this->email->to("monuaviox@gmail.com");
-    
-                $this->email->subject('Verify your email');
-                $this->email->message("Your verification code 86759");
-                $this->email->send();
-    
-
-
         $this->twig->display('registration',compact('emailexit','userexit','name','email','password','confirm_password','questions','cap'));
     }
 

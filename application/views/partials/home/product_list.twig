@@ -16,6 +16,17 @@
                                     <h4>{{ product.name }}</h4>
                                 </div>
                             </a>
+                            <div class="featured-products-hover-info">
+                                <a v-on:click="addToCart({{ product.toJson() }})" class="icon-link" data-toggle="tooltip" data-placement="top" title="Add to cart"><i class="fa fa-shopping-cart"></i></a>
+
+                                <a href="{{ base_url("product/detail/#{product.slug}") }}" class="icon-link" data-toggle="tooltip" data-placement="top" title="Quick view"><i class="fa fa-search-plus"></i></a>
+
+
+                               <a v-on:click="addToWishList({{product.toJson() }})" class="icon-link" data-toggle="tooltip" data-placement="top" title="Wishlist"><i class="fa fa-heart-o"></i></a>
+                               
+
+                                <!--a href="#" class="icon-link" data-toggle="tooltip" data-placement="top" title="Compare"><i class="fa fa-refresh"></i></a-->
+                            </div>
                         </div>
                          {% endfor %}
 

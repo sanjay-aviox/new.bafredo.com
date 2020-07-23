@@ -31,7 +31,7 @@ class Product extends MY_Controller
         $subCategories = array();
         $products = $this->product->findAll();
 
-        $this->twig->display('category', compact('products', 'subCategories', 'parent_slug'));
+        $this->twig->display('product', compact('products', 'subCategories', 'parent_slug'));
     }
 
     public function sales()
