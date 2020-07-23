@@ -7,8 +7,8 @@
         </div>
         <div class="upload-btn mb-2">
         
-            <!-- <lable id="imgmsg" style="display:none">Max size is 2 Mb</lable> -->
-            <label> upload
+            <lable id="imgmsg" style="display:none">Max size is 2 Mb</lable>
+            <label> Upload
             <input id="hprofile" type="file"  alt="my head"></label>
                               
           
@@ -68,7 +68,7 @@
     });
 
   $(document).on('click', '.verify', function(){
-   
+      $('#loaderImg').css('display','block');
     var email =  $('#email').val();
     var link2 = $('#base_url').val();
     var url = link2+'verifyEmail';   

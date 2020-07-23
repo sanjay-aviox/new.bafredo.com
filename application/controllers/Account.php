@@ -213,6 +213,7 @@ class Account extends MY_Controller
     }
 
     public function verifyemail(){
+
         $data = $this->input->post();  
        // print_r($data['email']);
           
@@ -231,13 +232,13 @@ class Account extends MY_Controller
 // mail($to,$subject,$txt,$headers);
 
                 $config = Array(
-                    'protocol' => 'smtp',
+                    'protocol' => 'sendmail',
                     'smtp_host' => 'smtp.gmail.com',
                     'smtp_port' => 465,
                     'smtp_user' => 'redexsolutionspvtlmt@gmail.com',
                     'smtp_pass' => 'rajinder@1995',
-                    'mailtype'  => 'html',
-                    'charset'   => 'iso-8859-1'
+                    // 'mailtype'  => 'html',
+                    // 'charset'   => 'iso-8859-1'
                 );
                 $this->load->library('email', $config);
                 $this->email->from('info@bafredo.com', 'Bafredo');
