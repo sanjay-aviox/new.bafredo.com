@@ -20,6 +20,7 @@ class Blog extends MY_Controller
         $blogs = $this->doctrine->em->getRepository('Entity\Blog')->findAll(array(), array('created_at', 'DESC'));
         //$categories = $this->BM->getCategories();
         $categories = $this->doctrine->em->getRepository('Entity\BlogCategory')->findAll(array(), array('created_at', 'DESC'));
+        $productMenu = $this->product->newArrival(4);
     
             // foreach( $categories as $key => $cat) {
 
@@ -32,7 +33,7 @@ class Blog extends MY_Controller
 //        $qb->select('b, c')
 //            ->from('Entity\Blog', 'b')
 //            ->join('Entity\BlogCategory', 'c');
-        $this->twig->display('blogs/blogs', compact('blogs', 'category'));
+        $this->twig->display('blogs/blogs', compact('blogs', 'category','productMenu'));
     }
     public function detail()
     {
@@ -41,10 +42,10 @@ class Blog extends MY_Controller
         //print_r($blog_detail);   
         $category = $this->BM->getcetagory($blog_detail->category_id);
         $relatedBlog = $this->BM->getBlogCategory($blog_detail->category_id);
-      
+        $productMenu = $this->product->newArrival(4);
        // print_r($relatedBlog); die;
        
-        $this->twig->display('blogs/blog_detail', compact('blog_detail','category','relatedBlog'));
+        $this->twig->display('blogs/blog_detail', compact('blog_detail','category','relatedBlog','productMenu'));
 
     }
 }

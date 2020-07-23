@@ -30,6 +30,7 @@ class Home extends MY_Controller
     //     $this->VM->insertVisitor($data);
 	   //  }
        
+        $productMenu = $this->product->newArrival(4);
         $new_arrival_products = $this->product->newArrival(4);
         $featured_products = $this->product->featured(4);
         $specail_products = $this->product->special(4);
@@ -39,18 +40,19 @@ class Home extends MY_Controller
             'new_arrival_products',
             'featured_products',
             'specail_products',
-            'blogs'
+            'blogs',
+            'productMenu'
         ));
 
             //$this->dbm->updatesitorcount();
     }
      public function feature()
     {
-
+        $productMenu = $this->product->newArrival(4);
         $featured_product = $this->product->featured(4);
       
 
-        $this->twig->display('partials/home/feature_product', compact('featured_product'));
+        $this->twig->display('partials/home/feature_product', compact('featured_product','productMenu'));
 
             //$this->dbm->updatesitorcount();
     }
@@ -195,7 +197,7 @@ class Home extends MY_Controller
     public function search()
     {
         $slug = $this->input->get("slug", true);
-
+        $productMenu = $this->product->newArrival(4);
         $this->load->model('CategoryModel', 'category');
         $this->load->model('ProductModel', 'product');
 
@@ -204,6 +206,6 @@ class Home extends MY_Controller
         $subCategory = $this->category->getOneById($product->getCategoryId());
         $mainCategory = $this->category->getMainCategoryById($subCategory->getCategoryId());
 
-        $this->twig->display('product/detail', compact('product', 'gallery', 'mainCategory'));
+        $this->twig->display('product/detail', compact('product', 'gallery', 'mainCategory','productMenu'));
     }
 }

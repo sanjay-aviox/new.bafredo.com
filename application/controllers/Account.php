@@ -31,8 +31,7 @@ class Account extends MY_Controller
     {
         $post = $this->input->post();
         $current_user = getAuthUser('user');
-        
-       // print_r(current_user);
+        $productMenu = $this->product->newArrival(4);
                 
         $this->data['verfiy'] = $this->AM->verfiymail($current_user->getId());
         $this->data['user'] = $current_user;
@@ -57,7 +56,7 @@ class Account extends MY_Controller
                 $this->data['success'] = "done";
             }
         $this->data['page'] = 'account';
-        $this->twig->display('user/profile', $this->data);
+        $this->twig->display('user/profile', $this->data compact('productMenu'));
     }
     public function order_history()
     {
@@ -66,6 +65,7 @@ class Account extends MY_Controller
         $this->data['page'] = 'order_history';
         $this->load->model('OrderModel');
         $segments = $this->uri->segment_array();
+        $productMenu = $this->product->newArrival(4);
         if(!empty($segments[3]))
         {
             $this->OrderModel->update_record($segments[3]);
@@ -75,7 +75,7 @@ class Account extends MY_Controller
         }
         $this->data['orders'] = $this->OrderModel->allByUserId($this->data['user']->getId());
      //   echo "<pre>"; print_r( $this->data['orders']); die;
-        $this->twig->display('user/profile', $this->data);
+        $this->twig->display('user/profile', $this->data,compact('productMenu'));
     }
     public function delete_history_record()
     {
@@ -140,7 +140,7 @@ class Account extends MY_Controller
         $this->data['page'] = 'address_book';
         $this->data['addressBook'] = $this->AM->get_user_address_book($this->data['user']->getId());
         $post = $this->input->post();
-       // print_r($this->data['addressBook']); die;
+        $productMenu = $this->product->newArrival(4);
         if(!empty($post))
         {
             // print_r($post); die;
@@ -152,7 +152,7 @@ class Account extends MY_Controller
 
         $this->data['distircts'] = $this->AM->get_region();
         //$this->data['region'] = $this->AM->get_region();
-        $this->twig->display('user/profile', $this->data, compact('data'));
+        $this->twig->display('user/profile', $this->data, compact('data','productMenu'));
     }
 
     public  function getregion(){
@@ -164,11 +164,12 @@ class Account extends MY_Controller
         $this->data['user'] = getAuthUser('user');
         $this->data['page'] = 'wish_list';
         $this->data['result'] = $this->AM->get_wish_list($this->data['user']->getId());
+        $productMenu = $this->product->newArrival(4);
         // foreach (  $this->data['result']  as $val){
          
         //    $this->data['product'] = $this->category->getProductById($val->id);
         // }
-        $this->twig->display('partials/user/wish_list', $this->data);
+        $this->twig->display('partials/user/wish_list', $this->data,compact('productMenu'));
     }
 
     public function changePassword()
@@ -177,10 +178,10 @@ class Account extends MY_Controller
         $this->data['page'] = 'password';
 
         $password = $this->session->flashdata('wrongpassword');
-        //print_r($error);die;
+        $productMenu = $this->product->newArrival(4);
         $redirectAfterLogin = $this->input->get('href');
 
-        $this->twig->display('user/profile', $this->data, compact('redirectAfterLogin','password'));
+        $this->twig->display('user/profile', $this->data, compact('redirectAfterLogin','password','productMenu'));
     }
     public function changePasswordProcess()
     {

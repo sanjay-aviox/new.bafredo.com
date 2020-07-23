@@ -12,7 +12,8 @@ class Detail extends MY_Controller
     }
 
     public function index()
-	{
-        $this->twig->display('detail');
+	{   
+        $productMenu = $this->product->newArrival(4);
+        $this->twig->display('detail','productMenu');
 	}
 }

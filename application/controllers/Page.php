@@ -22,6 +22,7 @@ class Page extends MY_Controller
         $data = array();
         if ($slug == 'contact-us') {
             $post = $this->input->post();
+            $productMenu = $this->product->newArrival(4);
             if(!empty($post))
             {   
                 //print_r($post); die;
@@ -52,7 +53,7 @@ class Page extends MY_Controller
     
                 $data["success"] = true;
             }
-            $this->twig->display("page/contact-us",compact('data'));
+            $this->twig->display("page/contact-us",compact('data','productMenu'));
 
         } else {
           
@@ -69,7 +70,7 @@ class Page extends MY_Controller
 
     public function template($page)
     {
-
-        $this->twig->display("template/{$page}");
+        $productMenu = $this->product->newArrival(4);
+        $this->twig->display("template/{$page}" ,compact('productMenu'));
     }
 }

@@ -160,43 +160,34 @@ outline: none !important;
                                 </div>
                                 <ul class="mobile-overlay-content">
                                     <li class="mob-nav-item">
-                                        <a href="#" class="mob-nav-link"> Home</a>
+                                        <a href="{{ base_url('/') }}" class="mob-nav-link"> Home</a>
+                                    </li>
+                                    <li class="mob-nav-item">
+                                        <a class="mob-nav-link" href="{{ base_url('/blog') }}">Blog</a>
                                     </li>
                                     <li class="mob-nav-item active">
                                         <a href="#" class="mob-nav-link dropdown-btn">Category <i class="fa fa-chevron-down"></i></a>
                                         <ul class="dropdown-container">
                                             <li class="mob-dropdown-item">
-                                                <a href="#" class="mob-dropdown-link">New Products</a>
+                                                 <a  class="ob-dropdown-link" href="{{ base_url('product/all') }}">All Products</a>
+
+                                                  {% for menu in menus %}
+                                                    {% if menu.getSubCategories() == null %}
+                                                        <a class="mob-dropdown-link" id="v-pills-home-tab" data-toggle="pill" href="#BlankTab" role="tab" aria-controls="v-pills-home" aria-selected="true">{{ menu.getName() }}</a>
+                                                    {% endif %}
+                                                    {% endfor %}
+
+                                                    {% for menu in menus %}
+                                                    {% if menu.getSubCategories() != null %}
+                                                        <a class="sub-menu-heading-link" id="v-{{ menu.getName() }}" data-toggle="pill" href="#{{ menu.getName() |replace({' ': ''})}}" role="tab" aria-controls="v-pills-home" aria-selected="true">{{ menu.getName() }}</a>
+                                                    {% endif %}
+                                                    {% endfor %}
+
                                             </li>
-                                            <li class="mob-dropdown-item">
-                                                <a href="#" class="mob-dropdown-link">Sales</a>
-                                            </li>
-                                            <li class="mob-dropdown-item">
-                                                <a href="#" class="mob-dropdown-link">All Products</a>
-                                            </li>
-                                            <li class="mob-dropdown-item">
-                                                <a href="#" class="mob-dropdown-link">COMPONENTS</a>
-                                            </li>
-                                            <li class="mob-dropdown-item">
-                                                <a href="#" class="mob-dropdown-link">Integrated Circuit</a>
-                                            </li>
-                                            <li class="mob-dropdown-item">
-                                                <a href="#" class="mob-dropdown-link">PCB Manufacturing</a>
-                                            </li>
+                                       
                                         </ul>
                                     </li>
-                                    <li class="mob-nav-item">
-                                        <a href="#" class="mob-nav-link">Community</a>
-                                    </li>
-                                    <li class="mob-nav-item">
-                                        <a href="#" class="mob-nav-link">Blog</a>
-                                    </li>
-                                    <li class="mob-nav-item">
-                                        <a href="#" class="mob-nav-link">Wiki</a>
-                                    </li>
-                                    <li class="mob-nav-item">
-                                        <a href="#" class="mob-nav-link">Corency</a>
-                                    </li>
+                                   
                                 </ul>
                             </div>
                             <!-- mobile sidebar end -->
@@ -235,35 +226,36 @@ outline: none !important;
                                             <div class="tab-content" id="v-pills-tabContent">
                                                 <div id="product">
                                                     <div class="col-12 col-md-4">
-                                                                    <ul class="you-may-like-area">
-                                                                        <li class="you-may-like-heading">
-                                                                            <h4>You may also like!</h4>
-                                                                        </li>
-                                                                        <div class="you-may-like-Slider owl-carousel owl-theme">
-                                                                        <div class="item">
-                                                                        <div class="view-products-single-box">
-                                                                        <div class="view-products-thumb">
-                                                                            <img src="{{ asset('theme/images/DC-Motor-12v.jpg') }}">
+                                                         <ul class="you-may-like-area">
+                                                            <li class="you-may-like-heading">
+                                                                <h4>You may also like!</h4>
+                                                            </li>
+                                                            {% for product in productMenu %}
+                                                            <div class="item">
+                                                                <div class="view-products-single-box">
+                                                                    <div class="view-products-thumb">
+                                                                        <img src="{{ asset('theme/images/DC-Motor-12v.jpg') }}">
                                                                             <div class="view-products-hover-info">
-                                                                            <button class="icon-link-btn" onclick="openNav()"><i class="fa fa-shopping-cart pr-2"></i> Add to cart</button>
+                                                                                <button v-on:click="addToCart({{ product.toJson() }})" class="icon-link-btn"><i class="fa fa-shopping-cart pr-2"></i> Add to cart</button>
+                                                                                </div>
                                                                             </div>
-                                                                        </div>
-                                                                        <div class="view-products-info">                            
-                                                                            <div class="view-products-title">
-                                                                                <h3><a href="#">4WD-Smart-Robot-Car-Chassis-Kit</a></h3>
-                                                                                <span class="view-products-price">TZS&nbsp;55,000</span>
+                                                                            <div class="view-products-info">                            
+                                                                                <div class="view-products-title">
+                                                                                    <h3><a href="#"> {{ product.name }}</a></h3>
+                                                                                    <span class="view-products-price">{{ product.currency ~' '~ product.price }}</span>
+                                                                                </div>
                                                                             </div>
-                                                                        </div>
-                                                                        <div class="hover-icon-link-box">
-                                                                            <a href="#" class="hover-icon-link" data-toggle="tooltip" data-placement="left" title="" data-original-title="Wishlist"><i class="fa fa-heart-o"></i></a>
-                                                                            <a href="#" class="hover-icon-link" data-toggle="tooltip" data-placement="left" title="" data-original-title="Compare"><i class="fa fa-refresh"></i></a>
-                                                                            <a href="#" class="hover-icon-link" data-toggle="tooltip" data-placement="left" title="" data-original-title="Quick view"><i class="fa fa-search-plus" data-toggle="modal" data-target="#quickViewModal"></i></a>
-                                                                            </div>
-                                                                        </div>
+                                                                            <div class="hover-icon-link-box">
+                                                                                <a v-on:click="addToWishList({{product.toJson() }})" class="hover-icon-link" data-toggle="tooltip" data-placement="left" title="" data-original-title="Wishlist"><i class="fa fa-heart-o"></i></a>
+                                                                               
+                                                                                <a  href="{{ base_url('product/detail/') }}{{product.slug}}" class="hover-icon-link" data-toggle="tooltip" data-placement="left" title="" data-original-title="Quick view"><i class="fa fa-search-plus" data-toggle="modal"></i></a>
+                                                                                </div> 
                                                                         </div>
                                                                         </div>
-                                                                    </ul>
-                                                                </div>
+                                                            
+                                                            {% endfor %}
+                                                        </ul>
+                                                    </div>
                                                 </div>
                                                 {% for menu in menus %}
                                                     <div class="tab-pane fade" id="{{ menu.getName() |replace({' ': ''}) }}" role="tabpanel" aria-labelledby="v-{{ menu.getName() }}">
@@ -406,24 +398,10 @@ outline: none !important;
                             </script>
                             {% endverbatim %}
                         </div>
-                        <!-- <div class="search-box">
-                            <a href="#" class="search-icon">
-                                <span class="icon"><i class="fa fa-search"></i></span>
-                                <input type="search" id="search" placeholder="Search here..." />
-                            </a>
-                        </div> -->
+
 
                         <div class="header-right-icon-area">
-                            <!--   <div class="promotions-box">
-                                <a href="#" class="promotions-icon">
-                                    <i class="fa fa-gift"></i>
-                                </a>
-                            </div> -->                            
-                            <!--   <div class="chat-box">
-                                <a href="#" class="chat-icon">
-                                    <i class="fa fa-comment-o"></i>
-                                </a>
-                            </div> -->
+
 
                             <div class="wishlist-box">
                                 <a href="{{base_url('/account/wish_list')}}" class="wishlist-icon">
@@ -497,11 +475,7 @@ outline: none !important;
                         <h3 class="footer-comn-inner-heading">Follow us</h3>
 
                         <ul class="social-list-box">
-                            <!-- 
-                            <li><a href="https://www.facebook.com/bafredonics/" target="_blank" class="footer-social-link"><img src="{{ asset('theme/images/mailchimp.png') }}"></a></li>
-                            
-                            <li><a href="#" class="footer-social-link"><img src="{{ asset('theme/images/github.png') }}"></a></li> -->
-
+                        
                             <li><a href="http://www.linkedin.com/company/bafredo-electronics-limited/" target="_blank" class="footer-social-link"><img src="{{ asset('theme/images/linkedin.png') }}"></a></li>
 
                             <li><a href="http://www.facebook.com/bafredonics/" target="_blank" class="footer-social-link"><img src="{{ asset('theme/images/facebook.png') }}"></a></li>
@@ -525,7 +499,7 @@ outline: none !important;
             <div class="row">
                 <div class="col-12 col-md-12">
                     <div class="copyright-area">
-                        <p class="mb-0">© 2015 -2020 BAFREDO Electronics Limited. All rights reserved</p>
+                        <p class="mb-0">© 2015 - {{ 'now' | date('Y') }} BAFREDO Electronics Limited. All rights reserved</p>
                     </div>
                 </div>
             </div>
@@ -559,7 +533,7 @@ outline: none !important;
 
 
     $( "body" ).on("click",".deactive", function(event) {    
-        localStorage.setItem("activedata", 'Home');
+        localStorage.setItem("activedata", 'noOne');
     });
 
     $( "body" ).on("click","#mainMenu li.nav-item", function(event) {    
@@ -595,10 +569,7 @@ $( "#mainMenu li.nav-item:contains('"+x+"')" ).addClass('active');
                success: function(data) {
                    console.log(data);
                    $("#bodyupdate").html('<section class="filter-product-section view-products-section py-4">'+data.data.join(' ')+'</section>');
-                    // $("#msg").addClass("alert alert-success");
-                    // $("#msg").html("Record removed successfully").show().fadeOut(3000);
-                    
-                    // setTimeout(function () { location.reload(); }, 2000);
+                   
                }
          });
      
@@ -762,21 +733,9 @@ $( "#mainMenu li.nav-item:contains('"+x+"')" ).addClass('active');
 
         <div class="sidenav-cart-detail">
             <form>
-                <!--div class="form-group">
-                    <label for="exampleFormControlTextarea1">Special instructions for seller</label>
-                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-                </div-->
-                <!--p class="sidenav-cart-total">
-                    <strong>Subtotal:</strong>
-                    <td><span v-text="subtotal"></span></td>
-                </p-->
-                <!--div class="custom-control custom-checkbox mr-sm-2 mb-4">
-                    <input type="checkbox" class="custom-control-input" id="customControlAutosizing">
-                    <label class="custom-control-label" for="customControlAutosizing">I agree with the <a href="#" class="tc-link">terms and conditions.</a></label>
-                </div-->
+              
                  <a class="comn-btn grey-btn d-block w-100 mb-3 showCartBtn" href="{{ base_url('cart') }}">View my cart</a>
-                <!--button class="comn-btn grey-btn d-block w-100 mb-3">VIEW CART</button-->
-              <!--   <button class="comn-btn d-block w-100"><a href="checkout.html">CHECKOUT</a></button> -->
+               
             </form>            
         </div>
     </div>

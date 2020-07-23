@@ -29,7 +29,8 @@ class Cart extends MY_Controller
 
     public function index()
     {
-        $this->twig->display('cart');
+        $productMenu = $this->product->newArrival(4);
+        $this->twig->display('cart',compact('productMenu'));
     }
 
     public function add()
@@ -214,8 +215,8 @@ class Cart extends MY_Controller
         );
 
         $distircts = $this->AM->get_region();
-
-        $this->twig->display('cart/checkout', compact('shippingAddress', 'cities','distircts','cart_checkout'));
+        $productMenu = $this->product->newArrival(4);
+        $this->twig->display('cart/checkout', compact('shippingAddress', 'cities','distircts','cart_checkout','productMenu'));
     }
 
     public function get_regions($city)
@@ -300,7 +301,7 @@ class Cart extends MY_Controller
         }
 
         $payload = $this->input->post();
-
+         $productMenu = $this->product->newArrival(4);
         // Save payload in session for form auto fill.
         $this->session->set_userdata('formdata', $payload);
         // Save order
@@ -317,11 +318,11 @@ class Cart extends MY_Controller
         }
 
         if ($order->payment_method == "tigopesa") {
-            $this->twig->display('cart/gateway/tigopesa', compact('order','charge'));
+            $this->twig->display('cart/gateway/tigopesa', compact('order','charge','productMenu'));
         } else if ($order->payment_method == "bank_transfer") {
-            $this->twig->display('cart/gateway/bank_transfer', compact('order','charge'));
+            $this->twig->display('cart/gateway/bank_transfer', compact('order','charge','productMenu'));
         } else if ($order->payment_method == "pesapal") {
-            $this->twig->display('cart/gateway/pesapal', compact('order','charge'));
+            $this->twig->display('cart/gateway/pesapal', compact('order','charge','productMenu'));
         }
     }
 
@@ -329,6 +330,7 @@ class Cart extends MY_Controller
     {
         //$this->load->view('invoice');
         $this->db->where('id', $order_number);
+         $productMenu = $this->product->newArrival(4);
         $order = $this->db->get('orders')->row();
         $order->invoice = rand();
         if($order->shipping_method == 'Cash_On_Delivery'){
@@ -368,7 +370,7 @@ class Cart extends MY_Controller
             $useraddress = $this->AM->get_user_address_book($user->getId());
 
             $Shipping_address= json_decode($order->shipping_address);
-            $this->twig->display('invoice', compact('order','cart','useraddress','user','address','charge'));
+            $this->twig->display('invoice', compact('order','cart','useraddress','user','address','charge','productMenu'));
     //        $this->twig->display('cart/gateway/pesapal', compact('order','charge'));
         }
     }
@@ -447,6 +449,7 @@ class Cart extends MY_Controller
     public function tigopesaCallback()
     {
         $user = getAuthUser('user');
+        $productMenu = $this->product->newArrival(4);
         if (empty($user)) {
             show_error("No active user session found", 402, "Authentication Error");
         }
@@ -462,10 +465,10 @@ class Cart extends MY_Controller
             // Flush user cart
             $this->flushUserCart($user->getId());
 
-            $this->twig->display('cart/success', compact('payload'));
+            $this->twig->display('cart/success', compact('payload','productMenu'));
         } else {
             // Fail.
-            $this->twig->display('cart/fail', compact('payload'));
+            $this->twig->display('cart/fail', compact('payload','productMenu'));
         }
     }
 
@@ -474,7 +477,8 @@ class Cart extends MY_Controller
         if (empty($_POST)) {
             redirect('cart/checkout');
         }
-
+        
+        $productMenu = $this->product->newArrival(4);
         $order_number = $this->input->post('order_number');
 
         // Load order
@@ -551,7 +555,7 @@ class Cart extends MY_Controller
         $iframe_src->set_parameter("pesapal_request_data", $post_xml);
         $iframe_src->sign_request($signature_method, $consumer, $token);
         // Display the iframe
-        $this->twig->display('cart/gateway/pesapal_frame', compact('iframe_src'));
+        $this->twig->display('cart/gateway/pesapal_frame', compact('iframe_src','productMenu'));
     }
 
     public function pesapalCallback($reference)
@@ -627,6 +631,7 @@ class Cart extends MY_Controller
             curl_close ($ch);
 file_put_contents('application/logs/pesapal-ipn-rsp.json', $status . PHP_EOL, FILE_APPEND);
             // UPDATE YOUR DB TABLE WITH NEW STATUS FOR TRANSACTION WITH pesapal_transaction_tracking_id $pesapalTrackingId
+            $productMenu = $this->product->newArrival(4);
             if($status == "COMPLETED")
             {
                 $this->db->set("order_status", "Confirm");
@@ -652,8 +657,8 @@ file_put_contents('application/logs/pesapal-ipn-rsp.json', $status . PHP_EOL, FI
                     $payload["transaction_ref_id"] = $pesapalTrackingId;
                     $payload["verification_code"] = $reference;
                     $payload["check_status"] = base_url("cart/pesapalIpn/{$reference}?".http_build_query($_GET));
-            
-                    $this->twig->display('cart/pending', compact('payload'));
+                   
+                    $this->twig->display('cart/pending', compact('payload','productMenu'));
                     
                 } else {
                     
@@ -664,7 +669,7 @@ file_put_contents('application/logs/pesapal-ipn-rsp.json', $status . PHP_EOL, FI
                 
                 // Fail.
                 $payload["error_code"] = "";
-                $this->twig->display('cart/fail', compact('payload'));
+                $this->twig->display('cart/fail', compact('payload','productMenu'));
             }
         }
     }
