@@ -1,143 +1,148 @@
 {% extends "layouts/front.twig" %}
 {% block content %}
-    
-      <section class="breadcrumb-section">
-        <div class="container">
-            <div class="row">
-                <div class="col-12 col-md-12">
-                    <div class="breadcrumb-area">
-                        <nav aria-label="breadcrumb" class="comn-breadcrumb-nav">
-                            <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="#"><i class="fa fa-home pr-2"></i>Home</a></li>
-                                <li class="breadcrumb-item active" aria-current="page">All Product</li>
-                            </ol>
-                        </nav>
-                    </div>
+<section class="breadcrumb-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-md-12">
+                <div class="breadcrumb-area">
+                    <nav aria-label="breadcrumb" class="comn-breadcrumb-nav">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item">
+                                <a href="#"><i class="fa fa-home pr-2">
+                                    </i>Home</a>
+                            </li>
+                            <li class="breadcrumb-item active" aria-current="page">
+                                Category
+                            </li>
+                        </ol>
+                    </nav>
                 </div>
             </div>
         </div>
-    </section>
-    <!-- breadcrumb section end -->
-
-    <!-- view Products section start -->
-    <section class="view-products-section py-4">
-        <div class="container">
-            <div class="row">
-                {% for product in products %}
-                    <div class="col-12 col-lg-3 col-md-4 col-sm-6">
-                        <div class="view-products-single-box">
-                            <div class="view-products-thumb">
-                                <a href="{{ base_url("product/detail/#{product.slug}") }}"> <img src="{{ asset("uploads/product/thumbnail/#{product.getImage()}") }}"></a>
-                                <div class="view-products-hover-info">
-                                    <button v-on:click="addToCart({{ product.toJson() }})" class="icon-link-btn" onclick="openNav()" data-toggle="tooltip" data-placement="top" title="Add to cart"> 
-
-                                    <i class="fa fa-shopping-cart pr-2"></i> Add to cart</button>
-                                </div>
-                            </div>
-                            <div class="view-products-info">                            
-                                <div class="view-products-title">
-                                    <h3><a href=#"> {{ product.getName() }} </a></h3>
-                                    <span class="view-products-price">{{ product.getCurrency() ~' '~ product.getPrice() | round }}</span>
-                                </div>
-                            </div>
-                            <div class="hover-icon-link-box">                            
-                                
-
-                                <a href="#" v-on:click="addToWishList({{ product.toJson() }})" class="hover-icon-link" data-toggle="tooltip" data-placement="top" title="Wishlist">   
-
-                                <i class="fa fa-heart-o"></i></a>
-                                <!--a href="#" class="hover-icon-link" data-toggle="tooltip" data-placement="left" title="Compare"><i class="fa fa-refresh"></i></a-->
-                                <a href="#" class="hover-icon-link" data-toggle="tooltip" data-placement="left" title="Quick view"><i class="fa fa-search-plus" data-toggle="modal" data-target="#quickViewModal_{{product.id}}"></i></a>
-
-                                 <!--a href="{{ base_url("product/detail/#{product.slug}") }}" class="hover-icon-link icon-link" data-toggle="tooltip" data-placement="top" title="Quick view"><i class="fa fa-search-plus" data-toggle="modal" data-target="#quickViewModal"></i></a-->
-                            </div>
+    </div>
+</section>
+<!-- breadcrumb section end -->
+<!-- view Products section start -->
+<section class="view-products-section py-4">
+    <div class="container">
+        <h2 class="text-center">Sub-Category</h2>
+        <p class="text-center mb-3">Provides 500+ Arduino Products including Arduino Uno,Mega,Wifi,M0,101,Arduino Shields, Arduino Sensors and Arduino kits</p>
+        <ul class="sub-category m-0 p-0">
+            <li>Wire & Cable</li>
+            <li>Terminals, Connectors & Sockets</li>
+            <li>Switches & Keypads</li>
+            <li>Semiconductors</li>
+            <li>Prototyping boards & PCBs</li>
+            <li>Passive devices</li>
+            <li>Electromechnical devices</li>
+            <li>Displays</li>
+            <li>Circuit protection</li>
+        </ul>
+        <div class="row">
+            <div class="col-12 col-lg-3 col-md-4 col-sm-6">
+                <div class="view-products-single-box">
+                    <div class="view-products-thumb">
+                        <a href="http://localhost/new.bafredo.com/product/detail/monika-thakur"><img src="http://localhost/new.bafredo.com/assets/uploads/product/thumbnail/2n3d7w4ha64gsgwc0.png"></a>
+                        <div class="view-products-hover-info">
+                            <button onclick="openNav()" data-toggle="tooltip" data-placement="top" title="" class="icon-link-btn" data-original-    title="Add to cart"><i class="fa fa-shopping-cart pr-2">
+                                </i> Add to cart</button>
                         </div>
                     </div>
-
-                    <div class="modal fade quick-view-modal" id="quickViewModal_{{product.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header border-0 pb-0">
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                                <div class="modal-body">
-                                     <div class="container">
-                                        <div class="row">
-                                            <div class="col-12 col-md-5">
-                                                <div class="quick-view-thumb-box">
-                                                    <img class="demo-trigger" src="{{ asset("uploads/product/thumbnail/#{product.getImage()}") }}" data-zoom="{{ asset("uploads/product/thumbnail/#{product.getImage()}") }}">
-                                                    <div class="view-products-hover-info">
-                                                        <a href="{{ base_url("product/detail/#{product.slug}") }}" class="icon-link-btn">&nbsp VIEW DETAILS</a>
-
-                                                    </div>
-                                                </div>
+                    <div class="view-products-info">
+                        <div class="view-products-title">
+                            <h3>
+                                <a href="#&quot;"> monika thakur </a>
+                            </h3>
+                            <span class="view-products-price">TZS 45</span>
+                        </div>
+                    </div>
+                    <div class="hover-icon-link-box">
+                        <a href="#" data-toggle="tooltip" data-placement="top" title="" class="hover-icon-link" data-original-title="Wishlist"><i class="fa fa-heart-o">
+                            </i></a>
+                        <a href="#" data-toggle="tooltip" data-placement="left" title="" class="hover-icon-link" data-original-title="Quick view"><i data-toggle="modal" data-target="#quickViewModal_11" class="fa fa-search-plus">
+                            </i></a>
+                    </div>
+                </div>
+            </div>
+            <div id="quickViewModal_11" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" class="modal fade quick-view-modal">
+                <div role="document" class="modal-dialog modal-dialog-centered modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header border-0 pb-0">
+                            <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-12 col-md-5">
+                                        <div class="quick-view-thumb-box">
+                                            <img src="http://localhost/new.bafredo.com/assets/uploads/product/thumbnail/2n3d7w4ha64gsgwc0.png" data-zoom="http://localhost/new.bafredo.com/assets/uploads/product/thumbnail/2n3d7w4ha64gsgwc0.png" class="demo-trigger">
+                                            <div class="view-products-hover-info">
+                                                <a href="http://localhost/new.bafredo.com/product/detail/monika-thakur" class="icon-link-btn">&nbsp; VIEW DETAILS</a>
                                             </div>
-                                            <div class="col-12 col-md-7">
-                                                <div class="quick-view-content-box">
-                                                    <div class="product-detail-heading"><h3>{{ product.getName() }} </h3></div>
-                                                    <!--div class="product-detail-review-box">
-                                                        <i class="fa fa-star-o"></i>
-                                                        <i class="fa fa-star-o"></i>
-                                                        <i class="fa fa-star-o"></i>
-                                                        <i class="fa fa-star-o"></i>
-                                                        <i class="fa fa-star-o"></i>
-                                                        <a class="review-caption">No reviews</a>
-                                                    </div-->
-                                                    <div class="product-price"><span>{{ product.getCurrency() ~' '~ product.getPrice() | round }}</span></div>
-                                                    <!--div class="product-sold-box"><span>25 sold in last 4 hours</span></div-->
-                                                    <div class="product-detail-info">
-                                                        <p>{{ product.getDescription() }}</p>
-                                                    </div>
-                                                    <div class="product-quantity-box">
-                                                       
-                                                        <button type="submit" class="product-quantity-btn widgets-numberpicker-decrement" v-on:click="decrementValue"><i class="fa fa-minus"></i></button>
-                                                        
-
-                                                        <input type="text" class="form-control product-quantity-input" v-model="product_quantity" v-on:keypress="onlyNumber" maxlength="9" minlength="1">
-                                                        <button type="buttom" class="product-quantity-btn widgets-numberpicker-increment" v-on:click="incrementValue"><i class="fa fa-plus"></i></button>   
-                      
-
-                                       
-                                                    </div>
-
-
-                                                    <div class="product-btn-box mb-4"><button type="button" v-on:click="addToCart({{ product.toJson() }})" class="addCartBtn comn-btn black-btn w-100">Add to cart</button></div>
-
-                                                    <div class="product-wishlist-box">                            
-                                                        <a href="#"><i class="fa fa-heart-o pr-2"></i>Wishlist</a>
-                                                    </div>
-                                                    <div class="product-compare-box">                            
-                                                        <!--a href="#"><i class="fa fa-refresh pr-2"></i>Compare</a-->
-                                                    </div><hr>
-                                                    <div class="product-meta-area">
-                                                        <div class="product-meta-box">
-                                                            <span class="product-meta-title">Vender :</span>
-                                                            <a href="#" class="product-meta-name">abcd</a>
-                                                        </div>
-                                                        <div class="product-meta-box">
-                                                            <span class="product-meta-title">SKU:</span>
-                                                            <a href="#" class="product-meta-name">N/A</a>
-                                                        </div>
-                                                        <div class="product-meta-box">
-                                                            <span class="product-meta-title">Categories:</span>
-                                                            <a href="#" class="product-meta-name">Lighting</a>
-                                                        </div>
-                                                        <div class="product-meta-box">
-                                                            <span class="product-meta-title">Tags:</span>
-                                                            <a href="#" class="product-meta-name">lightning</a>
-                                                            <a href="#" class="product-meta-name">£450.00 +</a>
-                                                        </div>
-                                                        <div class="product-meta-box mb-0">
-                                                            <span class="product-meta-title">Share:</span>
-                                                            <a href="#" class="product-meta-social-icon"><i class="fa fa-facebook"></i></a>
-                                                            <a href="#" class="product-meta-social-icon"><i class="fa fa-twitter"></i></a>
-                                                            <a href="#" class="product-meta-social-icon"><i class="fa fa-envelope"></i></a>
-                                                            <a href="#" class="product-meta-social-icon"><i class="fa fa-pinterest"></i></a>
-                                                            <a href="#" class="product-meta-social-icon"><i class="fa fa-tumblr"></i></a>
-                                                        </div>
-                                                    </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-md-7">
+                                        <div class="quick-view-content-box">
+                                            <div class="product-detail-heading">
+                                                <h3>
+                                                    monika thakur 
+                                                </h3>
+                                            </div>
+                                            <div class="product-price">
+                                                <span>TZS 45</span>
+                                            </div>
+                                            <div class="product-detail-info">
+                                                <p>
+                                                    &lt;p&gt;Fusce fermentum. Ut tincidunt tincidunt erat.&lt;/p&gt;
+                                                </p>
+                                            </div>
+                                            <div class="product-quantity-box">
+                                                <button type="submit" class="product-quantity-btn widgets-numberpicker-decrement"><i class="fa fa-minus">
+                                                    </i></button>
+                                                <input type="text" maxlength="9" minlength="1" class="form-control product-quantity-input">
+                                                <button type="buttom" class="product-quantity-btn widgets-numberpicker-increment"><i class="fa fa-plus">
+                                                    </i></button>
+                                            </div>
+                                            <div class="product-btn-box mb-4">
+                                                <button type="button" class="addCartBtn comn-btn black-btn w-100">Add to cart</button>
+                                            </div>
+                                            <div class="product-wishlist-box">
+                                                <a href="#"><i class="fa fa-heart-o pr-2">
+                                                    </i>Wishlist</a>
+                                            </div>
+                                            <div class="product-compare-box">
+                                            </div>
+                                            <hr>
+                                            <div class="product-meta-area">
+                                                <div class="product-meta-box">
+                                                    <span class="product-meta-title">Vender :</span>
+                                                    <a href="#" class="product-meta-name">abcd</a>
+                                                </div>
+                                                <div class="product-meta-box">
+                                                    <span class="product-meta-title">SKU:</span>
+                                                    <a href="#" class="product-meta-name">N/A</a>
+                                                </div>
+                                                <div class="product-meta-box">
+                                                    <span class="product-meta-title">Categories:</span>
+                                                    <a href="#" class="product-meta-name">Lighting</a>
+                                                </div>
+                                                <div class="product-meta-box">
+                                                    <span class="product-meta-title">Tags:</span>
+                                                    <a href="#" class="product-meta-name">lightning</a>
+                                                    <a href="#" class="product-meta-name">£450.00 +</a>
+                                                </div>
+                                                <div class="product-meta-box mb-0">
+                                                    <span class="product-meta-title">Share:</span>
+                                                    <a href="#" class="product-meta-social-icon"><i class="fa fa-facebook">
+                                                        </i></a>
+                                                    <a href="#" class="product-meta-social-icon"><i class="fa fa-twitter">
+                                                        </i></a>
+                                                    <a href="#" class="product-meta-social-icon"><i class="fa fa-envelope">
+                                                        </i></a>
+                                                    <a href="#" class="product-meta-social-icon"><i class="fa fa-pinterest">
+                                                        </i></a>
+                                                    <a href="#" class="product-meta-social-icon"><i class="fa fa-tumblr">
+                                                        </i></a>
                                                 </div>
                                             </div>
                                         </div>
@@ -146,71 +151,1209 @@
                             </div>
                         </div>
                     </div>
-                {% endfor %}
-              
-            </div>
-        </div>
-
-
-
-
-    </section>
-       <div id="mySidenav" class="cart-sidenav">
-        <div class="cart-sidenav-header">
-            <h3 class="sidenav-heading">Shopping cart</h3>
-            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">Close &times;</a>
-        </div>
-        <ul class="sidenav-cart-list-area"> 
-            <li v-for="product in cart">
-                <div class="cart-product-thumb">
-                   <img :src="productImage(product.image)" :alt="product.name" :title="product.name">
                 </div>
-
-                <div class="cart-product-detail">
-                    <a href="#" class="cart-sidenav-heading">${ product.name }</a>
-                    <div class="sidenav-cart-list-box">
-                        
-
-                           <div class="input-group plus-minus-input">
-                                    <div class="widgets-numberpicker">
-                                        <div class="widgets-numberpicker-decrement" v-on:click="cartItemQuantityDecrement(product)"><i class="fa fa-minus"></i></div>
+            </div>
+            <div class="col-12 col-lg-3 col-md-4 col-sm-6">
+                <div class="view-products-single-box">
+                    <div class="view-products-thumb">
+                        <a href="http://localhost/new.bafredo.com/product/detail/pic-microcontroller"><img src="http://localhost/new.bafredo.com/assets/uploads/product/thumbnail/3753159vi38k4gksw0.jpg"></a>
+                        <div class="view-products-hover-info">
+                            <button onclick="openNav()" data-toggle="tooltip" data-placement="top" title="" class="icon-link-btn" data-original-title="Add to cart"><i class="fa fa-shopping-cart pr-2">
+                                </i> Add to cart</button>
+                        </div>
+                    </div>
+                    <div class="view-products-info">
+                        <div class="view-products-title">
+                            <h3>
+                                <a href="#&quot;"> PIC Microcontroller </a>
+                            </h3>
+                            <span class="view-products-price">TZS 12000</span>
+                        </div>
+                    </div>
+                    <div class="hover-icon-link-box">
+                        <a href="#" data-toggle="tooltip" data-placement="top" title="" class="hover-icon-link" data-original-title="Wishlist"><i class="fa fa-heart-o">
+                            </i></a>
+                        <a href="#" data-toggle="tooltip" data-placement="left" title="" class="hover-icon-link" data-original-title="Quick view"><i data-toggle="modal" data-target="#quickViewModal_10" class="fa fa-search-plus">
+                            </i></a>
+                    </div>
+                </div>
+            </div>
+            <div id="quickViewModal_10" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" class="modal fade quick-view-modal">
+                <div role="document" class="modal-dialog modal-dialog-centered modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header border-0 pb-0">
+                            <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-12 col-md-5">
+                                        <div class="quick-view-thumb-box">
+                                            <img src="http://localhost/new.bafredo.com/assets/uploads/product/thumbnail/3753159vi38k4gksw0.jpg" data-zoom="http://localhost/new.bafredo.com/assets/uploads/product/thumbnail/3753159vi38k4gksw0.jpg" class="demo-trigger">
+                                            <div class="view-products-hover-info">
+                                                <a href="http://localhost/new.bafredo.com/product/detail/pic-microcontroller" class="icon-link-btn">&nbsp; VIEW DETAILS</a>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div class="input-group-field item-quantity-count">
-                                        <input type="text" class="form-control" v-model="product.quantity" v-on:keypress="onlyNumber" maxlength="9">
-                                    </div>
-                                    <div class="widgets-numberpicker">
-                                        <div class="widgets-numberpicker-increment" v-on:click="cartItemQuantityIncrement(product)"><i class="fa fa-plus"></i></div>
+                                    <div class="col-12 col-md-7">
+                                        <div class="quick-view-content-box">
+                                            <div class="product-detail-heading">
+                                                <h3>
+                                                    PIC Microcontroller 
+                                                </h3>
+                                            </div>
+                                            <div class="product-price">
+                                                <span>TZS 12000</span>
+                                            </div>
+                                            <div class="product-detail-info">
+                                                <p>
+                                                    Build microcontrollers systems
+                                                </p>
+                                            </div>
+                                            <div class="product-quantity-box">
+                                                <button type="submit" class="product-quantity-btn widgets-numberpicker-decrement"><i class="fa fa-minus">
+                                                    </i></button>
+                                                <input type="text" maxlength="9" minlength="1" class="form-control product-quantity-input">
+                                                <button type="buttom" class="product-quantity-btn widgets-numberpicker-increment"><i class="fa fa-plus">
+                                                    </i></button>
+                                            </div>
+                                            <div class="product-btn-box mb-4">
+                                                <button type="button" class="addCartBtn comn-btn black-btn w-100">Add to cart</button>
+                                            </div>
+                                            <div class="product-wishlist-box">
+                                                <a href="#"><i class="fa fa-heart-o pr-2">
+                                                    </i>Wishlist</a>
+                                            </div>
+                                            <div class="product-compare-box">
+                                            </div>
+                                            <hr>
+                                            <div class="product-meta-area">
+                                                <div class="product-meta-box">
+                                                    <span class="product-meta-title">Vender :</span>
+                                                    <a href="#" class="product-meta-name">abcd</a>
+                                                </div>
+                                                <div class="product-meta-box">
+                                                    <span class="product-meta-title">SKU:</span>
+                                                    <a href="#" class="product-meta-name">N/A</a>
+                                                </div>
+                                                <div class="product-meta-box">
+                                                    <span class="product-meta-title">Categories:</span>
+                                                    <a href="#" class="product-meta-name">Lighting</a>
+                                                </div>
+                                                <div class="product-meta-box">
+                                                    <span class="product-meta-title">Tags:</span>
+                                                    <a href="#" class="product-meta-name">lightning</a>
+                                                    <a href="#" class="product-meta-name">£450.00 +</a>
+                                                </div>
+                                                <div class="product-meta-box mb-0">
+                                                    <span class="product-meta-title">Share:</span>
+                                                    <a href="#" class="product-meta-social-icon"><i class="fa fa-facebook">
+                                                        </i></a>
+                                                    <a href="#" class="product-meta-social-icon"><i class="fa fa-twitter">
+                                                        </i></a>
+                                                    <a href="#" class="product-meta-social-icon"><i class="fa fa-envelope">
+                                                        </i></a>
+                                                    <a href="#" class="product-meta-social-icon"><i class="fa fa-pinterest">
+                                                        </i></a>
+                                                    <a href="#" class="product-meta-social-icon"><i class="fa fa-tumblr">
+                                                        </i></a>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-   
-
-                        <span class="cart-price pl-2">
-                       
-                         <button class="removeBtn" v-on:click="removeFromCart(product)"> <i class="fa fa-times pr-2"></i></button>
-                        ${ product.currency +' '+ product.price*product.quantity }</span>
-                    </div>                    
-                </div>  
-                <li>
-        </ul>
-
-        <div class="sidenav-cart-detail">
-            <form>
-                <!--div class="form-group">
-                    <label for="exampleFormControlTextarea1">Special instructions for seller</label>
-                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-                </div-->
-                <!--p class="sidenav-cart-total">
-                    <strong>Subtotal:</strong>
-                    <td><span v-text="subtotal"></span></td>
-                </p-->
-                <!--div class="custom-control custom-checkbox mr-sm-2 mb-4">
-                    <input type="checkbox" class="custom-control-input" id="customControlAutosizing">
-                    <label class="custom-control-label" for="customControlAutosizing">I agree with the <a href="#" class="tc-link">terms and conditions.</a></label>
-                </div-->
-                 <a class="comn-btn grey-btn d-block w-100 mb-3 showCartBtn" href="{{ base_url('cart') }}">View my cart</a>
-                <!--button class="comn-btn grey-btn d-block w-100 mb-3">VIEW CART</button-->
-                <button class="comn-btn d-block w-100"><a href="checkout.html">CHECKOUT</a></button>
-            </form>            
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-lg-3 col-md-4 col-sm-6">
+                <div class="view-products-single-box">
+                    <div class="view-products-thumb">
+                        <a href="http://localhost/new.bafredo.com/product/detail/test1-item"><img src="http://localhost/new.bafredo.com/assets/uploads/product/thumbnail/6h6qyelw81s0gscwgc.jpg"></a>
+                        <div class="view-products-hover-info">
+                            <button onclick="openNav()" data-toggle="tooltip" data-placement="top" title="" class="icon-link-btn" data-original-title="Add to cart"><i class="fa fa-shopping-cart pr-2">
+                                </i> Add to cart</button>
+                        </div>
+                    </div>
+                    <div class="view-products-info">
+                        <div class="view-products-title">
+                            <h3>
+                                <a href="#&quot;"> Test1 Item </a>
+                            </h3>
+                            <span class="view-products-price">TZS 1000</span>
+                        </div>
+                    </div>
+                    <div class="hover-icon-link-box">
+                        <a href="#" data-toggle="tooltip" data-placement="top" title="" class="hover-icon-link" data-original-title="Wishlist"><i class="fa fa-heart-o">
+                            </i></a>
+                        <a href="#" data-toggle="tooltip" data-placement="left" title="" class="hover-icon-link" data-original-title="Quick view"><i data-toggle="modal" data-target="#quickViewModal_9" class="fa fa-search-plus">
+                            </i></a>
+                    </div>
+                </div>
+            </div>
+            <div id="quickViewModal_9" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" class="modal fade quick-view-modal">
+                <div role="document" class="modal-dialog modal-dialog-centered modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header border-0 pb-0">
+                            <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-12 col-md-5">
+                                        <div class="quick-view-thumb-box">
+                                            <img src="http://localhost/new.bafredo.com/assets/uploads/product/thumbnail/6h6qyelw81s0gscwgc.jpg" data-zoom="http://localhost/new.bafredo.com/assets/uploads/product/thumbnail/6h6qyelw81s0gscwgc.jpg" class="demo-trigger">
+                                            <div class="view-products-hover-info">
+                                                <a href="http://localhost/new.bafredo.com/product/detail/test1-item" class="icon-link-btn">&nbsp; VIEW DETAILS</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-md-7">
+                                        <div class="quick-view-content-box">
+                                            <div class="product-detail-heading">
+                                                <h3>
+                                                    Test1 Item 
+                                                </h3>
+                                            </div>
+                                            <div class="product-price">
+                                                <span>TZS 1000</span>
+                                            </div>
+                                            <div class="product-detail-info">
+                                                <p>
+                                                    fadsfdsafsdafdfhtjjwrjryj
+                                                </p>
+                                            </div>
+                                            <div class="product-quantity-box">
+                                                <button type="submit" class="product-quantity-btn widgets-numberpicker-decrement"><i class="fa fa-minus">
+                                                    </i></button>
+                                                <input type="text" maxlength="9" minlength="1" class="form-control product-quantity-input">
+                                                <button type="buttom" class="product-quantity-btn widgets-numberpicker-increment"><i class="fa fa-plus">
+                                                    </i></button>
+                                            </div>
+                                            <div class="product-btn-box mb-4">
+                                                <button type="button" class="addCartBtn comn-btn black-btn w-100">Add to cart</button>
+                                            </div>
+                                            <div class="product-wishlist-box">
+                                                <a href="#"><i class="fa fa-heart-o pr-2">
+                                                    </i>Wishlist</a>
+                                            </div>
+                                            <div class="product-compare-box">
+                                            </div>
+                                            <hr>
+                                            <div class="product-meta-area">
+                                                <div class="product-meta-box">
+                                                    <span class="product-meta-title">Vender :</span>
+                                                    <a href="#" class="product-meta-name">abcd</a>
+                                                </div>
+                                                <div class="product-meta-box">
+                                                    <span class="product-meta-title">SKU:</span>
+                                                    <a href="#" class="product-meta-name">N/A</a>
+                                                </div>
+                                                <div class="product-meta-box">
+                                                    <span class="product-meta-title">Categories:</span>
+                                                    <a href="#" class="product-meta-name">Lighting</a>
+                                                </div>
+                                                <div class="product-meta-box">
+                                                    <span class="product-meta-title">Tags:</span>
+                                                    <a href="#" class="product-meta-name">lightning</a>
+                                                    <a href="#" class="product-meta-name">£450.00 +</a>
+                                                </div>
+                                                <div class="product-meta-box mb-0">
+                                                    <span class="product-meta-title">Share:</span>
+                                                    <a href="#" class="product-meta-social-icon"><i class="fa fa-facebook">
+                                                        </i></a>
+                                                    <a href="#" class="product-meta-social-icon"><i class="fa fa-twitter">
+                                                        </i></a>
+                                                    <a href="#" class="product-meta-social-icon"><i class="fa fa-envelope">
+                                                        </i></a>
+                                                    <a href="#" class="product-meta-social-icon"><i class="fa fa-pinterest">
+                                                        </i></a>
+                                                    <a href="#" class="product-meta-social-icon"><i class="fa fa-tumblr">
+                                                        </i></a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-lg-3 col-md-4 col-sm-6">
+                <div class="view-products-single-box">
+                    <div class="view-products-thumb">
+                        <a href="http://localhost/new.bafredo.com/product/detail/arduino-uno-r3"><img src="http://localhost/new.bafredo.com/assets/uploads/product/thumbnail/6lpbkecp0jk00oc0w.jpg"></a>
+                        <div class="view-products-hover-info">
+                            <button onclick="openNav()" data-toggle="tooltip" data-placement="top" title="" class="icon-link-btn" data-original-title="Add to cart"><i class="fa fa-shopping-cart pr-2">
+                                </i> Add to cart</button>
+                        </div>
+                    </div>
+                    <div class="view-products-info">
+                        <div class="view-products-title">
+                            <h3>
+                                <a href="#&quot;"> Arduino UNO R3 </a>
+                            </h3>
+                            <span class="view-products-price">TZS 90</span>
+                        </div>
+                    </div>
+                    <div class="hover-icon-link-box">
+                        <a href="#" data-toggle="tooltip" data-placement="top" title="" class="hover-icon-link" data-original-title="Wishlist"><i class="fa fa-heart-o">
+                            </i></a>
+                        <a href="#" data-toggle="tooltip" data-placement="left" title="" class="hover-icon-link" data-original-title="Quick view"><i data-toggle="modal" data-target="#quickViewModal_8" class="fa fa-search-plus">
+                            </i></a>
+                    </div>
+                </div>
+            </div>
+            <div id="quickViewModal_8" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" class="modal fade quick-view-modal">
+                <div role="document" class="modal-dialog modal-dialog-centered modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header border-0 pb-0">
+                            <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-12 col-md-5">
+                                        <div class="quick-view-thumb-box">
+                                            <img src="http://localhost/new.bafredo.com/assets/uploads/product/thumbnail/6lpbkecp0jk00oc0w.jpg" data-zoom="http://localhost/new.bafredo.com/assets/uploads/product/thumbnail/6lpbkecp0jk00oc0w.jpg" class="demo-trigger">
+                                            <div class="view-products-hover-info">
+                                                <a href="http://localhost/new.bafredo.com/product/detail/arduino-uno-r3" class="icon-link-btn">&nbsp; VIEW DETAILS</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-md-7">
+                                        <div class="quick-view-content-box">
+                                            <div class="product-detail-heading">
+                                                <h3>
+                                                    Arduino UNO R3 
+                                                </h3>
+                                            </div>
+                                            <div class="product-price">
+                                                <span>TZS 90</span>
+                                            </div>
+                                            <div class="product-detail-info">
+                                                <p>
+                                                    Hottest product in Tanzania. Welcome to have one for your projects.
+                                                </p>
+                                            </div>
+                                            <div class="product-quantity-box">
+                                                <button type="submit" class="product-quantity-btn widgets-numberpicker-decrement"><i class="fa fa-minus">
+                                                    </i></button>
+                                                <input type="text" maxlength="9" minlength="1" class="form-control product-quantity-input">
+                                                <button type="buttom" class="product-quantity-btn widgets-numberpicker-increment"><i class="fa fa-plus">
+                                                    </i></button>
+                                            </div>
+                                            <div class="product-btn-box mb-4">
+                                                <button type="button" class="addCartBtn comn-btn black-btn w-100">Add to cart</button>
+                                            </div>
+                                            <div class="product-wishlist-box">
+                                                <a href="#"><i class="fa fa-heart-o pr-2">
+                                                    </i>Wishlist</a>
+                                            </div>
+                                            <div class="product-compare-box">
+                                            </div>
+                                            <hr>
+                                            <div class="product-meta-area">
+                                                <div class="product-meta-box">
+                                                    <span class="product-meta-title">Vender :</span>
+                                                    <a href="#" class="product-meta-name">abcd</a>
+                                                </div>
+                                                <div class="product-meta-box">
+                                                    <span class="product-meta-title">SKU:</span>
+                                                    <a href="#" class="product-meta-name">N/A</a>
+                                                </div>
+                                                <div class="product-meta-box">
+                                                    <span class="product-meta-title">Categories:</span>
+                                                    <a href="#" class="product-meta-name">Lighting</a>
+                                                </div>
+                                                <div class="product-meta-box">
+                                                    <span class="product-meta-title">Tags:</span>
+                                                    <a href="#" class="product-meta-name">lightning</a>
+                                                    <a href="#" class="product-meta-name">£450.00 +</a>
+                                                </div>
+                                                <div class="product-meta-box mb-0">
+                                                    <span class="product-meta-title">Share:</span>
+                                                    <a href="#" class="product-meta-social-icon"><i class="fa fa-facebook">
+                                                        </i></a>
+                                                    <a href="#" class="product-meta-social-icon"><i class="fa fa-twitter">
+                                                        </i></a>
+                                                    <a href="#" class="product-meta-social-icon"><i class="fa fa-envelope">
+                                                        </i></a>
+                                                    <a href="#" class="product-meta-social-icon"><i class="fa fa-pinterest">
+                                                        </i></a>
+                                                    <a href="#" class="product-meta-social-icon"><i class="fa fa-tumblr">
+                                                        </i></a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-lg-3 col-md-4 col-sm-6">
+                <div class="view-products-single-box">
+                    <div class="view-products-thumb">
+                        <a href="http://localhost/new.bafredo.com/product/detail/romeo-an-arduino-robot-control-board-with-motor-driver"><img src="http://localhost/new.bafredo.com/assets/uploads/product/thumbnail/kumi047cr280sg8080.jpg"></a>
+                        <div class="view-products-hover-info">
+                            <button onclick="openNav()" data-toggle="tooltip" data-placement="top" title="" class="icon-link-btn" data-original-title="Add to cart"><i class="fa fa-shopping-cart pr-2">
+                                </i> Add to cart</button>
+                        </div>
+                    </div>
+                    <div class="view-products-info">
+                        <div class="view-products-title">
+                            <h3>
+                                <a href="#&quot;"> Romeo - an Arduino Robot Control Board with Motor Driver </a>
+                            </h3>
+                            <span class="view-products-price">TZS 30</span>
+                        </div>
+                    </div>
+                    <div class="hover-icon-link-box">
+                        <a href="#" data-toggle="tooltip" data-placement="top" title="" class="hover-icon-link" data-original-title="Wishlist"><i class="fa fa-heart-o">
+                            </i></a>
+                        <a href="#" data-toggle="tooltip" data-placement="left" title="" class="hover-icon-link" data-original-title="Quick view"><i data-toggle="modal" data-target="#quickViewModal_7" class="fa fa-search-plus">
+                            </i></a>
+                    </div>
+                </div>
+            </div>
+            <div id="quickViewModal_7" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" class="modal fade quick-view-modal">
+                <div role="document" class="modal-dialog modal-dialog-centered modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header border-0 pb-0">
+                            <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-12 col-md-5">
+                                        <div class="quick-view-thumb-box">
+                                            <img src="http://localhost/new.bafredo.com/assets/uploads/product/thumbnail/kumi047cr280sg8080.jpg" data-zoom="http://localhost/new.bafredo.com/assets/uploads/product/thumbnail/kumi047cr280sg8080.jpg" class="demo-trigger">
+                                            <div class="view-products-hover-info">
+                                                <a href="http://localhost/new.bafredo.com/product/detail/romeo-an-arduino-robot-control-board-with-motor-driver" class="icon-link-btn">&nbsp; VIEW DETAILS</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-md-7">
+                                        <div class="quick-view-content-box">
+                                            <div class="product-detail-heading">
+                                                <h3>
+                                                    Romeo - an Arduino Robot Control Board with Motor Driver 
+                                                </h3>
+                                            </div>
+                                            <div class="product-price">
+                                                <span>TZS 30</span>
+                                            </div>
+                                            <div class="product-detail-info">
+                                                <p>
+                                                    Romeo - an Arduino Robot Control Board with Motor Driver
+                                                </p>
+                                            </div>
+                                            <div class="product-quantity-box">
+                                                <button type="submit" class="product-quantity-btn widgets-numberpicker-decrement"><i class="fa fa-minus">
+                                                    </i></button>
+                                                <input type="text" maxlength="9" minlength="1" class="form-control product-quantity-input">
+                                                <button type="buttom" class="product-quantity-btn widgets-numberpicker-increment"><i class="fa fa-plus">
+                                                    </i></button>
+                                            </div>
+                                            <div class="product-btn-box mb-4">
+                                                <button type="button" class="addCartBtn comn-btn black-btn w-100">Add to cart</button>
+                                            </div>
+                                            <div class="product-wishlist-box">
+                                                <a href="#"><i class="fa fa-heart-o pr-2">
+                                                    </i>Wishlist</a>
+                                            </div>
+                                            <div class="product-compare-box">
+                                            </div>
+                                            <hr>
+                                            <div class="product-meta-area">
+                                                <div class="product-meta-box">
+                                                    <span class="product-meta-title">Vender :</span>
+                                                    <a href="#" class="product-meta-name">abcd</a>
+                                                </div>
+                                                <div class="product-meta-box">
+                                                    <span class="product-meta-title">SKU:</span>
+                                                    <a href="#" class="product-meta-name">N/A</a>
+                                                </div>
+                                                <div class="product-meta-box">
+                                                    <span class="product-meta-title">Categories:</span>
+                                                    <a href="#" class="product-meta-name">Lighting</a>
+                                                </div>
+                                                <div class="product-meta-box">
+                                                    <span class="product-meta-title">Tags:</span>
+                                                    <a href="#" class="product-meta-name">lightning</a>
+                                                    <a href="#" class="product-meta-name">£450.00 +</a>
+                                                </div>
+                                                <div class="product-meta-box mb-0">
+                                                    <span class="product-meta-title">Share:</span>
+                                                    <a href="#" class="product-meta-social-icon"><i class="fa fa-facebook">
+                                                        </i></a>
+                                                    <a href="#" class="product-meta-social-icon"><i class="fa fa-twitter">
+                                                        </i></a>
+                                                    <a href="#" class="product-meta-social-icon"><i class="fa fa-envelope">
+                                                        </i></a>
+                                                    <a href="#" class="product-meta-social-icon"><i class="fa fa-pinterest">
+                                                        </i></a>
+                                                    <a href="#" class="product-meta-social-icon"><i class="fa fa-tumblr">
+                                                        </i></a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-lg-3 col-md-4 col-sm-6">
+                <div class="view-products-single-box">
+                    <div class="view-products-thumb">
+                        <a href="http://localhost/new.bafredo.com/product/detail/beginner-kit-for-arduino-best-starter-kit"><img src="http://localhost/new.bafredo.com/assets/uploads/product/thumbnail/4cqgg3iagoaoksgw0.jpg"></a>
+                        <div class="view-products-hover-info">
+                            <button onclick="openNav()" data-toggle="tooltip" data-placement="top" title="" class="icon-link-btn" data-original-title="Add to cart"><i class="fa fa-shopping-cart pr-2">
+                                </i> Add to cart</button>
+                        </div>
+                    </div>
+                    <div class="view-products-info">
+                        <div class="view-products-title">
+                            <h3>
+                                <a href="#&quot;"> Beginner Kit for Arduino (Best Starter Kit) </a>
+                            </h3>
+                            <span class="view-products-price">TZS 53</span>
+                        </div>
+                    </div>
+                    <div class="hover-icon-link-box">
+                        <a href="#" data-toggle="tooltip" data-placement="top" title="" class="hover-icon-link" data-original-title="Wishlist"><i class="fa fa-heart-o">
+                            </i></a>
+                        <a href="#" data-toggle="tooltip" data-placement="left" title="" class="hover-icon-link" data-original-title="Quick view"><i data-toggle="modal" data-target="#quickViewModal_6" class="fa fa-search-plus">
+                            </i></a>
+                    </div>
+                </div>
+            </div>
+            <div id="quickViewModal_6" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" class="modal fade quick-view-modal">
+                <div role="document" class="modal-dialog modal-dialog-centered modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header border-0 pb-0">
+                            <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-12 col-md-5">
+                                        <div class="quick-view-thumb-box">
+                                            <img src="http://localhost/new.bafredo.com/assets/uploads/product/thumbnail/4cqgg3iagoaoksgw0.jpg" data-zoom="http://localhost/new.bafredo.com/assets/uploads/product/thumbnail/4cqgg3iagoaoksgw0.jpg" class="demo-trigger">
+                                            <div class="view-products-hover-info">
+                                                <a href="http://localhost/new.bafredo.com/product/detail/beginner-kit-for-arduino-best-starter-kit" class="icon-link-btn">&nbsp; VIEW DETAILS</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-md-7">
+                                        <div class="quick-view-content-box">
+                                            <div class="product-detail-heading">
+                                                <h3>
+                                                    Beginner Kit for Arduino (Best Starter Kit) 
+                                                </h3>
+                                            </div>
+                                            <div class="product-price">
+                                                <span>TZS 53</span>
+                                            </div>
+                                            <div class="product-detail-info">
+                                                <p>
+                                                    Beginner Kit for Arduino (Best Starter Kit)
+                                                </p>
+                                            </div>
+                                            <div class="product-quantity-box">
+                                                <button type="submit" class="product-quantity-btn widgets-numberpicker-decrement"><i class="fa fa-minus">
+                                                    </i></button>
+                                                <input type="text" maxlength="9" minlength="1" class="form-control product-quantity-input">
+                                                <button type="buttom" class="product-quantity-btn widgets-numberpicker-increment"><i class="fa fa-plus">
+                                                    </i></button>
+                                            </div>
+                                            <div class="product-btn-box mb-4">
+                                                <button type="button" class="addCartBtn comn-btn black-btn w-100">Add to cart</button>
+                                            </div>
+                                            <div class="product-wishlist-box">
+                                                <a href="#"><i class="fa fa-heart-o pr-2">
+                                                    </i>Wishlist</a>
+                                            </div>
+                                            <div class="product-compare-box">
+                                            </div>
+                                            <hr>
+                                            <div class="product-meta-area">
+                                                <div class="product-meta-box">
+                                                    <span class="product-meta-title">Vender :</span>
+                                                    <a href="#" class="product-meta-name">abcd</a>
+                                                </div>
+                                                <div class="product-meta-box">
+                                                    <span class="product-meta-title">SKU:</span>
+                                                    <a href="#" class="product-meta-name">N/A</a>
+                                                </div>
+                                                <div class="product-meta-box">
+                                                    <span class="product-meta-title">Categories:</span>
+                                                    <a href="#" class="product-meta-name">Lighting</a>
+                                                </div>
+                                                <div class="product-meta-box">
+                                                    <span class="product-meta-title">Tags:</span>
+                                                    <a href="#" class="product-meta-name">lightning</a>
+                                                    <a href="#" class="product-meta-name">£450.00 +</a>
+                                                </div>
+                                                <div class="product-meta-box mb-0">
+                                                    <span class="product-meta-title">Share:</span>
+                                                    <a href="#" class="product-meta-social-icon"><i class="fa fa-facebook">
+                                                        </i></a>
+                                                    <a href="#" class="product-meta-social-icon"><i class="fa fa-twitter">
+                                                        </i></a>
+                                                    <a href="#" class="product-meta-social-icon"><i class="fa fa-envelope">
+                                                        </i></a>
+                                                    <a href="#" class="product-meta-social-icon"><i class="fa fa-pinterest">
+                                                        </i></a>
+                                                    <a href="#" class="product-meta-social-icon"><i class="fa fa-tumblr">
+                                                        </i></a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-lg-3 col-md-4 col-sm-6">
+                <div class="view-products-single-box">
+                    <div class="view-products-thumb">
+                        <a href="http://localhost/new.bafredo.com/product/detail/gravity-1602-lcd-keypad-shield-for-arduino"><img src="http://localhost/new.bafredo.com/assets/uploads/product/thumbnail/1l14lkrhkutc0kws8k.jpg"></a>
+                        <div class="view-products-hover-info">
+                            <button onclick="openNav()" data-toggle="tooltip" data-placement="top" title="" class="icon-link-btn" data-original-title="Add to cart"><i class="fa fa-shopping-cart pr-2">
+                                </i> Add to cart</button>
+                        </div>
+                    </div>
+                    <div class="view-products-info">
+                        <div class="view-products-title">
+                            <h3>
+                                <a href="#&quot;"> Gravity: 1602 LCD Keypad Shield For Arduino </a>
+                            </h3>
+                            <span class="view-products-price">TZS 10</span>
+                        </div>
+                    </div>
+                    <div class="hover-icon-link-box">
+                        <a href="#" data-toggle="tooltip" data-placement="top" title="" class="hover-icon-link" data-original-title="Wishlist"><i class="fa fa-heart-o">
+                            </i></a>
+                        <a href="#" data-toggle="tooltip" data-placement="left" title="" class="hover-icon-link" data-original-title="Quick view"><i data-toggle="modal" data-target="#quickViewModal_5" class="fa fa-search-plus">
+                            </i></a>
+                    </div>
+                </div>
+            </div>
+            <div id="quickViewModal_5" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" class="modal fade quick-view-modal">
+                <div role="document" class="modal-dialog modal-dialog-centered modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header border-0 pb-0">
+                            <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-12 col-md-5">
+                                        <div class="quick-view-thumb-box">
+                                            <img src="http://localhost/new.bafredo.com/assets/uploads/product/thumbnail/1l14lkrhkutc0kws8k.jpg" data-zoom="http://localhost/new.bafredo.com/assets/uploads/product/thumbnail/1l14lkrhkutc0kws8k.jpg" class="demo-trigger">
+                                            <div class="view-products-hover-info">
+                                                <a href="http://localhost/new.bafredo.com/product/detail/gravity-1602-lcd-keypad-shield-for-arduino" class="icon-link-btn">&nbsp; VIEW DETAILS</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-md-7">
+                                        <div class="quick-view-content-box">
+                                            <div class="product-detail-heading">
+                                                <h3>
+                                                    Gravity: 1602 LCD Keypad Shield For Arduino 
+                                                </h3>
+                                            </div>
+                                            <div class="product-price">
+                                                <span>TZS 10</span>
+                                            </div>
+                                            <div class="product-detail-info">
+                                                <p>
+                                                    Gravity: 1602 LCD Keypad Shield For Arduino
+                                                </p>
+                                            </div>
+                                            <div class="product-quantity-box">
+                                                <button type="submit" class="product-quantity-btn widgets-numberpicker-decrement"><i class="fa fa-minus">
+                                                    </i></button>
+                                                <input type="text" maxlength="9" minlength="1" class="form-control product-quantity-input">
+                                                <button type="buttom" class="product-quantity-btn widgets-numberpicker-increment"><i class="fa fa-plus">
+                                                    </i></button>
+                                            </div>
+                                            <div class="product-btn-box mb-4">
+                                                <button type="button" class="addCartBtn comn-btn black-btn w-100">Add to cart</button>
+                                            </div>
+                                            <div class="product-wishlist-box">
+                                                <a href="#"><i class="fa fa-heart-o pr-2">
+                                                    </i>Wishlist</a>
+                                            </div>
+                                            <div class="product-compare-box">
+                                            </div>
+                                            <hr>
+                                            <div class="product-meta-area">
+                                                <div class="product-meta-box">
+                                                    <span class="product-meta-title">Vender :</span>
+                                                    <a href="#" class="product-meta-name">abcd</a>
+                                                </div>
+                                                <div class="product-meta-box">
+                                                    <span class="product-meta-title">SKU:</span>
+                                                    <a href="#" class="product-meta-name">N/A</a>
+                                                </div>
+                                                <div class="product-meta-box">
+                                                    <span class="product-meta-title">Categories:</span>
+                                                    <a href="#" class="product-meta-name">Lighting</a>
+                                                </div>
+                                                <div class="product-meta-box">
+                                                    <span class="product-meta-title">Tags:</span>
+                                                    <a href="#" class="product-meta-name">lightning</a>
+                                                    <a href="#" class="product-meta-name">£450.00 +</a>
+                                                </div>
+                                                <div class="product-meta-box mb-0">
+                                                    <span class="product-meta-title">Share:</span>
+                                                    <a href="#" class="product-meta-social-icon"><i class="fa fa-facebook">
+                                                        </i></a>
+                                                    <a href="#" class="product-meta-social-icon"><i class="fa fa-twitter">
+                                                        </i></a>
+                                                    <a href="#" class="product-meta-social-icon"><i class="fa fa-envelope">
+                                                        </i></a>
+                                                    <a href="#" class="product-meta-social-icon"><i class="fa fa-pinterest">
+                                                        </i></a>
+                                                    <a href="#" class="product-meta-social-icon"><i class="fa fa-tumblr">
+                                                        </i></a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-lg-3 col-md-4 col-sm-6">
+                <div class="view-products-single-box">
+                    <div class="view-products-thumb">
+                        <a href="http://localhost/new.bafredo.com/product/detail/rp-s40-st-thin-film-pressure-sensor-40mmx40mm"><img src="http://localhost/new.bafredo.com/assets/uploads/product/thumbnail/wvh46gl8wuoc0c0k44.jpg"></a>
+                        <div class="view-products-hover-info">
+                            <button onclick="openNav()" data-toggle="tooltip" data-placement="top" title="" class="icon-link-btn" data-original-title="Add to cart"><i class="fa fa-shopping-cart pr-2">
+                                </i> Add to cart</button>
+                        </div>
+                    </div>
+                    <div class="view-products-info">
+                        <div class="view-products-title">
+                            <h3>
+                                <a href="#&quot;"> RP-S40-ST Thin Film Pressure Sensor 40mmx40mm </a>
+                            </h3>
+                            <span class="view-products-price">TZS 7</span>
+                        </div>
+                    </div>
+                    <div class="hover-icon-link-box">
+                        <a href="#" data-toggle="tooltip" data-placement="top" title="" class="hover-icon-link" data-original-title="Wishlist"><i class="fa fa-heart-o">
+                            </i></a>
+                        <a href="#" data-toggle="tooltip" data-placement="left" title="" class="hover-icon-link" data-original-title="Quick view"><i data-toggle="modal" data-target="#quickViewModal_4" class="fa fa-search-plus">
+                            </i></a>
+                    </div>
+                </div>
+            </div>
+            <div id="quickViewModal_4" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" class="modal fade quick-view-modal">
+                <div role="document" class="modal-dialog modal-dialog-centered modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header border-0 pb-0">
+                            <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-12 col-md-5">
+                                        <div class="quick-view-thumb-box">
+                                            <img src="http://localhost/new.bafredo.com/assets/uploads/product/thumbnail/wvh46gl8wuoc0c0k44.jpg" data-zoom="http://localhost/new.bafredo.com/assets/uploads/product/thumbnail/wvh46gl8wuoc0c0k44.jpg" class="demo-trigger">
+                                            <div class="view-products-hover-info">
+                                                <a href="http://localhost/new.bafredo.com/product/detail/rp-s40-st-thin-film-pressure-sensor-40mmx40mm" class="icon-link-btn">&nbsp; VIEW DETAILS</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-md-7">
+                                        <div class="quick-view-content-box">
+                                            <div class="product-detail-heading">
+                                                <h3>
+                                                    RP-S40-ST Thin Film Pressure Sensor 40mmx40mm 
+                                                </h3>
+                                            </div>
+                                            <div class="product-price">
+                                                <span>TZS 7</span>
+                                            </div>
+                                            <div class="product-detail-info">
+                                                <p>
+                                                    RP-S40-ST Thin Film Pressure Sensor 40mmx40mm
+                                                </p>
+                                            </div>
+                                            <div class="product-quantity-box">
+                                                <button type="submit" class="product-quantity-btn widgets-numberpicker-decrement"><i class="fa fa-minus">
+                                                    </i></button>
+                                                <input type="text" maxlength="9" minlength="1" class="form-control product-quantity-input">
+                                                <button type="buttom" class="product-quantity-btn widgets-numberpicker-increment"><i class="fa fa-plus">
+                                                    </i></button>
+                                            </div>
+                                            <div class="product-btn-box mb-4">
+                                                <button type="button" class="addCartBtn comn-btn black-btn w-100">Add to cart</button>
+                                            </div>
+                                            <div class="product-wishlist-box">
+                                                <a href="#"><i class="fa fa-heart-o pr-2">
+                                                    </i>Wishlist</a>
+                                            </div>
+                                            <div class="product-compare-box">
+                                            </div>
+                                            <hr>
+                                            <div class="product-meta-area">
+                                                <div class="product-meta-box">
+                                                    <span class="product-meta-title">Vender :</span>
+                                                    <a href="#" class="product-meta-name">abcd</a>
+                                                </div>
+                                                <div class="product-meta-box">
+                                                    <span class="product-meta-title">SKU:</span>
+                                                    <a href="#" class="product-meta-name">N/A</a>
+                                                </div>
+                                                <div class="product-meta-box">
+                                                    <span class="product-meta-title">Categories:</span>
+                                                    <a href="#" class="product-meta-name">Lighting</a>
+                                                </div>
+                                                <div class="product-meta-box">
+                                                    <span class="product-meta-title">Tags:</span>
+                                                    <a href="#" class="product-meta-name">lightning</a>
+                                                    <a href="#" class="product-meta-name">£450.00 +</a>
+                                                </div>
+                                                <div class="product-meta-box mb-0">
+                                                    <span class="product-meta-title">Share:</span>
+                                                    <a href="#" class="product-meta-social-icon"><i class="fa fa-facebook">
+                                                        </i></a>
+                                                    <a href="#" class="product-meta-social-icon"><i class="fa fa-twitter">
+                                                        </i></a>
+                                                    <a href="#" class="product-meta-social-icon"><i class="fa fa-envelope">
+                                                        </i></a>
+                                                    <a href="#" class="product-meta-social-icon"><i class="fa fa-pinterest">
+                                                        </i></a>
+                                                    <a href="#" class="product-meta-social-icon"><i class="fa fa-tumblr">
+                                                        </i></a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-lg-3 col-md-4 col-sm-6">
+                <div class="view-products-single-box">
+                    <div class="view-products-thumb">
+                        <a href="http://localhost/new.bafredo.com/product/detail/apple-iphone-7"><img src="http://localhost/new.bafredo.com/assets/uploads/product/thumbnail/294h4gds589wk0ss8s.jpg"></a>
+                        <div class="view-products-hover-info">
+                            <button onclick="openNav()" data-toggle="tooltip" data-placement="top" title="" class="icon-link-btn" data-original-title="Add to cart"><i class="fa fa-shopping-cart pr-2">
+                                </i> Add to cart</button>
+                        </div>
+                    </div>
+                    <div class="view-products-info">
+                        <div class="view-products-title">
+                            <h3>
+                                <a href="#&quot;"> Apple iPhone 7 </a>
+                            </h3>
+                            <span class="view-products-price">TZS 20000</span>
+                        </div>
+                    </div>
+                    <div class="hover-icon-link-box">
+                        <a href="#" data-toggle="tooltip" data-placement="top" title="" class="hover-icon-link" data-original-title="Wishlist"><i class="fa fa-heart-o">
+                            </i></a>
+                        <a href="#" data-toggle="tooltip" data-placement="left" title="" class="hover-icon-link" data-original-title="Quick view"><i data-toggle="modal" data-target="#quickViewModal_3" class="fa fa-search-plus">
+                            </i></a>
+                    </div>
+                </div>
+            </div>
+            <div id="quickViewModal_3" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" class="modal fade quick-view-modal">
+                <div role="document" class="modal-dialog modal-dialog-centered modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header border-0 pb-0">
+                            <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-12 col-md-5">
+                                        <div class="quick-view-thumb-box">
+                                            <img src="http://localhost/new.bafredo.com/assets/uploads/product/thumbnail/294h4gds589wk0ss8s.jpg" data-zoom="http://localhost/new.bafredo.com/assets/uploads/product/thumbnail/294h4gds589wk0ss8s.jpg" class="demo-trigger">
+                                            <div class="view-products-hover-info">
+                                                <a href="http://localhost/new.bafredo.com/product/detail/apple-iphone-7" class="icon-link-btn">&nbsp; VIEW DETAILS</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-md-7">
+                                        <div class="quick-view-content-box">
+                                            <div class="product-detail-heading">
+                                                <h3>
+                                                    Apple iPhone 7 
+                                                </h3>
+                                            </div>
+                                            <div class="product-price">
+                                                <span>TZS 20000</span>
+                                            </div>
+                                            <div class="product-detail-info">
+                                                <p>
+                                                    I want this one
+                                                </p>
+                                            </div>
+                                            <div class="product-quantity-box">
+                                                <button type="submit" class="product-quantity-btn widgets-numberpicker-decrement"><i class="fa fa-minus">
+                                                    </i></button>
+                                                <input type="text" maxlength="9" minlength="1" class="form-control product-quantity-input">
+                                                <button type="buttom" class="product-quantity-btn widgets-numberpicker-increment"><i class="fa fa-plus">
+                                                    </i></button>
+                                            </div>
+                                            <div class="product-btn-box mb-4">
+                                                <button type="button" class="addCartBtn comn-btn black-btn w-100">Add to cart</button>
+                                            </div>
+                                            <div class="product-wishlist-box">
+                                                <a href="#"><i class="fa fa-heart-o pr-2">
+                                                    </i>Wishlist</a>
+                                            </div>
+                                            <div class="product-compare-box">
+                                            </div>
+                                            <hr>
+                                            <div class="product-meta-area">
+                                                <div class="product-meta-box">
+                                                    <span class="product-meta-title">Vender :</span>
+                                                    <a href="#" class="product-meta-name">abcd</a>
+                                                </div>
+                                                <div class="product-meta-box">
+                                                    <span class="product-meta-title">SKU:</span>
+                                                    <a href="#" class="product-meta-name">N/A</a>
+                                                </div>
+                                                <div class="product-meta-box">
+                                                    <span class="product-meta-title">Categories:</span>
+                                                    <a href="#" class="product-meta-name">Lighting</a>
+                                                </div>
+                                                <div class="product-meta-box">
+                                                    <span class="product-meta-title">Tags:</span>
+                                                    <a href="#" class="product-meta-name">lightning</a>
+                                                    <a href="#" class="product-meta-name">£450.00 +</a>
+                                                </div>
+                                                <div class="product-meta-box mb-0">
+                                                    <span class="product-meta-title">Share:</span>
+                                                    <a href="#" class="product-meta-social-icon"><i class="fa fa-facebook">
+                                                        </i></a>
+                                                    <a href="#" class="product-meta-social-icon"><i class="fa fa-twitter">
+                                                        </i></a>
+                                                    <a href="#" class="product-meta-social-icon"><i class="fa fa-envelope">
+                                                        </i></a>
+                                                    <a href="#" class="product-meta-social-icon"><i class="fa fa-pinterest">
+                                                        </i></a>
+                                                    <a href="#" class="product-meta-social-icon"><i class="fa fa-tumblr">
+                                                        </i></a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-lg-3 col-md-4 col-sm-6">
+                <div class="view-products-single-box">
+                    <div class="view-products-thumb">
+                        <a href="http://localhost/new.bafredo.com/product/detail/iphone-s7-plus"><img src="http://localhost/new.bafredo.com/assets/uploads/product/thumbnail/wmmh4wj7de88s0s8.jpg"></a>
+                        <div class="view-products-hover-info">
+                            <button onclick="openNav()" data-toggle="tooltip" data-placement="top" title="" class="icon-link-btn" data-original-title="Add to cart"><i class="fa fa-shopping-cart pr-2">
+                                </i> Add to cart</button>
+                        </div>
+                    </div>
+                    <div class="view-products-info">
+                        <div class="view-products-title">
+                            <h3>
+                                <a href="#&quot;"> iPhone s7 Plus </a>
+                            </h3>
+                            <span class="view-products-price">TZS 30000</span>
+                        </div>
+                    </div>
+                    <div class="hover-icon-link-box">
+                        <a href="#" data-toggle="tooltip" data-placement="top" title="" class="hover-icon-link" data-original-title="Wishlist"><i class="fa fa-heart-o">
+                            </i></a>
+                        <a href="#" data-toggle="tooltip" data-placement="left" title="" class="hover-icon-link" data-original-title="Quick view"><i data-toggle="modal" data-target="#quickViewModal_1" class="fa fa-search-plus">
+                            </i></a>
+                    </div>
+                </div>
+            </div>
+            <div id="quickViewModal_1" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" class="modal fade quick-view-modal">
+                <div role="document" class="modal-dialog modal-dialog-centered modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header border-0 pb-0">
+                            <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-12 col-md-5">
+                                        <div class="quick-view-thumb-box">
+                                            <img src="http://localhost/new.bafredo.com/assets/uploads/product/thumbnail/wmmh4wj7de88s0s8.jpg" data-zoom="http://localhost/new.bafredo.com/assets/uploads/product/thumbnail/wmmh4wj7de88s0s8.jpg" class="demo-trigger">
+                                            <div class="view-products-hover-info">
+                                                <a href="http://localhost/new.bafredo.com/product/detail/iphone-s7-plus" class="icon-link-btn">&nbsp; VIEW DETAILS</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-md-7">
+                                        <div class="quick-view-content-box">
+                                            <div class="product-detail-heading">
+                                                <h3>
+                                                    iPhone s7 Plus 
+                                                </h3>
+                                            </div>
+                                            <div class="product-price">
+                                                <span>TZS 30000</span>
+                                            </div>
+                                            <div class="product-detail-info">
+                                                <p>
+                                                    I like this phone
+                                                </p>
+                                            </div>
+                                            <div class="product-quantity-box">
+                                                <button type="submit" class="product-quantity-btn widgets-numberpicker-decrement"><i class="fa fa-minus">
+                                                    </i></button>
+                                                <input type="text" maxlength="9" minlength="1" class="form-control product-quantity-input">
+                                                <button type="buttom" class="product-quantity-btn widgets-numberpicker-increment"><i class="fa fa-plus">
+                                                    </i></button>
+                                            </div>
+                                            <div class="product-btn-box mb-4">
+                                                <button type="button" class="addCartBtn comn-btn black-btn w-100">Add to cart</button>
+                                            </div>
+                                            <div class="product-wishlist-box">
+                                                <a href="#"><i class="fa fa-heart-o pr-2">
+                                                    </i>Wishlist</a>
+                                            </div>
+                                            <div class="product-compare-box">
+                                            </div>
+                                            <hr>
+                                            <div class="product-meta-area">
+                                                <div class="product-meta-box">
+                                                    <span class="product-meta-title">Vender :</span>
+                                                    <a href="#" class="product-meta-name">abcd</a>
+                                                </div>
+                                                <div class="product-meta-box">
+                                                    <span class="product-meta-title">SKU:</span>
+                                                    <a href="#" class="product-meta-name">N/A</a>
+                                                </div>
+                                                <div class="product-meta-box">
+                                                    <span class="product-meta-title">Categories:</span>
+                                                    <a href="#" class="product-meta-name">Lighting</a>
+                                                </div>
+                                                <div class="product-meta-box">
+                                                    <span class="product-meta-title">Tags:</span>
+                                                    <a href="#" class="product-meta-name">lightning</a>
+                                                    <a href="#" class="product-meta-name">£450.00 +</a>
+                                                </div>
+                                                <div class="product-meta-box mb-0">
+                                                    <span class="product-meta-title">Share:</span>
+                                                    <a href="#" class="product-meta-social-icon"><i class="fa fa-facebook">
+                                                        </i></a>
+                                                    <a href="#" class="product-meta-social-icon"><i class="fa fa-twitter">
+                                                        </i></a>
+                                                    <a href="#" class="product-meta-social-icon"><i class="fa fa-envelope">
+                                                        </i></a>
+                                                    <a href="#" class="product-meta-social-icon"><i class="fa fa-pinterest">
+                                                        </i></a>
+                                                    <a href="#" class="product-meta-social-icon"><i class="fa fa-tumblr">
+                                                        </i></a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-lg-3 col-md-4 col-sm-6">
+                <div class="view-products-single-box">
+                    <div class="view-products-thumb">
+                        <a href="http://localhost/new.bafredo.com/product/detail/apple-iphon-x"><img src="http://localhost/new.bafredo.com/assets/uploads/product/thumbnail/mv4raoauta8wwksgsk.jpg"></a>
+                        <div class="view-products-hover-info">
+                            <button onclick="openNav()" data-toggle="tooltip" data-placement="top" title="" class="icon-link-btn" data-original-title="Add to cart"><i class="fa fa-shopping-cart pr-2">
+                                </i> Add to cart</button>
+                        </div>
+                    </div>
+                    <div class="view-products-info">
+                        <div class="view-products-title">
+                            <h3>
+                                <a href="#&quot;"> Apple iPhon X </a>
+                            </h3>
+                            <span class="view-products-price">TZS 50000</span>
+                        </div>
+                    </div>
+                    <div class="hover-icon-link-box">
+                        <a href="#" data-toggle="tooltip" data-placement="top" title="" class="hover-icon-link" data-original-title="Wishlist"><i class="fa fa-heart-o">
+                            </i></a>
+                        <a href="#" data-toggle="tooltip" data-placement="left" title="" class="hover-icon-link" data-original-title="Quick view"><i data-toggle="modal" data-target="#quickViewModal_2" class="fa fa-search-plus">
+                            </i></a>
+                    </div>
+                </div>
+            </div>
+            <div id="quickViewModal_2" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" class="modal fade quick-view-modal">
+                <div role="document" class="modal-dialog modal-dialog-centered modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header border-0 pb-0">
+                            <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-12 col-md-5">
+                                        <div class="quick-view-thumb-box">
+                                            <img src="http://localhost/new.bafredo.com/assets/uploads/product/thumbnail/mv4raoauta8wwksgsk.jpg" data-zoom="http://localhost/new.bafredo.com/assets/uploads/product/thumbnail/mv4raoauta8wwksgsk.jpg" class="demo-trigger">
+                                            <div class="view-products-hover-info">
+                                                <a href="http://localhost/new.bafredo.com/product/detail/apple-iphon-x" class="icon-link-btn">&nbsp; VIEW DETAILS</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-md-7">
+                                        <div class="quick-view-content-box">
+                                            <div class="product-detail-heading">
+                                                <h3>
+                                                    Apple iPhon X 
+                                                </h3>
+                                            </div>
+                                            <div class="product-price">
+                                                <span>TZS 50000</span>
+                                            </div>
+                                            <div class="product-detail-info">
+                                                <p>
+                                                    I like this phone
+                                                </p>
+                                            </div>
+                                            <div class="product-quantity-box">
+                                                <button type="submit" class="product-quantity-btn widgets-numberpicker-decrement"><i class="fa fa-minus">
+                                                    </i></button>
+                                                <input type="text" maxlength="9" minlength="1" class="form-control product-quantity-input">
+                                                <button type="buttom" class="product-quantity-btn widgets-numberpicker-increment"><i class="fa fa-plus">
+                                                    </i></button>
+                                            </div>
+                                            <div class="product-btn-box mb-4">
+                                                <button type="button" class="addCartBtn comn-btn black-btn w-100">Add to cart</button>
+                                            </div>
+                                            <div class="product-wishlist-box">
+                                                <a href="#"><i class="fa fa-heart-o pr-2">
+                                                    </i>Wishlist</a>
+                                            </div>
+                                            <div class="product-compare-box">
+                                            </div>
+                                            <hr>
+                                            <div class="product-meta-area">
+                                                <div class="product-meta-box">
+                                                    <span class="product-meta-title">Vender :</span>
+                                                    <a href="#" class="product-meta-name">abcd</a>
+                                                </div>
+                                                <div class="product-meta-box">
+                                                    <span class="product-meta-title">SKU:</span>
+                                                    <a href="#" class="product-meta-name">N/A</a>
+                                                </div>
+                                                <div class="product-meta-box">
+                                                    <span class="product-meta-title">Categories:</span>
+                                                    <a href="#" class="product-meta-name">Lighting</a>
+                                                </div>
+                                                <div class="product-meta-box">
+                                                    <span class="product-meta-title">Tags:</span>
+                                                    <a href="#" class="product-meta-name">lightning</a>
+                                                    <a href="#" class="product-meta-name">£450.00 +</a>
+                                                </div>
+                                                <div class="product-meta-box mb-0">
+                                                    <span class="product-meta-title">Share:</span>
+                                                    <a href="#" class="product-meta-social-icon"><i class="fa fa-facebook">
+                                                        </i></a>
+                                                    <a href="#" class="product-meta-social-icon"><i class="fa fa-twitter">
+                                                        </i></a>
+                                                    <a href="#" class="product-meta-social-icon"><i class="fa fa-envelope">
+                                                        </i></a>
+                                                    <a href="#" class="product-meta-social-icon"><i class="fa fa-pinterest">
+                                                        </i></a>
+                                                    <a href="#" class="product-meta-social-icon"><i class="fa fa-tumblr">
+                                                        </i></a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
+</section>
+<div id="mySidenav" class="cart-sidenav">
+    <div class="cart-sidenav-header">
+        <h3 class="sidenav-heading">
+            Shopping cart
+        </h3>
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">Close &times;</a>
+    </div>
+    <ul class="sidenav-cart-list-area">
+        <li v-for="product in cart">
+            <div class="cart-product-thumb">
+                <img :src="productImage(product.image)" :alt="product.name" :title="product.name">
+            </div>
+            <div class="cart-product-detail">
+                <a href="#" class="cart-sidenav-heading">${ product.name }</a>
+                <div class="sidenav-cart-list-box">
+                    <div class="input-group plus-minus-input">
+                        <div class="widgets-numberpicker">
+                            <div class="widgets-numberpicker-decrement" v-on:click="cartItemQuantityDecrement(product)">
+                                <i class="fa fa-minus">
+                                </i>
+                            </div>
+                        </div>
+                        <div class="input-group-field item-quantity-count">
+                            <input type="text" class="form-control" v-model="product.quantity" v-on:keypress="onlyNumber" maxlength="9">
+                        </div>
+                        <div class="widgets-numberpicker">
+                            <div class="widgets-numberpicker-increment" v-on:click="cartItemQuantityIncrement(product)">
+                                <i class="fa fa-plus">
+                                </i>
+                            </div>
+                        </div>
+                    </div>
+                    <span class="cart-price pl-2">
+                        <button class="removeBtn" v-on:click="removeFromCart(product)"> <i class="fa fa-times pr-2">
+                            </i></button>
+                        ${ product.currency +' '+ product.price*product.quantity }</span>
+                </div>
+            </div>
+            <li>
+        </ul>
+    <div class="sidenav-cart-detail">
+        <form>
+            <!--div class="form-group">
+<label for="exampleFormControlTextarea1">Special instructions for seller</label>
+<textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+</div-->
+            <!--p class="sidenav-cart-total">
+<strong>Subtotal:</strong>
+<td><span v-text="subtotal"></span></td>
+</p-->
+            <!--div class="custom-control custom-checkbox mr-sm-2 mb-4">
+<input type="checkbox" class="custom-control-input" id="customControlAutosizing">
+<label class="custom-control-label" for="customControlAutosizing">I agree with the <a href="#" class="tc-link">terms and conditions.</a></label>
+</div-->
+            <a class="comn-btn grey-btn d-block w-100 mb-3 showCartBtn" href="{{ base_url('cart') }}">View my cart</a>
+            <!--button class="comn-btn grey-btn d-block w-100 mb-3">VIEW CART</button-->
+            <button class="comn-btn d-block w-100"><a href="checkout.html">CHECKOUT</a></button>
+        </form>
+    </div>
+</div>
 {% endblock %}
