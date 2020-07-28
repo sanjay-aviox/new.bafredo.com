@@ -377,14 +377,33 @@ ul.in-term-sale-list li{
 	border: 2px solid #00277e;
 	border-radius: 50%;
 }
-.stamp path {
-  fill: transparent;
+.stamp #circle-text,
+.stamp #circle-text-rev
+{
+	font-weight: 500;
+	font-size: 15px;
+	color: #00277e;
 }
-
-.stamp text {
-  fill: #00277e;
-  font-size: 25px;
-  font-weight: 700;
+.stamp #circle-text div
+{
+	height: auto !important;
+}
+.stamp .stamp-content
+{
+	margin-top: 45px;
+    font-size: 13px;
+}
+.stamp .stamp-content p
+{
+	font-weight: 500;
+	color: #00277e;
+}
+.stamp .stamp-content .stamp-date
+{
+	margin-top: 5px !important;
+	font-size: 16px;
+	color: #e80101;
+	font-weight: 700;
 }
 /*End Stamp CSS 28-07-2020*/
 @media print {
