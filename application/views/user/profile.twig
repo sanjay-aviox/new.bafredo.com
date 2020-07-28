@@ -131,13 +131,13 @@
 <script src= "https://cdn.datatables.net/buttons/1.6.2/js/buttons.print.min.js"></script>
 
 <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
-<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/datepicker/1.0.9/datepicker.min.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.22/pdfmake.min.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.js"></script>
-  
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
     <script>
        
          $("body").on("click", "#btnExport", function () {
@@ -261,15 +261,15 @@
     
 
     $("#max").daterangepicker({
-        //singleDatePicker: true,        
-        //autoUpdateInput: false,
-       // autoApply: true
+
     });
       $("#max").change(function(ev) {
            var firstDate = $(this).val();
+           var link = $('#base_url').val();
+           var url = link+'user/getFile/';
 
             $.ajax({
-                  url: "/user/getFile/",
+                  url: "http://178.128.177.194/new.bafredo.com/user/getFile/",
                   type: 'get',
                   data: {"x" : firstDate},
                   dataType : "json",

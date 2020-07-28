@@ -169,17 +169,17 @@ outline: none !important;
                                         <a href="#" class="mob-nav-link dropdown-btn">Category <i class="fa fa-chevron-down"></i></a>
                                         <ul class="dropdown-container">
                                             <li class="mob-dropdown-item">
-                                                 <a  class="ob-dropdown-link" href="{{ base_url('product/all') }}">All Products</a>
+                                                 <a  class="mob-dropdown-link" href="{{ base_url('product/all') }}">All Products</a>
 
                                                   {% for menu in menus %}
                                                     {% if menu.getSubCategories() == null %}
-                                                        <a class="mob-dropdown-link" id="v-pills-home-tab" data-toggle="pill" href="#BlankTab" role="tab" aria-controls="v-pills-home" aria-selected="true">{{ menu.getName() }}</a>
+                                                        <a class="mob-dropdown-link" href="{{ base_url('/category/')}}{{ menu.getSlug() }}">{{ menu.getName() }}</a>
                                                     {% endif %}
                                                     {% endfor %}
 
                                                     {% for menu in menus %}
                                                     {% if menu.getSubCategories() != null %}
-                                                        <a class="sub-menu-heading-link" id="v-{{ menu.getName() }}" data-toggle="pill" href="#{{ menu.getName() |replace({' ': ''})}}" role="tab" aria-controls="v-pills-home" aria-selected="true">{{ menu.getName() }}</a>
+                                                        <a class="mob-dropdown-link" id="v-{{ menu.getName() }}" href="{{ base_url('/category/')}}{{ menu.getSlug() }}">{{ menu.getName() }}</a>
                                                     {% endif %}
                                                     {% endfor %}
 
@@ -211,13 +211,13 @@ outline: none !important;
                                                     <a  class="sub-menu-heading-link active" id="allProducts"  title="All Products" href="{{ base_url('product/all') }}">All Products</a>
                                                     {% for menu in menus %}
                                                     {% if menu.getSubCategories() == null %}
-                                                        <a class="sub-menu-heading-link others" id="v-pills-home-tab" data-toggle="pill" href="#BlankTab" role="tab" aria-controls="v-pills-home" aria-selected="true">{{ menu.getName() }}</a>
+                                                        <a class="sub-menu-heading-link others" id="v-pills-home-tab" data-toggle="pill" href="{{ base_url('/category/')}}{{ menu.getSlug() }}"  data-id="#BlankTab" role="tab" aria-controls="v-pills-home" aria-selected="true">{{ menu.getName() }}</a>
                                                     {% endif %}
                                                     {% endfor %}
 
                                                     {% for menu in menus %}
                                                     {% if menu.getSubCategories() != null %}
-                                                        <a class="sub-menu-heading-link" id="v-{{ menu.getName() }}" data-toggle="pill" href="#{{ menu.getName() |replace({' ': ''})}}" role="tab" aria-controls="v-pills-home" aria-selected="true">{{ menu.getName() }}</a>
+                                                        <a class="sub-menu-heading-link" id="v-{{ menu.getName() }}" data-toggle="pill" href="{{ base_url('/category/')}}{{ menu.getSlug() }}" data-id="#{{ menu.getName() |replace({' ': ''})}}" role="tab" aria-controls="v-pills-home" aria-selected="true">{{ menu.getName() }}</a>
                                                     {% endif %}
                                                     {% endfor %}
                                                 </div>
@@ -226,12 +226,12 @@ outline: none !important;
                                             <div class="tab-content" id="v-pills-tabContent">
                                                 <div id="product">
                                                     <div class="col-12 col-md-4">
-                                                         <ul class="you-may-like-area">
-                                                            <li class="you-may-like-heading">
+                                                        <div class="you-may-like-heading">
                                                                 <h4>You may also like!</h4>
-                                                            </li>
+                                                        </div>
+                                                         <ul class="you-may-like-area">
                                                             {% for product in productMenu %}
-                                                            <div class="item">
+                                                            <div class="item mr-2">
                                                                 <div class="view-products-single-box">
                                                                     <div class="view-products-thumb">
                                                                         <img src="{{ asset('theme/images/DC-Motor-12v.jpg') }}">
@@ -258,7 +258,7 @@ outline: none !important;
                                                     </div>
                                                 </div>
                                                 {% for menu in menus %}
-                                                    <div class="tab-pane fade" id="{{ menu.getName() |replace({' ': ''}) }}" role="tabpanel" aria-labelledby="v-{{ menu.getName() }}">
+                                                    <div class="tab-pane fade" style="opacity: 1;" id="{{ menu.getName() |replace({' ': ''}) }}" role="tabpanel" aria-labelledby="v-{{ menu.getName() }}">
                                                         <div class="container-fluid">
                                                             <div class="row">
                                                                 <div class="col-12  col-md-8">
@@ -304,7 +304,7 @@ outline: none !important;
                                                         </div>
                                                     </div>
                                                 {% endfor %}
-                                                <div class="tab-pane fade" id="BlankTab" role="tabpanel" aria-labelledby="v-pills-profile-tab">
+                                                <div class="tab-pane fade" id="BlankTab" style="opacity: 1;" role="tabpanel" aria-labelledby="v-pills-profile-tab">
                                                     <div class="col-12 col-lg-4 col-md-6">
                                                                     <ul class="you-may-like-area">
                                                                         <li class="you-may-like-heading">
@@ -499,7 +499,7 @@ outline: none !important;
             <div class="row">
                 <div class="col-12 col-md-12">
                     <div class="copyright-area">
-                        <p class="mb-0">© 2015 - {{ 'now' | date('Y') }} BAFREDO Electronics Limited. All rights reserved</p>
+                        <p class="mb-0">© 2015 - {{ 'now' | date('Y') }} BAFREDO Electronics Limited. All rights reserved.</p>
                     </div>
                 </div>
             </div>
@@ -682,7 +682,40 @@ $( "#mainMenu li.nav-item:contains('"+x+"')" ).addClass('active');
     function closeMobileNav() {
       document.getElementById("myMobileNav").style.width = "0%";
     }
+    // $(document).ready(function ($) {
+    //     $('.nav-pills a:not(:first)').hover(function(){
+    //         var tab = $(this).attr('data-id');
+    //         $(tab).tab('show');
+    //         $('.you-may-like-area:first').css('display','none');
+    //     });
+    //     $('a[data-toggle="pill"]').on('shown.bs.tab', function (e) {
+    //         var target = $(e.relatedTarget).attr('data-id');
+    //         alert(target);
+    //         $(target).removeClass('active');
+    //     });
+    //     $('.nav-pills a:first').hover(function(){
+    //         $(this).tab('show');
+    //         $('.you-may-like-area:first').css('display','flex');
+    //     });
+    // });
 
+    $(document).ready(function ($) {
+    $('.nav-pills  a:not(:first)').hover( function( ) {
+         var tab = $(this).attr('data-id');
+        
+         console.log(tab);
+         $('.tab-pane').removeClass( 'active' );
+        $('#product').css('display','none');
+          //$('#BlankTab').removeClass( 'active' );
+         $(tab).addClass( 'active' );
+        
+    });
+     $('.nav-pills a:first').hover(function(){
+           // $(this).tab('show');
+            $('.tab-pane').removeClass( 'active' );
+            $('.you-may-like-area:first').css('display','flex');
+        });
+});
 </script>
     <!-- copyright-section end -->
 
@@ -739,6 +772,6 @@ $( "#mainMenu li.nav-item:contains('"+x+"')" ).addClass('active');
             </form>            
         </div>
     </div>
-    <img src="{{ base_url('assets/theme/images/loader.gif') }}"id="loaderImg">
+   <!--  <img src="{{ base_url('assets/theme/images/loader.gif') }}"id="loaderImg"> -->
 </body>
 </html>

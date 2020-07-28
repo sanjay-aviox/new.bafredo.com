@@ -14,6 +14,7 @@ class Page extends MY_Controller
 
         $this->load->library('doctrine');
         $this->em = $this->doctrine->em;
+        $this->load->model('ProductModel', 'product');
     }
 
     public function index($slug)
@@ -73,4 +74,6 @@ class Page extends MY_Controller
         $productMenu = $this->product->newArrival(4);
         $this->twig->display("template/{$page}" ,compact('productMenu'));
     }
+
+  
 }

@@ -617,12 +617,17 @@ button:visited{
 	padding-left: 25px;
 }
 .chat-icon,
-.account-icon,
 .promotions-icon,
 .wishlist-icon,
 .cart-icon{
 	font-size: 18px;
 	color: #1a1447;
+	position: relative;
+}
+.account-icon
+{
+	font-size: 18px;
+	color: #fff;
 	position: relative;
 }
 .chat-icon i,
@@ -651,8 +656,8 @@ button:visited{
     border-radius: 50%;
     background-color: #090909;
     position: absolute;
-    top: -2px;
-    left: 19px;
+    top: -5px;
+    left: 10px;
 }
 .header-logo-area{
 	display: flex;
@@ -1019,12 +1024,19 @@ input.searchInput:focus, input.searchInput:active{
 /*******************************/
 /********* home page** *********/
 /*******************************/
-.slider-detail{
+/*.slider-detail{
 	background-position: center;
 	background-size: cover;
 	background-repeat: no-repeat;
 	padding: 150px 0px;
 	width: 100%;
+}*/
+    .slider-detail {
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    padding: 75px 0px;
+    width: 100%;
 }
 .slider-content{
 	position: relative;
@@ -3356,6 +3368,27 @@ font-size: 16px;
     cursor: pointer;
 }
 /*End 22-07-2020*/
+/*Start 23-07-2020 All Prroducts*/
+#product ul.you-may-like-area
+{
+	display: flex;
+}
+#product .view-products-thumb img
+{
+	width: 200px;
+	height: 170px;
+}
+.featured-products-hover-info i
+{
+	cursor: pointer;
+}
+/*End 23-07-2020 All Products*/
+.about-featured-services-section .steps-to-buy h4
+{
+	color: #666;
+	margin: 20px 0;
+	font-weight: 700;
+}
 /*******************************/
 /********* media query *********/
 /*******************************/
@@ -3410,8 +3443,8 @@ font-size: 16px;
 	}
 	.header-right-box{
 		position: absolute;
-	    right: 34px;
-	    top: -30px;
+	    right: 20px;
+	    top: -35px;
 	}
 	.header-section{
 		padding: 10px 0px;
@@ -3447,6 +3480,16 @@ font-size: 16px;
 	}
 	.confirm-order-area{
 		width: 90%;
+	}
+	.header-count-box
+	{
+		top: -9px;
+    	left: 16px;
+	}
+	.wishlist-box i,
+	.cart-box i
+	{
+		font-size: 27px;
 	}
 }
 @media (max-width: 768px) {
@@ -3525,6 +3568,10 @@ font-size: 16px;
 		width: 100%;
 	}
 @media (max-width: 576px) {
+	.header-section
+	{
+		padding: 20px 0;
+	}
    .slider-category-box{
 		grid-template-columns: auto auto;
 	}
@@ -3547,20 +3594,40 @@ font-size: 16px;
 		margin-bottom: 0px;
 	}
 	.header-section .logo-box img {
-	    width: 252px;
+	    width: 150px;
 	}
 	.chat-box, .account-box, .promotions-box, .wishlist-box, .cart-box {
 	    padding-left: 10px;
 	}
 	.header-count-box {
-	    top: -4px;
-	    left: 6px;
+	    top: -9px;
+	    left: 15px;
 	}	
 	.blog-social-media-box{
 		display: block;
 	}
 	.social-list-box{
 		margin-top: 12px;
+	}
+	.logo-box img
+	{
+		width: 200px !important;
+	}
+	.top-left-contact-box
+	{
+		padding: 1.7em 0;
+		font-size: 13px;
+	}
+	.header-right-box 
+	{
+	    position: absolute;
+	    right: 20px !important;
+	    top: -33px !important;
+	}
+	.wishlist-box i,
+	.cart-box i
+	{
+		font-size: 27px;
 	}
 }
 @media (max-width: 400px) {
@@ -3573,6 +3640,11 @@ font-size: 16px;
 	.instructions-heading h3{
 		font-size: 18px;
 	}
+	.wishlist-box i,
+	.cart-box i
+	{
+		font-size: 22px;
+	}
 }
 @media (max-width: 360px) {
    .slider-category-box{
@@ -3580,6 +3652,16 @@ font-size: 16px;
 	}
 	.footer-newsletter{
 		width: 300px;
+	}
+	.logo-box img
+	{
+		width: 150px !important;
+	}
+	.header-right-box 
+	{
+	    position: absolute;
+	    right: 15px !important;
+	    top: -25px !important;
 	}
 }
 

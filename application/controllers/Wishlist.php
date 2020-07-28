@@ -14,6 +14,8 @@ class Wishlist extends MY_Controller
 
       
         $this->load->model("AccountModel","AM");
+       
+        
         
     }
     public function add()
