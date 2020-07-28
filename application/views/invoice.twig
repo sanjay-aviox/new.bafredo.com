@@ -35,17 +35,17 @@
                             <p>Mobile: <span>+255(0) 746 624 875</span></p>
                             <p>Telephone/Fax: &nbsp<span>+255 22 246 0157</span></p>
                             <p>Email: &nbsp<span>info@bafredo.com</span></p>
-                            <p class="in-bafredo-link"><strong>Website:&nbsp</strong> <a href="#"><em>https://www.bafredo.com</em></a></p>
+                            <p class="in-bafredo-link"><strong>Website:&nbsp</strong> <a href="{{ base_url() }}" target="_blank" ><em>{{ base_url() }}</em></a></p>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="col-sm-5 col-xs-5">
                 <div class="in-date-box">
-                    <p>Date:&nbsp<span>{{ order.created_at.value | date("d/m/Y") }}</span></p>
+                    <p>Date:&nbsp<span>{{ order.created_at | date("d/m/Y") }}</span></p>
                     <!-- <p>Expiration <span>date: 18 May 2020</span></p> -->
                     <p>Invoice ID:&nbsp<span>{{ order.invoice}}</span></p>
-                    <p>Customer ID:&nbsp<span>0{{user.id}}</span></p>
+                    <p>Order ID:&nbsp<span>0{{ order.id}}</span></p>
                 </div>
                 <div class="in-sign-thumb-box">
                     <h5 class="in-grow-heading">Grow with Us.</h5>
