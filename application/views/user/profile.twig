@@ -124,15 +124,70 @@
          $("body").on("click", "#btnExport", function () {
             html2canvas($('#dataResult')[0], {
                 onrendered: function (canvas) {
-                    var data = canvas.toDataURL();
-                    var docDefinition = {
-                        content: [{
-                            image: data,
-                            width: 500
-                        }]
-                    };
-                    pdfMake.createPdf(docDefinition).download("Order.pdf");
+                      var TableData = new Array();
+
+    $('#dataResult tbody tr').each(function(row, tr){
+        TableData[row]={
+            'taskNo' : $(tr).find('td:eq(0)').text()
+            , "date" :$(tr).find('td:eq(1)').text()
+            , "description" : $(tr).find('td:eq(2)').text()
+            , "task" : $(tr).find('td:eq(3)').text()
+        }    
+    });
+  
+ var bodyData = [];
+ console.log(TableData);
+ datahead=[]
+    datahead.push('Order');
+    datahead.push('Status');
+    datahead.push('Total');
+    datahead.push('Date');
+ bodyData.push(datahead);
+$.each(TableData, function( index, value ) {
+    var dataRow = [];
+    
+        dataRow.push(value.taskNo);
+        dataRow.push(value.date);
+        dataRow.push(value.description);
+        dataRow.push(value.task);
+
+  bodyData.push(dataRow)
+});
+         
+        var docDefinition = {
+            content: [
+                {
+                    text: 'Orders List', style: 'header' 
+                 },
+                {
+                    table: {
+                   
+                       headerRows: 1,
+                       widths: [ '*', '*', '*', '*' ],
+                       body: bodyData
+                    },
+                    margin: [ 10, 10, 10, 10 ]
+                       
                 }
+            ],
+            defaultStyle: {
+                layout: 'noBorders',
+                fontSize: 15,
+                alignment: 'center',
+                fillColor: '#E8E8E8',
+                border: [ false, false, false, false ],
+            }
+        };
+        styles: 
+            {
+               header:{
+                fontSize: 18,
+                bold: true,
+                margin: [0, 10, 0, 10],
+                }, 
+            };
+        pdfMake.createPdf(docDefinition).download("Order.pdf");
+       }
             });
         });
         
@@ -241,7 +296,7 @@
            var url = link+'user/getFile/';
 
             $.ajax({
-                  url: "http://178.128.177.194/new.bafredo.com/user/getFile/",
+                  url: url,
                   type: 'get',
                   data: {"x" : firstDate},
                   dataType : "json",

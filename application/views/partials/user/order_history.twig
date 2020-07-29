@@ -103,7 +103,9 @@
 <script>
   
       $(document).on('click', '.reoders', function(){
-       var id =  $(this).attr("data-id");
+        var id =  $(this).attr("data-id");
+        var link2 = $('#base_url').val();
+        var url = link2+'cart/addCart';
         swal({
             title: "You want to re-order?",
            // text: "You want to re-order?",
@@ -118,7 +120,7 @@
         function(isConfirm){
             if (isConfirm){
                 $.ajax({
-                    url: 'http://178.128.177.194/new.bafredo.com/cart/addCart',
+                    url: url,
                     type: 'get',
                     data: {'id': id},
                     dataType : "json",
