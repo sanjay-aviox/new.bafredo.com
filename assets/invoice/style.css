@@ -398,13 +398,13 @@ ul.in-term-sale-list li{
 	font-weight: 500;
 	color: #00277e;
 }
-.stamp .stamp-content .stamp-date
+/*.stamp .stamp-content .stamp-date
 {
 	margin-top: 5px !important;
 	font-size: 16px;
 	color: #e80101;
 	font-weight: 700;
-}
+}*/
 /*End Stamp CSS 28-07-2020*/
 @media print {
 	* { -webkit-print-color-adjust: exact; }

@@ -214,160 +214,10 @@ outline: none !important;
                                 </ul>
                             </div>
                             <!-- mobile sidebar end -->
+                            {{ include('partials/home/menus.twig') }}
+                          
 
-                            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                                <ul class="navbar-nav mr-auto" id="mainMenu">
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="{{ base_url('/') }}"> Home</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="{{ base_url('/blog') }}">Blog</a>                                        
-                                    </li>                             
-                                    <input type="hidden" value="{{ getAuthUser('user').name }}" id="user_Name">
-                                    <li class="nav-item mega-menu-item">
-                                        <a class="nav-link" href="#">Category</a>
-                                        <div class="mega-menu">
-                                            <div class="container-fluid">
-                                            <div class="row">
-                                            <div class="col-12 col-md-3">
-                                                <div class="nav flex-column nav-pills sub-menu-heading-link-box" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-                                                    <a  class="sub-menu-heading-link active" id="allProducts"  title="All Products" href="{{ base_url('product/all') }}">All Products</a>
-                                                    {% for menu in menus %}
-                                                    {% if menu.getSubCategories() == null %}
-                                                        <a class="sub-menu-heading-link others" id="v-pills-home-tab" data-toggle="pill" href="{{ base_url('/category/')}}{{ menu.getSlug() }}"  data-id="#BlankTab" role="tab" aria-controls="v-pills-home" aria-selected="true">{{ menu.getName() }}</a>
-                                                    {% endif %}
-                                                    {% endfor %}
 
-                                                    {% for menu in menus %}
-                                                    {% if menu.getSubCategories() != null %}
-                                                        <a class="sub-menu-heading-link" id="v-{{ menu.getName() }}" data-toggle="pill" href="{{ base_url('/category/')}}{{ menu.getSlug() }}" data-id="#{{ menu.getName() |replace({' ': ''})}}" role="tab" aria-controls="v-pills-home" aria-selected="true">{{ menu.getName() }}</a>
-                                                    {% endif %}
-                                                    {% endfor %}
-                                                </div>
-                                            </div>
-                                            <div class="col-12 col-md-9">
-                                            <div class="tab-content" id="v-pills-tabContent">
-                                                <div id="product">
-                                                    <div class="col-12 col-md-4">
-                                                        <div class="you-may-like-heading">
-                                                                <h4>You may also like!</h4>
-                                                        </div>
-                                                         <ul class="you-may-like-area">
-                                                            {% for product in productMenu %}
-                                                            <div class="item mr-2">
-                                                                <div class="view-products-single-box">
-                                                                    <div class="view-products-thumb">
-                                                                        <img src="{{ asset('theme/images/DC-Motor-12v.jpg') }}">
-                                                                            <div class="view-products-hover-info">
-                                                                                <button v-on:click="addToCart({{ product.toJson() }})" class="icon-link-btn"><i class="fa fa-shopping-cart pr-2"></i> Add to cart</button>
-                                                                                </div>
-                                                                            </div>
-                                                                            <div class="view-products-info">                            
-                                                                                <div class="view-products-title">
-                                                                                    <h3><a href="#"> {{ product.name }}</a></h3>
-                                                                                    <span class="view-products-price">{{ product.currency ~' '~ product.price }}</span>
-                                                                                </div>
-                                                                            </div>
-                                                                            <div class="hover-icon-link-box">
-                                                                                <a v-on:click="addToWishList({{product.toJson() }})" class="hover-icon-link" data-toggle="tooltip" data-placement="left" title="" data-original-title="Wishlist"><i class="fa fa-heart-o"></i></a>
-                                                                               
-                                                                                <a  href="{{ base_url('product/detail/') }}{{product.slug}}" class="hover-icon-link" data-toggle="tooltip" data-placement="left" title="" data-original-title="Quick view"><i class="fa fa-search-plus" data-toggle="modal"></i></a>
-                                                                                </div> 
-                                                                        </div>
-                                                                        </div>
-                                                            
-                                                            {% endfor %}
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                                {% for menu in menus %}
-                                                    <div class="tab-pane fade" style="opacity: 1;" id="{{ menu.getName() |replace({' ': ''}) }}" role="tabpanel" aria-labelledby="v-{{ menu.getName() }}">
-                                                        <div class="container-fluid">
-                                                            <div class="row">
-                                                                <div class="col-12  col-md-8">
-                                                                    <ul class="sub-menu">
-                                                                    {% for smenu in menu.getSubCategories() %}
-                                                                        <li class="sub-menu-item">
-                                                                            <a href="#" class="sub-menu-link">{{ smenu.getName() }}</a>
-                                                                        </li>
-                                                                    {% endfor %}
-                                                                    </ul>
-                                                                </div>
-                                                                <div class="col-12 col-md-4">
-                                                                    <ul class="you-may-like-area">
-                                                                        <li class="you-may-like-heading">
-                                                                            <h4>You may also like!</h4>
-                                                                        </li>
-                                                                        <div class="you-may-like-Slider owl-carousel owl-theme">
-                                                                        <div class="item">
-                                                                        <div class="view-products-single-box">
-                                                                        <div class="view-products-thumb">
-                                                                            <img src="{{ asset('theme/images/DC-Motor-12v.jpg') }}">
-                                                                            <div class="view-products-hover-info">
-                                                                            <button class="icon-link-btn" onclick="openNav()"><i class="fa fa-shopping-cart pr-2"></i> Add to cart</button>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="view-products-info">                            
-                                                                            <div class="view-products-title">
-                                                                                <h3><a href="#">4WD-Smart-Robot-Car-Chassis-Kit</a></h3>
-                                                                                <span class="view-products-price">TZS&nbsp;55,000</span>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="hover-icon-link-box">
-                                                                            <a href="#" class="hover-icon-link" data-toggle="tooltip" data-placement="left" title="" data-original-title="Wishlist"><i class="fa fa-heart-o"></i></a>
-                                                                            <a href="#" class="hover-icon-link" data-toggle="tooltip" data-placement="left" title="" data-original-title="Compare"><i class="fa fa-refresh"></i></a>
-                                                                            <a href="#" class="hover-icon-link" data-toggle="tooltip" data-placement="left" title="" data-original-title="Quick view"><i class="fa fa-search-plus" data-toggle="modal" data-target="#quickViewModal"></i></a>
-                                                                            </div>
-                                                                        </div>
-                                                                        </div>
-                                                                        </div>
-                                                                    </ul>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                {% endfor %}
-                                                <div class="tab-pane fade" id="BlankTab" style="opacity: 1;" role="tabpanel" aria-labelledby="v-pills-profile-tab">
-                                                    <div class="col-12 col-lg-4 col-md-6">
-                                                                    <ul class="you-may-like-area">
-                                                                        <li class="you-may-like-heading">
-                                                                            <h4>You may also like!</h4>
-                                                                        </li>
-                                                                        <div class="you-may-like-Slider owl-carousel owl-theme">
-                                                                        <div class="item">
-                                                                        <div class="view-products-single-box">
-                                                                        <div class="view-products-thumb">
-                                                                            <img src="{{ asset('theme/images/DC-Motor-12v.jpg') }}">
-                                                                            <div class="view-products-hover-info">
-                                                                            <button class="icon-link-btn" onclick="openNav()"><i class="fa fa-shopping-cart pr-2"></i> Add to cart</button>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="view-products-info">                            
-                                                                            <div class="view-products-title">
-                                                                                <h3><a href="#">4WD-Smart-Robot-Car-Chassis-Kit</a></h3>
-                                                                                <span class="view-products-price">TZS&nbsp;55,000</span>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="hover-icon-link-box">
-                                                                            <a href="#" class="hover-icon-link" data-toggle="tooltip" data-placement="left" title="" data-original-title="Login to use whishlist"><i class="fa fa-heart-o"></i></a>
-                                                                            <a href="#" class="hover-icon-link" data-toggle="tooltip" data-placement="left" title="" data-original-title="Compare"><i class="fa fa-refresh"></i></a>
-                                                                            <a href="#" class="hover-icon-link" data-toggle="tooltip" data-placement="left" title="" data-original-title="Quick view"><i class="fa fa-search-plus" data-toggle="modal" data-target="#quickViewModal"></i></a>
-                                                                            </div>
-                                                                        </div>
-                                                                        </div>
-                                                                        </div>
-                                                                    </ul>
-                                                                </div>
-                                                </div>
-                                               
-                                            </div>
-                                            </div>
-                                            </div>
-                                            </div>  
-                                        </div>
-                                    </li>
-                                </ul>
-                            </div>
                         </nav>             
                     </div>
                 </div>
@@ -547,13 +397,11 @@ outline: none !important;
 </div>
      
    
-    <script type="text/javascript">
+<script type="text/javascript">
 
-    
-    if(window.location.href == $('#base_url').val()){
+   if(window.location.href == $('#base_url').val()){
        localStorage.setItem("activedata", 'Home'); 
     }
-
 
     $( "body" ).on("click",".deactive", function(event) {    
         localStorage.setItem("activedata", 'noOne');
@@ -563,26 +411,29 @@ outline: none !important;
         var texts =  $(this).text();
        localStorage.setItem("activedata", texts);
     });
-    var x = localStorage.getItem('activedata');
 
-     $( "body" ).on("click",".others", function(event) {    
+    var x = localStorage.getItem('activedata');
+    $( "body" ).on("click",".others", function(event) {    
         $('#product').css('display','none');
     });
 
-$( "#mainMenu li.nav-item:contains('"+x+"')" ).addClass('active');
-        $(document).on('click','.success', function(){
-           toastr.success('We do have the Kapua suite available.', 'Success Alert', {timeOut: 5000})
-        });
+    $( "#mainMenu li.nav-item:contains('"+x+"')" ).addClass('active');
+    $(document).on('click','.success', function(){
+        toastr.success('We do have the Kapua suite available.', 'Success Alert', {timeOut: 5000})
+    });
 
-         $(document).on('change', '#filter', function(){  
+    $(document).on('change', '#filter', function(){  
         var val = $(this).val(); 
+        var link = $('#base_url').val();
+        var url = link+'home/filters';
+
         var x = $("#typeahead").val();
           if(x== ''){
               location.reload();
           }
         
          $.ajax({
-               url: "$('#base_url').val()",
+               url: url,
                type: 'get',
                data: {"x" : x,'val':val},
                dataType : "json",
@@ -598,27 +449,26 @@ $( "#mainMenu li.nav-item:contains('"+x+"')" ).addClass('active');
      
     });
 
-        $(document).on('click','#view_result', function(){
-            var x = $("#typeahead").val();
-            var link = $('#base_url').val();
-            var url = link+'search-product';
-            $.ajax({
-                  url: url,
-                  type: 'get',
-                  data: {"x" : x},
-                  dataType : "json",
-                  error: function() {
-                      alert('Something is wrong');
-                  },
-                  success: function(data) {
-                      console.log(data);
+    $(document).on('click','#view_result', function(){
+        var x = $("#typeahead").val();
+        var link = $('#base_url').val();
+        var url = link+'search-product';
+        $.ajax({
+            url: url,
+            type: 'get',
+            data: {"x" : x},
+            dataType : "json",
+            error: function() {
+                alert('Something is wrong');
+            },
+            success: function(data) {
+                console.log(data);
+                $('.tt-menu').css('display','none');
+                $("#bodyupdate").html('<section class="filter-product-section view-products-section py-4"><div class="container"><div class="row"><div class="col-12 col-md-12"><div class="product-select-box mb-4"><ul class="d-flex justify-content-between align-items-center mb-0"><li><p class="mb-0">Filter</p></li><li><select class="form-control mr-sm-2" id="filter"><option selected="">Most Popular</option><option value="1">Select Option</option><option value="lowtohigh">Price: Low to High</option><option value="hightolow">Price: High to Low</option></select></li></ul></div></div></div><div class="row">'+data.data.join(' ')+'</div></div></section>');
 
-                    $('.tt-menu').css('display','none');
-                     $("#bodyupdate").html('<section class="filter-product-section view-products-section py-4"><div class="container"><div class="row"><div class="col-12 col-md-12"><div class="product-select-box mb-4"><ul class="d-flex justify-content-between align-items-center mb-0"><li><p class="mb-0">Filter</p></li><li><select class="form-control mr-sm-2" id="filter"><option selected="">Most Popular</option><option value="1">Select Option</option><option value="lowtohigh">Price: Low to High</option><option value="hightolow">Price: High to Low</option></select></li></ul></div></div></div><div class="row">'+data.data.join(' ')+'</div></div></section>');
-
-                  }
-            });
+            }
         });
+    });
 
     function validateEmail($email) {
         var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
@@ -627,9 +477,11 @@ $( "#mainMenu li.nav-item:contains('"+x+"')" ).addClass('active');
 
     function subscribe_email()
     {
+        var link = $('#base_url').val();
+        var url = link+'/home/subscribe';
         if (validateEmail($("#newsletter_email").val() || $("#newsletter_email").val().trim() != "")) {
             $.ajax({
-                url: "{{ base_url('home/subscribe') }}",
+                url: url,
                 data: {
                     email: $('#newsletter_email').val(),
                 },
@@ -637,40 +489,37 @@ $( "#mainMenu li.nav-item:contains('"+x+"')" ).addClass('active');
                 success: function (output) {
                     console.log(output);
                     if (output) {
-                       // alert("hi");
-                        toastr.success("Subscribed Successfully" , {timeOut: 5000});
-                        // alert("Subscribed Successfully")
+                        toastr.success("Subscribed Successfully" , {timeOut: 5000}); 
                     } else {
-                       //  alert("hiiii");
                         toastr.success("Already Subscribed" , {timeOut: 5000});
-                       // alert("Already Subscribed")
                     }
                 }
             });
         } else {
-
             alert("Email Incorrect")
         }
     }
+
     var timeout;
     var stopss ;
     document.onmousemove = function(){
     clearTimeout(timeout);
         if($('#user_Name').val()!=''){
-            
+            var link = $('#base_url').val();
+            var url = link+'/user/userlogout';
             timeout = setTimeout(function(){ 
                 $('#InactiveModal').modal('show');   
                 var stopss = setTimeout(function(){
                     $('#InactiveModal').modal('hide');
                     $.ajax({
-                        url: 'http://178.128.177.194/new.bafredo.com/user/userlogout',
+                        url: url,
                         type: 'get',
                         success: function(data) {
                             console.log("fckg");
                             location.reload();
                         }
                     });
-                }, 60000);
+                }, 3000); //60000
 
                 $("#yess").click(function(){
                     clearInterval(stopss);
@@ -679,13 +528,14 @@ $( "#mainMenu li.nav-item:contains('"+x+"')" ).addClass('active');
                 document.onmousemove = function(){
                     clearInterval(stopss);
                 }
-            }, 600000);
+            },5000); // 600000
         }
     }
     $("#continueBtn").click(function(){
-         // alert("hi");
+        var link = $('#base_url').val();
+        var url = link+'/user/userlogout';
         $.ajax({
-            url: 'http://178.128.177.194//user/userlogout',
+            url: url,
             type: 'get',
             success: function(data) {
                 console.log("fckg");
@@ -695,50 +545,37 @@ $( "#mainMenu li.nav-item:contains('"+x+"')" ).addClass('active');
     });
 
     $("body").on("mouseenter", '.mega-menu-item' , function () {
-    $(this).find('.mega-menu .sub-menu-heading-link').removeClass('active').first().addClass('active');
-});
+        $(this).find('.mega-menu .sub-menu-heading-link').removeClass('active').first().addClass('active');
+    });
     
     // mobile-sidebar
     function openMobileNav() {
-      document.getElementById("myMobileNav").style.width = "100%";
+        document.getElementById("myMobileNav").style.width = "100%";
     }
     function closeMobileNav() {
-      document.getElementById("myMobileNav").style.width = "0%";
+        document.getElementById("myMobileNav").style.width = "0%";
     }
-    // $(document).ready(function ($) {
-    //     $('.nav-pills a:not(:first)').hover(function(){
-    //         var tab = $(this).attr('data-id');
-    //         $(tab).tab('show');
-    //         $('.you-may-like-area:first').css('display','none');
-    //     });
-    //     $('a[data-toggle="pill"]').on('shown.bs.tab', function (e) {
-    //         var target = $(e.relatedTarget).attr('data-id');
-    //         alert(target);
-    //         $(target).removeClass('active');
-    //     });
-    //     $('.nav-pills a:first').hover(function(){
-    //         $(this).tab('show');
-    //         $('.you-may-like-area:first').css('display','flex');
-    //     });
-    // });
 
     $(document).ready(function ($) {
-    $('.nav-pills  a:not(:first)').hover( function( ) {
-         var tab = $(this).attr('data-id');
-        
-         console.log(tab);
-         $('.tab-pane').removeClass( 'active' );
-        $('#product').css('display','none');
-          //$('#BlankTab').removeClass( 'active' );
-         $(tab).addClass( 'active' );
-        
-    });
-     $('.nav-pills a:first').hover(function(){
-           // $(this).tab('show');
+        $('.nav-pills  a:not(:first)').hover( function( ) {
+             var tab = $(this).attr('data-id');
+            
+             console.log(tab);
+             $('.tab-pane').removeClass( 'active' );
+            $('#product').css('display','none');
+              //$('#BlankTab').removeClass( 'active' );
+             $(tab).addClass( 'active' );
+            
+        });
+        $('.nav-pills a:first').hover(function(){
             $('.tab-pane').removeClass( 'active' );
             $('.you-may-like-area:first').css('display','flex');
         });
-});
+        $('.nav-pills a:first').hover(function(){
+            $('.tab-pane').removeClass( 'active' );
+            $('#product').css('display','flex');
+        });
+    });
 </script>
     <!-- copyright-section end -->
 

@@ -178,14 +178,14 @@ $.each(TableData, function( index, value ) {
                 border: [ false, false, false, false ],
             }
         };
-        styles: 
-            {
-               header:{
-                fontSize: 18,
-                bold: true,
-                margin: [0, 10, 0, 10],
-                }, 
-            };
+        // styles: 
+        //     {
+        //        header:{
+        //         fontSize: 18,
+        //         bold: true,
+        //         margin: [0, 10, 0, 10],
+        //         }, 
+        //     };
         pdfMake.createPdf(docDefinition).download("Order.pdf");
        }
             });
