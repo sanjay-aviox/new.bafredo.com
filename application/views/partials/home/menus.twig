@@ -1,99 +1,174 @@
-<div class="list">
-    <ul>
-        <li><a class="subNaveBtn" title="New Products" rel="nofollow" href="{{ base_url('product/new') }}">New Products</a></li>
-        <li><a class="subNaveBtn" title="Sales" href="{{ base_url('product/sales') }}">Sales</a></li>
-        <li><a class="subNaveBtn" title="All Products" href="{{ base_url('product/all') }}">All Products</a></li>
-        {% for menu in menus %}
-        <li>
-            <a title="Arduino" class="subNaveBtn" href='{{ base_url("category/#{menu.getSlug()}") }}'>
-                <span class="l">{{ menu.getName() }}</span>
-                <span class="r">></span>
-            </a>
-            <div class="childData">
-                <div class="sn">
-                    <ul class="">
-                        {% for smenu in menu.getSubCategories() %}
-                        <li><a title="{{ smenu.getName() }}" href='{{ base_url("category/#{menu.getSlug()}/#{smenu.getSlug()}") }}'>{{ smenu.getName() }}</a></li>
-                        {% endfor %}
-                    </ul>
-                </div>
-                <div class="rc">
-                    <div class="title">You may also like</div>
-                    <ul>
-                        <li>
-                            <a title="Beginner Kit for Arduino (Best Starter Kit)" href="{{ base_url('detail') }}">
-                                <img src="{{ asset('front/image/category/menu/1.jpg') }}" alt="Beginner Kit for Arduino (Best Starter Kit)">
-                                <span class="name">
-                                Beginner Kit for Arduino (Best Starter Kit)	                		</span>
-                                <span class="mask"></span>
-                                <b class="price">
-                                    $52.90			                        			                    	                		</b>
-                            </a>
-                        </li>
-                        <li>
-                            <a title="DFRduino UNO R3 - Arduino Compatible" href="{{ base_url('detail') }}">
-                                <img src="{{ asset('front/image/category/menu/1.jpg') }}" alt="DFRduino UNO R3 - Arduino Compatible">
-                                <span class="name">
-                                DFRduino UNO R3 - Arduino Compatible	                		</span>
-                                <span class="mask"></span>
-                                <b class="price">
-                                    $19.90			                        			                    	                		</b>
-                            </a>
-                        </li>
-                        <li>
-                            <a title="Gravity: 1602 LCD Keypad Shield For Arduino" href="{{ base_url('detail') }}">
-                                <img src="{{ asset('front/image/category/menu/1.jpg') }}" alt="Gravity: 1602 LCD Keypad Shield For Arduino">
-                                <span class="name">
-                                Gravity: 1602 LCD Keypad Shield For Arduino	                		</span>
-                                <span class="mask"></span>
-                                <b class="price">
-                                    $9.90			                        			                    	                		</b>
-                            </a>
-                        </li>
-                        <li>
-                            <a title="RGB LED Strip Driver Shield v1.0" href="{{ base_url('detail') }}">
-                                <img src="{{ asset('front/image/category/menu/1.jpg') }}" alt="RGB LED Strip Driver Shield v1.0">
-                                <span class="name">
-                                RGB LED Strip Driver Shield v1.0	                		</span>
-                                <span class="mask"></span>
-                                <b class="price">
-                                    $12.05			                        			                    	                		</b>
-                            </a>
-                        </li>
-                        <li>
-                            <a title="FireBeetle ESP32 IOT Microcontroller (Supports Wi-Fi &amp; Bluetooth)" href="{{ base_url('detail') }}">
-                                <img src="{{ asset('front/image/category/menu/1.jpg') }}" alt="FireBeetle ESP32 IOT Microcontroller (Supports Wi-Fi &amp; Bluetooth)">
-                                <span class="name">
-                                FireBeetle ESP32 IOT Microcontroller (Supports Wi-Fi &amp; Bluetooth)	                		</span>
-                                <span class="mask"></span>
-                                <b class="price">
-                                    $19.00			                        			                    	                		</b>
-                            </a>
-                        </li>
-                        <li>
-                            <a title="W5500 Ethernet with POE IOT Board (Arduino Compatible)" href="{{ base_url('detail') }}">
-                                <img src="{{ asset('front/image/category/menu/1.jpg') }}" alt="W5500 Ethernet with POE IOT Board (Arduino Compatible)">
-                                <span class="name">
-                                W5500 Ethernet with POE IOT Board (Arduino Compatible)	                		</span>
-                                <span class="mask"></span>
-                                <b class="price">
-                                    $44.90			                        			                    	                		</b>
-                            </a>
-                        </li>
-                        <li>
-                            <a title="Gravity IO Expansion Shield for Arduino V7.1" href="{{ base_url('detail') }}">
-                                <img src="{{ asset('front/image/category/menu/1.jpg') }}" alt="Gravity IO Expansion Shield for Arduino V7.1">
-                                <span class="name">
-                                Gravity IO Expansion Shield for Arduino V7.1	                		</span>
-                                <span class="mask"></span>
-                                <b class="price">
-                                    $8.90			                        			                    	                		</b>
-                            </a>
-                        </li>
-                    </ul>
+<div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto" id="mainMenu">
+        <li class="nav-item">
+            <a class="nav-link" href="{{ base_url('/') }}"> Home</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{{ base_url('/blog') }}">Blog</a>
+        </li>
+        <input type="hidden" value="{{ getAuthUser('user').name }}" id="user_Name">
+        <li class="nav-item mega-menu-item">
+           <a class="nav-link" href="#">Category</a>
+            
+            <!---------mega menu------->
+            <div class="mega-menu">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-12 col-md-3">
+                            
+                            <div class="nav flex-column nav-pills sub-menu-heading-link-box" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+
+                                <a  class="sub-menu-heading-link active" id="allProducts"  title="All Products" href="{{ base_url('product/all') }}">All Products</a>
+                                {% for menu in menus %}
+                                {% if menu.getSubCategories() == null %}
+                                <a class="sub-menu-heading-link others" id="v-pills-home-tab" data-toggle="pill" href="{{ base_url('/category/')}}{{ menu.getSlug() }}"  data-id="#BlankTab" role="tab" aria-controls="v-pills-home" aria-selected="true">{{ menu.getName() }}</a>
+                                {% endif %}
+                                {% endfor %}
+                                {% for menu in menus %}
+                                {% if menu.getSubCategories() != null %}
+                                <a class="sub-menu-heading-link" id="v-{{ menu.getName() }}"  href="{{ base_url('/category/')}}{{ menu.getSlug() }}" data-id="#{{ menu.getName() |replace({' ': ''})}}" role="tab" >{{ menu.getName() }}</a>
+                                {% endif %}
+                                {% endfor %}
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-9">
+                            <div class="tab-content" id="v-pills-tabContent">
+                                <div id="product">
+                                    <div class="col-12 col-md-4">
+                                        <div class="you-may-like-heading">
+                                            <h4>
+                                                You may also like!
+                                            </h4>
+                                        </div>
+                                        <ul class="you-may-like-area">
+                                            {% for product in productMenu %}
+                                            <div class="item mr-2">
+                                                <div class="view-products-single-box">
+                                                    <div class="view-products-thumb">
+                                                        <img src="{{ asset('theme/images/DC-Motor-12v.jpg') }}">
+                                                        <div class="view-products-hover-info">
+                                                            <button v-on:click="addToCart({{ product.toJson() }})" class="icon-link-btn"><i class="fa fa-shopping-cart pr-2">
+                                                                </i> Add to cart</button>
+                                                        </div>
+                                                    </div>
+                                                    <div class="view-products-info">
+                                                        <div class="view-products-title">
+                                                            <h3>
+                                                                <a href="#"> {{ product.name }}</a>
+                                                            </h3>
+                                                            <span class="view-products-price">{{ product.currency ~' '~ product.price }}</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="hover-icon-link-box">
+                                                        <a v-on:click="addToWishList({{product.toJson() }})" class="hover-icon-link" data-toggle="tooltip" data-placement="left" title="" data-original-title="Wishlist"><i class="fa fa-heart-o">
+                                                            </i></a>
+                                                        <a  href="{{ base_url('product/detail/') }}{{product.slug}}" class="hover-icon-link" data-toggle="tooltip" data-placement="left" title="" data-original-title="Quick view"><i class="fa fa-search-plus" data-toggle="modal">
+                                                            </i></a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            {% endfor %}
+                                        </ul>
+                                    </div>
+                                </div>
+                                {% for menu in menus %}
+                                <div class="tab-pane fade" style="opacity: 1;" id="{{ menu.getName() |replace({' ': ''}) }}" role="tabpanel" aria-labelledby="v-{{ menu.getName() }}">
+                                    <div class="container-fluid">
+                                        <div class="row">
+                                            <div class="col-12  col-md-8">
+                                                <ul class="sub-menu">
+                                                    {% for smenu in menu.getSubCategories() %}
+                                                    <li class="sub-menu-item">
+                                                        <a href="#" class="sub-menu-link">{{ smenu.getName()}}</a>
+                                                    </li>
+                                                    {% endfor %}
+                                                </ul>
+                                            </div>
+                                            <div class="col-12 col-md-4">
+                                                <ul class="you-may-like-area">
+                                                    <li class="you-may-like-heading">
+                                                        <h4>
+                                                            You may also like!
+                                                        </h4>
+                                                    </li>
+                                                    {% for product in productMenu|slice(0, 1) %}
+                                                    <div class="item mr-2">
+                                                        <div class="view-products-single-box">
+                                                            <div class="view-products-thumb">
+                                                                <img src="{{ asset('theme/images/DC-Motor-12v.jpg') }}">
+                                                                <div class="view-products-hover-info">
+                                                                    <button v-on:click="addToCart({{ product.toJson() }})" class="icon-link-btn"><i class="fa fa-shopping-cart pr-2">
+                                                                        </i> Add to cart</button>
+                                                                </div>
+                                                            </div>
+                                                            <div class="view-products-info">
+                                                                <div class="view-products-title">
+                                                                    <h3>
+                                                                        <a href="#"> {{ product.name }}</a>
+                                                                    </h3>
+                                                                    <span class="view-products-price">{{ product.currency ~' '~ product.price }}</span>
+                                                                </div>
+                                                            </div>
+                                                            <div class="hover-icon-link-box">
+                                                                <a v-on:click="addToWishList({{product.toJson() }})" class="hover-icon-link" data-toggle="tooltip" data-placement="left" title="" data-original-title="Wishlist"><i class="fa fa-heart-o">
+                                                                    </i></a>
+                                                                <a  href="{{ base_url('product/detail/') }}{{product.slug}}" class="hover-icon-link" data-toggle="tooltip" data-placement="left" title="" data-original-title="Quick view"><i class="fa fa-search-plus" data-toggle="modal">
+                                                                    </i></a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    {% endfor %}
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                {% endfor %}
+                                <div class="tab-pane fade" id="BlankTab" style="opacity: 1;" role="tabpanel" aria-labelledby="v-pills-profile-tab">
+                                    <div class="col-12 col-lg-4 col-md-6">
+                                        <ul class="you-may-like-area">
+                                            <li class="you-may-like-heading">
+                                                <h4>
+                                                    You may also like!
+                                                </h4>
+                                            </li>
+                                             <ul class="you-may-like-area">
+                                             {% for product in productMenu %}
+                                            <div class="item mr-2">
+                                                <div class="view-products-single-box">
+                                                    <div class="view-products-thumb">
+                                                        <img src="{{ asset('theme/images/DC-Motor-12v.jpg') }}">
+                                                        <div class="view-products-hover-info">
+                                                            <button v-on:click="addToCart({{ product.toJson() }})" class="icon-link-btn"><i class="fa fa-shopping-cart pr-2">
+                                                                </i> Add to cart</button>
+                                                        </div>
+                                                    </div>
+                                                    <div class="view-products-info">
+                                                        <div class="view-products-title">
+                                                            <h3>
+                                                                <a href="#"> {{ product.name }}</a>
+                                                            </h3>
+                                                            <span class="view-products-price">{{ product.currency ~' '~ product.price }}</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="hover-icon-link-box">
+                                                        <a v-on:click="addToWishList({{product.toJson() }})" class="hover-icon-link" data-toggle="tooltip" data-placement="left" title="" data-original-title="Wishlist"><i class="fa fa-heart-o">
+                                                            </i></a>
+                                                        <a  href="{{ base_url('product/detail/') }}{{product.slug}}" class="hover-icon-link" data-toggle="tooltip" data-placement="left" title="" data-original-title="Quick view"><i class="fa fa-search-plus" data-toggle="modal">
+                                                            </i></a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            {% endfor %}
+                                        </ul>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </li>
-        {% endfor %}
     </ul>
 </div>

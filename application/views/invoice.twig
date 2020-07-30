@@ -9,7 +9,26 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="{{ asset('invoice/style.css') }}">
+    
 </head>
+<style>
+    .stamp .stamp-content .stamp-date
+{
+    margin-top: 5px !important;
+    font-size: 16px;
+    color: #e80101;
+    font-weight: 700;
+}
+        @media print{
+            .stamp .stamp-content .stamp-date {
+                  margin-top: 5px !important;
+                    font-size: 16px;
+                    color: #e80101;
+                    font-weight: 700;
+                   
+                }
+        }
+    </style>
 <body>
 
 <section class="in-invoice-section a" id="ele1">

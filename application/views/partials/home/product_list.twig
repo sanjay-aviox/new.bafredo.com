@@ -1,35 +1,62 @@
 <section class="slider-category-section pb-5 pt-5">
-
-        <div class="container-fluid p-0">
-            <div class="comn-section-heading"><h2>Our Products</h2>
-                <p>BAFREDO Electronics is determined to provide cost-effective and quality products to hobbyists and practitioners in Electronics. Implement your upcoming projects through our products.</p>
-            </div>
-            <div class="row">
-                <div class="col-12 col-md-12">
-                    <div class="ourSlider  owl-carousel owl-theme slider-category-box">
-                        {% for product in featured_products %}
-                        <div class="slider-category-item">
-                            <a href="#">
-                                <div class="slider-category-thumb"> 
-                                    <a title="{{ product.name }}" href='{{ base_url("product/detail/#{product.slug}") }}'><img src='{{ asset("uploads/product/thumbnail/#{product.image}") }}' alt="{{ product.name }}" title="{{ product.name }}"></a>
-                                </div>
-                                <div class="slider-category-title">
-                                    <h4>{{ product.name }}</h4>
-                                </div>
-                            </a>
-                            <div class="featured-products-hover-info">
-                                <a v-on:click="addToCart({{ product.toJson() }})" class="icon-link" data-toggle="tooltip" data-placement="top" title="Add to cart"><i class="fa fa-shopping-cart"></i></a>
-
-                                <a href="{{ base_url("product/detail/#{product.slug}") }}" class="icon-link" data-toggle="tooltip" data-placement="top" title="Quick view"><i class="fa fa-search-plus"></i></a>
-
-
-                               <a v-on:click="addToWishList({{product.toJson() }})" class="icon-link" data-toggle="tooltip" data-placement="top" title="Wishlist"><i class="fa fa-heart-o"></i></a>
-                               
-
-                                <!--a href="#" class="icon-link" data-toggle="tooltip" data-placement="top" title="Compare"><i class="fa fa-refresh"></i></a-->
+    <div class="container-fluid p-0">
+        <div class="comn-section-heading"><h2>Our Products</h2>
+            <p>BAFREDO Electronics is determined to provide cost-effective and quality products to hobbyists and practitioners in Electronics. Implement your upcoming projects through our products.</p>
+        </div>
+         <div class="row">
+            <div class="col-12 col-md-12">
+                <div class="ourSlider  owl-carousel owl-theme slider-category-box">
+                {% for product in featured_products %}
+                    <div class="slider-category-item">
+                        <a href="#">
+                            <div class="slider-category-thumb"> 
+                                <a title="{{ product.name }}" href='{{ base_url("product/detail/#{product.slug}") }}'><img src='{{ asset("uploads/product/thumbnail/#{product.image}") }}' alt="{{ product.name }}" title="{{ product.name }}"></a>
                             </div>
+
+                            <div class="slider-category-title">
+                                <h4>{{ product.name }}</h4>
+                            </div>
+                        </a>
+                        <div class="featured-products-hover-info">
+                            <a v-on:click="addToCart({{ product.toJson() }})" class="icon-link" data-toggle="tooltip" data-placement="top" title="Add to cart"><i class="fa fa-shopping-cart"></i></a>
+
+                            <a href="{{ base_url("product/detail/#{product.slug}") }}" class="icon-link" data-toggle="tooltip" data-placement="top" title="Quick view"><i class="fa fa-search-plus"></i></a>
+
+                           <a v-on:click="addToWishList({{product.toJson() }})" class="icon-link" data-toggle="tooltip" data-placement="top" title="Wishlist"><i class="fa fa-heart-o"></i></a>
                         </div>
-                         {% endfor %}
+
+                    </div>
+                    {% endfor %}
+                    
+                    <div class="slider-category-item">
+                        <a href="#">
+                            <div class="slider-category-thumb">
+                                <img src="{{ asset('theme/images/DC-Motor-12v.jpg') }}">
+                            </div>
+                            <div class="slider-category-title">
+                                <h4>DC Motor 12v</h4>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="slider-category-item">
+                        <a href="#">
+                            <div class="slider-category-thumb">
+                                <img src="{{ asset('theme/images/SM900.jpg') }}">
+                            </div>
+                            <div class="slider-category-title">
+                                <h4>GSM/GPRS SIM900 Module</h4>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="slider-category-item">
+                        <a href="#">
+                            <div class="slider-category-thumb">
+                                <img src="{{ asset('theme/images/HX711-5KG-Digital-Load-Cell.jpg') }}">
+                            </div>
+                            <div class="slider-category-title">
+                                <h4>HX711 5KG Digital Load Cell</h4>
+                            </div>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -38,6 +65,7 @@
             <a href="{{ base_url("product/all") }}" class="comn-btn">See All</a>
         </div>
     </div>
+ 
 </section>
 <!-- slider category section end -->
 <!-- Featured Products section start -->
@@ -175,7 +203,6 @@
                 </div>
             </div>
         </div>
-    </div>
 </section>
 <!-- product-category-section end -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.js" integrity="sha512-WNZwVebQjhSxEzwbettGuQgWxbpYdoLf7mH+25A7sfQbbxKeS5SQ9QBf97zOY4nOlwtksgDA/czSTmfj4DUEiQ==" crossorigin="anonymous"></script>
