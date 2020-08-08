@@ -60,7 +60,8 @@ class Page extends MY_Controller
           
             $page = $this->doctrine->em->getRepository("Entity\Page")->findOneBySlug($slug);
             if($slug== "about-us"){
-                $this->twig->display("page/about-us", compact('page'));
+                $new_arrival_products = $this->product->newArrival(4);
+                $this->twig->display("page/about-us", compact('page' ,'new_arrival_products'));
 
             }else{
                 $this->twig->display("page/common", compact('page'));

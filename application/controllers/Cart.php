@@ -350,7 +350,8 @@ class Cart extends MY_Controller
         $productMenu = $this->product->newArrival(4);
         $order = $this->db->get('orders')->row();
         $order->invoice =  date("Ymd", strtotime($order->created_at)); ;
-
+        
+        
         if($order->shipping_method == 'Cash_On_Delivery'){
             $charge = 10000;
         }else  if($order->shipping_method == 'BAFREDO_Savings'){
