@@ -14,7 +14,7 @@ class Login extends MY_Controller
     public function index()
     {
         $url = parse_url($_SERVER['HTTP_REFERER'], PHP_URL_PATH);
-       // echo $url;
+        $productMenu = $this->product->newArrival(4);
         $parsed = parse_url($url);
         $path = $parsed['path'];
         $path_parts = explode('/', $path);
@@ -29,7 +29,7 @@ class Login extends MY_Controller
         //print_r($error);die;
         $redirectAfterLogin = $this->input->get('href');
 
-        $this->twig->display('login', compact('redirectAfterLogin','error'));
+        $this->twig->display('login', compact('redirectAfterLogin','error','productMenu'));
     }
 
   
@@ -220,9 +220,10 @@ class Login extends MY_Controller
         $password = $this->session->flashdata('password');
        
         $redirectAfterLogin = $this->input->get('href');
-
+        
+        $productMenu = $this->product->newArrival(4);
        
-        $this->twig->display('user/forget',compact('redirectAfterLogin','userexist','password'));
+        $this->twig->display('user/forget',compact('redirectAfterLogin','userexist','password','productMenu'));
     }
     public function send(){
          $sender = 'monuaviox@gmail.com';
@@ -324,6 +325,7 @@ class Login extends MY_Controller
     }
     public function matchQuestion(){
         $answers = $this->input->post();
+        $productMenu = $this->product->newArrival(4);
         $this->load->model('AccountModel');
         $questions = $this->AccountModel->matchQues($answers['id']);
         $i=0;
@@ -346,8 +348,8 @@ class Login extends MY_Controller
        // $phone = $this->input->post('phone');
         //echo $phone; die;
        // $questions = $this->AccountModel->getQuestion($phone);
-
-        $this->twig->display('user/question', compact('questions'));
+    
+        $this->twig->display('user/question', compact('questions','productMenu'));
        }
     }
 
