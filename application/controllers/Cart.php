@@ -23,6 +23,7 @@ class Cart extends MY_Controller
         $this->pesapal_consumer_key = 'gJcjkKhFNaW6t9d/sEZddn4k7Kq+0YR9';
         $this->pesapal_consumer_secret = '2hcYdLOXZ/C8ATS8uDTEb1MjpGk=';
         $this->load->model("AccountModel","AM");
+        $this->load->model('ProductModel', 'product');
         $this->load->model("CategoryModel","category");
 
     }
@@ -116,7 +117,21 @@ class Cart extends MY_Controller
         //     $i++;
         // } 
      //   print_r($selected); die; 
-          $carts = $this->session->userdata("cart");
+        // $searchForValue = ',';
+        // $carts = $this->session->userdata("cart");
+
+
+        // if( strpos($items, $searchForValue) !== false ) {
+        //     $arr_id =  explode(",",$items);
+           
+        // }else{
+        //     $this->AM->remove_whislist($ids);
+        // } 
+
+
+
+        $carts = $this->session->userdata("cart");
+        
         foreach ($carts['cart'] as $key => $val){
           if (in_array($val['id'],$items['item']))
               {
@@ -300,9 +315,16 @@ class Cart extends MY_Controller
             redirect('cart/checkout');
         }
 
+<<<<<<< HEAD
         $payload = $this->input->post();
          $productMenu = $this->product->newArrival(4);
         // Save payload in session for form auto fill.
+=======
+
+        $payload = $this->input->post();
+         $productMenu = $this->product->newArrival(4);
+     
+>>>>>>> 1b446810f9756370e1c55c1c749db60c15c0688f
         $this->session->set_userdata('formdata', $payload);
         // Save order
         $order = $this->save_order($payload);
@@ -322,6 +344,10 @@ class Cart extends MY_Controller
         } else if ($order->payment_method == "bank_transfer") {
             $this->twig->display('cart/gateway/bank_transfer', compact('order','charge','productMenu'));
         } else if ($order->payment_method == "pesapal") {
+<<<<<<< HEAD
+=======
+            
+>>>>>>> 1b446810f9756370e1c55c1c749db60c15c0688f
             $this->twig->display('cart/gateway/pesapal', compact('order','charge','productMenu'));
         }
     }
@@ -330,9 +356,15 @@ class Cart extends MY_Controller
     {
         //$this->load->view('invoice');
         $this->db->where('id', $order_number);
+<<<<<<< HEAD
          $productMenu = $this->product->newArrival(4);
+=======
+        $productMenu = $this->product->newArrival(4);
+>>>>>>> 1b446810f9756370e1c55c1c749db60c15c0688f
         $order = $this->db->get('orders')->row();
-        $order->invoice = rand();
+        $order->invoice =  date("Ymd", strtotime($order->created_at)); ;
+        
+        
         if($order->shipping_method == 'Cash_On_Delivery'){
             $charge = 10000;
         }else  if($order->shipping_method == 'BAFREDO_Savings'){

@@ -12,6 +12,7 @@ class Blog extends MY_Controller
     {
         parent::__construct();
         $this->load->model('BlogModel','BM');
+        $this->load->model('ProductModel', 'product');
     }
 
     public function index()

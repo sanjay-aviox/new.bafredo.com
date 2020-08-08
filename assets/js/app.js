@@ -16965,12 +16965,11 @@ var app = new Vue({
 
       return shipping;
     }(function () {
+     
       if (this.ship == 'Cash_On_Delivery') {
         shipping = 10000;
       } else if (this.ship == 'BAFREDO_Savings') {
         shipping = 15000;
-      } else if (this.ship == 'Self_Collection') {
-        shipping = 0;
       } else {
         shipping = 0;
       }
@@ -17149,6 +17148,10 @@ var app = new Vue({
       $.post(webPath + 'cart/add', {
         "cart": this.cart
       }, function (response) {
+         toastr.warning('Item removed' , {timeOut: 5000})
+         setTimeout(function () { 
+             location.reload();
+                            }, 2000);
         console.log(response);
       });
     },

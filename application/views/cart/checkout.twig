@@ -266,7 +266,7 @@
 							<h3>Shipping Method <span class="red-asterisk">*</span></h3>
 							<ul class="sec-shipping-method">
 								<li>
-									<input type="radio" name="shipping_method" checked="checked" value="Self_Collection" id="Self-Collection">
+									<input type="radio" v-model="ship"  name="shipping_method"  value="Self_Collection" id="Self-Collection" checked="checked"/>
 									<label for="Self-Collection">Self-Collection (Free)</label>
 									<span class="glyphicon glyphicon-info-sign" v-on:click="first()"></span>
 									{#<div class="alert alert-info bank-detail" v-show="toggleBankDetailBox">#}
@@ -276,7 +276,7 @@
 									</div>
 								</li>
 								<li>
-									<input type="radio" name="shipping_method" v-model="ship" value="Cash_On_Delivery" id="cod">
+									<input type="radio" v-model="ship"  name="shipping_method" value="Cash_On_Delivery" id="cod">
 									<label for="cod">Cash On Delivery (Estimated shipping fee: TZS 10,000)</label>
 									<span class="glyphicon glyphicon-info-sign" v-on:click="second()"></span>
 									<div class="alert alert-info bank-detail" v-show="toggleCODBox">
@@ -317,9 +317,9 @@
 								</li>
 
                                 <li>
-                                    <input type="radio" name="payment_method" value="paypal" id="paypal">
-                                    <label for="paypal" data-toggle="tooltip" title="This payment method uses paypal Gateway, which integrates the following options: Mobile Money Transfer (Tigo Pesa, M-Pesa, and Airtel Money) and Electronic Cards (Visa and MasterCard).">
-                                        PAYPAL (Tigo Pesa, M-Pesa, Visa, and MasterCard) <img src="{{ asset('uploads/pesapal.png') }}" alt="tigopesa">
+                                    <input type="radio" name="payment_method" value="pesapal" id="pesapal">
+                                    <label for="pesapal" data-toggle="tooltip" title="This payment method uses paypal Gateway, which integrates the following options: Mobile Money Transfer (Tigo Pesa, M-Pesa, and Airtel Money) and Electronic Cards (Visa and MasterCard).">
+                                        PESAPAL (Tigo Pesa, M-Pesa, Visa, and MasterCard) <img src="{{ asset('uploads/pesapal.png') }}" alt="tigopesa">
                                     </label>
                                 </li
 							</ul>

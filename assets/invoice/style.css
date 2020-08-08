@@ -6,7 +6,7 @@
 }
 .in-invoice-section{
 
-	padding: 10px 0px;
+	padding: 10px 20px;
 
 	font-family: 'Roboto Slab', serif;
 
@@ -325,13 +325,8 @@ ul.in-term-sale-list li{
 
 .in-pegination-area{
 
-	display: flex;
-
-	justify-content: space-between;
-
-	align-items: center;
-
-	padding: 30px 0px;
+	display: block;
+	text-align: right;
 
 }
 
@@ -348,8 +343,69 @@ ul.in-term-sale-list li{
 .in-pegination-box{
 
 	/*width: 816px;*/
-
+	padding: 10px 0;
 }
+.in-pegination-box .print-invoice
+
+{
+	text-align: right;
+}
+/*StartStamp CSS 28-07-2020*/
+.stamp-section
+{
+	padding: 10px 0;
+	display: flex;
+	justify-content: center;
+}
+.stamp
+{
+	position: relative;
+	width: 180px;
+	height: 180px;
+	border: 2px solid #00277e;
+	border-radius: 50%;
+}
+.stamp:before
+{
+	content: '';
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	width: 130px;
+	height: 130px;
+	transform: translate(-50%,-50%);
+	border: 2px solid #00277e;
+	border-radius: 50%;
+}
+.stamp #circle-text,
+.stamp #circle-text-rev
+{
+	font-weight: 500;
+	font-size: 15px;
+	color: #00277e;
+}
+.stamp #circle-text div
+{
+	height: auto !important;
+}
+.stamp .stamp-content
+{
+	margin-top: 45px;
+    font-size: 13px;
+}
+.stamp .stamp-content p
+{
+	font-weight: 500;
+	color: #00277e;
+}
+/*.stamp .stamp-content .stamp-date
+{
+	margin-top: 5px !important;
+	font-size: 16px;
+	color: #e80101;
+	font-weight: 700;
+}*/
+/*End Stamp CSS 28-07-2020*/
 @media print {
 	* { -webkit-print-color-adjust: exact; }
 	html { background: none; padding: 0; }

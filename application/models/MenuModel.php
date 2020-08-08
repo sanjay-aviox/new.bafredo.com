@@ -49,12 +49,18 @@ class MenuModel extends CI_Model
 
     public function getMainMenuProductsById($id)
     {
-        $dataAdapter = $this->db->select('p.*')
-                    ->from('sub_categories AS sc')
-                    ->join('products AS p', 'p.category_id = sc.id')
-                    ->where('sc.category_id', $id)
-                    ->order_by('p.created_at', 'DESC')
+         $dataAdapter = $this->db->select('*')
+                    ->from('products')
+                   // ->join('products AS p', 'p.category_id = sc.id')
+                    ->where('category_id', $id)
+                    ->order_by('created_at', 'DESC')
                     ->get();
+        // $dataAdapter = $this->db->select('p.*')
+        //             ->from('sub_categories AS sc')
+        //             ->join('products AS p', 'p.category_id = sc.id')
+        //             ->where('sc.category_id', $id)
+        //             ->order_by('p.created_at', 'DESC')
+        //             ->get();
         return $this->populate($dataAdapter->result());
     }
 

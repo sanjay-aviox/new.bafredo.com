@@ -33,8 +33,15 @@ class Product extends MY_Controller
         $subCategories = array();
         $products = $this->product->findAll();
         $productMenu = $this->product->newArrival(4);
+<<<<<<< HEAD
 
         $this->twig->display('category', compact('products', 'subCategories', 'parent_slug','productMenu'));
+=======
+
+
+        $this->twig->display('product', compact('products', 'subCategories', 'parent_slug','productMenu'));
+
+>>>>>>> 1b446810f9756370e1c55c1c749db60c15c0688f
     }
 
     public function sales()

@@ -11,13 +11,15 @@ class User extends MY_Controller
         }
 
         $this->load->library('doctrine');
+        $this->load->model('ProductModel', 'product');
     }
 
     public function profile()
 	{
 //        $user = $this->doctrine->em->getRepository("Entity\User")->findAll();
         $user = getAuthUser("user");
-        $this->twig->display('user/profile', compact('user'));
+        $productMenu = $this->product->newArrival(4);
+        $this->twig->display('user/profile', compact('user','productMenu'));
     }
 
     public function logout()

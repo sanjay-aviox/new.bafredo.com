@@ -8,6 +8,7 @@ class Login extends MY_Controller
 
         $this->load->library('doctrine');
         $this->load->model("AccountModel","AM");
+        $this->load->model('ProductModel', 'product');
         
     }
 

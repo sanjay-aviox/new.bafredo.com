@@ -9,6 +9,7 @@ class Detail extends MY_Controller
         parent::__construct();
 
         $this->fe = $this->loadFrontend();
+        $this->load->model('ProductModel', 'product');
     }
 
     public function index()

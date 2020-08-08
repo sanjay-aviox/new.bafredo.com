@@ -22,6 +22,7 @@ class Account extends MY_Controller
 
         $this->load->library('doctrine');
         $this->load->model("AccountModel","AM");
+        $this->load->model('ProductModel', 'product');
         $this->load->model("CategoryModel","category");
 
         $this->data['active_link'] = $this->uri->segment(2);
@@ -56,7 +57,11 @@ class Account extends MY_Controller
                 $this->data['success'] = "done";
             }
         $this->data['page'] = 'account';
+<<<<<<< HEAD
         $this->twig->display('user/profile', $this->data compact('productMenu'));
+=======
+        $this->twig->display('user/profile', $this->data ,compact('productMenu'));
+>>>>>>> 1b446810f9756370e1c55c1c749db60c15c0688f
     }
     public function order_history()
     {
@@ -293,6 +298,12 @@ class Account extends MY_Controller
         $this->session->set_userdata("user", $user);
         $this->data['user'] = $user;
         redirect("account");
+    }
+
+    public function test()
+    {
+        $productMenu = $this->product->newArrival(4);
+        $this->twig->display("page/how_to_buy" ,compact('productMenu'));
     }
 
 }

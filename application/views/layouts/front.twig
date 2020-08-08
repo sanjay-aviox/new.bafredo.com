@@ -26,18 +26,24 @@
     <!----------  bootstrap css ------------->
     <link rel="stylesheet" type="text/css" href="{{ asset('theme/css/bootstrap.min.css') }}">
     
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css"/>
     <!----------  owlcarousel css ------------->
     <link rel="stylesheet" href="{{ asset('theme/css/owl.carousel.min.css') }}">
     <link rel="stylesheet" href="{{ asset('theme/css/owl.theme.default.min.css') }}"> 
 
     <link rel="stylesheet" href="{{ asset('theme/css/animate.css') }}">
-
+     
   
     <link rel="stylesheet" type="text/css" href="{{ asset('theme/css/style.css') }}">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.css" integrity="sha512-wR4oNhLBHf7smjy0K4oqzdWumd+r5/+6QO/vDda76MW5iug4PT7v86FoEkySIJft3XA0Ae6axhIvHrqwm793Nw==" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css" integrity="sha512-yHknP1/AwR+yx26cB1y0cjvQUMvEa2PFzt1c9LlS4pRQ5NOTZFWbhBig+X9G9eYW/8m0/4OXNx8pxJ6z57x0dw==" crossorigin="anonymous" />
 
+
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+<link rel="https://cdnjs.cloudflare.com/ajax/libs/datepicker/1.0.9/datepicker.min.css">
+
     <script type="text/javascript" src="{{ asset('theme/js/jquery.min.js') }}"></script>
+
     <script src="{{ asset('theme/js/owl.carousel.js') }}"></script>
     <script src="{{ asset('theme/js/wow.js') }}"></script>
     <script type="text/javascript" src="{{ asset('theme/js/proper.min.js') }}"></script>
@@ -78,10 +84,27 @@
     <script src="{{ asset('front/js/pc.js') }}" type="text/javascript"></script>
     <script src="{{ asset('front/js/common.js') }}" type ="text/javascript"></script>
 
-
+    
    
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-sweetalert/1.0.1/sweetalert.min.js" type ="text/javascript">
-    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-sweetalert/1.0.1/sweetalert.min.js" type ="text/javascript"></script>
+
+    <script type="text/javascript" src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+
+<script src= "https://cdn.datatables.net/buttons/1.6.2/js/buttons.flash.min.js"></script>
+<script src= "https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+<script src= "https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+<script src= "https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+<script src= "https://cdn.datatables.net/buttons/1.6.2/js/buttons.html5.min.js"></script>
+<script src= "https://cdn.datatables.net/buttons/1.6.2/js/buttons.print.min.js"></script>
+
+<script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/datepicker/1.0.9/datepicker.min.js"></script>
+<!-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.22/pdfmake.min.js"></script> -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
 </head>
 <body>
     <style>
@@ -169,6 +192,7 @@ outline: none !important;
                                         <a href="#" class="mob-nav-link dropdown-btn">Category <i class="fa fa-chevron-down"></i></a>
                                         <ul class="dropdown-container">
                                             <li class="mob-dropdown-item">
+<<<<<<< HEAD
                                                  <a  class="ob-dropdown-link" href="{{ base_url('product/all') }}">All Products</a>
 
                                                   {% for menu in menus %}
@@ -191,35 +215,22 @@ outline: none !important;
                                 </ul>
                             </div>
                             <!-- mobile sidebar end -->
+=======
+                                                 <a  class="mob-dropdown-link" href="{{ base_url('product/all') }}">All Products</a>
+>>>>>>> 1b446810f9756370e1c55c1c749db60c15c0688f
 
-                            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                                <ul class="navbar-nav mr-auto" id="mainMenu">
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="{{ base_url('/') }}"> Home</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="{{ base_url('/blog') }}">Blog</a>                                        
-                                    </li>                             
-                                    <input type="hidden" value="{{ getAuthUser('user').name }}" id="user_Name">
-                                    <li class="nav-item mega-menu-item">
-                                        <a class="nav-link" href="#">Category</a>
-                                        <div class="mega-menu">
-                                            <div class="container-fluid">
-                                            <div class="row">
-                                            <div class="col-12 col-md-3">
-                                                <div class="nav flex-column nav-pills sub-menu-heading-link-box" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-                                                    <a  class="sub-menu-heading-link active" id="allProducts"  title="All Products" href="{{ base_url('product/all') }}">All Products</a>
-                                                    {% for menu in menus %}
+                                                  {% for menu in menus %}
                                                     {% if menu.getSubCategories() == null %}
-                                                        <a class="sub-menu-heading-link others" id="v-pills-home-tab" data-toggle="pill" href="#BlankTab" role="tab" aria-controls="v-pills-home" aria-selected="true">{{ menu.getName() }}</a>
+                                                        <a class="mob-dropdown-link" href="{{ base_url('/category/')}}{{ menu.getSlug() }}">{{ menu.getName() }}</a>
                                                     {% endif %}
                                                     {% endfor %}
 
                                                     {% for menu in menus %}
                                                     {% if menu.getSubCategories() != null %}
-                                                        <a class="sub-menu-heading-link" id="v-{{ menu.getName() }}" data-toggle="pill" href="#{{ menu.getName() |replace({' ': ''})}}" role="tab" aria-controls="v-pills-home" aria-selected="true">{{ menu.getName() }}</a>
+                                                        <a class="mob-dropdown-link" id="v-{{ menu.getName() }}" href="{{ base_url('/category/')}}{{ menu.getSlug() }}">{{ menu.getName() }}</a>
                                                     {% endif %}
                                                     {% endfor %}
+<<<<<<< HEAD
                                                 </div>
                                             </div>
                                             <div class="col-12 col-md-9">
@@ -342,9 +353,21 @@ outline: none !important;
                                             </div>
                                             </div>  
                                         </div>
+=======
+
+                                            </li>
+                                       
+                                        </ul>
+>>>>>>> 1b446810f9756370e1c55c1c749db60c15c0688f
                                     </li>
+                                   
                                 </ul>
                             </div>
+                            <!-- mobile sidebar end -->
+                            {{ include('partials/home/menus.twig') }}
+                          
+
+
                         </nav>             
                     </div>
                 </div>
@@ -499,7 +522,11 @@ outline: none !important;
             <div class="row">
                 <div class="col-12 col-md-12">
                     <div class="copyright-area">
+<<<<<<< HEAD
                         <p class="mb-0">© 2015 - {{ 'now' | date('Y') }} BAFREDO Electronics Limited. All rights reserved</p>
+=======
+                        <p class="mb-0">© 2015 - {{ 'now' | date('Y') }} BAFREDO Electronics Limited. All rights reserved.</p>
+>>>>>>> 1b446810f9756370e1c55c1c749db60c15c0688f
                     </div>
                 </div>
             </div>
@@ -524,13 +551,11 @@ outline: none !important;
 </div>
      
    
-    <script type="text/javascript">
+<script type="text/javascript">
 
-    
-    if(window.location.href == $('#base_url').val()){
+   if(window.location.href == $('#base_url').val()){
        localStorage.setItem("activedata", 'Home'); 
     }
-
 
     $( "body" ).on("click",".deactive", function(event) {    
         localStorage.setItem("activedata", 'noOne');
@@ -540,26 +565,29 @@ outline: none !important;
         var texts =  $(this).text();
        localStorage.setItem("activedata", texts);
     });
-    var x = localStorage.getItem('activedata');
 
-     $( "body" ).on("click",".others", function(event) {    
+    var x = localStorage.getItem('activedata');
+    $( "body" ).on("click",".others", function(event) {    
         $('#product').css('display','none');
     });
 
-$( "#mainMenu li.nav-item:contains('"+x+"')" ).addClass('active');
-        $(document).on('click','.success', function(){
-           toastr.success('We do have the Kapua suite available.', 'Success Alert', {timeOut: 5000})
-        });
+    $( "#mainMenu li.nav-item:contains('"+x+"')" ).addClass('active');
+    $(document).on('click','.success', function(){
+        toastr.success('We do have the Kapua suite available.', 'Success Alert', {timeOut: 5000})
+    });
 
-         $(document).on('change', '#filter', function(){  
+    $(document).on('change', '#filter', function(){  
         var val = $(this).val(); 
+        var link = $('#base_url').val();
+        var url = link+'home/filters';
+
         var x = $("#typeahead").val();
           if(x== ''){
               location.reload();
           }
         
          $.ajax({
-               url: "$('#base_url').val()",
+               url: url,
                type: 'get',
                data: {"x" : x,'val':val},
                dataType : "json",
@@ -575,27 +603,26 @@ $( "#mainMenu li.nav-item:contains('"+x+"')" ).addClass('active');
      
     });
 
-        $(document).on('click','#view_result', function(){
-            var x = $("#typeahead").val();
-            var link = $('#base_url').val();
-            var url = link+'search-product';
-            $.ajax({
-                  url: url,
-                  type: 'get',
-                  data: {"x" : x},
-                  dataType : "json",
-                  error: function() {
-                      alert('Something is wrong');
-                  },
-                  success: function(data) {
-                      console.log(data);
+    $(document).on('click','#view_result', function(){
+        var x = $("#typeahead").val();
+        var link = $('#base_url').val();
+        var url = link+'search-product';
+        $.ajax({
+            url: url,
+            type: 'get',
+            data: {"x" : x},
+            dataType : "json",
+            error: function() {
+                alert('Something is wrong');
+            },
+            success: function(data) {
+                console.log(data);
+                $('.tt-menu').css('display','none');
+                $("#bodyupdate").html('<section class="filter-product-section view-products-section py-4"><div class="container"><div class="row"><div class="col-12 col-md-12"><div class="product-select-box mb-4"><ul class="d-flex justify-content-between align-items-center mb-0"><li><p class="mb-0">Filter</p></li><li><select class="form-control mr-sm-2" id="filter"><option selected="">Most Popular</option><option value="1">Select Option</option><option value="lowtohigh">Price: Low to High</option><option value="hightolow">Price: High to Low</option></select></li></ul></div></div></div><div class="row">'+data.data.join(' ')+'</div></div></section>');
 
-                    $('.tt-menu').css('display','none');
-                     $("#bodyupdate").html('<section class="filter-product-section view-products-section py-4"><div class="container"><div class="row"><div class="col-12 col-md-12"><div class="product-select-box mb-4"><ul class="d-flex justify-content-between align-items-center mb-0"><li><p class="mb-0">Filter</p></li><li><select class="form-control mr-sm-2" id="filter"><option selected="">Most Popular</option><option value="1">Select Option</option><option value="lowtohigh">Price: Low to High</option><option value="hightolow">Price: High to Low</option></select></li></ul></div></div></div><div class="row">'+data.data.join(' ')+'</div></div></section>');
-
-                  }
-            });
+            }
         });
+    });
 
     function validateEmail($email) {
         var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
@@ -604,9 +631,11 @@ $( "#mainMenu li.nav-item:contains('"+x+"')" ).addClass('active');
 
     function subscribe_email()
     {
+        var link = $('#base_url').val();
+        var url = link+'/home/subscribe';
         if (validateEmail($("#newsletter_email").val() || $("#newsletter_email").val().trim() != "")) {
             $.ajax({
-                url: "{{ base_url('home/subscribe') }}",
+                url: url,
                 data: {
                     email: $('#newsletter_email').val(),
                 },
@@ -614,40 +643,37 @@ $( "#mainMenu li.nav-item:contains('"+x+"')" ).addClass('active');
                 success: function (output) {
                     console.log(output);
                     if (output) {
-                       // alert("hi");
-                        toastr.success("Subscribed Successfully" , {timeOut: 5000});
-                        // alert("Subscribed Successfully")
+                        toastr.success("Subscribed Successfully" , {timeOut: 5000}); 
                     } else {
-                       //  alert("hiiii");
                         toastr.success("Already Subscribed" , {timeOut: 5000});
-                       // alert("Already Subscribed")
                     }
                 }
             });
         } else {
-
             alert("Email Incorrect")
         }
     }
+
     var timeout;
     var stopss ;
     document.onmousemove = function(){
     clearTimeout(timeout);
         if($('#user_Name').val()!=''){
-            
+            var link = $('#base_url').val();
+            var url = link+'/user/userlogout';
             timeout = setTimeout(function(){ 
                 $('#InactiveModal').modal('show');   
                 var stopss = setTimeout(function(){
                     $('#InactiveModal').modal('hide');
                     $.ajax({
-                        url: 'http://178.128.177.194/new.bafredo.com/user/userlogout',
+                        url: url,
                         type: 'get',
                         success: function(data) {
                             console.log("fckg");
                             location.reload();
                         }
                     });
-                }, 60000);
+                }, 60000); //60000
 
                 $("#yess").click(function(){
                     clearInterval(stopss);
@@ -656,13 +682,14 @@ $( "#mainMenu li.nav-item:contains('"+x+"')" ).addClass('active');
                 document.onmousemove = function(){
                     clearInterval(stopss);
                 }
-            }, 600000);
+            },600000); // 600000
         }
     }
     $("#continueBtn").click(function(){
-         // alert("hi");
+        var link = $('#base_url').val();
+        var url = link+'/user/userlogout';
         $.ajax({
-            url: 'http://178.128.177.194//user/userlogout',
+            url: url,
             type: 'get',
             success: function(data) {
                 console.log("fckg");
@@ -672,17 +699,37 @@ $( "#mainMenu li.nav-item:contains('"+x+"')" ).addClass('active');
     });
 
     $("body").on("mouseenter", '.mega-menu-item' , function () {
-    $(this).find('.mega-menu .sub-menu-heading-link').removeClass('active').first().addClass('active');
-});
+        $(this).find('.mega-menu .sub-menu-heading-link').removeClass('active').first().addClass('active');
+    });
     
     // mobile-sidebar
     function openMobileNav() {
-      document.getElementById("myMobileNav").style.width = "100%";
+        document.getElementById("myMobileNav").style.width = "100%";
     }
     function closeMobileNav() {
-      document.getElementById("myMobileNav").style.width = "0%";
+        document.getElementById("myMobileNav").style.width = "0%";
     }
 
+    $(document).ready(function ($) {
+        $('.nav-pills  a:not(:first)').hover( function( ) {
+             var tab = $(this).attr('data-id');
+            
+             console.log(tab);
+             $('.tab-pane').removeClass( 'active' );
+            $('#product').css('display','none');
+              //$('#BlankTab').removeClass( 'active' );
+             $(tab).addClass( 'active' );
+            
+        });
+        $('.nav-pills a:first').hover(function(){
+            $('.tab-pane').removeClass( 'active' );
+            $('.you-may-like-area:first').css('display','flex');
+        });
+        $('.nav-pills a:first').hover(function(){
+            $('.tab-pane').removeClass( 'active' );
+            $('#product').css('display','flex');
+        });
+    });
 </script>
     <!-- copyright-section end -->
 
@@ -739,6 +786,6 @@ $( "#mainMenu li.nav-item:contains('"+x+"')" ).addClass('active');
             </form>            
         </div>
     </div>
-    <img src="{{ base_url('assets/theme/images/loader.gif') }}"id="loaderImg">
+   <!--  <img src="{{ base_url('assets/theme/images/loader.gif') }}"id="loaderImg"> -->
 </body>
 </html>
