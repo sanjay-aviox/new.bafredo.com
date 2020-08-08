@@ -44,7 +44,7 @@
                                             {% for product in productMenu %}
                                             <div class="item mr-2">
                                                 <div class="view-products-single-box">
-                                                    <div class="view-products-thumb">
+                                                    <div class="view-products-thumb rb-thumb">
                                                         <img src="{{ asset('theme/images/DC-Motor-12v.jpg') }}">
                                                         <div class="view-products-hover-info">
                                                             <button v-on:click="addToCart({{ product.toJson() }})" class="icon-link-btn"><i class="fa fa-shopping-cart pr-2">
@@ -94,7 +94,7 @@
                                                     {% for product in productMenu|slice(0, 1) %}
                                                     <div class="item mr-2">
                                                         <div class="view-products-single-box">
-                                                            <div class="view-products-thumb">
+                                                            <div class="view-products-thumb rb-thumb">
                                                                 <img src="{{ asset('theme/images/DC-Motor-12v.jpg') }}">
                                                                 <div class="view-products-hover-info">
                                                                     <button v-on:click="addToCart({{ product.toJson() }})" class="icon-link-btn"><i class="fa fa-shopping-cart pr-2">
@@ -132,11 +132,12 @@
                                                     You may also like!
                                                 </h4>
                                             </li>
-                                             <ul class="you-may-like-area">
+                                             <ul class="you-may-like-area d-flex">
+                                                <li>
                                              {% for product in productMenu %}
                                             <div class="item mr-2">
                                                 <div class="view-products-single-box">
-                                                    <div class="view-products-thumb">
+                                                    <div class="view-products-thumb rb-thumb">
                                                         <img src="{{ asset('theme/images/DC-Motor-12v.jpg') }}">
                                                         <div class="view-products-hover-info">
                                                             <button v-on:click="addToCart({{ product.toJson() }})" class="icon-link-btn"><i class="fa fa-shopping-cart pr-2">
@@ -159,6 +160,7 @@
                                                     </div>
                                                 </div>
                                             </div>
+                                        </li>
                                             {% endfor %}
                                         </ul>
                                         </ul>

@@ -8,6 +8,7 @@ class Registration extends MY_Controller
 
         $this->load->library('doctrine');
         $this->load->Model('PageModel','PM');
+        $this->load->model('ProductModel', 'product');
         
         $this->load->helper('url');
     }
@@ -24,77 +25,75 @@ class Registration extends MY_Controller
         $email = $this->session->flashdata('email');
         $password = $this->session->flashdata('password');
         $confirm_password= $this->session->flashdata('confirm_password');
+        
+        $productMenu = $this->product->newArrival(4);
 
-        $this->twig->display('registration',compact('emailexit','userexit','name','email','password','confirm_password','questions','cap'));
+        $this->twig->display('registration',compact('emailexit','userexit','name','email','password','confirm_password','questions','cap','productMenu'));
     }
 
     public function process()
     {
       // print_r($this->input->post('answer')[0]); die;
-       // if($this->session->userdata('captchaWord') == $this->input->post('captcha')){
+    if($this->session->userdata('captchaWord') == $this->input->post('captcha')){
        
     
-                $this->load->library('form_validation');
-                $name = $this->input->post('name');
-                $email = $this->input->post('email');
-                $telephone = $this->input->post('phone');
-                $agree = $this->input->post('agree');
+            $this->load->library('form_validation');
+            $name = $this->input->post('name');
+            $email = $this->input->post('email');
+            $telephone = $this->input->post('phone');
+            $agree = $this->input->post('agree');
                 //$email = 'usamam744@gmail.com';
-                $password = $this->input->post('password');
-                $old_password = $this->input->post('password');
-                $confirm_password = $this->input->post('confirm_password');
-                $this->form_validation->set_rules('name', 'Name', 'required|is_unique[users.name]');
-                 $this->form_validation->set_rules('email', 'Email', 'required|valid_email|is_unique[users.email]');
-                $this->form_validation->set_rules('password', 'Password', 'required');
-                $this->form_validation->set_rules('confirm_password', 'Confirm Password', 'required|matches[password]');
+            $password = $this->input->post('password');
+            $old_password = $this->input->post('password');
+            $confirm_password = $this->input->post('confirm_password');
+            $this->form_validation->set_rules('name', 'Name', 'required|is_unique[users.name]');
+            $this->form_validation->set_rules('email', 'Email', 'required|valid_email|is_unique[users.email]');
+            $this->form_validation->set_rules('password', 'Password', 'required');
+            $this->form_validation->set_rules('confirm_password', 'Confirm Password', 'required|matches[password]');
         
-                if ($agree == 'on') {
-                    $config = Array(
-                        'protocol' => 'smtp',
-                        'smtp_host' => 'smtp.gmail.com',
-                        'smtp_port' => 465,
-                        'smtp_user' => 'redexsolutionspvtlmt@gmail.com',
-                        'smtp_pass' => 'rajinder@1995',
+            if ($agree == 'on') {
+                $config = Array(
+                    'protocol' => 'smtp',
+                    'smtp_host' => 'smtp.gmail.com',
+                    'smtp_port' => 465,
+                    'smtp_user' => 'redexsolutionspvtlmt@gmail.com',
+                    'smtp_pass' => 'rajinder@1995',
                        // 'mailtype' => 'html',
                         //'charset' => 'iso-8859-1'
-                    );
-
-    
-                    
-                    if ($this->form_validation->run() == True) {
-                        $this->load->library('email', $config);
-                        $secret = "35onoi2=-7#%g03kl";
-                        $emails = $email;
-                        $hash = MD5($email . $secret);
-                        $link = base_url() . 'registration/checkmail?email=' . $emails . '&code=' . $hash;
-                        $login = base_url() . 'login';
-                        $faqs = base_url() . 'page/faqs';
-                        $contact = base_url() . 'page/contact-us';
-                        $buy = base_url() . 'page/how-to-buy';
-                        $privacy = base_url() . 'page/privacy-policy';
-                        $trem = base_url() . 'page/terms-conditions';
+                );
+                if ($this->form_validation->run() == True) {
+                    $this->load->library('email', $config);
+                    $secret = "35onoi2=-7#%g03kl";
+                    $emails = $email;
+                    $hash = MD5($email . $secret);
+                    $link = base_url() . 'registration/checkmail?email=' . $emails . '&code=' . $hash;
+                    $login = base_url() . 'login';
+                    $faqs = base_url() . 'page/faqs';
+                    $contact = base_url() . 'page/contact-us';
+                    $buy = base_url() . 'page/how-to-buy';
+                    $privacy = base_url() . 'page/privacy-policy';
+                    $trem = base_url() . 'page/terms-conditions';
                         
                        // $oldpass  = $password;
 
-                        $em = $this->doctrine->em;
-                        $user = new Entity\User();
-                        $user->setName($name);
-                        $user->setEmail($email);
-                        $user->setPassword($password);
-          
-                      //  $user->setOldPassword($oldpass);
+                    $em = $this->doctrine->em;
+                    $user = new Entity\User();
+                    $user->setName($name);
+                    $user->setEmail($email);
+                    $user->setPassword($password);
+                                //  $user->setOldPassword($oldpass);
                         
-                        $user->setTelephone($telephone);
-                        $em->persist($user);
-                        $em->flush();
+                    $user->setTelephone($telephone);
+                    $em->persist($user);
+                    $em->flush();
                          
-                          foreach($this->input->post('question') as $key => $val){
-                               $data[] = array(
-                                    'user_id' => $user->getId(),
-                                    'question_id'=>$val,
-                                    'answer'=> $this->input->post('answer')[$key],
-                                );
-                          }
+                    foreach($this->input->post('question') as $key => $val){
+                        $data[] = array(
+                            'user_id' => $user->getId(),
+                            'question_id'=>$val,
+                            'answer'=> $this->input->post('answer')[$key],
+                        );
+                    }
                    
                     $security = $this->PM->adduserSecurity($data);
     
@@ -163,10 +162,10 @@ class Registration extends MY_Controller
                 $this->session->set_flashdata('confirm_password', $confirm_password);
                 redirect("registration");
             }
-        // }else{
-        //   //  $this->session->set_flashdata('message', "SUCCESS_MESSAGE_HERE"); 
-        //     redirect("registration");
-        // }
+        }else{
+            $this->session->set_flashdata('message', "SUCCESS_MESSAGE_HERE"); 
+            redirect("registration");
+        }
     }
 
     public function checkmail(){
