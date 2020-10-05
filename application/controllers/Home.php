@@ -94,7 +94,7 @@ class Home extends MY_Controller
             ->like("name", $q)
             ->get("products")
             ->result();
-         print_r($result); die;
+        // print_r($result); die;
         $this->output->set_content_type('application/json');
         $this->output->set_output(json_encode($result));
     }

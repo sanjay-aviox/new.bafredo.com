@@ -24,7 +24,7 @@ $(document).ready(function() {
   engine.get('1', '2', '3', '4', '5');
 
   function engineWithDefaults(q, sync, async) {
-  // alert(q);
+   alert("FFf");
     if (q === '') {
 
       sync(engine.get('1', '2', '3', '4', '5'));
@@ -39,7 +39,7 @@ $(document).ready(function() {
  jQuery( "#typeahead" ).keyup(function() {
 
   var datata = jQuery(this).val();
- alert(datata);
+ //alert("");
  // console.log( "Handler for .keypress() called." );
  if(jQuery(this).val() != ''){
  
