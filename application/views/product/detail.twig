@@ -24,6 +24,12 @@
             </div>
         </div>
     </section>
+    {% if msg %}
+        <div class="alert alert-primary"  style="margin: 0px 85px;" role="alert">
+           <button type="button" class="close" data-dismiss="alert">&times;</button>
+             {{ msg }}
+        </div>
+    {% endif %}
     <!-- breadcrumb section end -->
 
     <!-- product-detail-section start -->
@@ -33,7 +39,7 @@
                 <div class="col-12 col-lg-6">
                     <div class="product-thumb-detail-area">
                         <div class="product-thumb-detail-box">
-                            <img class="demo-trigger" src="{{ asset("uploads/product/thumbnail/#{product.getImage()}") }}" data-zoom="{{ asset("uploads/product/thumbnail/#{product.getImage()}") }}">
+                            <img class="demo-trigger" src="{{ asset('uploads/product/thumbnail/') }}{{product.getImage()}}" data-zoom="{{ asset('uploads/product/thumbnail/#{product.getImage()}') }}">
                         </div>
                     	
 	                    <div class="product-selector-box">
@@ -70,7 +76,9 @@
                         <!--div class="product-sold-box"><span>25 sold in last 4 hours</span></div-->
 
                         <div class="product-detail-info comn-info-scroll">
+
                             <p>{{ product.getIntroduction() | raw }}</p>
+                           
                         </div>
                         <div class="product-quantity-box">
                             <button type="submit" class="product-quantity-btn widgets-numberpicker-decrement" v-on:click="decrementValue"><i class="fa fa-minus"></i></button>
@@ -79,7 +87,7 @@
                             <input type="text" class="form-control product-quantity-input" v-model="product_quantity" v-on:keypress="onlyNumber" maxlength="9" minlength="1">
                             <button type="buttom" class="product-quantity-btn widgets-numberpicker-increment" v-on:click="incrementValue"><i class="fa fa-plus"></i></button>   
                         </div>
-                        <div class="product-btn-box mb-4"><button type="button" v-on:click="addToCart({{ product.toJson() }})" class="addCartBtn comn-btn black-btn w-100">Add to cart</button></div>
+                        <div class="product-btn-box mb-4"><button type="button" v-on:click="addToCart({{ product.toJson() }})" class="addCartBtn comn-btn w-100">Add to cart</button></div>
 
                         <div class="product-wishlist-box">                            
                             <a href="#" class="btn btn-default on wishlist addWishList" v-on:click="addToWishList({{ product.id }})" ><i class="fa fa-heart-o pr-2"></i>Add To Wishlist</a>
@@ -97,6 +105,10 @@
                             <div class="product-meta-box">
                                 <span class="product-meta-title">SKU:</span>
                                 <a href="#" class="product-meta-name">{{ product.getSku() }}</a>
+                                <span class="product-meta-title">Brand:</span>
+                                <a href="#" class="product-meta-name">{{ product.getBrand() }}</a>
+                                <span class="product-meta-title">Reward Points:</span>
+                                <a href="#" class="product-meta-name">{{ product.getRewardPoints() }}</a>
                             </div>
                             <!--div class="product-meta-box">
                                 <span class="product-meta-title">Categories:</span>
@@ -142,7 +154,12 @@
                     <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
                         <div class="product-description-area">
                             <div class="row">
-                                <div class="col-12 col-md-6">
+                                 {% if product.getIntroduction() %}
+                                {{ product.getIntroduction() | raw }}
+                                {% else %}
+                                No description available here 
+                                {% endif %}
+                                <!-- <div class="col-12 col-md-6">
                                     <div class="description-box">
                                         <div class="comn-description-title"><h3>TEMPUS CONSECTETUR</h3></div>
                                         <div class="description-info comn-info-scroll">
@@ -204,7 +221,7 @@
                                             </table>
                                         </div>
                                     </div>
-                                </div>
+                                </div> -->
                             </div>
                         </div>
                     </div>
@@ -216,7 +233,7 @@
                                         <div class="product-review-box">
                                             <div class="customer-review-title"><h3>Customer Reviews</h3></div>
                                             <div class="customer-review-box">
-                                               
+                                                 {% set i = 1 %}  
                                                 {% if review|length %}
                                                     <div class="lineFrame">
                                                         <div class="productLineFrame productCon">
@@ -229,6 +246,11 @@
 													                        {% endfor %}
 													                      <span>{{ rev.comment }}</span> 
 													                    <p>By: {{ rev.name }}</p>
+                                                                        
+                                                                        {% if rev.name  == user.name %}                                                                    
+                                                                            {% set i = i+1 %}       
+                                                                        {% endif %}
+                                                                  
 													                </div>
 													                {% endfor %}
                                                             </section>
@@ -237,7 +259,7 @@
                                                 {% endif %}
                             
                              					{% if user.name  is not null %}
-    
+                                                {% if i == 1 %}
 										        <div class="lineFrame">
 										            <div class="productLineFrame disqusFrame">
 										                <h4>REVIEW</h4>
@@ -258,6 +280,8 @@
 										                <!--disqus end-->
 										            </div>
 										        </div>
+                                               {% endif %}
+
 										            
 										    {% else %}
 										            <a href="{{ base_url('/login') }}" class="review-btn">Submit a Review</a>

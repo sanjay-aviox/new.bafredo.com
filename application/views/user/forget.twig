@@ -41,20 +41,22 @@
                           {% if password %}
                             <div class="alert alert-red error" style="color:red;float: left;">{{ password }}</div>
                         {% endif %}
-
+                        <br />
                         <input type="submit" name="" class="action-button" value="Submit"/>
                        
                     </form>
-                    <input type="button" name="next" class="next action-link-button" value="Try Another option"/>
+                    <input type="button" name="next" class="next action-link-button" style="color: #000;" value="Try Another option"/>
               </fieldset>
               <fieldset>
                 <h2 class="fs-title">Forgot password</h2>
                     <form action="{{ base_url('login/forgotpasswordProcess') }}" method="post">
                         
                         <input type="text" id="email" required name="email" placeholder="Email" class="form-control validate">
-                        <input type="submit" name="" class="action-button" value="Submit"/>
+
                     </form>
-                      <input type="button" name="previous" class="previous action-button" value="Previous" />
+                    <input type="button" name="previous" class="previous action-button" value="Previous" />
+                        <input type="submit" name="" class="action-button" value="Submit"/>
+                      
               </fieldset>
             </div>
             <!-- <div id="msform">  
@@ -92,11 +94,10 @@
 /*form styles*/
 .forgot-password-multiform{
   position: relative;
-  min-height: 350px;
-}
+  /*min-height: 350px;
+*/}
 #msform {
   position: relative;
-  text-align: center;
 }
 #msform fieldset {
   background: white;
@@ -123,11 +124,11 @@
 }
 #msform .action-button {
   width: 100px;
-  background: #3c2b86;
-  font-weight: bold;
-  color: white;
-  border: 0 none;
-  border-radius: 1px;
+  background: #1a87f6;
+  font-weight: 600;
+  color: #fff;
+  border: 2px solid #1a87f6;
+  border-radius: 0px;
   cursor: pointer;
   padding: 10px 5px;
   margin: 10px 5px;
@@ -146,11 +147,12 @@
 }
 .action-link-button:hover,
 .action-link-button:focus{
-  box-shadow: 0 0 0 0px transparent, 0 0 0 0px transparent;
-  outline: 0px !important;
+  box-shadow: 0;
+  outline: none;
 }
 #msform .action-button:hover, #msform .action-button:focus {
-  box-shadow: 0 0 0 2px white, 0 0 0 3px #3c2b86;
+  box-shadow: none;
+  outline: none;
 }
 .fs-title {
   font-size: 15px;
@@ -202,8 +204,8 @@
           //3. increase opacity of next_fs to 1 as it moves in
           opacity = 1 - now;
           current_fs.css({
-            'transform': 'scale('+scale+')',
-            'position': 'absolute'
+            'transform': 'scale('+scale+')'
+            // 'position': 'absolute'
           });
           next_fs.css({'left': left, 'opacity': opacity});
         }, 

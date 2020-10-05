@@ -31,10 +31,10 @@
                         <div class="account-heading"><h2><i class="fa fa-user"></i>Register</h2></div>
 
                         <form id="register" name="registration" action="{{ base_url('registration/process') }}" method="post">
-                            
+                              <span class="alert-msg" style="color:red;">{{ message | raw }}  </span>
                             <div class="form-group">
                                 <label for="user-name">Username <span class="required">*</span></label>
-                                <input type="text" name="name"  class="form-control" id="user-name" aria-describedby="emailHelp">
+                                <input type="text" name="name"  required class="form-control" id="user-name" aria-describedby="emailHelp">
                                  <span class="alert-msg" style="color:red;">{{ emailexit | raw }}  </span>
 
                                
@@ -42,21 +42,21 @@
                             </div>
                             <div class="form-group">
                                 <label for="mob">Mobile Number <span class="required">*</span></label>
-                                <input type="text" name="phone" class="form-control" id="mob" aria-describedby="emailHelp">
+                                <input type="text" name="phone" required class="form-control" id="mob" aria-describedby="emailHelp">
                             </div>
                             <div class="form-group">
                                 <label for="email">Email address <span class="required">*</span></label>
-                                <input type="text" name="email" class="form-control" id="email" aria-describedby="emailHelp">
+                                <input type="text" name="email" required class="form-control" id="email" aria-describedby="emailHelp">
                                  <span class="alert-msg" style="color:red;">{{ userexit | raw }}  </span>
                                
                             </div>
                             <div class="form-group">
                                 <label for="pass1">Password <span class="required">*</span></label>
-                                <input type="password" name="password" class="form-control" id="pass1">
+                                <input type="password" required  name="password" class="form-control" id="pass1">
                             </div>
                             <div class="form-group">
                                 <label for="pass2">Confirm Password <span class="required">*</span></label>
-                                <input type="password" name="confirm_password" class="form-control" id="pass2">
+                                <input type="password" required name="confirm_password" class="form-control" id="pass2">
                             </div>
                             <h4>Security Questions</h4></hr>
                             <div class="form-group">
@@ -107,7 +107,7 @@
                                 </div>
                                 <img src="{{ asset('img/refrsh.jpeg') }}" title="Refresh" height="50px" id="refreshCaptcha">
                                 </label>
-                                <input type="text" name="captcha" class="form-control" id="cp" placeholder="Enter Captcha..">
+                                <input type="text" required name="captcha" class="form-control" id="cp" placeholder="Enter Captcha..">
                             </div>
                             <div class="form-group form-check">
                                 <input type="checkbox" name="agree" class="form-check-input" id="exampleCheck1">
@@ -121,7 +121,7 @@
                     <div class="account-info-area">
                         <div class="account-heading text-center"><h2></i>Register</h2></div>
                         <div class="account-info"><p>Registering for this site allows you to access your order status and history. Just fill in the fields below, and we’ll get a new account set up for you in no time. We will only ask you for information necessary to make the purchase process faster and easier.</p></div>
-                        <div class="text-center"><a href="{{ base_url('/login') }}" class="comn-btn black-btn">Login</a></div>
+                        <div class="text-center"><a href="{{ base_url('/login') }}" class="comn-btn">Login</a></div>
                     </div>
                 </div>
             </div>
@@ -129,9 +129,87 @@
     </section>
 {% endblock %}
 {% block scripts %} 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.js"></script>
+    <script src="http://ajax.microsoft.com/ajax/jquery.validate/1.7/additional-methods.js"></script>
+    <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.js"></script>
 
+    <script type="text/javascript">
+$( document ).ready(function() {
+  
+$("#register").validate({
+    rules: {
+        name:{
+            required: true,
+            minlength:3,
+            maxlength:30
+        },
+        phone:{
+            required: true,
+             number:true,
+            minlength:10,
+            maxlength:15
+
+        },
+        email: {
+            required: true,
+            email: true,
+            maxlength:50
+        },      
+        password: {
+            required: true,
+            minlength:5,
+            maxlength:15
+        },
+        confirm_password:{
+            required: true,
+            equalTo: "#pass1"
+        },
+        captcha:{
+            required: true,
+            maxlength:6,
+            
+        },
+
+        agree:{
+            required: true,
+        },
+
+    },
+    messages: {
+        name:{
+            required: "User Name is required",
+            minlength:"Enter minimum 3 characters ",
+            maxlength:"Enter maximum 30 characters"
+        
+        },
+        phone:{
+            required: "Mobile Number is required",
+            minlength:"Enter minimum 10 numbers",
+            maxlength:"Enter maximum 15 numbers"
+        },
+        email: {
+            required: "Email is required",
+        },     
+        password: {
+            required: "Password is required",
+        },
+        confirm_password: " Enter Confirm Password Same as Password",
+
+        captcha:{
+            required: "Captcha is required",
+          
+           
+        },
+        agree:{
+            required: "Accept terms and condition is required",
+        }
+    },
+});
+});
+</script>
 <script>
+
+
+
    $(document).on('click', '#refreshCaptcha', function(){
 
         $.ajax({
@@ -197,88 +275,18 @@
     });
 
 
-        $().ready(function() {
-
-
-
-  
-            $("#register").validate({
-            
-                rules: {
-                    name:{
-                        required: true,
-                    },
-                    phone:{
-                        required: true,
-                    },
-                    email: {
-                        required: true,
-                        email: true
-                    },      
-                    password: {
-                        required: true,
-                    },
-                    confirm_password:{
-                        required: true,
-                        equalTo: "#pass1"
-                    },
-                    captcha:{
-                        required: true,
-                    },
-                    '#a1':{
-                      required: true,
-                    },
-
-                    agree:{
-                        required: true,
-                    },
-
-                },
-
-                messages: {
-                    name:{
-                        required: "User Name is required",
-                    },
-                    phone:{
-                       required: "Mobile Number is required",
-                    },
-                    email: {
-                        required: "Email is required",
-                    },     
-                    password: {
-                        required: "Password is required",
-                    },
-                    confirm_password: " Enter Confirm Password Same as Password",
-                    '#a1':{
-                       required: "Answer a1 is required",
-                    },
-                    captcha:{
-                        required: "Captcha is required",
-                    },
-                    agree:{
-                        required: "Accept terms and condition is required",
-                    }
-                },
-
-
-
-            });
-
-
 
 $("#btns").click(function(){
-            setTimeout(function() {
-            $("#q2").focusin();
-            $("#q2").focusout();
-            $("#q3").focusin();
-            $("#q3").focusout();
-            $("#qa").focusin();
-            $("#qa").focusout();
-            $("#a21d").focusin();
-            $("#a21d").focusout();
-         
-                    }, 1500);
-
+    setTimeout(function() {
+        $("#q2").focusin();
+        $("#q2").focusout();
+        $("#q3").focusin();
+        $("#q3").focusout();
+        $("#qa").focusin();
+        $("#qa").focusout();
+        $("#a21d").focusin();
+        $("#a21d").focusout();
+    }, 1500);
 });
             /*$("#q1").rules("add", {
                 required:true,
@@ -293,7 +301,7 @@ $("#btns").click(function(){
                 }
             });*/
       
-        });
+     
         
 </script>
 {% endblock %}

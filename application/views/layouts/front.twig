@@ -117,17 +117,17 @@ outline: none !important;
     <!-- top-section start -->
     <section class="top-section">
         <div class="container">
-            <div class="row">
-                <div class="col-6">
+            <div class="d-flex justify-content-between align-items-baseline">
+                <div class="">
                     <div class="top-left-contact-box">
                         <i class="fa fa-phone-square phone-icon pr-2"></i>
                         <span class="top-left-label">OUR PHONE NUMBER:</span>
                         <span>+255 (0) 746 624 875</span>
                     </div>
                 </div>
-                <div class="col-6 d-flex justify-content-end align-items-center">
+                <div class=" d-flex justify-content-end align-items-center">
                     <div class="top-right-menu-box">
-                        <ul class="navbar">
+                        <ul class="d-flex mb-0">
                              {% if not authCheck("user") %}
                             <li class="nav-item deactive"><a href="{{ base_url('login') }}" class="nav-link">LOGIN</a></li>
                             <li class="nav-item deactive"><a href="{{ base_url('/registration') }}" class="nav-link">REGISTER</a></li>
@@ -175,9 +175,32 @@ outline: none !important;
                             <div id="myMobileNav" class="mobile-overlay">
                                 <div class="d-flex justify-content-between align-items-center">
                                     <div class="mob-account-box">
-                                        <i class="fa fa-user"></i>
+                                        <div class="top-right-menu-box">
+                        <ul class="mob-log d-flex mb-0">
+                             {% if not authCheck("user") %}
+                            <li class="nav-item deactive"><a href="{{ base_url('login') }}" class="nav-link p-0">LOGIN</a></li>
+                            <li class="nav-item deactive"><a href="{{ base_url('/registration') }}" class="nav-link py-0 px-3">REGISTER</a></li>
+                            {% else %}
+                            <!-- <li class="nav-item"><a href="{{ base_url('user/logout') }}" class="nav-link">Logout</a></li> -->
+                            <div class="account-box">
+                                <a href="#" class="account-icon" type="button">
+                                    <i class="fa fa-user-o"></i>&nbsp<span class="username">{{ getAuthUser("user").name }}</span>
+                                </a>
+                                <div class="account-dropdown-menu" style="left: 0;">
+                                    <div class="headImg"><img src="{{ user.getUserImg() is empty ? base_url('assets/front/image/profile.png') : base_url('assets/front/image/users/')~user.getUserImg() }} " alit="dp">{{ getAuthUser("user").name }}</div>
+                                    <a class="account-dropdown-item" href="{{ base_url('account') }}">My Account</a>
+                                    <a class="account-dropdown-item" href="{{ base_url('account/order_history') }}">Order history</a>
+                                    <a class="account-dropdown-item" href="{{ base_url('account/wish_list') }}">Wishlist</a>
+                                    <a class="account-dropdown-item" href="{{ base_url('user/logout') }}">Logout</a>
+                                </div>
+                            </div>
+                             {% endif %}
+                        </ul>                
+                    </div>
+                                        <!-- <i class="fa fa-user"></i>
+
                                         <a href="#" class="mob-account-link">Login <span class="pl-1">/</span></a>
-                                        <a href="#" class="mob-account-link">Register</a>
+                                        <a href="#" class="mob-account-link">Register</a> -->
                                     </div>
                                     <a href="javascript:void(0)" class="closebtn" onclick="closeMobileNav()">&times;</a>
                                 </div>
@@ -192,32 +215,7 @@ outline: none !important;
                                         <a href="#" class="mob-nav-link dropdown-btn">Category <i class="fa fa-chevron-down"></i></a>
                                         <ul class="dropdown-container">
                                             <li class="mob-dropdown-item">
-<<<<<<< HEAD
-                                                 <a  class="ob-dropdown-link" href="{{ base_url('product/all') }}">All Products</a>
-
-                                                  {% for menu in menus %}
-                                                    {% if menu.getSubCategories() == null %}
-                                                        <a class="mob-dropdown-link" id="v-pills-home-tab" data-toggle="pill" href="#BlankTab" role="tab" aria-controls="v-pills-home" aria-selected="true">{{ menu.getName() }}</a>
-                                                    {% endif %}
-                                                    {% endfor %}
-
-                                                    {% for menu in menus %}
-                                                    {% if menu.getSubCategories() != null %}
-                                                        <a class="sub-menu-heading-link" id="v-{{ menu.getName() }}" data-toggle="pill" href="#{{ menu.getName() |replace({' ': ''})}}" role="tab" aria-controls="v-pills-home" aria-selected="true">{{ menu.getName() }}</a>
-                                                    {% endif %}
-                                                    {% endfor %}
-
-                                            </li>
-                                       
-                                        </ul>
-                                    </li>
-                                   
-                                </ul>
-                            </div>
-                            <!-- mobile sidebar end -->
-=======
                                                  <a  class="mob-dropdown-link" href="{{ base_url('product/all') }}">All Products</a>
->>>>>>> 1b446810f9756370e1c55c1c749db60c15c0688f
 
                                                   {% for menu in menus %}
                                                     {% if menu.getSubCategories() == null %}
@@ -230,135 +228,10 @@ outline: none !important;
                                                         <a class="mob-dropdown-link" id="v-{{ menu.getName() }}" href="{{ base_url('/category/')}}{{ menu.getSlug() }}">{{ menu.getName() }}</a>
                                                     {% endif %}
                                                     {% endfor %}
-<<<<<<< HEAD
-                                                </div>
-                                            </div>
-                                            <div class="col-12 col-md-9">
-                                            <div class="tab-content" id="v-pills-tabContent">
-                                                <div id="product">
-                                                    <div class="col-12 col-md-4">
-                                                         <ul class="you-may-like-area">
-                                                            <li class="you-may-like-heading">
-                                                                <h4>You may also like!</h4>
-                                                            </li>
-                                                            {% for product in productMenu %}
-                                                            <div class="item">
-                                                                <div class="view-products-single-box">
-                                                                    <div class="view-products-thumb">
-                                                                        <img src="{{ asset('theme/images/DC-Motor-12v.jpg') }}">
-                                                                            <div class="view-products-hover-info">
-                                                                                <button v-on:click="addToCart({{ product.toJson() }})" class="icon-link-btn"><i class="fa fa-shopping-cart pr-2"></i> Add to cart</button>
-                                                                                </div>
-                                                                            </div>
-                                                                            <div class="view-products-info">                            
-                                                                                <div class="view-products-title">
-                                                                                    <h3><a href="#"> {{ product.name }}</a></h3>
-                                                                                    <span class="view-products-price">{{ product.currency ~' '~ product.price }}</span>
-                                                                                </div>
-                                                                            </div>
-                                                                            <div class="hover-icon-link-box">
-                                                                                <a v-on:click="addToWishList({{product.toJson() }})" class="hover-icon-link" data-toggle="tooltip" data-placement="left" title="" data-original-title="Wishlist"><i class="fa fa-heart-o"></i></a>
-                                                                               
-                                                                                <a  href="{{ base_url('product/detail/') }}{{product.slug}}" class="hover-icon-link" data-toggle="tooltip" data-placement="left" title="" data-original-title="Quick view"><i class="fa fa-search-plus" data-toggle="modal"></i></a>
-                                                                                </div> 
-                                                                        </div>
-                                                                        </div>
-                                                            
-                                                            {% endfor %}
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                                {% for menu in menus %}
-                                                    <div class="tab-pane fade" id="{{ menu.getName() |replace({' ': ''}) }}" role="tabpanel" aria-labelledby="v-{{ menu.getName() }}">
-                                                        <div class="container-fluid">
-                                                            <div class="row">
-                                                                <div class="col-12  col-md-8">
-                                                                    <ul class="sub-menu">
-                                                                    {% for smenu in menu.getSubCategories() %}
-                                                                        <li class="sub-menu-item">
-                                                                            <a href="#" class="sub-menu-link">{{ smenu.getName() }}</a>
-                                                                        </li>
-                                                                    {% endfor %}
-                                                                    </ul>
-                                                                </div>
-                                                                <div class="col-12 col-md-4">
-                                                                    <ul class="you-may-like-area">
-                                                                        <li class="you-may-like-heading">
-                                                                            <h4>You may also like!</h4>
-                                                                        </li>
-                                                                        <div class="you-may-like-Slider owl-carousel owl-theme">
-                                                                        <div class="item">
-                                                                        <div class="view-products-single-box">
-                                                                        <div class="view-products-thumb">
-                                                                            <img src="{{ asset('theme/images/DC-Motor-12v.jpg') }}">
-                                                                            <div class="view-products-hover-info">
-                                                                            <button class="icon-link-btn" onclick="openNav()"><i class="fa fa-shopping-cart pr-2"></i> Add to cart</button>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="view-products-info">                            
-                                                                            <div class="view-products-title">
-                                                                                <h3><a href="#">4WD-Smart-Robot-Car-Chassis-Kit</a></h3>
-                                                                                <span class="view-products-price">TZS&nbsp;55,000</span>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="hover-icon-link-box">
-                                                                            <a href="#" class="hover-icon-link" data-toggle="tooltip" data-placement="left" title="" data-original-title="Wishlist"><i class="fa fa-heart-o"></i></a>
-                                                                            <a href="#" class="hover-icon-link" data-toggle="tooltip" data-placement="left" title="" data-original-title="Compare"><i class="fa fa-refresh"></i></a>
-                                                                            <a href="#" class="hover-icon-link" data-toggle="tooltip" data-placement="left" title="" data-original-title="Quick view"><i class="fa fa-search-plus" data-toggle="modal" data-target="#quickViewModal"></i></a>
-                                                                            </div>
-                                                                        </div>
-                                                                        </div>
-                                                                        </div>
-                                                                    </ul>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                {% endfor %}
-                                                <div class="tab-pane fade" id="BlankTab" role="tabpanel" aria-labelledby="v-pills-profile-tab">
-                                                    <div class="col-12 col-lg-4 col-md-6">
-                                                                    <ul class="you-may-like-area">
-                                                                        <li class="you-may-like-heading">
-                                                                            <h4>You may also like!</h4>
-                                                                        </li>
-                                                                        <div class="you-may-like-Slider owl-carousel owl-theme">
-                                                                        <div class="item">
-                                                                        <div class="view-products-single-box">
-                                                                        <div class="view-products-thumb">
-                                                                            <img src="{{ asset('theme/images/DC-Motor-12v.jpg') }}">
-                                                                            <div class="view-products-hover-info">
-                                                                            <button class="icon-link-btn" onclick="openNav()"><i class="fa fa-shopping-cart pr-2"></i> Add to cart</button>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="view-products-info">                            
-                                                                            <div class="view-products-title">
-                                                                                <h3><a href="#">4WD-Smart-Robot-Car-Chassis-Kit</a></h3>
-                                                                                <span class="view-products-price">TZS&nbsp;55,000</span>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="hover-icon-link-box">
-                                                                            <a href="#" class="hover-icon-link" data-toggle="tooltip" data-placement="left" title="" data-original-title="Login to use whishlist"><i class="fa fa-heart-o"></i></a>
-                                                                            <a href="#" class="hover-icon-link" data-toggle="tooltip" data-placement="left" title="" data-original-title="Compare"><i class="fa fa-refresh"></i></a>
-                                                                            <a href="#" class="hover-icon-link" data-toggle="tooltip" data-placement="left" title="" data-original-title="Quick view"><i class="fa fa-search-plus" data-toggle="modal" data-target="#quickViewModal"></i></a>
-                                                                            </div>
-                                                                        </div>
-                                                                        </div>
-                                                                        </div>
-                                                                    </ul>
-                                                                </div>
-                                                </div>
-                                               
-                                            </div>
-                                            </div>
-                                            </div>
-                                            </div>  
-                                        </div>
-=======
 
                                             </li>
                                        
                                         </ul>
->>>>>>> 1b446810f9756370e1c55c1c749db60c15c0688f
                                     </li>
                                    
                                 </ul>
@@ -404,7 +277,7 @@ outline: none !important;
                                     <div class="ProfileCard-details">
                                         <div class="ProfileCard-realName">{{name}}</div>
                                         <div class="ProfileCard-screenName">@{{brand}}</div>
-                                        <div class="ProfileCard-description">{{ description }}</div>
+                                        <div class=" check">{{ description }}</div>
                                     </div>
 
                                     <div class="ProfileCard-stats">
@@ -460,7 +333,7 @@ outline: none !important;
                 <div class="col-12 col-lg-4 col-md-6">
                     <div class="footer-logo-box deactive">
                         <div class="footer-thumb">
-                           <a href="{ base_url('/') }}"><img src="{{ asset('theme/images/color-logo.png') }}"></a>
+                           <a href="{{ base_url('/') }}"><img src="{{ asset('theme/images/color-logo.png') }}"></a>
                         </div> 
                         <div class="pb-4">
                             <h4 class="footer-comn-inner-heading">You can reach us on</h4>
@@ -522,11 +395,7 @@ outline: none !important;
             <div class="row">
                 <div class="col-12 col-md-12">
                     <div class="copyright-area">
-<<<<<<< HEAD
-                        <p class="mb-0">© 2015 - {{ 'now' | date('Y') }} BAFREDO Electronics Limited. All rights reserved</p>
-=======
                         <p class="mb-0">© 2015 - {{ 'now' | date('Y') }} BAFREDO Electronics Limited. All rights reserved.</p>
->>>>>>> 1b446810f9756370e1c55c1c749db60c15c0688f
                     </div>
                 </div>
             </div>

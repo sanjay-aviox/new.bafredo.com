@@ -24,7 +24,9 @@ $(document).ready(function() {
   engine.get('1', '2', '3', '4', '5');
 
   function engineWithDefaults(q, sync, async) {
+  // alert(q);
     if (q === '') {
+
       sync(engine.get('1', '2', '3', '4', '5'));
       async([]);
     }
@@ -34,29 +36,30 @@ $(document).ready(function() {
     }
   }
 
-//  jQuery( "#typeahead" ).keyup(function() {
+ jQuery( "#typeahead" ).keyup(function() {
 
-//   var datata = jQuery(this).val();
-//  alert(datata);
-//  // console.log( "Handler for .keypress() called." );
-//  if(jQuery(this).val() != ''){
+  var datata = jQuery(this).val();
+ alert(datata);
+ // console.log( "Handler for .keypress() called." );
+ if(jQuery(this).val() != ''){
  
-// }
-// });
+}
+});
  //function engi() {
   $('#typeahead').typeahead(null,{
-    //hint: $('.Typeahead-hint'),
-    //menu: "",
-  //  minLength: 0,
-    //prefetch: '../data/nba.json',
-//     classNames: {
-//       //open: 'is-open',
-//       empty: 'is-empty',
-//       cursor: 'is-active',
-//       suggestion: 'Typeahead-suggestion',
-//       selectable: 'Typeahead-selectable'
-//     }
-//   }, {
+    hint: $('.Typeahead-hint'),
+    menu: "",
+   minLength: 0,
+    prefetch: '../data/nba.json',
+    classNames: {
+      //open: 'is-open',
+      empty: 'is-empty',
+      cursor: 'is-active',
+      suggestion: 'Typeahead-suggestion',
+      selectable: 'Typeahead-selectable'
+    }
+  }, {
+
     source: engineWithDefaults,
     name: 'slug',
     display: 'name',
@@ -64,7 +67,7 @@ $(document).ready(function() {
     templates: {
        footer:header,
       
-       suggestion: template,
+      suggestion: template,
        empty: empty
     }
   })

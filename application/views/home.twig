@@ -49,18 +49,40 @@
         pointer-events: none;
         background:#ccc;
     }
-<<<<<<< HEAD
-=======
 
   
->>>>>>> 1b446810f9756370e1c55c1c749db60c15c0688f
 </style>
 {% endblock %}
 {% block content %}
 <section class="slider-section owl-carousel owl-theme">
-<<<<<<< HEAD
-
-    <div class="item slider-detail" style="background-image: url(assets/theme/images/slider-1.png);">
+    {% if specail_products %}
+     {% for product in specail_products %}  
+        <div class="item slider-detail" style="background-image: url(assets/theme/images/1722.jpg)">
+        <div class="container slider-content">
+           <div class="row">
+               <div class="col-md-6">
+                    <div class="slider-heading">
+                        <h2>
+                            {{ product.name }}
+                        </h2>
+                    </div>
+                    <div class="slider-info">
+                        <p>
+                            {{product.description|striptags}}
+                        </p>
+                        <h1>{{ product.currency ~' '~ product.price }}</h1>
+                        <button v-on:click="addToCart({{ product.toJson() }})" class="Addbutton" style=" background-color: #1e94f9; border: none;color: white;padding: 15px 32px; text-align: center;text-decoration: none;display: inline-block;font-size: 16px;margin: 4px 2px; cursor: pointer;">Add To Cart</button>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <img src='{{ asset("uploads/product/thumbnail/") }}{{ product.image}}' alt="{{ product.name }}"  title="{{ product.name }}">
+                </div>
+            </div>
+        </div>
+        </div>
+     {% endfor %}
+    {% else %}
+        <div class="item slider-detail" style="background-image: url(assets/theme/images/slider-1.png);">
         <div class="container slider-content">
             <div class="slider-heading">
                 <h2>
@@ -88,35 +110,8 @@
             </div>
         </div>
     </div>
-    
-=======
-     {% for product in specail_products %}  
-    <div class="item slider-detail" style="background-image: url(assets/theme/images/1722.jpg)">
-        <div class="container slider-content">
-           <div class="row">
-               <div class="col-md-6">
-                    <div class="slider-heading">
-                        <h2>
-                            {{ product.name }}
-                        </h2>
-                    </div>
-                    <div class="slider-info">
-                        <p>
-                            {{product.description|striptags}}
-                        </p>
-                        <h1>{{ product.currency ~' '~ product.price }}</h1>
-                        <button v-on:click="addToCart({{ product.toJson() }})" class="Addbutton" style=" background-color: #1e94f9; border: none;color: white;padding: 15px 32px; text-align: center;text-decoration: none;display: inline-block;font-size: 16px;margin: 4px 2px; cursor: pointer;">Add To Cart</button>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <img src='{{ asset("uploads/product/thumbnail/") }}{{ product.image}}' alt="{{ product.name }}" style="width: 427px;" title="{{ product.name }}">
-                </div>
-            </div>
-        </div>
-    </div>
-     {% endfor %}
+    {% endif %}
 
->>>>>>> 1b446810f9756370e1c55c1c749db60c15c0688f
 </section>
 <!-- slider section end -->
 {{ include('partials/home/product_list.twig') }}

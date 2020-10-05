@@ -23,6 +23,15 @@ class OrderModel extends CI_Model
             $this->db->delete('orders', array('id' => $id_ord));
         }
     }
+
+    public function lastOrder(){
+
+       $last_record = $this->db->order_by('id',"desc")
+            ->where('date(created_at)', '=', date('Y-m-d'))
+            ->get('orders')
+            ->row();
+       return $last_record;
+    }
     public function allByDate($user_id, $data)
     {
        

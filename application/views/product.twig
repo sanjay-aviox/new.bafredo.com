@@ -22,6 +22,7 @@
     <!-- view Products section start -->
     <section class="view-products-section py-4">
         <div class="container">
+            {% if products %}
             <div class="row">
                 {% for product in products %}
                     <div class="col-12 col-lg-3 col-md-4 col-sm-6">
@@ -147,8 +148,11 @@
                         </div>
                     </div>
                 {% endfor %}
-              
             </div>
+              <div class="pegin">{{links | raw }}
+            {% else %}
+                <div class="alert alert-primary" style="margin: 10px 33px;">No products are available.</div><br>
+        {% endif %}
         </div>
 
 

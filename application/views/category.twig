@@ -1,5 +1,6 @@
 {% extends "layouts/front.twig" %}
 {% block content %}
+
 <section class="breadcrumb-section">
     <div class="container">
         <div class="row">
@@ -31,7 +32,7 @@
            
             {% if subCategories|length %}
                {% for subCategories in subCategories %}
-                   <li><a title="Arduino Accessories" href='{{ base_url("category/#{parent_slug}/#{subCategories.getSlug()}") }}'>{{ subCategories.getName() }}</a> 
+                   <li class="subList"><a title="Arduino Accessories" href='{{ base_url("category/#{parent_slug}/#{subCategories.getSlug()}") }}'>{{ subCategories.getName() }}</a> 
                 {% endfor %}</li>
 
             {% endif %}

@@ -252,7 +252,7 @@
                             </div>
                             <div class="form-group">
                                 <div class="custom-control custom-checkbox my-2 mr-sm-2">
-                                    <input type="checkbox" value="Yes" class="custom-control-input chkBike" id="customControlInline2">
+                                    <input type="checkbox" value="Yes" class="custom-control-input chkBike" name="save_address" id="customControlInline2">
                                    <!--  <input class="chkBike" type="checkbox custom-control-input" name="save_address" value="Yes" id="customControlInline2"/> -->
                                     <label class="custom-control-label" for="customControlInline2">Save this information for next time</label>
                                 </div>
@@ -266,7 +266,8 @@
 							<h3>Shipping Method <span class="red-asterisk">*</span></h3>
 							<ul class="sec-shipping-method">
 								<li>
-									<input type="radio" v-model="ship"  name="shipping_method"  value="Self_Collection" id="Self-Collection" checked="checked"/>
+
+									<input type="radio" v-model="ship"  name="shipping_method"  value="Self_Collection" id="Self-Collection"/>
 									<label for="Self-Collection">Self-Collection (Free)</label>
 									<span class="glyphicon glyphicon-info-sign" v-on:click="first()"></span>
 									{#<div class="alert alert-info bank-detail" v-show="toggleBankDetailBox">#}

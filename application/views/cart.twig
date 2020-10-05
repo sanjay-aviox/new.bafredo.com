@@ -41,10 +41,10 @@
 											</label>
 										</th>
 										<th class="text-left">Product Name</th>
-										<th class="text-center">Price</th>
-										<th class="text-center">Quantity</th>
-										<th class="text-center">Total</th>
-										<th class="text-center"></th>
+										<th class="text-left">Price</th>
+										<th class="text-left">Quantity</th>
+										<th class="text-left">Total</th>
+										<th class="text-left"></th>
                                         
                                     </tr>
                                 </thead>
@@ -93,7 +93,7 @@
             <div class="row pt-4">
                 <div class="col-12 col-md-12">
                     <div class="cart-actions-box">
-                        <button class="comn-btn black-btn" v-bind:disabled="selectedCartItems.length == 0" id="deletedItem">Delete Selected</button>
+                        <button class="comn-btn " v-bind:disabled="selectedCartItems.length == 0" id="deletedItem">Delete Selected</button>
 
                       
                     </div>
@@ -142,7 +142,7 @@
                             </form-->
                            
 
-                            <button class="comn-btn w-100 btn-confirm" v-on:click="cartCheckout()" v-bind:disabled="selectedCartItems.length == 0">Continue</button>
+                            <button class="comn-btn w-100 account-outline-btn" v-on:click="cartCheckout()" v-bind:disabled="selectedCartItems.length == 0">Continue</button>
                             <!---button type="submit" class="comn-btn w-100"><a href="checkout.html">Proceed to Checkout</a></button--->
                         </div>
                     </div>

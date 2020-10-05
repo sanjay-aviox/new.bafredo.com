@@ -76,6 +76,7 @@ $route['category(.*)'] = 'category/index$1';
 $route['verifyEmail'] = 'account/verifyemail';
 $route['match-otp'] = 'account/confirmOTP';
 $route['feature-product'] = 'home/feature';
+$route['feature-product/(.*)'] = 'home/feature';
 $route['search-product'] = 'home/searchresult';
 $route['filter-product'] = 'home/filters';
 $route['refresh-captcha'] = 'registration/refreshCaptcha';

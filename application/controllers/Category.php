@@ -18,11 +18,7 @@ class Category extends MY_Controller
         $products = array();
         $subCategories = array();
         $productMenu = $this->product->newArrival(4);
-<<<<<<< HEAD
-
-=======
        
->>>>>>> 1b446810f9756370e1c55c1c749db60c15c0688f
         if (empty($child_slug)) {
             $category = $this->menu->getMainCategoryBySlug($parent_slug);
             $mainCategoryId = $category->getId();
@@ -43,10 +39,6 @@ class Category extends MY_Controller
             $subCategories = $this->menu->getSubCategoriesByParentId($mainCategoryId);
         }
 
-<<<<<<< HEAD
-        $this->twig->display('category', compact('products', 'subCategories', 'parent_slug','productMenu'));
-=======
         $this->twig->display('category', compact('products', 'subCategories', 'category','parent_slug','productMenu'));
->>>>>>> 1b446810f9756370e1c55c1c749db60c15c0688f
     }
 }

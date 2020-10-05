@@ -26,17 +26,19 @@ class Cart extends MY_Controller
         $this->load->model('ProductModel', 'product');
         $this->load->model("CategoryModel","category");
 
+
     }
 
     public function index()
     {
-        $productMenu = $this->product->newArrival(4);
+        $productMenu = $this->product->newArrival(5);
         $this->twig->display('cart',compact('productMenu'));
     }
 
     public function add()
     {
         $cart = $this->input->post();
+      //  print_r($cart); print_r($this->session->userdata('cart')); die;
         $this->session->set_userdata("cart", $cart);
         $this->output->set_content_type("application/json");
         $this->output->set_output(json_encode(array(
@@ -230,7 +232,7 @@ class Cart extends MY_Controller
         );
 
         $distircts = $this->AM->get_region();
-        $productMenu = $this->product->newArrival(4);
+        $productMenu = $this->product->newArrival(5);
         $this->twig->display('cart/checkout', compact('shippingAddress', 'cities','distircts','cart_checkout','productMenu'));
     }
 
@@ -245,6 +247,11 @@ class Cart extends MY_Controller
 
     public function save_order($payload)
     {
+       // print_r($payload); die;
+          if (! authCheck("user")) {
+            redirect("login");
+        }
+
         $user = getAuthUser('user');
 
         // Save shipping address in address book.
@@ -263,7 +270,14 @@ class Cart extends MY_Controller
                 $total += ($_cart->price * $_cart->quantity);
             }
             $currency = $this->session->userdata('currency');
-
+           $this->load->model('OrderModel');
+           $last =  $this->OrderModel->lastOrder();
+// print_r($last->invoice); die;
+if(isset($last->invoice)){
+            $invoice = $last->invoice+1;
+        }else{
+             $invoice = 1;
+        }
             $order = array(
                 'user_id' => $user->getId(),
                 'items' => $cart->items,
@@ -274,6 +288,7 @@ class Cart extends MY_Controller
                 'shipping_method' => $payload['shipping_method'],
                 'shipping_address' => json_encode($payload['shippingAddress']),
                 'order_status' => 'Pending',
+                'invoice'=> $invoice,
                 'created_at' => date('Y-m-d H:i:s')
             );
             $this->db->insert('orders', $order);
@@ -315,16 +330,10 @@ class Cart extends MY_Controller
             redirect('cart/checkout');
         }
 
-<<<<<<< HEAD
-        $payload = $this->input->post();
-         $productMenu = $this->product->newArrival(4);
-        // Save payload in session for form auto fill.
-=======
 
-        $payload = $this->input->post();
-         $productMenu = $this->product->newArrival(4);
+        $payload = $this->input->post(); //echo"<pre>"; print_r($payload); die;
+        $productMenu = $this->product->newArrival(5);
      
->>>>>>> 1b446810f9756370e1c55c1c749db60c15c0688f
         $this->session->set_userdata('formdata', $payload);
         // Save order
         $order = $this->save_order($payload);
@@ -344,10 +353,7 @@ class Cart extends MY_Controller
         } else if ($order->payment_method == "bank_transfer") {
             $this->twig->display('cart/gateway/bank_transfer', compact('order','charge','productMenu'));
         } else if ($order->payment_method == "pesapal") {
-<<<<<<< HEAD
-=======
             
->>>>>>> 1b446810f9756370e1c55c1c749db60c15c0688f
             $this->twig->display('cart/gateway/pesapal', compact('order','charge','productMenu'));
         }
     }
@@ -356,13 +362,9 @@ class Cart extends MY_Controller
     {
         //$this->load->view('invoice');
         $this->db->where('id', $order_number);
-<<<<<<< HEAD
-         $productMenu = $this->product->newArrival(4);
-=======
-        $productMenu = $this->product->newArrival(4);
->>>>>>> 1b446810f9756370e1c55c1c749db60c15c0688f
+        $productMenu = $this->product->newArrival(5);
         $order = $this->db->get('orders')->row();
-        $order->invoice =  date("Ymd", strtotime($order->created_at)); ;
+        $order->invoice =  date("Ymd", strtotime($order->created_at))."00".$order->invoice;
         
         
         if($order->shipping_method == 'Cash_On_Delivery'){
@@ -481,7 +483,7 @@ class Cart extends MY_Controller
     public function tigopesaCallback()
     {
         $user = getAuthUser('user');
-        $productMenu = $this->product->newArrival(4);
+        $productMenu = $this->product->newArrival(5);
         if (empty($user)) {
             show_error("No active user session found", 402, "Authentication Error");
         }
@@ -510,7 +512,7 @@ class Cart extends MY_Controller
             redirect('cart/checkout');
         }
         
-        $productMenu = $this->product->newArrival(4);
+        $productMenu = $this->product->newArrival(5);
         $order_number = $this->input->post('order_number');
 
         // Load order
@@ -663,7 +665,7 @@ class Cart extends MY_Controller
             curl_close ($ch);
 file_put_contents('application/logs/pesapal-ipn-rsp.json', $status . PHP_EOL, FILE_APPEND);
             // UPDATE YOUR DB TABLE WITH NEW STATUS FOR TRANSACTION WITH pesapal_transaction_tracking_id $pesapalTrackingId
-            $productMenu = $this->product->newArrival(4);
+            $productMenu = $this->product->newArrival(5);
             if($status == "COMPLETED")
             {
                 $this->db->set("order_status", "Confirm");

@@ -1,64 +1,64 @@
 {% extends "layouts/front.twig" %}
 {% block content %}
-    
-      <section class="breadcrumb-section">
-        <div class="container">
-            <div class="row">
-                <div class="col-12 col-md-12">
-                    <div class="breadcrumb-area">
-                        <nav aria-label="breadcrumb" class="comn-breadcrumb-nav">
-                            <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="#"><i class="fa fa-home pr-2"></i>Home</a></li>
-                                <li class="breadcrumb-item active" aria-current="page">All Product</li>
-                            </ol>
-                        </nav>
-                    </div>
+
+<section class="breadcrumb-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-md-12">
+                <div class="breadcrumb-area">
+                    <nav aria-label="breadcrumb" class="comn-breadcrumb-nav">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item">
+                                <a href="#"><i class="fa fa-home pr-2">
+                                    </i>Home</a>
+                            </li>
+                            <li class="breadcrumb-item active" aria-current="page">
+                                All Product
+                            </li>
+                        </ol>
+                    </nav>
                 </div>
             </div>
         </div>
-    </section>
-    <!-- breadcrumb section end -->
-
-    <!-- view Products section start -->
-    <section class="view-products-section py-4">
-        <div class="container">
-            <div class="row">
-		            {% for product in featured_product %}
-		                 <div class="col-12 col-lg-3 col-md-4 col-sm-6">
-                        <div class="view-products-single-box">
-                            <div class="view-products-thumb">
-                                <a href="{{ base_url("product/detail/#{product.slug}") }}"> <img src="{{ asset("uploads/product/thumbnail/#{product.getImage()}") }}"></a>
-                                <div class="view-products-hover-info">
-                                    <button v-on:click="addToCart({{ product.toJson() }})" class="icon-link-btn" onclick="openNav()" data-toggle="tooltip" data-placement="top" title="Add to cart"> 
-
-                                    <i class="fa fa-shopping-cart pr-2"></i> Add to cart</button>
-                                </div>
-                            </div>
-                            <div class="view-products-info">                            
-                                <div class="view-products-title">
-                                    <h3><a href=#"> {{ product.getName() }} </a></h3>
-                                    <span class="view-products-price">{{ product.getCurrency() ~' '~ product.getPrice() | round }}</span>
-                                </div>
-                            </div>
-                            <div class="hover-icon-link-box">                            
-                                
-
-                                <a href="#" v-on:click="addToWishList({{ product.id }})" class="hover-icon-link" data-toggle="tooltip" data-placement="top" title="Wishlist">   
-
-                                <i class="fa fa-heart-o"></i></a>
-                                <!--a href="#" class="hover-icon-link" data-toggle="tooltip" data-placement="left" title="Compare"><i class="fa fa-refresh"></i></a-->
-                                <a href="#" class="hover-icon-link" data-toggle="tooltip" data-placement="left" title="Quick view"><i class="fa fa-search-plus" data-toggle="modal" data-target="#quickViewModal_{{product.id}}"></i></a>
-
-                                 <!--a href="{{ base_url("product/detail/#{product.slug}") }}" class="hover-icon-link icon-link" data-toggle="tooltip" data-placement="top" title="Quick view"><i class="fa fa-search-plus" data-toggle="modal" data-target="#quickViewModal"></i></a-->
-                            </div>
+    </div>
+</section>
+<section class="view-products-section py-4">
+    <div class="container">
+        {% if featured_product %}
+        <div class="row">
+            {% for product in featured_product %}
+            <div class="col-12 col-lg-3 col-md-4 col-sm-6">
+                <div class="view-products-single-box">
+                    <div class="view-products-thumb">
+                        <a href="{{ base_url('product/detail/#{product.slug}') }}"> <img src="{{ asset('uploads/product/thumbnail/') }}{{product.getImage()}}"></a>
+                        <div class="view-products-hover-info">
+                            <button v-on:click="addToCart({{ product.toJson() }})" class="icon-link-btn" onclick="openNav()" data-toggle="tooltip" data-placement="top" title="Add to cart"> 
+                                <i class="fa fa-shopping-cart pr-2">
+                                </i> Add to cart</button>
                         </div>
                     </div>
+                    <div class="view-products-info">
+                        <div class="view-products-title">
+                            <h3><a href="#"> {{ product.getName()|striptags|slice(0, 20) }} </a></h3>
+                            <span class="view-products-price">{{ product.getCurrency() ~' '~ product.getPrice() | round }}</span>
+                       </div>
+                    </div>
 
+                    <div class="hover-icon-link-box">                            
+                        <a href="#" v-on:click="addToWishList({{ product.id }})" class="hover-icon-link" data-toggle="tooltip" data-placement="top" title="Wishlist"><i class="fa fa-heart-o"></i></a>
+                        <a href="#" class="hover-icon-link" data-toggle="tooltip" data-placement="left" title="Quick view"><i class="fa fa-search-plus" data-toggle="modal" data-target="#quickViewModal_{{product.id}}"></i></a>
+                    </div>
+                </div>
+            </div>  
 
-		               
-					{% endfor %}
-          </div>
+            {% endfor %}
         </div>
+          <div class="pegin">{{links | raw }}
+            <div>
+            {% else %}
+                <div class="alert alert-primary" style="margin: 10px 33px;">No feature product are available.</div><br>
+        {% endif %}
+    </div>
     <div id="mySidenav" class="cart-sidenav">
         <div class="cart-sidenav-header">
             <h3 class="sidenav-heading">Shopping cart</h3>
@@ -67,57 +67,37 @@
         <ul class="sidenav-cart-list-area"> 
             <li v-for="product in cart">
                 <div class="cart-product-thumb">
-                   <img :src="productImage(product.image)" :alt="product.name" :title="product.name">
-                </div>
-
+                    <img :src="productImage(product.image)" :alt="product.name" :title="product.name">
+               </div>
                 <div class="cart-product-detail">
                     <a href="#" class="cart-sidenav-heading">${ product.name }</a>
                     <div class="sidenav-cart-list-box">
-                        
-
-                           <div class="input-group plus-minus-input">
-                                    <div class="widgets-numberpicker">
-                                        <div class="widgets-numberpicker-decrement" v-on:click="cartItemQuantityDecrement(product)"><i class="fa fa-minus"></i></div>
-                                    </div>
-                                    <div class="input-group-field item-quantity-count">
-                                        <input type="text" class="form-control" v-model="product.quantity" v-on:keypress="onlyNumber" maxlength="9">
-                                    </div>
-                                    <div class="widgets-numberpicker">
-                                        <div class="widgets-numberpicker-increment" v-on:click="cartItemQuantityIncrement(product)"><i class="fa fa-plus"></i></div>
-                                    </div>
-                                </div>
-   
-
+                        <div class="input-group plus-minus-input">
+                            <div class="widgets-numberpicker">
+                                <div class="widgets-numberpicker-decrement" v-on:click="cartItemQuantityDecrement(product)"><i class="fa fa-minus"></i></div>
+                            </div>
+                            <div class="input-group-field item-quantity-count">
+                                <input type="text" class="form-control" v-model="product.quantity" v-on:keypress="onlyNumber" maxlength="9">
+                            </div>
+                            <div class="widgets-numberpicker">
+                                <div class="widgets-numberpicker-increment" v-on:click="cartItemQuantityIncrement(product)"><i class="fa fa-plus"></i></div>
+                            </div>
+                        </div>
                         <span class="cart-price pl-2">
-                       
-                         <button class="removeBtn" v-on:click="removeFromCart(product)"> <i class="fa fa-times pr-2"></i></button>
-                        ${ product.currency +' '+ product.price*product.quantity }</span>
+                             <button class="removeBtn" v-on:click="removeFromCart(product)"> <i class="fa fa-times pr-2"></i></button>${ product.currency +' '+ product.price*product.quantity }
+                        </span>
                     </div>                    
                 </div>  
-                <li>
+            <li>
         </ul>
-
         <div class="sidenav-cart-detail">
             <form>
-                <!--div class="form-group">
-                    <label for="exampleFormControlTextarea1">Special instructions for seller</label>
-                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-                </div-->
-                <!--p class="sidenav-cart-total">
-                    <strong>Subtotal:</strong>
-                    <td><span v-text="subtotal"></span></td>
-                </p-->
-                <!--div class="custom-control custom-checkbox mr-sm-2 mb-4">
-                    <input type="checkbox" class="custom-control-input" id="customControlAutosizing">
-                    <label class="custom-control-label" for="customControlAutosizing">I agree with the <a href="#" class="tc-link">terms and conditions.</a></label>
-                </div-->
-                 <a class="comn-btn grey-btn d-block w-100 mb-3 showCartBtn" href="{{ base_url('cart') }}">View my cart</a>
-                <!--button class="comn-btn grey-btn d-block w-100 mb-3">VIEW CART</button-->
+                <a class="comn-btn grey-btn d-block w-100 mb-3 showCartBtn" href="{{ base_url('cart') }}">View my cart</a>
                 <button class="comn-btn d-block w-100"><a href="checkout.html">CHECKOUT</a></button>
             </form>            
         </div>
     </div>
+</section>
 {% endblock %}
 {% block scripts %}
-
 {% endblock %}

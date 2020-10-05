@@ -8,40 +8,52 @@ class Product extends MY_Controller
 
         $this->load->model('CategoryModel', 'category');
         $this->load->model('ProductModel', 'product');
+        $this->load->library("pagination");
     }
 
     public function detail($slug)
-	{
-         //print_r("hh"); die;
-        $productMenu = $this->product->newArrival(4);
+    {
+        $productMenu = $this->product->newArrival(5);
         $product = $this->product->findBySlug($slug);
         $review =$this->product->getReview($product->getId());
-	    $gallery = $this->product->gallery($product->getCategoryId());
+        $gallery = $this->product->gallery($product->getCategoryId());
      
         $subCategory = $this->category->getOneById($product->getCategoryId());
       //print_r($subCategory); die;
         $mainCategory = '';//$this->category->getMainCategoryById($subCategory->getCategoryId());
         $user = $this->session->userdata("user"); 
-      
-        $this->twig->display('product/detail', compact('product', 'gallery', 'subCategory' ,'mainCategory','review','user','productMenu'));
-	}
+       // print_r($product); die;
 
-	public function all()
+         $msg = $this->session->flashdata('msg');
+
+        $this->twig->display('product/detail', compact('product', 'gallery', 'subCategory' ,'mainCategory','review','user','productMenu','msg'));
+    }
+
+    public function all()
     {
            
         $parent_slug = 'all';
         $subCategories = array();
-        $products = $this->product->findAll();
-        $productMenu = $this->product->newArrival(4);
-<<<<<<< HEAD
+       
+        $productMenu = $this->product->newArrival(5);
+        
+        $config = array();
+        $config["base_url"] = base_url() . "product/all";
+        $config["total_rows"] = count($this->product->findAll());
+        $config["per_page"] = 5;
+        $config["uri_segment"] = 3;
 
-        $this->twig->display('category', compact('products', 'subCategories', 'parent_slug','productMenu'));
-=======
+        $this->pagination->initialize($config);
 
+        $page = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
 
-        $this->twig->display('product', compact('products', 'subCategories', 'parent_slug','productMenu'));
+        $links = $this->pagination->create_links();
+        
+        $products = $this->product->findAll($config["per_page"], $page);
 
->>>>>>> 1b446810f9756370e1c55c1c749db60c15c0688f
+        //echo count($products); die;
+        $this->twig->display('product', compact('products', 'subCategories', 'parent_slug','productMenu','links'));
+
     }
 
     public function sales()
@@ -49,7 +61,7 @@ class Product extends MY_Controller
         $parent_slug = 'sales';
         $subCategories = array();
         $products = $this->product->findAll();
-        $productMenu = $this->product->newArrival(4);
+        $productMenu = $this->product->newArrival(5);
 
         $this->twig->display('category', compact('products', 'subCategories', 'parent_slug','productMenu'));
     }
@@ -57,7 +69,7 @@ class Product extends MY_Controller
     public function newArrival()
     {
         $parent_slug = 'new';
-        $productMenu = $this->product->newArrival(4);
+        $productMenu = $this->product->newArrival(5);
         $subCategories = array();
         $products = $this->product->newArrival();
 
@@ -65,7 +77,8 @@ class Product extends MY_Controller
     }
     
     public function addReviews()
-    {
+    { 
+        $this->session->unset_userdata('msg');
         $user = $this->session->userdata("user"); 
      
         $this->load->Model('PageModel','PM');
@@ -77,6 +90,7 @@ class Product extends MY_Controller
             );
           //  print_r($data); die
         $template =  $this->PM->insertReview($data);
+     $this->session->set_flashdata('msg', "Review Added");
     redirect(base_url()."/product/detail/".$this->input->post('product_slug'));
         
     }

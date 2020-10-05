@@ -14,23 +14,24 @@ class Home extends MY_Controller
         $this->load->model('SettingModel', 'sm');
         $this->load->model('DashboardModel', 'dbm');
         $this->load->model('VisitorModel', 'VM');
+        $this->load->library("pagination");
 
     }
 
     public function index()
-	{
+    {
  
-	   // $exist_ip = $this->VM->ip_exists($_SERVER['REMOTE_ADDR']);
-	   //  if($exist_ip == 0){
-	   //  $data = array(
+       // $exist_ip = $this->VM->ip_exists($_SERVER['REMOTE_ADDR']);
+       //  if($exist_ip == 0){
+       //  $data = array(
     //             'visitor_count' => 1,
     //             'ip_address' => $_SERVER['REMOTE_ADDR'],
     //             'created_at' =>date("d/m/Y")
     //         );
     //     $this->VM->insertVisitor($data);
-	   //  }
+       //  }
        
-        $productMenu = $this->product->newArrival(4);
+        $productMenu = $this->product->newArrival(5);
         $new_arrival_products = $this->product->newArrival(4);
         $featured_products = $this->product->featured(4);
         $specail_products = $this->product->special(4);
@@ -49,15 +50,28 @@ class Home extends MY_Controller
      public function feature()
     {
         $productMenu = $this->product->newArrival(4);
-        $featured_product = $this->product->featured(4);
-      
+        $featured_product = $this->product->featured($config["per_page"], $page);
+        
+        $config = array();
+        $config["base_url"] = base_url() . "feature-product";
+        $config["total_rows"] = count($this->product->featured());
+        $config["per_page"] = 4;
+        $config["uri_segment"] = 3;
 
-        $this->twig->display('partials/home/feature_product', compact('featured_product','productMenu'));
+        $this->pagination->initialize($config);
+
+        $page = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
+
+        $links = $this->pagination->create_links();
+
+        $featured_product = $this->product->featured($config["per_page"], $page);
+
+        $this->twig->display('partials/home/feature_product', compact('featured_product','productMenu','links'));
 
             //$this->dbm->updatesitorcount();
     }
 
-	public function prefetch()
+    public function prefetch()
     {
         $result = $this->db->select('id, name, slug, description, CONCAT("'.asset('uploads/product/thumbnail/').'", image) AS thumbnail, price, currency, sku, brand')
             ->limit(10)
@@ -203,9 +217,14 @@ class Home extends MY_Controller
 
         $product = $this->product->findBySlug($slug);
         $gallery = $this->product->gallery($product->getId());
-        $subCategory = $this->category->getOneById($product->getCategoryId());
-        $mainCategory = $this->category->getMainCategoryById($subCategory->getCategoryId());
-
+        //echo"<pre>";print_r($product); print_r($product->getCategoryId()); die;
+        //if(!empty($product->getCategoryId())){
+            $subCategory = $this->category->getOneById($product->getCategoryId());
+       // }
+     
+        // if(!empty($subCategory->getCategoryId() !=){
+        //      $mainCategory = $this->category->getMainCategoryById($subCategory->getCategoryId());
+        // }
         $this->twig->display('product/detail', compact('product', 'gallery', 'mainCategory','productMenu'));
     }
 }

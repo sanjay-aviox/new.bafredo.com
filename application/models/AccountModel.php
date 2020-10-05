@@ -70,6 +70,21 @@ class AccountModel extends CI_Model
        }
 
     }
+       public function update_home_address_book($data,$id)
+    {
+        $check = $this->get_user_home_address_book($id);
+       if(empty($check)){
+           $sss = array('user_id'=>$id);
+           $add = array_merge($sss,$data);
+           $this->db->insert('home_address', $add);
+           return $this->get_user_home_address_book($id);
+       }else {
+           $this->db->where("user_id", $id);
+           $this->db->update('home_address', $data);
+           return $this->get_user_home_address_book($id);
+       }
+
+    }
 
     public function get_region(){
         $this->db->select('name');
@@ -83,16 +98,17 @@ class AccountModel extends CI_Model
         return $this->db->get("distircts")->result();
     }
 
-    public function remove_whislist($id)
+    public function remove_whislist($id,$userId)
     {
-        $this->db->where("id",$id);
+        $this->db->where("product_id",$id);
+        $this->db->where("user_id",$userId);
         $this->db->delete('wishlist');
     }
 
     public function get_wish_list($id)
     {
 
-        $this->db->select('wishlist.*,products.*');
+        $this->db->select('wishlist.id as wish_id,wishlist.*,products.*');
         $this->db->where('user_id',$id);
         $this->db->join('products', 'products.id = wishlist.product_id');
         return $this->db->get("wishlist")->result();
@@ -120,6 +136,11 @@ class AccountModel extends CI_Model
     {
         $this->db->where('user_id',$user_id);
         return $this->db->get("address_books")->row();
+    }
+      public function get_user_home_address_book($user_id)
+    {
+        $this->db->where('user_id',$user_id);
+        return $this->db->get("home_address")->row();
     }
     public  function form_insert($data){
         $this->db->insert('users', $data);

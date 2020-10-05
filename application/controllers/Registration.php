@@ -16,6 +16,7 @@ class Registration extends MY_Controller
     public function index()
 	{
 
+
     $cap =  $this->initCaptcha();
 
         $questions = $this->PM->getsecurity();
@@ -25,16 +26,22 @@ class Registration extends MY_Controller
         $email = $this->session->flashdata('email');
         $password = $this->session->flashdata('password');
         $confirm_password= $this->session->flashdata('confirm_password');
-        
-        $productMenu = $this->product->newArrival(4);
+        $message=$this->session->flashdata('message');
+        $productMenu = $this->product->newArrival(5);
 
-        $this->twig->display('registration',compact('emailexit','userexit','name','email','password','confirm_password','questions','cap','productMenu'));
+        $this->twig->display('registration',compact('emailexit','userexit','name','email','password','confirm_password','questions','cap','productMenu','message'));
     }
 
     public function process()
     {
-      // print_r($this->input->post('answer')[0]); die;
-    if($this->session->userdata('captchaWord') == $this->input->post('captcha')){
+   //  print_r(gettype($this->input->post('captcha'))); echo "<br>"; echo $this->input->post('captcha');     echo "<br>"; echo $this->session->userdata('captchaWord');
+   //  echo "<br>";
+   // echo gettype($this->session->userdata('captchaWord')); 
+
+   //   if($this->session->userdata('captchaWord') == $this->input->post('captcha')){ echo"hi"; }else{
+   //   	echo "bye";
+   //   } die;
+    if($this->session->userdata('captchaWord') == trim($this->input->post('captcha'))){
        
     
             $this->load->library('form_validation');
@@ -61,6 +68,8 @@ class Registration extends MY_Controller
                        // 'mailtype' => 'html',
                         //'charset' => 'iso-8859-1'
                 );
+
+         
                 if ($this->form_validation->run() == True) {
                     $this->load->library('email', $config);
                     $secret = "35onoi2=-7#%g03kl";
@@ -127,14 +136,23 @@ class Registration extends MY_Controller
                     $body .= "Please note that we do not monitor this mailbox. All queries should be sent through our <a href='$contact'>Contact Us</a> form or through the contact details displayed on the website.<br><br>";
                     $body .= "BAFREDO Electronics sent this Email to $name registered in our database. We are highly committed to your privacy. You can learn more on our <a href='$privacy'> Privacy Policy </a> and <a href='$trem'>Terms & Conditions </a>.<br><br>";
                     $body .= "©2015-2020 BAFREDO Electronics Inc., Sam Nujoma Road, Near Double D Bar, Sinza C, Ubungo.";
+                    
+                  $this->load->library('email', $config);
+                $this->email->from('info@bafredo.com', 'Bafredo');
+                //$this->email->to("monuthakur1217@gmail.com");
+                $this->email->to($email);
     
-                    $this->email->from('info@bafredo.com', 'Bafredo');
-                    $this->email->to($email);
+                $this->email->subject('Verify your email');
+                $this->email->message("Your verification code ".$otp);
+                $this->email->send();
+
+                    // $this->email->from('info@bafredo.com', 'Bafredo');
+                    // $this->email->to($email);
     
-                    $this->email->subject(''.$name.', welcome to BAFREDO Electronics marketplace!');
-                    $this->email->message($body);
+                    // $this->email->subject(''.$name.', welcome to BAFREDO Electronics marketplace!');
+                    // $this->email->message($body);
     
-                    $this->email->send();
+                    // $this->email->send();
     
                     $this->session->set_userdata("isUserLoggedin", 1);
                     $this->session->set_userdata("user", $user);
@@ -163,7 +181,8 @@ class Registration extends MY_Controller
                 redirect("registration");
             }
         }else{
-            $this->session->set_flashdata('message', "SUCCESS_MESSAGE_HERE"); 
+             
+            $this->session->set_flashdata('message', "Please enter correct Captcha"); 
             redirect("registration");
         }
     }

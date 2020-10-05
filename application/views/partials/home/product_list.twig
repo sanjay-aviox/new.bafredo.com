@@ -1,38 +1,13 @@
 <section class="slider-category-section pb-5 pt-5">
     <div class="container-fluid p-0">
-<<<<<<< HEAD
-        <div class="comn-section-heading">
-            <h2>
-                Our Products
-            </h2>
-            <p>
-                BAFREDO Electronics is determined to provide cost-effective and quality products to hobbyists and practitioners in Electronics. Implement your upcoming projects through our products.
-            </p>
-        </div>
-        <div class="row">
-            <div class="col-12 col-md-12">
-                <div class="ourSlider  owl-carousel owl-theme slider-category-box">
-                    {% for product in featured_products %}
-                    <div class="slider-category-item">
-                        <a href="#">
-                            <div class="slider-category-thumb">
-                                <a title="{{ product.name }}" href='{{ base_url("product/detail/#{product.slug}") }}'><img src='{{ asset("uploads/product/thumbnail/#{product.image}") }}' alt="{{ product.name }}" title="{{ product.name }}"></a>
-                            </div>
-                            <div class="slider-category-title">
-                                <h4>
-                                    {{ product.name }}
-                                </h4>
-                            </div>
-                        </a>
-                    </div>
-                    {% endfor %}
-=======
         <div class="comn-section-heading"><h2>Our Products</h2>
             <p>BAFREDO Electronics is determined to provide cost-effective and quality products to hobbyists and practitioners in Electronics. Implement your upcoming projects through our products.</p>
         </div>
          <div class="row">
             <div class="col-12 col-md-12">
+                {% if featured_products %}
                 <div class="ourSlider  owl-carousel owl-theme slider-category-box">
+                  <div class="slider-category-item"><a href="#"></a><div class="slider-category-thumb"><a href="#"></a><a title="Romeo - an Arduino Robot Control Board with Motor Driver" href="http://178.128.177.194/new.bafredo.com/product/detail/romeo-an-arduino-robot-control-board-with-motor-driver"><img src="http://178.128.177.194/new.bafredo.com/assets/uploads/product/thumbnail/kumi047cr280sg8080.jpg" alt="Romeo - an Arduino Robot Control Board with Motor Driver" title="Romeo - an Arduino Robot Control Board with Motor Driver"></a></div> <div class="slider-category-title"><h4>Romeo - an Arduino R</h4></div> <div class="featured-products-hover-info"><a data-toggle="tooltip" data-placement="top" title="" class="icon-link" data-original-title="Add to cart"><i class="fa fa-shopping-cart"></i></a> <a href="http://178.128.177.194/new.bafredo.com/product/detail/romeo-an-arduino-robot-control-board-with-motor-driver" data-toggle="tooltip" data-placement="top" title="" class="icon-link" data-original-title="Quick view"><i class="fa fa-search-plus"></i></a> <a data-toggle="tooltip" data-placement="top" title="" class="icon-link" data-original-title="Wishlist"><i class="fa fa-heart-o"></i></a></div></div>
                 {% for product in featured_products %}
                     <div class="slider-category-item">
                         <a href="#">
@@ -41,7 +16,7 @@
                             </div>
 
                             <div class="slider-category-title">
-                                <h4>{{ product.name }}</h4>
+                                <h4>{{ product.name |striptags|slice(0, 20) }}</h4>
                             </div>
                         </a>
                         <div class="featured-products-hover-info">
@@ -53,68 +28,24 @@
                         </div>
 
                     </div>
-                    {% endfor %}
+                {% endfor %}
+              
+                
+               <div class="slider-category-item"><a href="#"></a><div class="slider-category-thumb"><a href="#"></a><a title="Test1 Item" href="http://178.128.177.194/new.bafredo.com/product/detail/test1-item"><img src="http://178.128.177.194/new.bafredo.com/assets/uploads/product/thumbnail/6h6qyelw81s0gscwgc.jpg" alt="Test1 Item" title="Test1 Item"></a></div> <div class="slider-category-title"><h4>Test1 Item</h4></div> <div class="featured-products-hover-info"><a data-toggle="tooltip" data-placement="top" title="" class="icon-link" data-original-title="Add to cart"><i class="fa fa-shopping-cart"></i></a> <a href="http://178.128.177.194/new.bafredo.com/product/detail/test1-item" data-toggle="tooltip" data-placement="top" title="" class="icon-link" data-original-title="Quick view"><i class="fa fa-search-plus"></i></a> <a data-toggle="tooltip" data-placement="top" title="" class="icon-link" data-original-title="Wishlist"><i class="fa fa-heart-o"></i></a></div></div>
+
                     
->>>>>>> 1b446810f9756370e1c55c1c749db60c15c0688f
-                    <div class="slider-category-item">
-                        <a href="#">
-                            <div class="slider-category-thumb">
-                                <img src="{{ asset('theme/images/DC-Motor-12v.jpg') }}">
-                            </div>
-                            <div class="slider-category-title">
-<<<<<<< HEAD
-                                <h4>
-                                    DC Motor 12v
-                                </h4>
-=======
-                                <h4>DC Motor 12v</h4>
->>>>>>> 1b446810f9756370e1c55c1c749db60c15c0688f
-                            </div>
-                        </a>
-                    </div>
-                    <div class="slider-category-item">
-                        <a href="#">
-                            <div class="slider-category-thumb">
-                                <img src="{{ asset('theme/images/SM900.jpg') }}">
-                            </div>
-                            <div class="slider-category-title">
-<<<<<<< HEAD
-                                <h4>
-                                    GSM/GPRS SIM900 Module
-                                </h4>
-=======
-                                <h4>GSM/GPRS SIM900 Module</h4>
->>>>>>> 1b446810f9756370e1c55c1c749db60c15c0688f
-                            </div>
-                        </a>
-                    </div>
-                    <div class="slider-category-item">
-                        <a href="#">
-                            <div class="slider-category-thumb">
-                                <img src="{{ asset('theme/images/HX711-5KG-Digital-Load-Cell.jpg') }}">
-                            </div>
-                            <div class="slider-category-title">
-<<<<<<< HEAD
-                                <h4>
-                                    HX711 5KG Digital Load Cell
-                                </h4>
-=======
-                                <h4>HX711 5KG Digital Load Cell</h4>
->>>>>>> 1b446810f9756370e1c55c1c749db60c15c0688f
-                            </div>
-                        </a>
-                    </div>
+                    
                 </div>
+                {% else %}
+                        <div class="alert alert-primary" style="margin: 10px 33px;">No product are available</div><br>
+                {% endif %}
             </div>
         </div>
         <div class="text-center">
-            <a href="{{ base_url("product/all") }}" class="comn-btn">See All</a>
+            <a href="{{ base_url("product/all") }}"><button class="comn-btn mt-3">See All</button></a>
         </div>
     </div>
-<<<<<<< HEAD
-=======
  
->>>>>>> 1b446810f9756370e1c55c1c749db60c15c0688f
 </section>
 <!-- slider category section end -->
 <!-- Featured Products section start -->
@@ -128,13 +59,17 @@
                 Shop for products that have received wide attention of customers. See how our products have addressed real-world challenges in the society.
             </p>
         </div>
-        <div class="row">
-            {% for product in featured_products %}
-            <div class="col-12 col-lg-3 col-md-4 col-sm-6">
-                {{ include('partials/product.twig') }}
+        {% if featured_products %}
+            <div class="row">
+                {% for product in featured_products %}
+                <div class="col-12 col-lg-3 col-md-4 col-sm-6">
+                    {{ include('partials/product.twig') }}
+                </div>
+                {% endfor %}
             </div>
-            {% endfor %}
-        </div>
+        {% else %}
+            <div class="alert alert-primary" style="margin: 10px 33px;">No featured product are available</div><br>
+        {% endif %}
     </div>
 </section>
 <!-- Featured Products section end -->
@@ -158,18 +93,19 @@
                 </div>
                 <div class="shop-detail">
                     <div class="shop-category-box">
+                        {% if specail_products %}
                         {% for product in specail_products %}
                         <div class="shop-category-item">
                             <div class="my-best-hover">
-                                <a href="{{ base_url("product/detail/#{product.slug}") }}">
+                                <a href="{{ base_url('product/detail/') }}{{product.slug}}">
                                     <div class="shop-category-thumb">
-                                        <img src="{{ asset("uploads/product/thumbnail/#{product.image}") }}">
+                                        <img src="{{ asset('uploads/product/thumbnail/') }}{{ product.image }}">
                                     </div>
                                 </a>
                                 <div class="featured-products-hover-info">
                                     <a v-on:click="addToCart({{ product.toJson() }})" class="icon-link" data-toggle="tooltip" data-placement="top" title="Add to cart"><i class="fa fa-shopping-cart">
                                         </i></a>
-                                    <a href="{{ base_url("product/detail/#{product.slug}") }}" class="icon-link" data-toggle="tooltip" data-placement="top" title="Quick view"><i class="fa fa-search-plus">
+                                    <a href="{{ base_url('product/detail/') }}{{product.slug}}" class="icon-link" data-toggle="tooltip" data-placement="top" title="Quick view"><i class="fa fa-search-plus">
                                         </i></a>
                                     <a v-on:click="addToWishList({{ product.toJson()  }})" class="icon-link" data-toggle="tooltip" data-placement="top" title="Wishlist"><i class="fa fa-heart-o">
                                         </i></a>
@@ -182,6 +118,9 @@
                             </div>
                         </div>
                         {% endfor %}
+                        {% else %}
+                            <div class="alert alert-dark" style="margin: 10px 33px;">No best product are available</div><br>
+                        {% endif %}
                     </div>
                     <!--a href="#" class="comn-btn mr-2">See More</a-->
                     <!---a href="#" class="comn-outline-btn">Read More</a-->
@@ -196,17 +135,18 @@
     <div class="container">
         <div class="comn-section-heading">
             <h2>
-                New Arrivals
+                New Arrivalsfgf
             </h2>
             <p>
                 We are always ahead of technology, striving for innovations that bring positive impact to the society. Shop for our latest products.
             </p>
         </div>
+         {% if new_arrival_products %}
         <div class="row">
             <div class="col-12 col-md-6">
                 <div class="product-category-box">
                     <div class="product-category-thumb">
-                        <img src="{{ asset("uploads/product/thumbnail/#{new_arrival_products.0.image}") }}">
+                        <img src="{{ asset('uploads/product/thumbnail/') }}{{new_arrival_products.0.image}}">
                         <div class="product-category-hover-info">
                             <h4>
                                 {{ new_arrival_products.0.name|striptags|slice(0, 20) }}
@@ -219,7 +159,7 @@
                 <div class="product-category-horizontal-box">
                     <div class="product-category-box">
                         <div class="product-category-thumb">
-                            <img src="{{ asset("uploads/product/thumbnail/#{new_arrival_products.1.image}") }}">
+                            <img src="{{ asset('uploads/product/thumbnail/') }}{{ new_arrival_products.1.image }}">
                             <div class="product-category-hover-info">
                                 <h4>
                                     {{ new_arrival_products.1.name |striptags|slice(0, 20) }}
@@ -231,7 +171,7 @@
                 <div class="product-category-grid-box">
                     <div class="product-category-box">
                         <div class="product-category-thumb">
-                            <img src="{{ asset("uploads/product/thumbnail/#{new_arrival_products.2.image}") }}">
+                            <img src="{{ asset('uploads/product/thumbnail/') }}{{new_arrival_products.2.image}}">
                             <div class="product-category-hover-info">
                                 <h4>
                                     {{ new_arrival_products.2.name|striptags|slice(0, 20) }}
@@ -241,7 +181,7 @@
                     </div>
                     <div class="product-category-box">
                         <div class="product-category-thumb">
-                            <img src="{{ asset("uploads/product/thumbnail/#{new_arrival_products.3.image}") }}">
+                            <img src="{{ asset('uploads/product/thumbnail/') }}{{new_arrival_products.3.image}}">
                             <div class="product-category-hover-info">
                                 <h4>
                                     {{ new_arrival_products.3.name |striptags|slice(0, 20) }}
@@ -250,12 +190,11 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> 
         </div>
-<<<<<<< HEAD
-    </div>
-=======
->>>>>>> 1b446810f9756370e1c55c1c749db60c15c0688f
+        {% else %}
+            <div class="alert alert-primary" style="margin: 10px 33px;">No new arrivals are there</div><br>
+        {% endif %}
 </section>
 <!-- product-category-section end -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.js" integrity="sha512-WNZwVebQjhSxEzwbettGuQgWxbpYdoLf7mH+25A7sfQbbxKeS5SQ9QBf97zOY4nOlwtksgDA/czSTmfj4DUEiQ==" crossorigin="anonymous"></script>

@@ -21,14 +21,14 @@ class Welcome extends MY_Controller
         $this->twig->display('xcrud', compact('xcrud'));
 	}
 
-	public function create()
-    {
-        $product = new Entity\Product();
-        $product->setName("Apple iPhone 7 plus");
-        $product->setPrice(30000);
-        $product->setDescription("I love this phone");
+	// public function create()
+ //    {
+ //        $product = new Entity\Product();
+ //        $product->setName("Apple iPhone 7 plus");
+ //        $product->setPrice(30000);
+ //        $product->setDescription("I love this phone");
 
-        $this->em->persist($product);
-        $this->em->flush();
-    }
+ //        $this->em->persist($product);
+ //        $this->em->flush();
+ //    }
 }

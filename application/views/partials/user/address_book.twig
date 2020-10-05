@@ -1,7 +1,37 @@
-<div class="col-12 col-md-8">
+
+
+<div class="row">
+<p>The shipping address will be used on the checkout page by default.</p>
+<div class="col-12 col-md-6">
+       <div class="address-area">
+        
+        
+        <div class="address-info">
+            <div class="address-title"><h2>Home Address</h2></div>
+                <div class="address-info-box">
+                    <p>Name : {{ homeAddress.first_name }}&nbsp {{ homeAddress.last_name }}</p>
+                    <p>Email : {{ homeAddress.email }}</p>
+                    <p>Mobile : {{ homeAddress.phone }}</p>
+                    <p>Address : {{ homeAddress.address }}</p>
+                    <p>District : {{ homeAddress.city}}</p>
+
+                    <p>Region : {{ homeAddress.region }}</p>
+                    <p>Postal Code :{{ homeAddress.postal_code }}</p>
+
+                </div>
+            </div>
+            
+         
+            <div class="addresses-btn-box">
+                <button type="button" class="comn-btn" data-toggle="modal" data-target="#homeAddressModal">Change Address</button>
+            </div>
+        </div>
+
+</div>
+<div class="col-12 col-md-6">
     <div class="address-area">
         
-        <p>The following addresses will be used on the checkout page by default.</p>
+        <!-- <p>The following addresses will be used on the checkout page by default.</p> -->
         <div class="address-info">
             <div class="address-title"><h2>Shipping Address</h2></div>
                 <div class="address-info-box">
@@ -19,17 +49,18 @@
             
          
             <div class="addresses-btn-box">
-                <button type="button" class="comn-btn black-btn" data-toggle="modal" data-target="#editAddressModal">Change Address</button>
+                <button type="button" class="comn-btn" data-toggle="modal" data-target="#editAddressModal">Change Address</button>
             </div>
         </div>
     </div>
+    <p><button id="copy_address">Click here</button> if the Shipping Address is the same as the Home Address</p>
 </div>
 
 <div class="modal fade add-address-modal" id="editAddressModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalCenterTitle">Edit ADDRESS</h5>
+                <h5 class="modal-title" id="exampleModalCenterTitle">Edit Shipping Address</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -68,7 +99,7 @@
                     <div class="form-row">
                         <div class="form-group col-md-6">
                             <label for="inputState">Region</label>
-                            <select name="region" class="form-control" id="region" onchange="myFunctiondepartment()">
+                            <select name="region" class="form-control" id="region2" onchange="mySecondFunction()">
                                 <option value="{{ addressBook.region }}">{{ addressBook.region }}</option>
                                 {% for distirct  in  distircts %}
                                     <option value="{{ distirct.name }}">{{ distirct.name }}</option>
@@ -77,7 +108,7 @@
                         </div>
                         <div class="form-group col-md-6">
                             <label for="inputState">Province</label>
-                            <select name="city" class="form-control" id="city">
+                            <select name="city" class="form-control" id="city2">
                                 <option  value="{{ addressBook.city}}">{{ addressBook.city }}</option>
                             </select>
                         </div>
@@ -97,8 +128,90 @@
                         </div>
                     </div-->
                     <div class="form-group">                        
-                       <input type="submit" value="Save" id="saveReconjrd" class="btn btn-primary">
-                        <button type="button" class="comn-btn black-btn" data-dismiss="modal">Cancel</button>
+                       <input type="submit" value="Save" id="saveReconjrd" class="comn-btn">
+                        <button type="button" class="comn-btn " data-dismiss="modal">Cancel</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade add-address-modal" id="homeAddressModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalCenterTitle">Edit Home Address</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="home_book" method="post" id="homeaddressForm" class="form-horizontal">
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="inputEmail4">First Name</label>
+                            <input type="text" name="first_name" class="form-control"  value="{{ addressBook.first_name }}">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="inputPassword4">Last Name</label>
+                            <input type="text" name="last_name" class="form-control"  value="{{addressBook.last_name}}">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputAddress">Email</label>
+                        <input type="email"  name="email"  class="form-control" value="{{addressBook.email}}">
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="inputEmail4">Phone Number</label>
+                            <input type="text" name="phone" class="form-control"  value="{{ addressBook.phone }}">
+                             <p id="errmsg" style="color:red;"></p>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="inputPassword4">Address</label>
+                            <input type="text" name="address" class="form-control" value="{{ addressBook.address }}">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputAddress">Country</label>
+                         <input name="country" class="form-control" type="text" readonly value="Tanzania" />
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="inputState">Region</label>
+                            <select name="region" id="region" class="form-control" onchange="myFunctiondepartment()">
+                                <option value="{{ addressBook.region }}">{{ addressBook.region }}</option>
+                                {% for distirct  in  distircts %}
+                                    <option value="{{ distirct.name }}">{{ distirct.name }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="inputState">Province</label>
+                            <select name="city" class="form-control" id="city">
+                                <option  value="{{ addressBook.city}}">{{ addressBook.city }}</option>
+                            </select>
+                        </div>
+                    </div>  
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="inputEmail4">Postal/Zip Code</label>
+                            <input type="text" name="postal_code" required value="{{ addressBook.postal_code }}" placeholder="Postal Code" class="form-control">
+                    <p id="errmsg1"></p>
+                        </div>
+                       
+                    </div>                     
+                    <!--div class="form-group">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="marpur">
+                            <label class="form-check-label" for="gridCheck">Set as default address</label>
+                        </div>
+                    </div-->
+                    <div class="form-group">                        
+                       <input type="submit" value="Save" class="comn-btn">
+                        <button type="button" class="comn-btn " data-dismiss="modal">Cancel</button>
                     </div>
                 </form>
             </div>
@@ -108,7 +221,7 @@
 
 {% block scripts %}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.js"></script>
-<script>
+<script type="text/javascript">
     $(document).ready(function () {
         $("#phone").keypress(function (e) {
             if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
@@ -123,6 +236,29 @@
                }
            });
       });
+    $(document).ready(function () {
+    $('#copy_address').click(function(){
+       
+        $.ajax({
+            url: "{{ site_url('Account/home_to_shipping_address')}}",
+            type: 'POST',
+            data: {'name' : "done"},
+            success: function(msg) {
+            
+                location.reload();
+             
+                // var data = JSON.parse(msg);
+                // $.each(data, function( index, item ) {
+                // var option = document.createElement("option");
+                //                 option.text = item.name;
+                //                 option.value = item.name;
+                //                 var select = document.getElementById("city");
+                //                 select.appendChild(option);
+            }
+        });
+    });
+});
+ 
     function myFunctiondepartment() {
         $('#city').empty();
         var x = document.getElementById("region").value;
@@ -143,64 +279,86 @@
             }
         });
     }
-    $("#addressForm").validate({
-        rules: {   
-            first_name: {
-                required: true,
-                minlength :3,
-            },
-            last_name:{
-                required: true,
-                minlength :3,
-            },
-            email:{
-                required: true,
-                email:true
-            },
-            phone:{
-                required: true,
-                number:true
-            },
-            address:{
-                required: true,
-            },
-            region:{
-                required: true,
-            },
-            city:{
-                required: true,
-            },
-            postal_code:{
-                required: true, 
+    function mySecondFunction() {
+        $('#city2').empty();
+        var x = document.getElementById("region2").value;
+        $.ajax({
+            url: "{{ site_url('Account/getregion')}}",
+            type: 'POST',
+            data: {'name' : x},
+            success: function(msg) {
+                var data = JSON.parse(msg);
+                $.each(data, function( index, item ) {
+                var option = document.createElement("option");
+                                option.text = item.name;
+                                option.value = item.name;
+                                var select = document.getElementById("city2");
+                                select.appendChild(option);
+                });
+
             }
-        },
-        messages: {
-             first_name: {
-                required: "First name is required",
+        });
+    }
+    $( document ).ready(function() {
+       $("#addressForm").validate({
+            rules: {   
+                first_name: {
+                    required: true,
+                    minlength :3,
+                },
+                last_name:{
+                    required: true,
+                    minlength :3,
+                },
+                email:{
+                    required: true,
+                    email:true
+                },
+                phone:{
+                    required: true,
+                    number:true
+                },
+                address:{
+                    required: true,
+                },
+                region:{
+                    required: true,
+                },
+                city:{
+                    required: true,
+                },
+                postal_code:{
+                    required: true, 
+                }
             },
-            last_name:{
-                required: "Last name is required",
+            messages: {
+                 first_name: {
+                    required: "First name is required",
+                },
+                last_name:{
+                    required: "Last name is required",
+                },
+                email:{
+                    required: "Email Is required"
+                },
+                phone:{
+                    required: "Phone Number is required"
+                },
+                address:{
+                    required: "Address is required"
+                },
+               
+                region:{
+                    required: "Region is required",
+                },
+                city:{
+                    required: "City is required",
+                },
+                postal_code:{
+                    required: "Zip Code is required", 
+                }
             },
-            email:{
-                required: "Email Is required"
-            },
-            phone:{
-                required: "Phone Number is required"
-            },
-            address:{
-                required: "Address is required"
-            },
-           
-            region:{
-                required: "Region is required",
-            },
-            city:{
-                required: "City is required",
-            },
-            postal_code:{
-                required: "Zip Code is required", 
-            }
-        },
+        });
     });
 
 

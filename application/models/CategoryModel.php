@@ -21,7 +21,8 @@ class CategoryModel extends CI_Model
                 // ->join('users','users.id = reviews.user_id')
                  ->where('category_id',$id)
                  ->get();
-        return $q->result();
+        return $q->row();
+       // return $q->result();
        // return $this->subCategory->findOneById($id);
     }
 

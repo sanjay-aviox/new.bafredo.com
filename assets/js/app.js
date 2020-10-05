@@ -16932,7 +16932,8 @@ var app = new Vue({
       selectedCartItems: [],
       btnDisabled: true,
       regions: {},
-      ship: 0,
+      ship: "Self_Collection",
+      defaultShipMethod: "",
       wishlist:[],
       addToWishlistNotFlag:false
     };
@@ -17039,9 +17040,9 @@ var app = new Vue({
     //   }
 
       if (this.cart.length == this.cart_checkout.length) {
-        this.allCartItemOptionSelected = true;
+            this.allCartItemOptionSelected = true;
       } else {
-        this.allCartItemOptionSelected = false;
+            this.allCartItemOptionSelected = false;
       }
     },
     checkAllCartItems: function checkAllCartItems() {
@@ -17106,7 +17107,7 @@ var app = new Vue({
     },
     addToCart: function addToCart(product, redirectToCheckout) {
       var _this4 = this;
-
+    
       product['quantity'] = this.product_quantity;
 
       if (this.containsObject(product, this.cart) == false) {
@@ -17200,6 +17201,7 @@ var app = new Vue({
                 product['quantity'] = this.product_quantity;
 
                 if (this.containsObject(product, this.wishlist) == false) {
+                 
                         var price = Math.round(Number(product.price));
                         product.price = price;
                         this.wishlist.push(product);
@@ -17208,16 +17210,20 @@ var app = new Vue({
                         }, function (response) {
                         console.log(response);
                             if(response.status == 'cancel'){
-
+                             toastr.clear();
                              //window.location.href = "http://178.128.177.194/new.bafredo.com/login";
                             toastr.warning('Please login first to like the product' , {timeOut: 5000})
                             setTimeout(function () { 
                                 window.location.href = "http://178.128.177.194/new.bafredo.com/login";
                             }, 5000);
                         }else{
-                                toastr.success(response.message );
+                            toastr.clear();
+                            toastr.success(response.message );
                         } 
                     });
+                }else{
+                  alert("fg");
+                     toastr.success("Already added" , {timeOut: 5000});
                 }
         },
     onlyNumber: function onlyNumber($event) {

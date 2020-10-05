@@ -32,36 +32,27 @@ class Account extends MY_Controller
     {
         $post = $this->input->post();
         $current_user = getAuthUser('user');
-        $productMenu = $this->product->newArrival(4);
-                
+        $this->data['productMenu']  = $this->product->newArrival(5);    
         $this->data['verfiy'] = $this->AM->verfiymail($current_user->getId());
         $this->data['user'] = $current_user;
             if(!empty($post))
             {
                 if($current_user->getEmail() != $this->input->post('email') ){
                     $post['is_verified'] = '0';
-      
-                 //  $this->AM->update_account($otp,$current_user->getId());
-             
                 }
-                // print_r($current_user->getEmail()); echo $this->input->post('email'); die;
-                 
+
                 $this->data['user'] = $this->AM->update_account($post,$current_user->getId());
-                
                 $em = $this->doctrine->em;
                 $user = $em->getRepository("Entity\User")->findOneByEmail($this->input->post('email'));
                 $this->session->set_userdata("user", $user);
                 $this->data['user'] = $user;
-          
-               
+                $this->session->set_flashdata('msg', "Information  Updated Successfully");
                 $this->data['success'] = "done";
             }
+
         $this->data['page'] = 'account';
-<<<<<<< HEAD
-        $this->twig->display('user/profile', $this->data compact('productMenu'));
-=======
+        $this->data['msg'] = $this->session->flashdata('msg');
         $this->twig->display('user/profile', $this->data ,compact('productMenu'));
->>>>>>> 1b446810f9756370e1c55c1c749db60c15c0688f
     }
     public function order_history()
     {
@@ -70,16 +61,20 @@ class Account extends MY_Controller
         $this->data['page'] = 'order_history';
         $this->load->model('OrderModel');
         $segments = $this->uri->segment_array();
-        $productMenu = $this->product->newArrival(4);
+        $this->data['productMenu'] = $this->product->newArrival(5);
         if(!empty($segments[3]))
         {
+        	$this->session->set_flashdata('msg', "Order Deleted Successfully");
             $this->OrderModel->update_record($segments[3]);
             $this->data['success'] = "done";
             unset($segments[3]);
             redirect(base_url(implode("/",$segments)));
+
         }
+
         $this->data['orders'] = $this->OrderModel->allByUserId($this->data['user']->getId());
-     //   echo "<pre>"; print_r( $this->data['orders']); die;
+     //echo "<pre>"; print_r( $this->data['orders']); die;
+        $this->data['msg'] = $this->session->flashdata('msg');
         $this->twig->display('user/profile', $this->data,compact('productMenu'));
     }
     public function delete_history_record()
@@ -90,15 +85,23 @@ class Account extends MY_Controller
     {   
         $ids =$this->input->post('id');
         $searchForValue = ',';
+        $this->data['user'] = getAuthUser('user');
+        
+
         if( strpos($ids, $searchForValue) !== false ) {
+        	
             $arr_id =  explode(",",$ids);
-            
+        
             foreach ($arr_id as $id){
-                $this->AM->remove_whislist($id);
+
+                $this->AM->remove_whislist($id ,$this->data['user']->getId());
             }
         }else{
-            $this->AM->remove_whislist($ids);
+   //echo $ids;
+ //die;           
+  $this->AM->remove_whislist($ids,$this->data['user']->getId());
         } 
+ 
         redirect(base_url('account/wish_list'));
     }
     public function upload_profile()
@@ -138,26 +141,74 @@ class Account extends MY_Controller
                 }
         }
     }
+
     public function address_book()
     {
 
         $this->data['user'] = getAuthUser('user');
         $this->data['page'] = 'address_book';
         $this->data['addressBook'] = $this->AM->get_user_address_book($this->data['user']->getId());
+         $this->data['homeAddress'] = $this->AM->get_user_home_address_book($this->data['user']->getId());
         $post = $this->input->post();
-        $productMenu = $this->product->newArrival(4);
+      
+        $this->data['productMenu'] = $this->product->newArrival(5);
         if(!empty($post))
         {
-            // print_r($post); die;
+          
             $this->data['user'] = $this->AM->update_address_book($post,$this->data['user']->getId());
             $data['success'] ="done";
-
+            $this->session->set_flashdata('msg', "Address Updated Successfully");
             redirect("account/address_book");
         }
 
         $this->data['distircts'] = $this->AM->get_region();
-        //$this->data['region'] = $this->AM->get_region();
+        $this->data['msg'] = $this->session->flashdata('msg');
         $this->twig->display('user/profile', $this->data, compact('data','productMenu'));
+    }
+
+    public function home_book()
+    {
+
+        $this->data['user'] = getAuthUser('user');
+        $this->data['page'] = 'address_book';
+        $this->data['homeAddress'] = $this->AM->get_user_home_address_book($this->data['user']->getId());
+        $post = $this->input->post();
+        $this->data['productMenu'] = $this->product->newArrival(5);
+        if(!empty($post))
+        {
+            // print_r($post); die;
+            $this->data['user'] = $this->AM->update_home_address_book($post,$this->data['user']->getId());
+            $data['success'] ="done";
+            $this->session->set_flashdata('msg', "Home Address Updated Successfully");
+            redirect("account/address_book");
+        }
+
+        $this->data['distircts'] = $this->AM->get_region();
+        $this->data['msg'] = $this->session->flashdata('msg');
+        $this->twig->display('user/profile', $this->data, compact('data','productMenu'));
+    }
+    public function home_to_shipping_address()
+    {
+
+        $this->data['user'] = getAuthUser('user');
+        $this->data['page'] = 'address_book';
+        $home = $this->AM->get_user_home_address_book($this->data['user']->getId());
+      //  echo "<pre>"; print_r($home->id); die;
+        $post=[
+               
+                'first_name' => $home->first_name,
+                'last_name' => $home->last_name,
+                'email' => $home->email,
+                'phone'=> $home->phone,
+                'address' => $home->address,
+                'city' => $home->city,
+                'country' => $home->country,
+                'region' => $home->region,
+                'postal_code' => $home->postal_code
+
+        ];
+        $this->data['user'] = $this->AM->update_address_book($post,$this->data['user']->getId());
+        echo  json_encode(array('status'=>"success"));
     }
 
     public  function getregion(){
@@ -169,11 +220,8 @@ class Account extends MY_Controller
         $this->data['user'] = getAuthUser('user');
         $this->data['page'] = 'wish_list';
         $this->data['result'] = $this->AM->get_wish_list($this->data['user']->getId());
-        $productMenu = $this->product->newArrival(4);
-        // foreach (  $this->data['result']  as $val){
-         
-        //    $this->data['product'] = $this->category->getProductById($val->id);
-        // }
+        $this->data['productMenu'] = $this->product->newArrival(5);
+     //   print_r($this->data['productMenu']);
         $this->twig->display('partials/user/wish_list', $this->data,compact('productMenu'));
     }
 
@@ -183,17 +231,17 @@ class Account extends MY_Controller
         $this->data['page'] = 'password';
 
         $password = $this->session->flashdata('wrongpassword');
-        $productMenu = $this->product->newArrival(4);
+         $this->data['productMenu'] = $this->product->newArrival(5);
         $redirectAfterLogin = $this->input->get('href');
-
+        $this->data['msg'] = $this->session->flashdata('msg');
+        $this->data['error'] = $this->session->flashdata('error');
         $this->twig->display('user/profile', $this->data, compact('redirectAfterLogin','password','productMenu'));
     }
     public function changePasswordProcess()
     {
-        print_r($this->input->post());
         $this->data['user'] = getAuthUser('user');
         $this->data['page'] = 'password';
-
+       
         $user = getAuthUser('user');
         $old_pass= $this->input->post('oldpassword'); 
 
@@ -206,37 +254,26 @@ class Account extends MY_Controller
                 'oldpass'  =>  password_hash($this->input->post('oldpassword'),PASSWORD_DEFAULT)
             );
             $this->AM->update_password($data,$user->getId());
+              $this->session->set_flashdata('msg', "Password Updated Successfully");
             redirect('account/changePassword');
+          
         }else{
-           // $this->session->set_flashdata('item','Incorrect Email or username or password.');
-           // $error = "Incorrect Email or username or password.";
-            $this->session->set_flashdata('wrongpassword', 'A user with the same email already exists in our system');
+            $this->session->set_flashdata('error', 'Please Enter correct current password');
             redirect('account/changePassword');
 
         }
-        // die;
-        // $this->twig->display('user/profile', $this->data);
     }
 
     public function verifyemail(){
 
         $data = $this->input->post();  
-       // print_r($data['email']);
-          
+        
             $otp = rand(10000,100000);
             $this->session->set_userdata("otp", $otp);
             $current_user = getAuthUser('user');
            // print_r($current_user->getid());
             $post['is_verified'] = '1';
                
-//                $to = "monuaviox@gmail.com";
-// $subject = "My subject";
-// $txt = "Hello world!";
-// $headers = "From: webmaster@example.com" . "\r\n" .
-// "CC: somebodyelse@example.com";
-
-// mail($to,$subject,$txt,$headers);
-
                 $config = Array(
                     'protocol' => 'sendmail',
                     'smtp_host' => 'smtp.gmail.com',
@@ -248,15 +285,21 @@ class Account extends MY_Controller
                 );
                 $this->load->library('email', $config);
                 $this->email->from('info@bafredo.com', 'Bafredo');
+                //$this->email->to("monuthakur1217@gmail.com");
                 $this->email->to($data['email']);
     
                 $this->email->subject('Verify your email');
                 $this->email->message("Your verification code ".$otp);
-                $this->email->send();
+                if($this->email->send()){
+
+	                $arr = array('stattus'=>'success','message'=>'Verification Code is send on yoyur email');
+	                echo json_encode($arr);
+                }else{
+                    $arr = array('stattus'=>'error','message'=>'Something went wrong');
+                    echo json_encode($arr);
+                }
     
                 
-                $arr = array('stattus'=>'success','message'=>'Verification Code is send on yoyur email');
-                echo json_encode($arr);
        }
     public function confirmOTP(){
         $data = $this->input->post();  

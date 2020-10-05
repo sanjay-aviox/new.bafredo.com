@@ -1,12 +1,14 @@
 <div class="orders-area">
+  <div class="d-flex justify-content-between align-items-baseline">
     <h2 class="comn-dash-account-heading">
        Order History
     </h2>
-        <button type="button" class="btn btn-info"  style="background-color: #007bff;color:#1a1447;" data-toggle="modal" data-target="#myModal"> Download Orders</button><br><br>
+      {% if orders %}
+        <button type="button" class="btn "  style="color:#007bff;" data-toggle="modal" data-target="#myModal"> Download Orders</button></div>
         <div id="msg"> </div>
     
-        {% if orders %}
-        <table class="table table-striped order-history" class="display"  id="orderhistory">
+        
+        <table class="table table-striped order-history mt-4" class="display"  id="orderhistory">
             <thead>
                 <tr>
                     <th>Order</th>
@@ -119,6 +121,7 @@
         },
         function(isConfirm){
             if (isConfirm){
+            	  window.location.href="http://178.128.177.194/new.bafredo.com/cart"; 
                 $.ajax({
                     url: url,
                     type: 'get',

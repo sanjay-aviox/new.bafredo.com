@@ -118,29 +118,39 @@ $(document).ready(function(){
   $("#contactUs").validate({
     // Specify validation rules
     rules: {
-      subject: "required",
-      name: "required",
-      email: {
-        required: true,
-        email: true
-      },      
-      message: {
-        required: true,
-      },
+        subject:{
+            required: true,
+            minlength: 5,
+            maxlength: 20,
+        },
+        name:{
+            required: true,
+            minlength: 5,
+            maxlength: 20,
+        },
+        email: {
+            required: true,
+            email: true
+        },      
+        message: {
+            required: true,
+            minlength: 10,
+            maxlength: 50,
+        },
     },
     messages: {
-      subject: {
-      required: "Subject is required",
-     },      
-     name: {
-      required: "Name is required",
-     },     
-     email: {
-      required: "Email is required",
-     },     
-     message: {
-        required: "Message is required",
-     },
+       subject: {
+            required: "Subject is required",
+        },      
+        name: {
+            required: "Name is required",
+        },     
+        email: {
+            required: "Email is required",
+        },     
+        message: {
+            required: "Message is required",
+        },
     },
   
   });
